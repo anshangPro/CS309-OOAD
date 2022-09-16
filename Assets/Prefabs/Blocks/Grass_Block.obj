@@ -2,10 +2,10 @@
 # World:  (1)
 # Terrain file name: D:\Application\mineways\terrainExt.png
 # Color scheme: Standard
-# Fri Sep 16 14:47:39 2022
+# Fri Sep 16 20:27:08 2022
 
-# Selection location min to max: -31, -61, -15 to -31, 319, -15
-#   Non-empty selection location min to max: -31, -61, -15 to -31, -61, -15
+# Selection location min to max: -44, -61, -21 to -44, 319, -21
+#   Non-empty selection location min to max: -44, -61, -21 to -44, -61, -21
 
 # Set render type: Wavefront OBJ absolute indices
 # Units for the model vertex data itself: meters
@@ -15,14 +15,14 @@
 # Elevation shading: no
 # Lighting: no
 # Transparent water: no
-# Map grid: YES
+# Map grid: no
 # File type: Export all textures to three large images
 # Texture output RGB: YES
 # Texture output A: YES
 # Texture output RGBA: YES
 # Make groups objects: no
-# Export separate objects: YES
-# Individual blocks: no
+# Export separate objects: no
+# Individual blocks: YES
 #   Material per family: YES
 #   Split by block type: YES
 # G3D full material: YES
@@ -49,9 +49,9 @@
 # Full terrainExt.png path: D:\Application\mineways\terrainExt.png
 # Full current path: D:\Application\mineways
 
-mtllib GrassBlock.mtl
+mtllib Block.mtl
 
-o _(1)__-31_-61_-15_to_-31_319_-15
+o _(1)__-44_-61_-21_to_-44_319_-21
 vn -1 0 0
 vn 0 -1 0
 vn 0 0 -1
@@ -118,11 +118,11 @@ v 1 0 0
 v 1 1 0
 v 1 1 1
 
-g Grass_Block
 usemtl Grass_Block
+g block_00001
 f 2/2/1 3/3/1 4/4/1 1/1/1
-f 2/7/2 1/6/2 6/5/2 5/8/2
+f 2/6/2 1/5/2 6/8/2 5/7/2
 f 1/2/3 4/3/3 7/4/3 6/1/3
 f 5/1/4 6/2/4 7/3/4 8/4/4
-f 3/11/5 8/12/5 7/9/5 4/10/5
+f 3/10/5 8/11/5 7/12/5 4/9/5
 f 2/1/6 5/2/6 8/3/6 3/4/6
