@@ -28,6 +28,5 @@ public class BaseBlock : MonoBehaviour
     private void OnMouseDown()
     {
         IsCombatGridVisible = !IsCombatGridVisible;
-        Debug.Log($"Block {transform.localPosition.ToString()} clicked");
     }
 }

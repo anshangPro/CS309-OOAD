@@ -64,7 +64,7 @@ public class PathFinder
         
         try
         {
-            neighborBlocks.Add(map[new Vector2Int(blockX + 1, blockZ)].preBlock);
+            neighborBlocks.Add(map[new Vector2Int(blockX + 1, blockZ)]);
         }
         catch (KeyNotFoundException e)
         {
@@ -73,7 +73,7 @@ public class PathFinder
 
         try
         {
-            neighborBlocks.Add(map[new Vector2Int(blockX - 1, blockZ)].preBlock);
+            neighborBlocks.Add(map[new Vector2Int(blockX - 1, blockZ)]);
         }
         catch (KeyNotFoundException e)
         {
@@ -82,7 +82,7 @@ public class PathFinder
         
         try
         {
-            neighborBlocks.Add(map[new Vector2Int(blockX, blockZ + 1)].preBlock);
+            neighborBlocks.Add(map[new Vector2Int(blockX, blockZ + 1)]);
         }
         catch (KeyNotFoundException e)
         {
@@ -91,7 +91,7 @@ public class PathFinder
         
         try
         {
-            neighborBlocks.Add(map[new Vector2Int(blockX, blockZ - 1)].preBlock);
+            neighborBlocks.Add(map[new Vector2Int(blockX, blockZ - 1)]);
         }
         catch (KeyNotFoundException e)
         {
