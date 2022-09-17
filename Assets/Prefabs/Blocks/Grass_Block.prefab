@@ -111,8 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4231bc31528312f41b57005d6196c00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsGridVisible: 0
-  Block: {fileID: 0}
+  IsCombatGridVisible: 0
+  This: {fileID: 1466959882728450273}
+  G: 0
+  H: 0
+  preBlock: {fileID: 0}
 --- !u!1 &3555920944189890484
 GameObject:
   m_ObjectHideFlags: 0

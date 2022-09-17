@@ -6,36 +6,28 @@ using UnityEngine.Serialization;
 
 public class BaseBlock : MonoBehaviour
 {
-    public bool IsGridVisible = false;
-    public GameObject Block;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        Block = transform.gameObject;
-    }
+    public bool IsCombatGridVisible = false;
+    public int BlockX => (int) transform.localPosition.x;
+    public int BlockZ => (int)transform.localPosition.z;
+
+    public int G;
+    public int H;
+    public int F => G + H;
+
+    public BaseBlock preBlock;
 
     // Update is called once per frame
     void Update()
     {
-        if (Block.transform.childCount != 0)
+        if (gameObject.transform.childCount != 0)
         {
-            Block.transform.GetChild(0).gameObject.SetActive(IsGridVisible);
+            gameObject.transform.GetChild(0).gameObject.SetActive(IsCombatGridVisible);
         }
-        // if (Input.GetMouseButton(0))
-        // {
-        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //     RaycastHit hit;
-        //     if (Physics.Raycast(ray, out hit))
-        //     {
-        //         print("hit:" + hit.collider.gameObject.name);
-        //     }
-        // }
     }
 
     private void OnMouseDown()
     {
-        IsGridVisible = !IsGridVisible;
+        IsCombatGridVisible = !IsCombatGridVisible;
         Debug.Log($"Block {transform.localPosition.ToString()} clicked");
     }
 }
