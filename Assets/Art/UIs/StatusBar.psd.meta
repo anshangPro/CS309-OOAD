@@ -1,0 +1,593 @@
+fileFormatVersion: 2
+guid: a74c4822647fc614ba5ffc635763ed37
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StatusBar_Button
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1377
+        width: 77
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac1a9ad50b5aa884189f8e123af234e1
+      internalID: 203233900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Left_Arrow
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 1376
+        width: 67
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae93131aebde014489e29b24f580acf4
+      internalID: 387610363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Slice_Bar
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1377
+        width: 568
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdfc86e550fa99e4a8054daa298fbd8a
+      internalID: 493197290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Right_Arrow
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 1374
+        width: 67
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7186c36cf0c6d347a914621910ced8c
+      internalID: -924124156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Square_Button
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 1232
+        width: 92
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665ee00f320e70c4f9f9163346c5bebd
+      internalID: 1064496730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Skull
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 1249
+        width: 275
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fe15091e5e01cf4c81748a8316650b1
+      internalID: 2133955894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Confirm_Square
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 1293
+        width: 57
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f6b02b93d557fb48919d49fa1f0e69e
+      internalID: -1884713565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_ClickBox_Square
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 1293
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3e0b4c06d5f63c4c8f486ce65882e40
+      internalID: -1637312747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Confirm_Circle
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 1241
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 556f269046c28aa4d99b111f7ae82413
+      internalID: -513723749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_ClickBox_Circle
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 1227
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 926aa2bd8f7a5184eb426e9ff76f32ad
+      internalID: -1056724812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Dark_Text_Box
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 712
+        width: 821
+        height: 507
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf7036c2a40377e4aa15f0b6acdb675b
+      internalID: 2049870302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Info_Bar
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 969
+        width: 832
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe14300c5e54874a991a150d2d418f9
+      internalID: 1263317401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Light_Info_Box
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 383
+        width: 821
+        height: 507
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2497a6debb14a2d4aacd76dc1d5b14d5
+      internalID: 174194122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Orange
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 597
+        width: 531
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 666011e130a3b26489933744fa4c7271
+      internalID: 974195506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Red
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 501
+        width: 533
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38f7f4a9fda1c884a8b3a48256919a33
+      internalID: -1761695857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Blue
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 420
+        width: 536
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d587736664a4a0458157031498b5778
+      internalID: 81374434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Green
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 325
+        width: 531
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b70eba67ccb7f8849ae49156133670e3
+      internalID: 1129439703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Text_box
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 185
+        width: 573
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 724c53114d0d2914294712352dacd20f
+      internalID: -1070031249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Small_Arrow
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 1274
+        width: 30
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a67154eb3e05efc418a5507342fc597f
+      internalID: 800559925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StatusBar_Cross
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1279
+        width: 35
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bdeed9b77140484b9b1e621eb561d65
+      internalID: -1506419860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 86c4b24b6747806468552e1072ba98eb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      StatusBar_Button: 203233900
+      StatusBar_Orange: 974195506
+      StatusBar_29: -960288937
+      StatusBar_Skull: 2133955894
+      StatusBar_Square_Button: 1064496730
+      StatusBar_Confirm_Square: -1884713565
+      StatusBar_7: -1033442862
+      StatusBar_27: -1413034520
+      StatusBar_4: 660779866
+      StatusBar_15: 1043846210
+      StatusBar_37: 19548659
+      StatusBar_ClickBox_Circle: -1056724812
+      StatusBar_23: -1920312562
+      StatusBar_25: 1669556307
+      StatusBar_Info_Bar: 1263317401
+      StatusBar_Right_Arrow: -924124156
+      StatusBar_9: -1188927789
+      StatusBar_21: 312631311
+      StatusBar_10: -152643813
+      StatusBar_Text_box: -1070031249
+      StatusBar_20: -1135384924
+      StatusBar_12: -1926732315
+      StatusBar_Blue: 81374434
+      StatusBar_Green: 1129439703
+      StatusBar_30: 455150617
+      StatusBar_Slice_Bar: 493197290
+      StatusBar_Light_Info_Box: 174194122
+      StatusBar_Small_Arrow: 800559925
+      StatusBar_18: -258343400
+      StatusBar_Dark_Text_Box: 2049870302
+      StatusBar_Confirm_Circle: -513723749
+      StatusBar_ClickBox_Square: -1637312747
+      StatusBar_Cross: -1506419860
+      StatusBar_26: -202122430
+      StatusBar_22: 455097799
+      StatusBar_34: -978769380
+      StatusBar_Left_Arrow: 387610363
+      StatusBar_Red: -1761695857
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
