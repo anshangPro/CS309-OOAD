@@ -395,11 +395,11 @@ TextureImporter:
         serializedVersion: 2
         x: 989
         y: 597
-        width: 531
+        width: 530
         height: 41
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 2, z: 0, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -415,12 +415,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 989
-        y: 501
-        width: 533
-        height: 41
+        y: 502
+        width: 532
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 2, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -435,10 +435,10 @@ TextureImporter:
       name: StatusBar_Blue
       rect:
         serializedVersion: 2
-        x: 989
-        y: 420
-        width: 536
-        height: 42
+        x: 993
+        y: 423
+        width: 530
+        height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -456,10 +456,10 @@ TextureImporter:
       name: StatusBar_Green
       rect:
         serializedVersion: 2
-        x: 989
-        y: 325
-        width: 531
-        height: 40
+        x: 990
+        y: 326
+        width: 529
+        height: 38
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -548,7 +548,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       StatusBar_Button: 203233900
-      StatusBar_Orange: 974195506
+      StatusBar_Left_Arrow: 387610363
       StatusBar_29: -960288937
       StatusBar_Skull: 2133955894
       StatusBar_Square_Button: 1064496730
@@ -581,9 +581,9 @@ TextureImporter:
       StatusBar_ClickBox_Square: -1637312747
       StatusBar_Cross: -1506419860
       StatusBar_26: -202122430
-      StatusBar_22: 455097799
+      StatusBar_Orange: 974195506
       StatusBar_34: -978769380
-      StatusBar_Left_Arrow: 387610363
+      StatusBar_22: 455097799
       StatusBar_Red: -1761695857
   spritePackingTag: 
   pSDRemoveMatte: 0
