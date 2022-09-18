@@ -33,23 +33,22 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public List<BaseBlock> GetNeighborBlocks(BaseBlock block)
+    public List<BaseBlock> GetNeighborBlocks(BaseBlock block, Dictionary<Vector2Int, BaseBlock> searchableMap)
     {
         List<BaseBlock> neighborBlocks = new List<BaseBlock>();
         int blockX = (int) block.transform.localPosition.x;
         int blockZ = (int) block.transform.localPosition.z;
-        Dictionary<Vector2Int, BaseBlock> map = MapManager.Instance.Map;
-        
-        try { neighborBlocks.Add(map[new Vector2Int(blockX + 1, blockZ)]); }
+
+        try { neighborBlocks.Add(searchableMap[new Vector2Int(blockX + 1, blockZ)]); }
         catch (KeyNotFoundException e) { Console.WriteLine(e); }
 
-        try { neighborBlocks.Add(map[new Vector2Int(blockX - 1, blockZ)]); }
+        try { neighborBlocks.Add(searchableMap[new Vector2Int(blockX - 1, blockZ)]); }
         catch (KeyNotFoundException e) { Console.WriteLine(e); }
         
-        try { neighborBlocks.Add(map[new Vector2Int(blockX, blockZ + 1)]); }
+        try { neighborBlocks.Add(searchableMap[new Vector2Int(blockX, blockZ + 1)]); }
         catch (KeyNotFoundException e) { Console.WriteLine(e); }
         
-        try { neighborBlocks.Add(map[new Vector2Int(blockX, blockZ - 1)]); }
+        try { neighborBlocks.Add(searchableMap[new Vector2Int(blockX, blockZ - 1)]); }
         catch (KeyNotFoundException e) { Console.WriteLine(e); }
 
         return neighborBlocks;

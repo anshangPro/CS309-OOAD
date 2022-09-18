@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RangeFinder
 {
-    public static List<BaseBlock> GetBlockInRange(BaseBlock centerBlock, int range)
+    public List<BaseBlock> GetBlockInRange(BaseBlock centerBlock, int range)
     {
         List<BaseBlock> inRangeBlock = new List<BaseBlock>();
         int stepCnt = 0;
@@ -18,7 +18,7 @@ public class RangeFinder
             List<BaseBlock> surroundingBlocks = new List<BaseBlock>();
             foreach (BaseBlock block in blocksOfPreStep)
             {
-                surroundingBlocks.AddRange(MapManager.Instance.GetNeighborBlocks(block));
+                surroundingBlocks.AddRange(MapManager.Instance.GetNeighborBlocks(block, MapManager.Instance.Map));
             }
 
             inRangeBlock.AddRange(surroundingBlocks);

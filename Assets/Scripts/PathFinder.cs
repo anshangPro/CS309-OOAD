@@ -6,11 +6,20 @@ using UnityEngine;
 
 public class PathFinder
 {
-    public List<BaseBlock> FindPath(BaseBlock start, BaseBlock end)
+    public List<BaseBlock> FindPath(BaseBlock start, BaseBlock end, List<BaseBlock> searchableBlocks)
     {
+        Dictionary<Vector2Int, BaseBlock> seachableMap = new Dictionary<Vector2Int, BaseBlock>();
+        if (searchableBlocks.Count > 0)
+        {
+            foreach (BaseBlock block in searchableBlocks)
+            {
+                seachableMap.Add(block.Position, block);
+            }
+        }
+        
         List<BaseBlock> openList = new List<BaseBlock>();
         List<BaseBlock> closeList = new List<BaseBlock>();
-        
+
         openList.Add(start);
     
         while (openList.Count > 0)
@@ -31,7 +40,7 @@ public class PathFinder
                 return path;
             }
 
-            foreach (BaseBlock neighbor in MapManager.Instance.GetNeighborBlocks(curBlock))
+            foreach (BaseBlock neighbor in MapManager.Instance.GetNeighborBlocks(curBlock, seachableMap))
             {
                 if (closeList.Contains(neighbor))
                 {
