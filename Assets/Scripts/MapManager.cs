@@ -33,8 +33,25 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public List<BaseBlock> GetNeighborBlocks(BaseBlock block)
     {
+        List<BaseBlock> neighborBlocks = new List<BaseBlock>();
+        int blockX = (int) block.transform.localPosition.x;
+        int blockZ = (int) block.transform.localPosition.z;
+        Dictionary<Vector2Int, BaseBlock> map = MapManager.Instance.Map;
+        
+        try { neighborBlocks.Add(map[new Vector2Int(blockX + 1, blockZ)]); }
+        catch (KeyNotFoundException e) { Console.WriteLine(e); }
+
+        try { neighborBlocks.Add(map[new Vector2Int(blockX - 1, blockZ)]); }
+        catch (KeyNotFoundException e) { Console.WriteLine(e); }
+        
+        try { neighborBlocks.Add(map[new Vector2Int(blockX, blockZ + 1)]); }
+        catch (KeyNotFoundException e) { Console.WriteLine(e); }
+        
+        try { neighborBlocks.Add(map[new Vector2Int(blockX, blockZ - 1)]); }
+        catch (KeyNotFoundException e) { Console.WriteLine(e); }
+
+        return neighborBlocks;
     }
 }

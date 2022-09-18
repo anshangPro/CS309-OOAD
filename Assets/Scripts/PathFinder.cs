@@ -16,7 +16,6 @@ public class PathFinder
         while (openList.Count > 0)
         {
             BaseBlock curBlock = openList.OrderBy(x => x.F).First();
-    
             openList.Remove(curBlock);
             closeList.Add(curBlock);
     
@@ -28,13 +27,11 @@ public class PathFinder
                     path.Add(curBlock);
                     curBlock = curBlock.preBlock;
                 }
-    
                 path.Reverse();
-    
                 return path;
             }
 
-            foreach (BaseBlock neighbor in GetNeighborBlocks(curBlock))
+            foreach (BaseBlock neighbor in MapManager.Instance.GetNeighborBlocks(curBlock))
             {
                 if (closeList.Contains(neighbor))
                 {
@@ -53,52 +50,6 @@ public class PathFinder
         }
 
         return new List<BaseBlock>();
-    }
-
-    public List<BaseBlock> GetNeighborBlocks(BaseBlock block)
-    {
-        List<BaseBlock> neighborBlocks = new List<BaseBlock>();
-        int blockX = (int) block.transform.localPosition.x;
-        int blockZ = (int) block.transform.localPosition.z;
-        Dictionary<Vector2Int, BaseBlock> map = MapManager.Instance.Map;
-        
-        try
-        {
-            neighborBlocks.Add(map[new Vector2Int(blockX + 1, blockZ)]);
-        }
-        catch (KeyNotFoundException e)
-        {
-            Console.WriteLine(e);
-        }
-
-        try
-        {
-            neighborBlocks.Add(map[new Vector2Int(blockX - 1, blockZ)]);
-        }
-        catch (KeyNotFoundException e)
-        {
-            Console.WriteLine(e);
-        }
-        
-        try
-        {
-            neighborBlocks.Add(map[new Vector2Int(blockX, blockZ + 1)]);
-        }
-        catch (KeyNotFoundException e)
-        {
-            Console.WriteLine(e);
-        }
-        
-        try
-        {
-            neighborBlocks.Add(map[new Vector2Int(blockX, blockZ - 1)]);
-        }
-        catch (KeyNotFoundException e)
-        {
-            Console.WriteLine(e);
-        }
-
-        return neighborBlocks;
     }
 
     private int GetManhattenDistance(BaseBlock start, BaseBlock end)

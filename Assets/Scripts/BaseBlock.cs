@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class BaseBlock : MonoBehaviour
 {
-    public bool IsCombatGridVisible = false;
+    public bool IsCombatGridVisible;
     public int BlockX => (int) transform.localPosition.x;
     public int BlockZ => (int)transform.localPosition.z;
 
