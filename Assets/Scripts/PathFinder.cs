@@ -13,7 +13,7 @@ public class PathFinder
         {
             foreach (BaseBlock block in searchableBlocks)
             {
-                seachableMap.Add(block.Position, block);
+                seachableMap.Add(block.Position2D, block);
             }
         }
         

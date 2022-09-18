@@ -11,6 +11,22 @@ public class MapManager : MonoBehaviour
 
     public Dictionary<Vector2Int, BaseBlock> Map = new();
 
+    public bool IsRangeShow;
+
+    public List<BaseBlock> InRangeBlocks = new();
+    public List<GameObject> PathDisplaySprite = new();
+
+    public GameObject LineX;
+    public GameObject LineZ;
+    public GameObject ArrowXPos;
+    public GameObject ArrowXNeg;
+    public GameObject ArrowZPos;
+    public GameObject ArrowZNeg;
+    public GameObject CornerXPosZPos;
+    public GameObject CornerXPosZNeg;
+    public GameObject CornerXNegZPos;
+    public GameObject CornerXNegZNeg;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
