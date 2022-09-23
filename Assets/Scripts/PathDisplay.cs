@@ -1,102 +1,89 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Block;
+
 
 public class PathDisplay
 {
-    public enum ArrowDirection
-    {
-        None = 0,
-        ArrowXNeg = 1,
-        ArrowXPos = 2,
-        ArrowZNeg = 3,
-        ArrowZPos = 4,
-        CornerXNegZNeg = 5,
-        CornerXNegZPos = 6,
-        CornerXPosZNeg = 7,
-        CornerXPosZPos = 8,
-        LineX = 9,
-        LineZ = 10
-    }
-
-    public ArrowDirection TranslateDirection(BaseBlock preBlock, BaseBlock curBlock, BaseBlock nxtBlock)
+    public OverlayGridType TranslateDirection(Block preBlock, Block curBlock, Block nxtBlock)
     {
         bool isEnd = nxtBlock == null;
-
+    
         Vector2Int preDirection = preBlock != null ? curBlock.Position2D - preBlock.Position2D : new Vector2Int(0, 0);
         Vector2Int nxtDirection = nxtBlock != null ? nxtBlock.Position2D - curBlock.Position2D : new Vector2Int(0, 0);
         Vector2Int direction = preDirection != nxtDirection ? preDirection + nxtDirection : nxtDirection;
-
+    
         if ((direction == new Vector2Int(1, 0) || direction == new Vector2Int(-1, 0)) && !isEnd)
         {
-            return ArrowDirection.LineX;
+            return OverlayGridType.LineX;
         }
         
         if ((direction == new Vector2Int(0, 1) || direction == new Vector2Int(0, -1)) && !isEnd)
         {
-            return ArrowDirection.LineZ;
+            return OverlayGridType.LineZ;
         }
         
         if (direction == new Vector2Int(0, 1) && isEnd)
         {
-            return ArrowDirection.ArrowZPos;
+            return OverlayGridType.ArrowZPos;
         }
-
+    
         if (direction == new Vector2Int(1, 0) && isEnd)
         {
-            return ArrowDirection.ArrowXPos;
+            return OverlayGridType.ArrowXPos;
         }
-
+    
         if (direction == new Vector2Int(0, -1) && isEnd)
         {
-            return ArrowDirection.ArrowZNeg;
+            return OverlayGridType.ArrowZNeg;
         }
-
+    
         if (direction == new Vector2Int(-1, 0) && isEnd)
         {
-            return ArrowDirection.ArrowXNeg;
+            return OverlayGridType.ArrowXNeg;
         }
-
+    
         if (direction == new Vector2Int(1, 1))
         {
             if (preDirection.y < nxtDirection.y)
             {
-                return ArrowDirection.CornerXPosZPos;
+                return OverlayGridType.CornerXPosZPos;
             }
-
-            return ArrowDirection.CornerXNegZNeg;
+    
+            return OverlayGridType.CornerXNegZNeg;
         }
-
+    
         if (direction == new Vector2Int(-1, 1))
         {
             if (preDirection.y < nxtDirection.y)
             {
-                return ArrowDirection.CornerXNegZPos;
+                return OverlayGridType.CornerXNegZPos;
             }
-
-            return ArrowDirection.CornerXPosZNeg;
+    
+            return OverlayGridType.CornerXPosZNeg;
         }
-
+    
         if (direction == new Vector2Int(1, -1))
         {
             if (preDirection.y < nxtDirection.y)
             {
-                return ArrowDirection.CornerXNegZPos;
+                return OverlayGridType.CornerXNegZPos;
             }
-
-            return ArrowDirection.CornerXPosZNeg;
+    
+            return OverlayGridType.CornerXPosZNeg;
         }
-
+    
         if (direction == new Vector2Int(-1, -1))
         {
             if (preDirection.y < nxtDirection.y)
             {
-                return ArrowDirection.CornerXPosZPos;
+                return OverlayGridType.CornerXPosZPos;
             }
-
-            return ArrowDirection.CornerXNegZNeg;
+    
+            return OverlayGridType.CornerXNegZNeg;
         }
-
-        return ArrowDirection.None;
+    
+        return OverlayGridType.None;
     }
 }

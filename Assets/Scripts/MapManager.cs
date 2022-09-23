@@ -1,31 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
     private static MapManager _instance;
     public static MapManager Instance => _instance;
 
-    public Dictionary<Vector2Int, BaseBlock> Map = new();
-
-    public bool IsRangeShow;
-
-    public List<BaseBlock> InRangeBlocks = new();
-    public List<GameObject> PathDisplaySprite = new();
-
-    public GameObject LineX;
-    public GameObject LineZ;
-    public GameObject ArrowXPos;
-    public GameObject ArrowXNeg;
-    public GameObject ArrowZPos;
-    public GameObject ArrowZNeg;
-    public GameObject CornerXPosZPos;
-    public GameObject CornerXPosZNeg;
-    public GameObject CornerXNegZPos;
-    public GameObject CornerXNegZNeg;
+    public Dictionary<Vector2Int, Block> Map = new();
 
     private void Awake()
     {
@@ -39,34 +23,127 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             Vector3 position = gameObject.transform.GetChild(i).localPosition;
-            Map.Add(new Vector2Int((int) position.x, (int) position.z), gameObject.transform.GetChild(i).GetComponent<BaseBlock>());
+            Map.Add(new Vector2Int((int) position.x, (int) position.z), gameObject.transform.GetChild(i).GetComponent<Block>());
         }
     }
-
-    public List<BaseBlock> GetNeighborBlocks(BaseBlock block, Dictionary<Vector2Int, BaseBlock> searchableMap)
+    
+    public Block GetBlock(int localX, int localZ)
     {
-        List<BaseBlock> neighborBlocks = new List<BaseBlock>();
-        int blockX = (int) block.transform.localPosition.x;
-        int blockZ = (int) block.transform.localPosition.z;
+        Vector2Int dst = new Vector2Int(localX, localZ);
+        if (Map.ContainsKey(dst))
+        {
+            return Map[dst];
+        }
 
-        try { neighborBlocks.Add(searchableMap[new Vector2Int(blockX + 1, blockZ)]); }
-        catch (KeyNotFoundException e) { Console.WriteLine(e); }
+        return null;
+    }
 
-        try { neighborBlocks.Add(searchableMap[new Vector2Int(blockX - 1, blockZ)]); }
-        catch (KeyNotFoundException e) { Console.WriteLine(e); }
+    public List<Block> FindPath(Block start, Block end, List<Block> reachableBlocks)
+    {
+        List<Block> openList = new List<Block>();
+        List<Block> closeList = new List<Block>();
+        openList.Add(start);
+
+        Dictionary<Block, Block> preDict = new Dictionary<Block, Block>();
+
+        while (openList.Count > 0)
+        {
+            Block cur = openList.OrderBy(x => x.F).First();
+            openList.Remove(cur);
+            closeList.Add(cur);
+
+            if (cur == end)
+            {
+                List<Block> path = new List<Block>();
+                while (cur != start)
+                {
+                    path.Add(cur);
+                    cur = preDict[cur];
+                }
+                path.Add(start);
+                path.Reverse();
+                return path;
+            }
+
+            foreach (Block nxt in GetNeighborBlocks(cur, reachableBlocks))
+            {
+                if (closeList.Contains(nxt))
+                {
+                    continue;
+                }
+
+                nxt.G = GetManhattenDistance(start, nxt);
+                nxt.H = GetManhattenDistance(nxt, end);
+                preDict.Add(nxt, cur);
+
+                if (!openList.Contains(nxt))
+                {
+                    openList.Add(nxt);
+                }
+            }
+        }
+
+        return new List<Block>();
+    }
+
+    public List<Block> FindInRange(Block centerBlock, int range)
+    {
+        List<Block> inRangeBlock = new List<Block>();
+        int stepCnt = 0;
+        inRangeBlock.Add(centerBlock);
         
-        try { neighborBlocks.Add(searchableMap[new Vector2Int(blockX, blockZ + 1)]); }
-        catch (KeyNotFoundException e) { Console.WriteLine(e); }
+        List<Block> blocksOfPreStep = new List<Block>();
+        blocksOfPreStep.Add(centerBlock);
+        while (stepCnt < range)
+        {
+            List<Block> surroundingBlocks = new List<Block>();
+            foreach (Block block in blocksOfPreStep)
+            {
+                surroundingBlocks.AddRange(GetNeighborBlocks(block, Map.Values.ToList()));
+            }
         
-        try { neighborBlocks.Add(searchableMap[new Vector2Int(blockX, blockZ - 1)]); }
-        catch (KeyNotFoundException e) { Console.WriteLine(e); }
+            inRangeBlock.AddRange(surroundingBlocks);
+            blocksOfPreStep = surroundingBlocks.Distinct().ToList();
+            stepCnt++;
+        }
+        
+        return inRangeBlock.Distinct().ToList();
+    }
 
+    public List<Block> GetNeighborBlocks(Block block, List<Block> searchableBlocks)
+    {
+        List<Block> neighborBlocks = new List<Block>();
+
+        if (searchableBlocks.Contains(GetBlock(block.X + 1, block.Z)))
+        {
+            neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
+        }
+        
+        if (searchableBlocks.Contains(GetBlock(block.X + 1, block.Z)))
+        {
+            neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
+        }
+        
+        if (searchableBlocks.Contains(GetBlock(block.X + 1, block.Z)))
+        {
+            neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
+        }
+        
+        if (searchableBlocks.Contains(GetBlock(block.X + 1, block.Z)))
+        {
+            neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
+        }
+        
         return neighborBlocks;
+    }
+    
+    private int GetManhattenDistance(Block start, Block end)
+    {
+        return Mathf.Abs(start.X - end.X) + Mathf.Abs(start.Z - end.Z);
     }
 }
