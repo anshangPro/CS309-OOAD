@@ -1,104 +1,23 @@
 #nullable enable
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using Util;
 
 public class MouseController : MonoBehaviour
 {
-    // private PathFinder _pathFinder;
-    // private RangeFinder _rangeFinder;
-    // private PathDisplay _pathDisplay;
-    //
-    // public BaseBlock? StartBlock;
-    //
-    // public int Range;
-    //
-    // private void Awake()
-    // {
-    //     _pathFinder = new PathFinder();
-    //     _rangeFinder = new RangeFinder();
-    //     _pathDisplay = new PathDisplay();
-    // }
-    //
-    // private void Update()
-    // {
-    //     BaseBlock? focusedOnBlock = GetFocusedOnBlock();
-    //     if (focusedOnBlock != null)
-    //     {
-    //         transform.position = new Vector3(focusedOnBlock.GetCombatGrid().transform.position.x,
-    //             focusedOnBlock.GetCombatGrid().transform.position.y + 0.002f,
-    //             focusedOnBlock.GetCombatGrid().transform.position.z);
-    //     }
-    //
-    //     if (Input.GetMouseButtonDown(0) && focusedOnBlock != null)
-    //     {
-    //         if (MapManager.Instance.IsRangeShow)
-    //         {
-    //             foreach (BaseBlock block in MapManager.Instance.InRangeBlocks)
-    //             {
-    //                 block.IsCombatGridVisible = false;
-    //             }
-    //             MapManager.Instance.InRangeBlocks.Clear();
-    //
-    //             MapManager.Instance.IsRangeShow = false;
-    //         }
-    //         else
-    //         {
-    //             for (int i = 0; i < focusedOnBlock.transform.childCount; i++)
-    //             {
-    //                 Debug.Log(focusedOnBlock.transform.GetChild(i).ToString());
-    //             }
-    //             
-    //             MapManager.Instance.InRangeBlocks = _rangeFinder.GetBlockInRange(focusedOnBlock, Range);
-    //             foreach (BaseBlock block in MapManager.Instance.InRangeBlocks)
-    //             {
-    //                 block.IsCombatGridVisible = true;
-    //             }
-    //
-    //             MapManager.Instance.IsRangeShow = true;
-    //         }
-    //     }
-    // }
-    //
-    // List<BaseBlock> path = new List<BaseBlock>();
-    //
-    // // Test function
-    // private void LateUpdate()
-    // {
-    //     List<BaseBlock> tmp = new List<BaseBlock>();
-    //     foreach (KeyValuePair<Vector2Int,BaseBlock> keyValuePair in MapManager.Instance.Map)
-    //     {
-    //         tmp.Add(keyValuePair.Value);
-    //     }
-    //     
-    //     // foreach (var baseBlock in path)
-    //     // {
-    //     //     baseBlock.SetPathDisplaySprite();
-    //     // }
-    //     
-    //     path.Add(MapManager.Instance.Map[new Vector2Int(0, 0)]);
-    //     path.AddRange(_pathFinder.FindPath(MapManager.Instance.Map[new Vector2Int(8, 8)],
-    //         MapManager.Instance.Map[new Vector2Int(0, 15)], tmp));
-    //     path.Add(null);
-    //
-    //     for (int i = 1; i < path.Count - 1; i++)
-    //     {
-    //         path[i].SetPathDisplaySprite(_pathDisplay.TranslateDirection(path[i-1], path[i], path[i+1]));
-    //     }
-    // }
-    //
-    // private BaseBlock? GetFocusedOnBlock()
-    // {
-    //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //     RaycastHit hitInfo;
-    //
-    //     if (Physics.Raycast(ray, out hitInfo))
-    //     {
-    //         return hitInfo.collider.GetComponent<BaseBlock>();
-    //     }
-    //
-    //     return null;
-    // }
+    public Block start;
+    public Block end;
+
+    public OverlayGridTranslator Translator = new();
+
+    private void Start()
+    {
+        List<Block?> path = MapManager.Instance.FindPath(start, end, MapManager.Instance.Map.Values.ToList());
+        path.Add(null);
+        for (int i = 1; i < path.Count - 1; i++)
+        {
+            path[i]?.SetOverlayGridType(Translator.TranslateDirection(path[i - 1], path[i], path[i + 1]));
+        }
+    }
 }

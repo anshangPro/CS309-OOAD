@@ -21,15 +21,17 @@ public class MapManager : MonoBehaviour
         {
             _instance = this;
         }
-    }
-
-    private void Start()
-    {
+        
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             Vector3 position = gameObject.transform.GetChild(i).localPosition;
             Map.Add(new Vector2Int((int) position.x, (int) position.z), gameObject.transform.GetChild(i).GetComponent<Block>());
         }
+    }
+
+    private void Start()
+    {
+        
     }
     
     public Block GetBlock(int localX, int localZ)
@@ -79,7 +81,14 @@ public class MapManager : MonoBehaviour
 
                 nxt.G = GetManhattenDistance(start, nxt);
                 nxt.H = GetManhattenDistance(nxt, end);
-                preDict.Add(nxt, cur);
+                if (preDict.Keys.Contains(nxt))
+                {
+                    preDict[nxt] = cur;
+                }
+                else
+                {
+                    preDict.Add(nxt, cur);
+                }
 
                 if (!openList.Contains(nxt))
                 {
@@ -124,19 +133,19 @@ public class MapManager : MonoBehaviour
             neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
         }
         
-        if (searchableBlocks.Contains(GetBlock(block.X + 1, block.Z)))
+        if (searchableBlocks.Contains(GetBlock(block.X - 1, block.Z)))
         {
-            neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
+            neighborBlocks.Add(GetBlock(block.X - 1, block.Z));
         }
         
-        if (searchableBlocks.Contains(GetBlock(block.X + 1, block.Z)))
+        if (searchableBlocks.Contains(GetBlock(block.X, block.Z + 1)))
         {
-            neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
+            neighborBlocks.Add(GetBlock(block.X, block.Z + 1));
         }
         
-        if (searchableBlocks.Contains(GetBlock(block.X + 1, block.Z)))
+        if (searchableBlocks.Contains(GetBlock(block.X, block.Z - 1)))
         {
-            neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
+            neighborBlocks.Add(GetBlock(block.X, block.Z - 1));
         }
         
         return neighborBlocks;
