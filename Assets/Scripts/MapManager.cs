@@ -31,12 +31,7 @@ public class MapManager : MonoBehaviour
     public Block GetBlock(int localX, int localZ)
     {
         Vector2Int dst = new Vector2Int(localX, localZ);
-        if (Map.ContainsKey(dst))
-        {
-            return Map[dst];
-        }
-
-        return null;
+        return Map.ContainsKey(dst) ? Map[dst] : null;
     }
 
     public List<Block> FindPath(Block start, Block end, List<Block> reachableBlocks)
@@ -66,7 +61,7 @@ public class MapManager : MonoBehaviour
                 return path;
             }
 
-            foreach (var nxt in GetNeighborBlocks(cur, reachableBlocks).Where(nxt => !closeList.Contains(nxt)))
+            foreach (Block nxt in GetNeighborBlocks(cur, reachableBlocks).Where(nxt => !closeList.Contains(nxt)))
             {
                 nxt.G = GetManhattenDistance(start, nxt);
                 nxt.H = GetManhattenDistance(nxt, end);
