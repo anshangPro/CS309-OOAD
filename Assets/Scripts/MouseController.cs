@@ -17,7 +17,7 @@ public class MouseController : MonoBehaviour
         path.Add(null);
         for (int i = 1; i < path.Count - 1; i++)
         {
-            path[i]?.SetOverlayGridType(Translator.TranslateDirection(path[i - 1], path[i], path[i + 1]));
+            path[i]?.SetOverlayGridType(OverlayGridTranslator.TranslateDirection(path[i - 1], path[i], path[i + 1]));
         }
     }
 }

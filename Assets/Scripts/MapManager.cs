@@ -6,20 +6,19 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    private static MapManager _instance;
-    public static MapManager Instance => _instance;
+    public static MapManager Instance { get; private set; }
 
-    public Dictionary<Vector2Int, Block> Map = new();
+    public readonly Dictionary<Vector2Int, Block> Map = new();
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            _instance = this;
+            Instance = this;
         }
         
         for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -29,11 +28,6 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        
-    }
-    
     public Block GetBlock(int localX, int localZ)
     {
         Vector2Int dst = new Vector2Int(localX, localZ);
@@ -72,13 +66,8 @@ public class MapManager : MonoBehaviour
                 return path;
             }
 
-            foreach (Block nxt in GetNeighborBlocks(cur, reachableBlocks))
+            foreach (var nxt in GetNeighborBlocks(cur, reachableBlocks).Where(nxt => !closeList.Contains(nxt)))
             {
-                if (closeList.Contains(nxt))
-                {
-                    continue;
-                }
-
                 nxt.G = GetManhattenDistance(start, nxt);
                 nxt.H = GetManhattenDistance(nxt, end);
                 if (preDict.Keys.Contains(nxt))
@@ -106,8 +95,7 @@ public class MapManager : MonoBehaviour
         int stepCnt = 0;
         inRangeBlock.Add(centerBlock);
         
-        List<Block> blocksOfPreStep = new List<Block>();
-        blocksOfPreStep.Add(centerBlock);
+        List<Block> blocksOfPreStep = new List<Block> { centerBlock };
         while (stepCnt < range)
         {
             List<Block> surroundingBlocks = new List<Block>();

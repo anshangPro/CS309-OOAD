@@ -6,7 +6,7 @@ namespace Util
 {
     public class OverlayGridTranslator
     {
-        public OverlayGridType TranslateDirection(Block preBlock, Block curBlock, Block nxtBlock)
+        public static OverlayGridType TranslateDirection(Block preBlock, Block curBlock, Block nxtBlock)
         {
             bool isEnd = nxtBlock == null;
     
@@ -46,42 +46,22 @@ namespace Util
     
             if (direction == new Vector2Int(1, 1))
             {
-                if (preDirection.y < nxtDirection.y)
-                {
-                    return OverlayGridType.CornerXPosZPos;
-                }
-    
-                return OverlayGridType.CornerXNegZNeg;
+                return preDirection.y < nxtDirection.y ? OverlayGridType.CornerXPosZPos : OverlayGridType.CornerXNegZNeg;
             }
     
             if (direction == new Vector2Int(-1, 1))
             {
-                if (preDirection.y < nxtDirection.y)
-                {
-                    return OverlayGridType.CornerXNegZPos;
-                }
-    
-                return OverlayGridType.CornerXPosZNeg;
+                return preDirection.y < nxtDirection.y ? OverlayGridType.CornerXNegZPos : OverlayGridType.CornerXPosZNeg;
             }
     
             if (direction == new Vector2Int(1, -1))
             {
-                if (preDirection.y < nxtDirection.y)
-                {
-                    return OverlayGridType.CornerXNegZPos;
-                }
-    
-                return OverlayGridType.CornerXPosZNeg;
+                return preDirection.y < nxtDirection.y ? OverlayGridType.CornerXNegZPos : OverlayGridType.CornerXPosZNeg;
             }
     
             if (direction == new Vector2Int(-1, -1))
             {
-                if (preDirection.y < nxtDirection.y)
-                {
-                    return OverlayGridType.CornerXPosZPos;
-                }
-    
-                return OverlayGridType.CornerXNegZNeg;
+                return preDirection.y < nxtDirection.y ? OverlayGridType.CornerXPosZPos : OverlayGridType.CornerXNegZNeg;
             }
     
             return OverlayGridType.None;
