@@ -1,5 +1,5 @@
 using UnityEngine;
-using static Block;
+using static Util.OverlayGrid;
 
 
 namespace Util
