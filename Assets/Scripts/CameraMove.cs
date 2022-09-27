@@ -27,11 +27,11 @@ public class CameraMove : MonoBehaviour
         }
         if (Input.mousePosition.y > Screen.height - edgeSize)
         {
-            cameraPosition.y += speed * Time.deltaTime;
+            cameraPosition.z += speed * Time.deltaTime;
         }
         if (Input.mousePosition.y < edgeSize)
         {
-            cameraPosition.y -= speed * Time.deltaTime;
+            cameraPosition.z -= speed * Time.deltaTime;
         }
         Camera.main.transform.position = cameraPosition;
     }
