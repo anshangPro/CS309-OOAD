@@ -1,4 +1,5 @@
 #nullable enable
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,18 +7,23 @@ using Util;
 
 public class MouseController : MonoBehaviour
 {
-    public Block start;
-    public Block end;
+    public GameStatus mode = GameStatus.Default;
+    
 
-    public OverlayGridTranslator Translator = new();
-
-    private void Start()
+    private void Update()
     {
-        List<Block?> path = MapManager.Instance.FindPath(start, end, MapManager.Instance.Map.Values.ToList());
-        path.Add(null);
-        for (int i = 1; i < path.Count - 1; i++)
-        {
-            path[i]?.SetOverlayGridType(OverlayGridTranslator.TranslateDirection(path[i - 1], path[i], path[i + 1]));
+        if (Input.GetMouseButtonDown(0)){ // press left button of the mouse
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            String[] layers = new[] { "UI", "Units", "Map" };
+            foreach (String layer in layers)
+            {
+                RaycastHit hitObj;
+                bool hit = Physics.Raycast(ray, out hitObj,Mathf.Infinity, 1 << LayerMask.NameToLayer(layer));
+                if (hit)
+                {
+                    Debug.Log($"Hit entity {hitObj.collider.name} at {hitObj.collider.transform.position} in layer {layer}");
+                }
+            }
         }
     }
 }
