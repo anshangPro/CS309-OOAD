@@ -8,6 +8,10 @@ public class Unit : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float defense;
 
+    public float speed = 1.0f;
+
+    // private Vector3 _lookAt;
+
     public GameObject onBlock;
 
     protected virtual void MoveToBlock(GameObject block)
@@ -16,7 +20,9 @@ public class Unit : MonoBehaviour
         newPos.x -= block.GetComponent<Collider>().bounds.size.x / 2;
         newPos.y += block.GetComponent<Collider>().bounds.size.y;
         newPos.z += block.GetComponent<Collider>().bounds.size.z / 2;
-        GetComponent<Transform>().position = newPos;
+
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, newPos, step);
     }
 
     protected virtual void Attack(Unit target)
@@ -45,6 +51,10 @@ public class Unit : MonoBehaviour
     protected virtual void Update()
     {
         MoveToBlock(onBlock);
+        // _lookAt.x = Camera.main.transform.position.x;
+        // _lookAt.y = transform.position.y;
+        // _lookAt.z = Camera.main.transform.position.z;
+        // gameObject.GetComponent<SpriteRenderer>().transform.LookAt(_lookAt);
         gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
     }
 }
