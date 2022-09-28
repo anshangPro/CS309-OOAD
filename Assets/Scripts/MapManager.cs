@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Util;
 
 public class MapManager : MonoBehaviour
 {
@@ -63,8 +64,8 @@ public class MapManager : MonoBehaviour
 
             foreach (Block nxt in GetNeighborBlocks(cur, reachableBlocks).Where(nxt => !closeList.Contains(nxt)))
             {
-                nxt.G = GetManhattenDistance(start, nxt);
-                nxt.H = GetManhattenDistance(nxt, end);
+                nxt.g = GetManhattenDistance(start, nxt);
+                nxt.h = GetManhattenDistance(nxt, end);
                 if (preDict.Keys.Contains(nxt))
                 {
                     preDict[nxt] = cur;
@@ -107,6 +108,24 @@ public class MapManager : MonoBehaviour
         return inRangeBlock.Distinct().ToList();
     }
 
+    public void DisplayInRange(Unit unit)
+    {
+        foreach (Block block in FindInRange(unit.onBlock.GetComponent<Block>(), unit.agility))
+        {
+            block.SetOverlayGridType(OverlayGrid.OverlayGridType.White);
+        }
+    }
+
+    public void DisplayAlongPath(List<Block> path)
+    {
+        path.Add(null);
+
+        for (int i = 1; i < path.Count - 1; i++)
+        {
+            path[i].SetOverlayGridType(OverlayGridTranslator.TranslateDirection(path[i - 1], path[i], path[i + 1]));
+        }
+    }
+
     public List<Block> GetNeighborBlocks(Block block, List<Block> searchableBlocks)
     {
         List<Block> neighborBlocks = new List<Block>();
@@ -138,4 +157,6 @@ public class MapManager : MonoBehaviour
     {
         return Mathf.Abs(start.X - end.X) + Mathf.Abs(start.Z - end.Z);
     }
+    
+    
 }

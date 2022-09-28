@@ -11,10 +11,10 @@ public class Unit : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float damage;
     [SerializeField] private float defense;
+    
+    [SerializeField] public int agility;
 
-    private float _delta = 0.00001f;
-
-    public float speed = 1.0f;
+    private const float Delta = 0.00001f;
 
     // private Vector3 _lookAt;
 
@@ -24,8 +24,8 @@ public class Unit : MonoBehaviour
     {
         Vector3 newPos = DstBlock2DstPos3(block);
 
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, newPos, step);
+        const float speed = 5.0f;
+        transform.position = Vector3.MoveTowards(transform.position, newPos, speed * Time.deltaTime);
     }
 
     protected virtual void MoveAlongPath(List<Block> path)
@@ -37,14 +37,14 @@ public class Unit : MonoBehaviour
 
         MoveToBlock(path[0].gameObject);
 
-        if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z),DstBlock2DstPos2(path[0].gameObject) ) < _delta)
+        if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z),DstBlock2DstPos2(path[0].gameObject) ) < Delta)
         {
-            PositionOnBlock(path[0].gameObject);
+            SetOnBlock(path[0].gameObject);
             path.RemoveAt(0);
         }
     }
 
-    protected virtual void PositionOnBlock(GameObject block)
+    protected virtual void SetOnBlock(GameObject block)
     {
         transform.position = DstBlock2DstPos3(block);
         onBlock = block;

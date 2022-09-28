@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Util
 {
-    public class PositionUtil
+    public static class PositionUtil
     {
         public static Vector3 DstBlock2DstPos3(GameObject block)
         {
