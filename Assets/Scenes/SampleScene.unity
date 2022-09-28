@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgeSize: 50
-  speed: 1
+  speed: 5
 --- !u!4 &69896618
 Transform:
   m_ObjectHideFlags: 0
@@ -9177,6 +9177,7 @@ MonoBehaviour:
   health: 0
   damage: 2
   defense: 1
+  speed: 1
   onBlock: {fileID: 704578479}
 --- !u!212 &1133232676
 SpriteRenderer:

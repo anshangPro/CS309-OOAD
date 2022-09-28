@@ -6,6 +6,7 @@ public class CameraMove : MonoBehaviour
 {
     public float edgeSize = 50; // how close to the edge will make the camera move (unit px)
     public float speed = 1; // how fast to move
+    public bool isMovable = false;
     
     private Vector3 cameraPosition;
 
@@ -16,6 +17,11 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
+        if (!isMovable)
+        {
+            return;
+        }
+        
         Debug.Log($"width: {Screen.width}, height: {Screen.height}\n mouse: {Input.mousePosition}");
         if (Input.mousePosition.x > Screen.width - edgeSize)
         {
