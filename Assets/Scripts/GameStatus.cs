@@ -5,9 +5,9 @@ using UnityEngine;
 
 public enum GameStatus
 {
-    Default, 
+    Default,
     Fight,
+    Move,
     Moving,
     Menu
 }
-
