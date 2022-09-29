@@ -9175,6 +9175,7 @@ GameObject:
   - component: {fileID: 1133232677}
   - component: {fileID: 1133232676}
   - component: {fileID: 1133232674}
+  - component: {fileID: 1133232679}
   m_Layer: 0
   m_Name: ranger
   m_TagString: Untagged
@@ -9242,7 +9243,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: fd36a59054933e54ea1fdd25c39f10f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9250,7 +9251,7 @@ SpriteRenderer:
   m_Size: {x: 2.88, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1133232677
@@ -9288,6 +9289,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &1133232679
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133232673}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.88, y: 1.28}
+    newSize: {x: 2.88, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.25, y: 0.14999999}
+      - {x: 0.25, y: 0.17999999}
+      - {x: 0.24076246, y: 0.19574282}
+      - {x: 0.1102238, y: 0.21882221}
+      - {x: 0.030967616, y: 0.4531465}
+      - {x: -0.04069791, y: 0.45698687}
+      - {x: -0.11225663, y: 0.39766225}
+      - {x: -0.11466281, y: 0.28060704}
+      - {x: -0.22913101, y: 0.28326404}
+      - {x: -0.26860994, y: 0.1319766}
+      - {x: -0.14285667, y: 0.0013958812}
+      - {x: 0.14, y: 0}
+      - {x: 0.14, y: 0.03}
 --- !u!1001 &1142120718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18454,6 +18493,7 @@ GameObject:
   - component: {fileID: 2073819636}
   - component: {fileID: 2073819635}
   - component: {fileID: 2073819638}
+  - component: {fileID: 2073819639}
   m_Layer: 0
   m_Name: enemy_ranger
   m_TagString: Untagged
@@ -18502,7 +18542,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: fd36a59054933e54ea1fdd25c39f10f8, type: 3}
   m_Color: {r: 0.51502305, g: 0.3655393, b: 0.6415094, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -18510,7 +18550,7 @@ SpriteRenderer:
   m_Size: {x: 2.88, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2073819636
@@ -18567,6 +18607,44 @@ MonoBehaviour:
   defense: 1
   agility: 5
   onBlock: {fileID: 95618649}
+--- !u!60 &2073819639
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073819633}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.88, y: 1.28}
+    newSize: {x: 2.88, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.25, y: 0.14999999}
+      - {x: 0.25, y: 0.17999999}
+      - {x: 0.23071085, y: 0.18664265}
+      - {x: 0.11646417, y: 0.23788863}
+      - {x: 0.04, y: 0.47}
+      - {x: -0.04, y: 0.47}
+      - {x: -0.12501226, y: 0.40457764}
+      - {x: -0.09976345, y: 0.308141}
+      - {x: -0.23297337, y: 0.2928853}
+      - {x: -0.28175047, y: 0.15342996}
+      - {x: -0.14360233, y: 0.005548537}
+      - {x: 0.14, y: 0}
+      - {x: 0.14, y: 0.03}
 --- !u!1 &2087540461
 GameObject:
   m_ObjectHideFlags: 0
