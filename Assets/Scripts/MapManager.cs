@@ -35,6 +35,13 @@ public class MapManager : MonoBehaviour
         return Map.ContainsKey(dst) ? Map[dst] : null;
     }
 
+    /// <summary>
+    ///   <para>Find shortest path</para>
+    /// </summary>
+    /// <param name="start">Start block</param>
+    /// <param name="end">End block</param>
+    /// <param name="reachableBlocks">All blocks of the path should in <c>reachableBlocks</c></param>
+    /// <returns>Path as list of blocks in order</returns>
     public List<Block> FindPath(Block start, Block end, List<Block> reachableBlocks)
     {
         List<Block> openList = new List<Block>();
@@ -108,6 +115,11 @@ public class MapManager : MonoBehaviour
         return inRangeBlock.Distinct().ToList();
     }
 
+    /// <summary>
+    ///   <para>Display reachable blocks of <code>unit</code>. This method should be invoked before
+    ///   method <c>DisplayInRange</c></para>.
+    /// </summary>
+    /// <param name="unit"></param>
     public void DisplayInRange(Unit unit)
     {
         foreach (Block block in FindInRange(unit.onBlock.GetComponent<Block>(), unit.agility))
