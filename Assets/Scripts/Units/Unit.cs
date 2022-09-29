@@ -51,6 +51,10 @@ public class Unit : MonoBehaviour, IClickable
         onBlock = block;
     }
 
+    /// <summary>
+    /// 攻击行为
+    /// </summary>
+    /// <param name="target"> 攻击目标: Unit </param>
     public virtual void Attack(Unit target)
     {
         hasAttacked = true;
@@ -62,6 +66,11 @@ public class Unit : MonoBehaviour, IClickable
         target.TakeDamage(this, realDamage);
     }
 
+    /// <summary>
+    /// 受伤行为
+    /// </summary>
+    /// <param name="from"> 伤害来源: Unit </param>
+    /// <param name="realDamage"> 伤害值: float </param>
     public virtual void TakeDamage(Unit from, float realDamage)
     {
         if (health <= realDamage)
@@ -80,11 +89,18 @@ public class Unit : MonoBehaviour, IClickable
         gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
     }
 
+    /// <summary>
+    /// 点击事件成败判断
+    /// </summary>
+    /// <returns> 点击是否成功: bool </returns>
     public bool IsClicked()
     {
         return !hasMoved || !hasAttacked;
     }
 
+    /// <summary>
+    /// 己方回合开始，重置 移动/攻击 能力
+    /// </summary>
     public void OnTurnBegin()
     {
         hasMoved = false;
