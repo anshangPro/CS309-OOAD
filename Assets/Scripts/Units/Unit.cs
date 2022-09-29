@@ -3,8 +3,9 @@ using System.Linq;
 using UnityEngine;
 
 using static Util.PositionUtil;
+using Interfaces;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IClickable
 {
     [SerializeField] private string unitName;
     [SerializeField] private float maxHealth;
@@ -15,6 +16,8 @@ public class Unit : MonoBehaviour
     [SerializeField] public int agility;
 
     private const float Delta = 0.00001f;
+    private bool hasMoved;
+    private bool hasAttacked;
 
     // private Vector3 _lookAt;
 
@@ -30,6 +33,7 @@ public class Unit : MonoBehaviour
 
     protected virtual void MoveAlongPath(List<Block> path)
     {
+        hasMoved = true;
         if (path.Count <= 0)
         {
             return;
@@ -52,6 +56,7 @@ public class Unit : MonoBehaviour
 
     public virtual void Attack(Unit target)
     {
+        hasAttacked = true;
         float realDamage = damage - target.defense;
 
         if (realDamage <= 0)
@@ -81,5 +86,16 @@ public class Unit : MonoBehaviour
         // _lookAt.z = Camera.main.transform.position.z;
         // gameObject.GetComponent<SpriteRenderer>().transform.LookAt(_lookAt);
         gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
+    }
+
+    public bool IsClicked()
+    {
+        return !hasMoved || !hasAttacked;
+    }
+
+    public void OnTurnBegin()
+    {
+        hasMoved = false;
+        hasAttacked = false;
     }
 }
