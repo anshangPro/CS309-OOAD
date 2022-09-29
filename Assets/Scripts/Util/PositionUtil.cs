@@ -4,6 +4,11 @@ namespace Util
 {
     public static class PositionUtil
     {
+        /// <summary>
+        ///   <para>Calculate unit's position when it is standing on the parameter <c>block</c>.</para>
+        /// </summary>
+        /// <param name="block">The block that unit wants to stand on.</param>
+        /// <returns>Position as <c>Vector3</c>.</returns>
         public static Vector3 DstBlock2DstPos3(GameObject block)
         {
             Vector3 newPos = block.transform.position;
