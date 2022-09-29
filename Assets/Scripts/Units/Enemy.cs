@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemey : Unit
+public class Enemy : Unit
 {
 
 }
