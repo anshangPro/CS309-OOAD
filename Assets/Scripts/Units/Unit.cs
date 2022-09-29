@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 using static Util.PositionUtil;
@@ -18,8 +17,6 @@ public class Unit : MonoBehaviour, IClickable
     private const float Delta = 0.00001f;
     private bool hasMoved;
     private bool hasAttacked;
-
-    // private Vector3 _lookAt;
 
     public GameObject onBlock;
 
@@ -80,11 +77,6 @@ public class Unit : MonoBehaviour, IClickable
 
     protected virtual void Update()
     {
-        // MoveToBlock(onBlock);
-        // _lookAt.x = Camera.main.transform.position.x;
-        // _lookAt.y = transform.position.y;
-        // _lookAt.z = Camera.main.transform.position.z;
-        // gameObject.GetComponent<SpriteRenderer>().transform.LookAt(_lookAt);
         gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
     }
 
