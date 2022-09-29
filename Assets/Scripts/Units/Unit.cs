@@ -50,7 +50,7 @@ public class Unit : MonoBehaviour
         onBlock = block;
     }
 
-    protected virtual void Attack(Unit target)
+    public virtual void Attack(Unit target)
     {
         float realDamage = damage - target.defense;
 
@@ -60,7 +60,7 @@ public class Unit : MonoBehaviour
         target.TakeDamage(this, realDamage);
     }
 
-    protected virtual void TakeDamage(Unit from, float realDamage)
+    public virtual void TakeDamage(Unit from, float realDamage)
     {
         if (health <= realDamage)
             health = 0;

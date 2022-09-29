@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     /// 每次棋子被点击的时候调用此方法
     /// </summary>
     /// <param name="piece"> 棋子 </param>
-    public void PieceOnClick(GameObject piece)
+    public void PieceOnClick(Unit piece)
     {
         if (_status == GameStatus.Default || _status == GameStatus.Menu)
         {
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
         else if (_status == GameStatus.Fight)
         {
-            selected.Fight(piece);
+            selected.Attack(piece);
             EnterDefault();
         }
     }
@@ -67,11 +67,11 @@ public class GameManager : MonoBehaviour
     {
         if (_status == GameStatus.Move)
         {   
-            if (cell.Moveable(selected))
-            {
-                selected.Move(arg1, arg2, arg3);
-                EnterMoving();
-            }
+            //if (cell.Moveable(selected))
+            //{
+            //    selected.Move(arg1, arg2, arg3);
+            //    EnterMoving();
+            //}
         }
     }
 
@@ -88,10 +88,10 @@ public class GameManager : MonoBehaviour
     {
         selected = null;
 
-        foreach (GameObject piece in pieces)
+        foreach (Unit piece in pieces)
         {
             //把每个棋子的hasMoved属性设为false
-            piece.Deploy();
+            //piece.Deploy();
         }
 
         //交换玩家
