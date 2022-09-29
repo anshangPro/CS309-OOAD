@@ -79,16 +79,6 @@ public class Unit : MonoBehaviour, IClickable
             health -= realDamage;
     }
 
-    protected virtual void Start()
-    {
-        health = maxHealth;
-    }
-
-    protected virtual void Update()
-    {
-        gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
-    }
-
     /// <summary>
     /// 点击事件成败判断
     /// </summary>
@@ -105,5 +95,15 @@ public class Unit : MonoBehaviour, IClickable
     {
         hasMoved = false;
         hasAttacked = false;
+    }
+    
+    protected virtual void Start()
+    {
+        health = maxHealth;
+    }
+
+    protected virtual void Update()
+    {
+        gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
     }
 }
