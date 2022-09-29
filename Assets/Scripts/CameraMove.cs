@@ -22,7 +22,6 @@ public class CameraMove : MonoBehaviour
             return;
         }
         
-        Debug.Log($"width: {Screen.width}, height: {Screen.height}\n mouse: {Input.mousePosition}");
         if (Input.mousePosition.x > Screen.width - edgeSize)
         {
             cameraPosition.x += speed * Time.deltaTime;
