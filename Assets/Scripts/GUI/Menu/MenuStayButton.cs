@@ -3,20 +3,37 @@ using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 
-public class MenuStayButton : MonoBehaviour, IClickable
+namespace GUI.Menu
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MenuStayButton : MonoBehaviour, IClickable
     {
-    }
+        private static MenuStayButton Instance { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
 
-    bool IClickable.IsClicked()
-    {
-        return true;
+        // Start is called before the first frame update
+        void Start()
+        {
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        }
+
+        bool IClickable.IsClicked()
+        {
+            return true;
+        }
     }
 }
