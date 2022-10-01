@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -28,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public int mainPlayer;
     public int nextPlayer;
-    // Start is called before the first frame update
+
     void Awake()
     {
         if (_gameManager != null && _gameManager != this)
@@ -46,7 +44,7 @@ public class GameManager : MonoBehaviour
         nextPlayer = 1;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         //右键回到default,已选中清空
