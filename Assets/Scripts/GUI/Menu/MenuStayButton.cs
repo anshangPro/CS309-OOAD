@@ -7,17 +7,22 @@ namespace GUI.Menu
 {
     public class MenuStayButton : MonoBehaviour, IClickable
     {
-        private static MenuStayButton Instance { get; set; }
+        private static MenuStayButton _instance;
+
+        public static MenuStayButton Instance
+        {
+            get { return _instance; }
+        }
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
             }
             else
             {
-                Instance = this;
+                _instance = this;
             }
         }
 

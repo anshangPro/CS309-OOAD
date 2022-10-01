@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-// using 
 using UnityEngine;
 
 namespace GUI
@@ -11,31 +10,43 @@ namespace GUI
     /// </summary>
     public class ButtonManager : MonoBehaviour
     {
-        private static ButtonManager Instance { get; set; }
-        private GameManager _gameManager;
+        private static ButtonManager _instance;
+
+        public static ButtonManager Instance
+        {
+            get { return _instance; }
+        }
+
+        public GameManager gameManager;
+        private GameObject _menuAttack;
+        private GameObject _menuMove;
+        private GameObject _menuStay;
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
             }
             else
             {
-                Instance = this;
+                _instance = this;
             }
         }
 
         void Start()
         {
-            _gameManager = GameObject.Find("GameObject").GetComponent<GameManager>();
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            _menuAttack = GameObject.Find("MenuAttack");
+            _menuMove = GameObject.Find("MenuMove");
+            _menuStay = GameObject.Find("MenuStay");
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
             //根据当前的状态展示对应的按钮
-            switch (_gameManager.status)
+            switch (gameManager.status)
             {
                 case GameStatus.Default:
                     break;

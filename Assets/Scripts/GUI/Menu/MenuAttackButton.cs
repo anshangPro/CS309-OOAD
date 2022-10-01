@@ -2,31 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GUI.Menu
 {
     public class MenuAttackButton : MonoBehaviour, IClickable
     {
-        
-        private static MenuAttackButton Instance { get; set; }
+        private static MenuAttackButton _instance;
+
+        public static MenuAttackButton Instance
+        {
+            get { return _instance; }
+        }
+
+        private Button _attackButton;
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
             }
             else
             {
-                Instance = this;
+                _instance = this;
             }
         }
 
 
         // Start is called before the first frame update
-        void Start()
-        {
-        }
 
         // Update is called once per frame
         void Update()
@@ -35,6 +39,7 @@ namespace GUI.Menu
 
         bool IClickable.IsClicked()
         {
+            () => { return ButtonManager.Instance.gameManager.Ente  rFight(); };
             return true;
         }
     }

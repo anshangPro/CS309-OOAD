@@ -9,17 +9,22 @@ namespace GUI.Menu
 {
     public class MenuMoveButton : MonoBehaviour, IClickable
     {
-        private static MenuMoveButton Instance { get; set; }
+        private static MenuMoveButton _instance;
+
+        public static MenuMoveButton Instance
+        {
+            get { return _instance; }
+        }
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
             }
             else
             {
-                Instance = this;
+                _instance = this;
             }
         }
 
