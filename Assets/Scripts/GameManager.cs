@@ -13,8 +13,17 @@ public class GameManager : MonoBehaviour
             return _status;
         }
     }
+    private static GameManager _gameManager;
+    public static GameManager gameManager
+    {
+        get
+        {
+            return _gameManager;
+        }
+    }
 
-    public Unit selected;
+    public Unit selectedUnit;
+    public Unit selectedEnemy;
     public Unit[] pieces;
 
     public int mainPlayer;
@@ -22,8 +31,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (_gameManager != null && _gameManager != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _gameManager = this;
+        }
         //pieces = ??
-        selected = null;
+        selectedUnit = null;
         _status = GameStatus.Default;
         mainPlayer = 0;
         nextPlayer = 1;
@@ -35,7 +52,7 @@ public class GameManager : MonoBehaviour
         //右键回到default,已选中清空
         if (Input.GetMouseButton(1))
         {
-            selected = null;
+            selectedUnit = null;
             EnterDefault();
         }
     }
@@ -47,14 +64,14 @@ public class GameManager : MonoBehaviour
     /// <param name="piece"> 棋子 </param>
     public void PieceOnClick(Unit piece)
     {
-        if (_status == GameStatus.Default || _status == GameStatus.Menu)
+        if (_status == GameStatus.Default)
         {
-            EnterMenu();
-            selected = piece;
+            EnterMainMenu();
+            selectedUnit = piece;
         }
         else if (_status == GameStatus.Fight)
         {
-            selected.Attack(piece);
+            selectedUnit.Attack(piece);
             EnterDefault();
         }
     }
@@ -68,9 +85,9 @@ public class GameManager : MonoBehaviour
     {
         if (_status == GameStatus.Move)
         {   
-            //if (cell.Moveable(selected))
+            //if (cell.Moveable(selectedUnit))
             //{
-            //    selected.Move(arg1, arg2, arg3);
+            //    selectedUnit.Move(arg1, arg2, arg3);
             //    EnterMoving();
             //}
         }
@@ -87,7 +104,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void TurnEnd()
     {
-        selected = null;
+        selectedUnit = null;
 
         foreach (Unit piece in pieces)
         {
@@ -108,14 +125,9 @@ public class GameManager : MonoBehaviour
         _status = GameStatus.Default;
     }
 
-    void EnterMoving()
+    void EnterMainMenu()
     {
-        _status = GameStatus.Moving;
-    }
-
-    void EnterMenu()
-    {
-        _status = GameStatus.Menu;
+        _status = GameStatus.MainMenu;
     }
 
     void EnterMove()
@@ -126,5 +138,10 @@ public class GameManager : MonoBehaviour
     void EnterFight()
     {
         _status = GameStatus.Fight;
+    }
+
+    void EnterFightMenu()
+    {
+        _status = GameStatus.FightMenu;
     }
 }

@@ -6,8 +6,9 @@ using UnityEngine;
 public enum GameStatus
 {
     Default,
+    FightMenu,
     Fight,
     Move,
-    Moving,
-    Menu
+    MainMenu,
+    MenuAfterMove
 }
