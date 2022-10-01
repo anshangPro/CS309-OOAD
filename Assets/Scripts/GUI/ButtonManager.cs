@@ -36,27 +36,30 @@ namespace GUI
 
         void Start()
         {
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            gameManager = GameManager.gameManager;
             _menuAttack = GameObject.Find("MenuAttack");
             _menuMove = GameObject.Find("MenuMove");
             _menuStay = GameObject.Find("MenuStay");
         }
 
-        // Update is called once per frame
-        void FixedUpdate()
+        /// <summary>
+        /// 根据当前的状态展示对应的按钮
+        /// </summary>
+        public void SetButtonVisible()
         {
-            //根据当前的状态展示对应的按钮
             switch (gameManager.status)
             {
                 case GameStatus.Default:
-                    break;
-                case GameStatus.Menu:
                     break;
                 case GameStatus.Fight:
                     break;
                 case GameStatus.Move:
                     break;
-                case GameStatus.Moving:
+                case GameStatus.FightMenu:
+                    break;
+                case GameStatus.MainMenu:
+                    break;
+                case GameStatus.MenuAfterMove:
                     break;
                 default:
                     break;

@@ -39,7 +39,8 @@ namespace GUI.Menu
 
         bool IClickable.IsClicked()
         {
-            () => { return ButtonManager.Instance.gameManager.Ente  rFight(); };
+            // 触发后将状态转换到 fight
+            // () => { return GameManager.gameManager};
             return true;
         }
     }
