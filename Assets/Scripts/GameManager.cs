@@ -69,7 +69,15 @@ public class GameManager : MonoBehaviour
         }
         else if (_status == GameStatus.Fight)
         {
-            selectedUnit.Attack(piece);
+            if (selectedUnit == null)
+            {
+                selectedEnemy = piece;
+            }
+            else
+            {
+                selectedEnemy.Attack(piece);
+            }
+            
             EnterDefault();
         }
     }
@@ -88,6 +96,14 @@ public class GameManager : MonoBehaviour
             //    selectedUnit.Move(arg1, arg2, arg3);
             //    EnterMoving();
             //}
+        }
+    }
+
+    public void AttackButtonOnClick()
+    {
+        if (_status == GameStatus.MainMenu)
+        {
+            EnterFightMenu();
         }
     }
 

@@ -39,7 +39,8 @@ namespace GUI.Menu
 
         bool IClickable.IsClicked()
         {
-            // 触发后将状态转换到 fight
+            // 触发后将状态转换到 fightMenu
+            GameManager.gameManager.AttackButtonOnClick();
             // () => { return GameManager.gameManager};
             return true;
         }

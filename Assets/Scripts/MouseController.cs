@@ -2,13 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GUI;
+using Interfaces;
 using UnityEngine;
 using Util;
 
 public class MouseController : MonoBehaviour
 {
     public GameStatus mode = GameStatus.Default;
-    
+    private ButtonManager _buttonManager = ButtonManager.Instance;
 
     private void Update()
     {
@@ -22,6 +24,12 @@ public class MouseController : MonoBehaviour
                 if (hit)
                 {
                     Debug.Log($"Hit entity {hitObj.collider.name} at {hitObj.collider.transform.position} in layer {layer}");
+                    if (hitObj.collider.gameObject.GetComponent<IClickable>() != null)
+                        if (hitObj.collider.gameObject.GetComponent<IClickable>().IsClicked())
+                        {
+                            _buttonManager.SetButtonVisible();
+                            break;
+                        }
                 }
             }
         }

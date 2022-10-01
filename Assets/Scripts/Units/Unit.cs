@@ -85,7 +85,12 @@ public class Unit : MonoBehaviour, IClickable
     /// <returns> 点击是否成功: bool </returns>
     public bool IsClicked()
     {
-        return !hasMoved || !hasAttacked;
+        if(!hasMoved || !hasAttacked)
+        {
+            GameManager.gameManager.PieceOnClick(this);
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
