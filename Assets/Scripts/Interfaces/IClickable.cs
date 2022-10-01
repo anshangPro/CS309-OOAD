@@ -1,6 +1,6 @@
 namespace Interfaces
 {
-    interface IClickable {
+    interface  IClickable {
         /// <summary>
         /// when on click, the mouse controller will call the object's isClicked function
         /// </summary>

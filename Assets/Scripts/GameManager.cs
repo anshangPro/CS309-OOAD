@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
     private GameStatus _status;
     public GameStatus status
     {
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     public int mainPlayer;
     public int nextPlayer;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //pieces = ??
         selected = null;
