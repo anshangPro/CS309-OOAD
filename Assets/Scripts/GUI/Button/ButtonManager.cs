@@ -45,12 +45,12 @@ namespace GUI
         /// <summary>
         /// 根据当前的状态展示对应的按钮
         /// </summary>
-        public void SetButtonVisible()
+        public void UpdateButton()
         {
             switch (gameManager.status)
             {
                 case GameStatus.Default:
-                    
+                
                     break;
                 case GameStatus.Fight:
                     break;

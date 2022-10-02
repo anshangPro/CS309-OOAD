@@ -12,11 +12,11 @@ using Util;
 public class MouseController : MonoBehaviour
 {
     public GameStatus mode = GameStatus.Default;
-    private ButtonManager _buttonManager;
+    private UIManager _uiManager;
 
     private void Start()
     {
-        _buttonManager = ButtonManager.Instance;
+        _uiManager = UIManager.Instance;
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class MouseController : MonoBehaviour
                             $"Hit entity {results[0].gameObject.name} at {results[0].gameObject.transform.position} in layer EventSystem");
                         if (r.gameObject.GetComponent<IClickable>().IsClicked())
                         {
-                            _buttonManager.SetButtonVisible();
+                            _uiManager.UpdateGUI();
                             break;
                         }
                     }
@@ -60,7 +60,7 @@ public class MouseController : MonoBehaviour
                         if (hitObj.collider.gameObject.GetComponent<IClickable>() != null)
                             if (hitObj.collider.gameObject.GetComponent<IClickable>().IsClicked())
                             {
-                                _buttonManager.SetButtonVisible();
+                                _uiManager.UpdateGUI();
                                 break;
                             }
                     }
