@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7296537334147626626}
   - component: {fileID: 7296537334147626628}
   - component: {fileID: 7296537334147626625}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Elf_Ranger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
