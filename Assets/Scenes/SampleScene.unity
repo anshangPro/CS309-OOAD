@@ -4543,6 +4543,7 @@ GameObject:
   - component: {fileID: 434589939}
   - component: {fileID: 434589941}
   - component: {fileID: 434589940}
+  - component: {fileID: 434589942}
   m_Layer: 5
   m_Name: TextManager
   m_TagString: Untagged
@@ -4668,6 +4669,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434589938}
   m_CullTransparentMesh: 1
+--- !u!114 &434589942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434589938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccfaf700ef48504d8da1e116c4500cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1001 &438666607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7263,7 +7277,7 @@ GameObject:
   - component: {fileID: 741226575}
   - component: {fileID: 741226574}
   - component: {fileID: 741226573}
-  - component: {fileID: 741226576}
+  - component: {fileID: 741226577}
   m_Layer: 5
   m_Name: MenuStay
   m_TagString: Untagged
@@ -7374,7 +7388,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741226571}
   m_CullTransparentMesh: 1
---- !u!114 &741226576
+--- !u!114 &741226577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8736,7 +8750,7 @@ GameObject:
   - component: {fileID: 908006364}
   - component: {fileID: 908006363}
   - component: {fileID: 908006362}
-  - component: {fileID: 908006365}
+  - component: {fileID: 908006366}
   m_Layer: 5
   m_Name: MenuAttack
   m_TagString: Untagged
@@ -8847,7 +8861,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908006360}
   m_CullTransparentMesh: 1
---- !u!114 &908006365
+--- !u!114 &908006366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12351,6 +12365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1376447241}
+  - component: {fileID: 1376447242}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -12380,6 +12395,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1376447242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376447240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6318905f0afc1a4f9df6ae2b94d7235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  buttonManager: {fileID: 0}
+  textManager: {fileID: 0}
 --- !u!1001 &1377146187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14569,7 +14599,7 @@ GameObject:
   - component: {fileID: 1599820145}
   - component: {fileID: 1599820144}
   - component: {fileID: 1599820143}
-  - component: {fileID: 1599820146}
+  - component: {fileID: 1599820147}
   m_Layer: 5
   m_Name: MenuMove
   m_TagString: Untagged
@@ -14680,7 +14710,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599820141}
   m_CullTransparentMesh: 1
---- !u!114 &1599820146
+--- !u!114 &1599820147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

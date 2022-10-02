@@ -40,7 +40,14 @@ namespace GUI.Menu
         bool IClickable.IsClicked()
         {
             // 触发后将状态转换到 fightMenu
-            GameManager.gameManager.AttackButtonOnClick();
+            switch (gameObject.name)
+            {
+                case "MenuAttack" :
+                    GameManager.gameManager.AttackButtonOnClick();
+                    break;
+                case "MenuStay":
+                    break;
+            }
             // () => { return GameManager.gameManager};
             return true;
         }

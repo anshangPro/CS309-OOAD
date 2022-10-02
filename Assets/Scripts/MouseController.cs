@@ -12,7 +12,7 @@ using Util;
 public class MouseController : MonoBehaviour
 {
     public GameStatus mode = GameStatus.Default;
-    private UIManager _uiManager;
+    private UIManager _uiManager = UIManager.Instance;
 
     private void Start()
     {

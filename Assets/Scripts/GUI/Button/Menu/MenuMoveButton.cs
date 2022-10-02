@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using Interfaces;
 using UnityEngine;
 
-namespace GUI.Menu
+namespace GUI
 {
     public class MenuMoveButton : MonoBehaviour, IClickable
     {

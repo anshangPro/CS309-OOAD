@@ -28,15 +28,14 @@ public class UIManager : MonoBehaviour
         {
             _instance = this;
         }
-
-        gameManager = GameManager.gameManager;
-        buttonManager = ButtonManager.Instance;
-        textManager = TextManager.Instance;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.gameManager;
+        buttonManager = ButtonManager.Instance;
+        textManager = TextManager.Instance;
     }
 
     // Update is called once per frame
