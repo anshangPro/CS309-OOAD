@@ -12,7 +12,12 @@ using Util;
 public class MouseController : MonoBehaviour
 {
     public GameStatus mode = GameStatus.Default;
-    private ButtonManager _buttonManager = ButtonManager.Instance;
+    private ButtonManager _buttonManager;
+
+    private void Start()
+    {
+        _buttonManager = ButtonManager.Instance;
+    }
 
     private void Update()
     {
