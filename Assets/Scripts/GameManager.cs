@@ -82,6 +82,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 点击攻击按钮，从人物菜单进入攻击菜单
+    /// </summary>
+    public void ClickFightMenu()
+    {
+        if (_status == GameStatus.MenuAfterMove)
+        {
+            EnterFightMenu();
+        }
+    }
+
 
     /// <summary>
     /// 每次单元格被点击的时候调用此方法
