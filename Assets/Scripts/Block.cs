@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using UnityEngine;
-using UnityEngine.Serialization;
 using static Util.OverlayGrid;
 
 public class Block : MonoBehaviour
@@ -12,9 +7,12 @@ public class Block : MonoBehaviour
     public int Z => (int) transform.localPosition.z;
     public Vector2Int Position2D => new(X, Z);
 
-    public int g;
-    public int h;
-    public int F => g + h;
+    public float g;
+    public float h;
+    public float F => g + h;
+    public Block parent;
+    public float moveCost;
+    
 
     
     private static readonly Quaternion YRotate90 = Quaternion.Euler(90.0f, 90.0f, 0.0f);
@@ -70,5 +68,11 @@ public class Block : MonoBehaviour
                 overlayRenderer.sprite = null;
                 break;
         }
+    }
+
+    public void Flush()
+    {
+        g = h = 0;
+        parent = null;
     }
 }

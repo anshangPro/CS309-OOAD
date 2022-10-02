@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -21,11 +20,24 @@ public class MapManager : MonoBehaviour
         {
             Instance = this;
         }
-        
+
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             Vector3 position = gameObject.transform.GetChild(i).localPosition;
-            Map.Add(new Vector2Int((int) position.x, (int) position.z), gameObject.transform.GetChild(i).GetComponent<Block>());
+            Map.Add(new Vector2Int((int)position.x, (int)position.z),
+                gameObject.transform.GetChild(i).GetComponent<Block>());
+        }
+    }
+
+    public Block startBlock;
+    public Block endBlock;
+    private void Start()
+    {
+        List<Block> path = FindPath(startBlock, endBlock, Map.Values.ToList());
+        path.Add(null);
+        for (int i = 1; i < path.Count - 1; i++)
+        {
+            path[i].SetOverlayGridType(OverlayGridTranslator.TranslateDirection(path[i - 1], path[i], path[i + 1]));
         }
     }
 
@@ -36,19 +48,16 @@ public class MapManager : MonoBehaviour
     }
 
     /// <summary>
-    ///   <para>Find shortest path</para>
+    ///   <para>根据行动力消耗寻找最短路径（最好先使用<c>FindInRange</c>找到最远可能到达的方块，减少搜索量）</para>
     /// </summary>
-    /// <param name="start">Start block</param>
-    /// <param name="end">End block</param>
-    /// <param name="reachableBlocks">All blocks of the path should in <c>reachableBlocks</c></param>
-    /// <returns>Path as list of blocks in order</returns>
+    /// <param name="start">起点</param>
+    /// <param name="end">终点</param>
+    /// <param name="reachableBlocks">可搜索（行走）的方块</param>
+    /// <returns>起点到终点的最短路径（包括起点和终点）</returns>
     public List<Block> FindPath(Block start, Block end, List<Block> reachableBlocks)
     {
-        List<Block> openList = new List<Block>();
+        List<Block> openList = new List<Block> { start };
         List<Block> closeList = new List<Block>();
-        openList.Add(start);
-
-        Dictionary<Block, Block> preDict = new Dictionary<Block, Block>();
 
         while (openList.Count > 0)
         {
@@ -62,28 +71,50 @@ public class MapManager : MonoBehaviour
                 while (cur != start)
                 {
                     path.Add(cur);
-                    cur = preDict[cur];
+                    cur = cur.parent;
                 }
+
                 path.Add(start);
                 path.Reverse();
+
+                foreach (Block block in path)
+                {
+                    block.Flush();
+                }
+
                 return path;
             }
 
             foreach (Block nxt in GetNeighborBlocks(cur, reachableBlocks).Where(nxt => !closeList.Contains(nxt)))
             {
-                nxt.g = GetManhattenDistance(start, nxt);
-                nxt.h = GetManhattenDistance(nxt, end);
-                if (preDict.Keys.Contains(nxt))
+                // nxt.g = GetManhattenDistance(start, nxt);
+                // nxt.h = GetManhattenDistance(nxt, end);
+                // if (preDict.Keys.Contains(nxt))
+                // {
+                //     preDict[nxt] = cur;
+                // }
+                // else
+                // {
+                //     preDict.Add(nxt, cur);
+                // }
+                //
+                // if (!openList.Contains(nxt))
+                // {
+                //     openList.Add(nxt);
+                // }
+                if (openList.Contains(nxt))
                 {
-                    preDict[nxt] = cur;
+                    if (cur.g + nxt.moveCost < nxt.g)
+                    {
+                        nxt.g = cur.g + nxt.moveCost;
+                        nxt.parent = cur;
+                    }
                 }
                 else
                 {
-                    preDict.Add(nxt, cur);
-                }
-
-                if (!openList.Contains(nxt))
-                {
+                    nxt.g = cur.g + nxt.moveCost;
+                    nxt.h = GetManhattenDistance(nxt, end);
+                    nxt.parent = cur;
                     openList.Add(nxt);
                 }
             }
@@ -97,7 +128,7 @@ public class MapManager : MonoBehaviour
         List<Block> inRangeBlock = new List<Block>();
         int stepCnt = 0;
         inRangeBlock.Add(centerBlock);
-        
+
         List<Block> blocksOfPreStep = new List<Block> { centerBlock };
         while (stepCnt < range)
         {
@@ -106,12 +137,12 @@ public class MapManager : MonoBehaviour
             {
                 surroundingBlocks.AddRange(GetNeighborBlocks(block, Map.Values.ToList()));
             }
-        
+
             inRangeBlock.AddRange(surroundingBlocks);
             blocksOfPreStep = surroundingBlocks.Distinct().ToList();
             stepCnt++;
         }
-        
+
         return inRangeBlock.Distinct().ToList();
     }
 
@@ -146,29 +177,27 @@ public class MapManager : MonoBehaviour
         {
             neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
         }
-        
+
         if (searchableBlocks.Contains(GetBlock(block.X - 1, block.Z)))
         {
             neighborBlocks.Add(GetBlock(block.X - 1, block.Z));
         }
-        
+
         if (searchableBlocks.Contains(GetBlock(block.X, block.Z + 1)))
         {
             neighborBlocks.Add(GetBlock(block.X, block.Z + 1));
         }
-        
+
         if (searchableBlocks.Contains(GetBlock(block.X, block.Z - 1)))
         {
             neighborBlocks.Add(GetBlock(block.X, block.Z - 1));
         }
-        
+
         return neighborBlocks;
     }
-    
-    private int GetManhattenDistance(Block start, Block end)
+
+    private float GetManhattenDistance(Block start, Block end)
     {
         return Mathf.Abs(start.X - end.X) + Mathf.Abs(start.Z - end.Z);
     }
-    
-    
 }
