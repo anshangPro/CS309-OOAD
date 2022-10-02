@@ -55,47 +55,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// 每次棋子被点击的时候调用此方法
     /// </summary>
     /// <param name="piece"> 棋子 </param>
     public void PieceOnClick(Unit piece)
     {
-        if (_status == GameStatus.Default)
+        // 从Default进入待移动状态
+        if (_status == GameStatus.Default && isMyPiece(piece))
         {
-            EnterMainMenu();
+            EnterMove();
             selectedUnit = piece;
         }
-        else if (_status == GameStatus.Fight)
+        // 在攻击菜单中选择敌人
+        else if (_status == GameStatus.FightMenu && !isMyPiece(piece))
         {
-            if (selectedUnit == null)
-            {
-                selectedEnemy = piece;
-            }
-            else
-            {
-                selectedEnemy.Attack(piece);
-            }
-            
-            EnterDefault();
+            selectedEnemy = piece;
         }
     }
 
     /// <summary>
-    /// 点击攻击按钮，从人物菜单进入攻击菜单
-    /// </summary>
-    public void ClickFightMenu()
-    {
-        if (_status == GameStatus.MenuAfterMove)
-        {
-            EnterFightMenu();
-        }
-    }
-
-
-    /// <summary>
-    /// 每次单元格被点击的时候调用此方法
+    /// 每次单元格被点击的时候调用此方法,进行移动
     /// </summary>
     /// <param name="cell"> 单元格 </param>
     public void CellOnClick(GameObject cell)
@@ -110,12 +90,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 点击攻击按钮，从人物菜单进入攻击菜单
+    /// </summary>
     public void AttackButtonOnClick()
     {
-        if (_status == GameStatus.MainMenu)
+        if (_status == GameStatus.MenuAfterMove)
         {
             EnterFightMenu();
         }
+    }
+
+
+
+
+    /// <summary>
+    /// 选定物品和敌人后，点击确定开始攻击
+    /// </summary>
+    public void StartAttack()
+    {
+        if (_status == GameStatus.FightMenu && selectedEnemy != null)
+        {
+            EnterFight();
+            selectedUnit.Attack(selectedEnemy);
+        }
+    }
+
+    /// <summary>
+    /// 攻击结算后回到Default状态
+    /// </summary>
+    public void FinishAttack()
+    {
+        EnterDefault();
+        selectedEnemy = null;
+        selectedUnit = null;
     }
 
     public void Moving()
@@ -145,6 +153,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Turn end, now player is: " + mainPlayer);
     }
 
+    bool isMyPiece(Unit piece)
+    {
+        return (mainPlayer == 0 && piece is Friendly) || (mainPlayer == 1 && piece is Enemy);
+    }
+
     void EnterDefault()
     {
         _status = GameStatus.Default;
@@ -168,5 +181,10 @@ public class GameManager : MonoBehaviour
     void EnterFightMenu()
     {
         _status = GameStatus.FightMenu;
+    }
+
+    void EnterMenuAfterMove()
+    {
+        _status = GameStatus.MenuAfterMove;
     }
 }
