@@ -85,7 +85,9 @@ public class Unit : MonoBehaviour, IClickable
     /// <returns> 点击是否成功: bool </returns>
     public bool IsClicked()
     {
-        if(!hasMoved || !hasAttacked)
+        // 自己回合：行动、攻击
+        // TODO 敌方回合：作为攻击目标
+        if (!hasMoved || !hasAttacked)
         {
             GameManager.gameManager.PieceOnClick(this);
             return true;

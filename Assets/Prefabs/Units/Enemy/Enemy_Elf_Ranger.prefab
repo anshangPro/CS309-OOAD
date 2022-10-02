@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2825057957642499565}
   - component: {fileID: 2825057957642499560}
   - component: {fileID: 2825057957642499561}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Elf_Ranger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
