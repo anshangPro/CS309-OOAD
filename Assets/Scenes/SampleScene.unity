@@ -7453,6 +7453,7 @@ GameObject:
   - component: {fileID: 741226575}
   - component: {fileID: 741226574}
   - component: {fileID: 741226573}
+  - component: {fileID: 741226576}
   m_Layer: 5
   m_Name: MenuStay
   m_TagString: Untagged
@@ -7563,6 +7564,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741226571}
   m_CullTransparentMesh: 1
+--- !u!114 &741226576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741226571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43655ff20ce437948a0023c0264c3f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &744910989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8938,7 +8951,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908006360}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -9013,19 +9026,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908006360}
   m_CullTransparentMesh: 1
---- !u!65 &908006365
-BoxCollider:
+--- !u!114 &908006365
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908006360}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90968d279debcdf4299ecc9e20a6d67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &949503382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9247,7 +9259,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9321,21 +9332,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 28.913, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a66d5d25c425724d9faa89387399e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  edgeSize: 50
-  speed: 1
-  isMovable: 1
 --- !u!1001 &977207082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14631,6 +14627,7 @@ GameObject:
   - component: {fileID: 1599820145}
   - component: {fileID: 1599820144}
   - component: {fileID: 1599820143}
+  - component: {fileID: 1599820146}
   m_Layer: 5
   m_Name: MenuMove
   m_TagString: Untagged
@@ -14741,6 +14738,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599820141}
   m_CullTransparentMesh: 1
+--- !u!114 &1599820146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599820141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d49669a92a285479a5eb9e2bcf4db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1604348661
 PrefabInstance:
   m_ObjectHideFlags: 0
