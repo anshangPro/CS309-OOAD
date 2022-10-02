@@ -50,6 +50,7 @@ namespace GUI
             switch (gameManager.status)
             {
                 case GameStatus.Default:
+                    
                     break;
                 case GameStatus.Fight:
                     break;

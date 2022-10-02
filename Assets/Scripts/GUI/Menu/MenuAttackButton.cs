@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 namespace GUI.Menu
 {
-    public class MenuAttackButton : MonoBehaviour, IClickable
+    public class MenuAfterMoveAttack : MonoBehaviour, IClickable
     {
-        private static MenuAttackButton _instance;
+        private static MenuAfterMoveAttack _instance;
 
-        public static MenuAttackButton Instance
+        public static MenuAfterMoveAttack Instance
         {
             get { return _instance; }
         }
