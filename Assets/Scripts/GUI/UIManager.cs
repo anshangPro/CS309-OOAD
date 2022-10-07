@@ -1,51 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using GUI;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+namespace GUI
 {
-    private static UIManager _instance;
-
-    public static UIManager Instance
+    public class UIManager : MonoBehaviour
     {
-        get { return _instance; }
-    }
+        private static UIManager _instance;
 
-    public GameManager gameManager;
-    public ButtonManager buttonManager;
-    public TextManager textManager;
-
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
+        public static UIManager Instance
         {
-            Destroy(gameObject);
+            get { return _instance; }
         }
-        else
-        {
-            _instance = this;
-        }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameManager = GameManager.gameManager;
-        buttonManager = ButtonManager.Instance;
-        textManager = TextManager.Instance;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    public void UpdateGUI()
-    {
-        buttonManager.UpdateButton();
-        textManager.UpdateButton();
+        
+        
     }
 }

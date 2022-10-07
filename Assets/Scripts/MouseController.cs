@@ -40,7 +40,7 @@ public class MouseController : MonoBehaviour
                             $"Hit entity {results[0].gameObject.name} at {results[0].gameObject.transform.position} in layer EventSystem");
                         if (r.gameObject.GetComponent<IClickable>().IsClicked())
                         {
-                            _uiManager.UpdateGUI();
+                            // _uiManager.UpdateGUI();
                             break;
                         }
                     }
@@ -60,7 +60,7 @@ public class MouseController : MonoBehaviour
                         if (hitObj.collider.gameObject.GetComponent<IClickable>() != null)
                             if (hitObj.collider.gameObject.GetComponent<IClickable>().IsClicked())
                             {
-                                _uiManager.UpdateGUI();
+                                // _uiManager.UpdateGUI();
                                 break;
                             }
                     }
