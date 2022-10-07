@@ -13,6 +13,7 @@ public class MouseController : MonoBehaviour
 {
     public GameStatus mode = GameStatus.Default;
     private UIManager _uiManager = UIManager.Instance;
+    public static String GameObjectName = "";
 
     private void Start()
     {
@@ -57,6 +58,7 @@ public class MouseController : MonoBehaviour
                     {
                         Debug.Log(
                             $"Hit entity {hitObj.collider.name} at {hitObj.collider.transform.position} in layer {layer}");
+                        GameObjectName = hitObj.collider.gameObject.name;
                         if (hitObj.collider.gameObject.GetComponent<IClickable>() != null)
                             if (hitObj.collider.gameObject.GetComponent<IClickable>().IsClicked())
                             {
