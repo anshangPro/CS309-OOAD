@@ -47,7 +47,7 @@ namespace GUI
         /// </summary>
         public void UpdateButton()
         {
-            switch (gameManager.status)
+             switch (gameManager.status)
             {
                 case GameStatus.Default:
                 
