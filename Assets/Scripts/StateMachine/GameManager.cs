@@ -34,15 +34,42 @@ namespace StateMachine
         }
 
 
-        private void Update()
+        // private void Update()
+        // {
+        //     //右键回到default,已选中清空
+        //     if (Input.GetMouseButton(1))
+        //     {
+        //         selectedUnit = null;
+        //         EnterDefault();
+        //     }
+        // }
+
+        public void MenuButtonOnClick()
         {
-            //右键回到default,已选中清空
-            if (Input.GetMouseButton(1))
+            if (Status == GameStatus.Default)
             {
-                selectedUnit = null;
-                EnterDefault();
+                EnterMainMenu();
+            }
+            else
+            {
+                Debug.Log("Fail to go to MainMenu");
             }
         }
+
+        public void BackButtonOnClick()
+        {
+            switch (Status)
+            {
+                case GameStatus.MainMenu:
+                    EnterDefault();
+                    break;
+                ////存在其他的BackButton
+                default:
+                    Debug.Log("Incorrect status");
+                    break;
+            }
+        }
+
 
         /// <summary>
         /// 每次棋子被点击的时候调用此方法
@@ -103,6 +130,7 @@ namespace StateMachine
             }
         }
 
+
         /// <summary>
         /// 攻击结算后回到Default状态
         /// </summary>
@@ -150,6 +178,11 @@ namespace StateMachine
         private void EnterMainMenu()
         {
             Status = GameStatus.MainMenu;
+        }
+
+        private void EnterCharacter()
+        {
+            Status = GameStatus.Character;
         }
 
         private void EnterMove()

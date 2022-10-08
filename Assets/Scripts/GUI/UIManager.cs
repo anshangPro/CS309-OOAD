@@ -1,6 +1,7 @@
 using System;
 using GUI;
 using Interfaces;
+using StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,8 @@ namespace GUI
     public class UIManager : MonoBehaviour, IClickable
     {
         public static UIManager Instance { get; }
+
+        private GameManager _gameManager;
 
         /// 所有定义在Canvas下的按钮 
         private Button[] _buttonArray;
@@ -29,6 +32,7 @@ namespace GUI
 
         private void Start()
         {
+            _gameManager = GameManager.gameManager;
             CreateColliderForButton();
             _uIManager = GameObject.Find("UIManager");
 
@@ -99,12 +103,14 @@ namespace GUI
 
         private void MenuButton()
         {
+            _gameManager.MenuButtonOnClick();
             _defaultUI.SetActive(false);
             _mainMenuUI.SetActive(true);
         }
 
         private void BackButton()
         {
+            _gameManager.BackButtonOnClick();
             _mainMenuUI.SetActive(false);
             _defaultUI.SetActive(true);
         }

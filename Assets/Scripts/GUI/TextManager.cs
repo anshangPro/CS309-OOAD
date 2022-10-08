@@ -11,7 +11,6 @@ namespace GUI
 
         private TMP_Text _tmp;
 
-        // Start is called before the first frame update
         private void Start()
         {
             // 显示状态的文本
@@ -19,7 +18,6 @@ namespace GUI
             _tmp = _curState.GetComponent<TMP_Text>();
         }
 
-        // Update is called once per frame
         private void FixedUpdate()
         {
             _tmp.text = GameManager.gameManager.Status switch
