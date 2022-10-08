@@ -56,13 +56,16 @@ public class MapManager : MonoBehaviour
     /// <returns>起点到终点的最短路径（包括起点和终点）</returns>
     public List<Block> FindPath(Block start, Block end, List<Block> reachableBlocks)
     {
-        List<Block> openList = new List<Block> { start };
+        PriorityQueue<Block> queue = new PriorityQueue<Block>();
+        queue.Push(start, start.F);
+        //List<Block> openList = new List<Block> { start };
         List<Block> closeList = new List<Block>();
 
-        while (openList.Count > 0)
+        while (queue.GetCount() > 0)
         {
-            Block cur = openList.OrderBy(x => x.F).First();
-            openList.Remove(cur);
+            //Block cur = openList.OrderBy(block => block.F).First();
+            //openList.Remove(cur);
+            Block cur = queue.Out();
             closeList.Add(cur);
 
             if (cur == end)
@@ -102,7 +105,7 @@ public class MapManager : MonoBehaviour
                 // {
                 //     openList.Add(nxt);
                 // }
-                if (openList.Contains(nxt))
+                if (queue.Contains(nxt))
                 {
                     if (cur.g + nxt.moveCost < nxt.g)
                     {
@@ -115,7 +118,7 @@ public class MapManager : MonoBehaviour
                     nxt.g = cur.g + nxt.moveCost;
                     nxt.h = GetManhattenDistance(nxt, end);
                     nxt.parent = cur;
-                    openList.Add(nxt);
+                    queue.Push(nxt, nxt.F);
                 }
             }
         }

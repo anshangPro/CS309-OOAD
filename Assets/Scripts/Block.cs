@@ -9,6 +9,9 @@ public class Block : MonoBehaviour
 
     public float g;
     public float h;
+    /// <summary>
+    /// a星评估函数
+    /// </summary>
     public float F => g + h;
     public Block parent;
     public float moveCost;
