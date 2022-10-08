@@ -9,7 +9,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance { get; private set; }
 
     public readonly Dictionary<Vector2Int, Block> Map = new();
-
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -57,15 +57,16 @@ public class MapManager : MonoBehaviour
     public List<Block> FindPath(Block start, Block end, List<Block> reachableBlocks)
     {
         PriorityQueue<Block> queue = new PriorityQueue<Block>();
-        queue.Push(start, start.F);
+        queue.Add(start);
+        // queue.Push(start, start.F);
         //List<Block> openList = new List<Block> { start };
         List<Block> closeList = new List<Block>();
 
-        while (queue.GetCount() > 0)
+        while (queue.Size() > 0)
         {
             //Block cur = openList.OrderBy(block => block.F).First();
             //openList.Remove(cur);
-            Block cur = queue.Out();
+            Block cur = queue.PopFirst();
             closeList.Add(cur);
 
             if (cur == end)
@@ -118,7 +119,7 @@ public class MapManager : MonoBehaviour
                     nxt.g = cur.g + nxt.moveCost;
                     nxt.h = GetManhattenDistance(nxt, end);
                     nxt.parent = cur;
-                    queue.Push(nxt, nxt.F);
+                    queue.Add(nxt);
                 }
             }
         }

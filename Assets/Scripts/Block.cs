@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using static Util.OverlayGrid;
 
-public class Block : MonoBehaviour
+public class Block : MonoBehaviour, IComparable<Block>
 {
     public int X => (int) transform.localPosition.x;
     public int Z => (int) transform.localPosition.z;
@@ -77,5 +78,18 @@ public class Block : MonoBehaviour
     {
         g = h = 0;
         parent = null;
+    }
+
+    public int CompareTo(Block other)
+    {
+        if (F < other.F)
+        {
+            return -1;
+        }
+        if (F > other.F)
+        {
+            return 1;
+        }
+        return 0;
     }
 }

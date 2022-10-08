@@ -1,129 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class PriorityQueue<T>
+namespace Util
 {
-    private List<Node> nodeList = new List<Node>();
+    public class PriorityQueue<T> where T : IComparable<T> {
+        private readonly SortedList<T, int> _list = new();
+        private int _count;
 
-    // 堆节点
-    private class Node
-    {
-        //数据
-        public T data { get; set; }
-
-        public float val { get; set; }
-
-        public Node(T data, float val)
+        public bool Contains(T item)
         {
-            this.data = data;
-            this.val = val;
-        }
-    }
-
-    public PriorityQueue()
-    {
-        nodeList.Add(null);
-    }
-
-    //获取队列数据数量
-    public int GetCount()
-    {
-        return nodeList.Count - 1;
-    }
-
-    public bool Empty()
-    {
-        return nodeList.Count == 1;
-    }
-
-    /// <summary>
-    /// 添加数据
-    /// </summary>
-    /// <returns>The push.</returns>
-    /// <param name="data">数据实体.</param>
-    /// <param name="val">堆中根据此值来对数据进行比较.</param>
-    public void Push(T data, float val)
-    {
-        nodeList.Add(new Node(data, val));
-
-        //up
-        Up(nodeList.Count - 1);
-    }
-
-    //取出数据
-    public T Out()
-    {
-        if (nodeList.Count <= 1)
-        {
-            throw new Exception("list is empty");
+            return _list.ContainsKey(item);
         }
 
-        Node node = nodeList[1];
-        nodeList[1] = nodeList[nodeList.Count - 1];
-        nodeList.RemoveAt(nodeList.Count - 1);
-        Down(1);
-        return node.data;
-    }
+        public void Add(T item) {
+            if (_list.ContainsKey(item)) _list[item]++;
+            else _list.Add(item, 1);
 
-    public bool Contains(T t)
-    {
-        foreach (Node obj in nodeList)
-        {
-            if (obj.data.Equals(t))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //上浮
-    private void Up(int addindex)
-    {
-        //父节点是否存在，并进行判断是否需要上浮
-        if (addindex > 1 && (nodeList[addindex / 2].val > nodeList[addindex].val))
-        {
-            Node node = nodeList[addindex / 2];
-            nodeList[addindex / 2] = nodeList[addindex];
-            nodeList[addindex] = node;
-            //递归 继续上浮
-            Up(addindex / 2);
-        }
-    }
-
-    //下沉
-    private void Down(int index)
-    {
-        int targetIndex = 0;
-        //左孩子是否存在
-        if (index * 2 < nodeList.Count)
-        {
-            targetIndex = index * 2;
-        }
-        else
-        {
-            return;
+            _count++;
         }
 
-        //右孩子是否存在，如果存在与左孩子进行比较，去较小的一个
-        if (targetIndex + 1 < nodeList.Count &&
-            nodeList[targetIndex].val > nodeList[targetIndex + 1].val)
-        {
-            targetIndex += 1;
+        public T PopFirst() {
+            if (Size() == 0) return default(T);
+            T result = _list.Keys[0];
+            if (--_list[result] == 0)
+                _list.RemoveAt(0);
+
+            _count--;
+            return result;
         }
 
-        //与孩子进行比较
-        if (nodeList[index].val < nodeList[targetIndex].val)
-        {
-            return;
+        public T PopLast() {
+            if (Size() == 0) return default(T);
+            int index = _list.Count - 1;
+            T result = _list.Keys[index];
+            if (--_list[result] == 0)
+                _list.RemoveAt(index);
+
+            _count--;
+            return result;
         }
 
-        //下沉
-        Node node = nodeList[index];
-        nodeList[index] = nodeList[targetIndex];
-        nodeList[targetIndex] = node;
+        public int Size() {
+            return _count;
+        }
 
-        //递归 继续下沉
-        Down(targetIndex);
+        public T PeekFirst() {
+            if (Size() == 0) return default(T);
+            return _list.Keys[0];
+        }
+
+        public T PeekLast() {
+            if (Size() == 0) return default(T);
+            int index = _list.Count - 1;
+            return _list.Keys[index];
+        }
     }
 }
