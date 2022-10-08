@@ -51,6 +51,7 @@ namespace GUI
         public bool IsClicked()
         {
             bool check = true;
+            Debug.Log("Hit object: " + MouseController.GameObjectName);
             switch (MouseController.GameObjectName)
             {
                 // default_state:
@@ -85,6 +86,7 @@ namespace GUI
         private void CreateColliderForButton()
         {
             _buttonArray = GetComponentsInChildren<Button>(true); //获取所有的Button按钮
+            Debug.Log(_buttonArray.ToString());
             foreach (Button button in _buttonArray)
             {
                 if (button.gameObject.GetComponent<Collider>() == null) continue;
