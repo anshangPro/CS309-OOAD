@@ -8,12 +8,7 @@ namespace GUI
 {
     public class UIManager : MonoBehaviour, IClickable
     {
-        private static UIManager _instance;
-
-        public static UIManager Instance
-        {
-            get { return _instance; }
-        }
+        public static UIManager Instance { get; }
 
         /// 所有定义在Canvas下的按钮 
         private Button[] _buttonArray;
@@ -36,6 +31,8 @@ namespace GUI
         {
             CreateColliderForButton();
             _uIManager = GameObject.Find("UIManager");
+
+            // menu
             _mainMenuUI = _uIManager.transform.Find("MainMenuUI").gameObject;
             _defaultUI = _uIManager.transform.Find("DefaultUI").gameObject;
             _characterUI = _uIManager.transform.Find("CharacterUI").gameObject;
@@ -112,7 +109,7 @@ namespace GUI
             _defaultUI.SetActive(true);
         }
 
-        private void QuitButton()
+        private static void QuitButton()
         {
             Application.Quit();
             Debug.Log("The game will be closed in the real game ");
