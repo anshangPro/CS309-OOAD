@@ -6,6 +6,7 @@ using UnityEngine;
 public enum GameStatus
 {
     Default,            // 可以选择人物，选中后进入 move 状态 选择空地，选中后进入 MainMenu
+    Character,
     FightMenu,          // 选择敌人 选择装备 .... 该状态可以选择敌人
     Fight,              // 播放战斗动画
     Move,               // 此时选择一个block -> 播放动画 -> 人物移动到目标位置 -> MenuAfterMove

@@ -37,6 +37,7 @@ public class MouseController : MonoBehaviour
                 {
                     if (r.gameObject.GetComponent<IClickable>() != null)
                     {
+                        GameObjectName = r.gameObject.name;
                         Debug.Log(
                             $"Hit entity {results[0].gameObject.name} at {results[0].gameObject.transform.position} in layer EventSystem");
                         if (r.gameObject.GetComponent<IClickable>().IsClicked())
