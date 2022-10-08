@@ -15,14 +15,34 @@ namespace GUI
             get { return _instance; }
         }
 
-        /// default 状态下的按钮
-        private Button[] _buttonArray; //所有定义在Canvas下的按钮 
+        /// 所有定义在Canvas下的按钮 
+        private Button[] _buttonArray;
+
+        /// UI 总父节点
+        private GameObject _uIManager;
+
+        /// UI菜单节点
+        private GameObject _mainMenuUI;
+
+        private GameObject _defaultUI;
+        private GameObject _characterUI;
+        private GameObject _moveUI;
+        private GameObject _menuAfterMoveUI;
+        private GameObject _fightMenuUI;
+        private GameObject _fightUI;
 
 
         private void Start()
         {
-            _buttonArray = GetComponentsInChildren<Button>(true); //获取所有的Button按钮
             CreateColliderForButton();
+            _uIManager = GameObject.Find("UIManager");
+            _mainMenuUI = _uIManager.transform.Find("MainMenuUI").gameObject;
+            _defaultUI = _uIManager.transform.Find("DefaultUI").gameObject;
+            _characterUI = _uIManager.transform.Find("CharacterUI").gameObject;
+            _moveUI = _uIManager.transform.Find("MoveUI").gameObject;
+            _menuAfterMoveUI = _uIManager.transform.Find("MenuAfterMoveUI").gameObject;
+            _fightMenuUI = _uIManager.transform.Find("FightMenuUI").gameObject;
+            _fightUI = _uIManager.transform.Find("FightUI").gameObject;
         }
 
         /// <summary>
@@ -31,17 +51,25 @@ namespace GUI
         public bool IsClicked()
         {
             bool check = true;
+            Debug.Log("Hit object: " + MouseController.GameObjectName);
             switch (MouseController.GameObjectName)
             {
                 // default_state:
                 case "MenuButton":
-
+                    Debug.Log("MenuButton is clicked !");
+                    MenuButton();
                     break;
+
+
+                // main_menu_state:
                 case "SaveButton":
+                    // 存档功能待实现
                     break;
                 case "BackButton":
+                    BackButton();
                     break;
                 case "QuitButton":
+                    QuitButton();
                     break;
                 default:
                     Debug.Log("No button is clicked. Wrong operation!");
@@ -52,35 +80,42 @@ namespace GUI
             return check;
         }
 
-
         /// <summary>
         /// 给所有的按钮根绝按钮的大小来设置碰撞箱，使得射线可以检测到UI的Button
         /// </summary>
         private void CreateColliderForButton()
         {
-            foreach (var button in _buttonArray)
+            _buttonArray = GetComponentsInChildren<Button>(true); //获取所有的Button按钮
+            Debug.Log(_buttonArray.ToString());
+            foreach (Button button in _buttonArray)
             {
-                if (button.gameObject.GetComponent<Collider>() == null)
-                {
-                    //创建碰撞器
-                    var buttonSize = button.gameObject.GetComponent<RectTransform>().sizeDelta;
-                    var buttonBoxCollider = button.gameObject.AddComponent<BoxCollider>();
-                    buttonBoxCollider.size = new Vector3(buttonSize.x, buttonSize.y, 2);
-                    buttonBoxCollider.center = new Vector3(0, 0, 1);
-                }
+                if (button.gameObject.GetComponent<Collider>() == null) continue;
+
+                //创建碰撞器
+                Vector2 buttonSize = button.gameObject.GetComponent<RectTransform>().sizeDelta;
+                BoxCollider buttonBoxCollider = button.gameObject.AddComponent<BoxCollider>();
+                buttonBoxCollider.size = new Vector3(buttonSize.x, buttonSize.y, 2);
+                buttonBoxCollider.center = new Vector3(0, 0, 1);
             }
         }
 
 
-        public void Update()
+        private void MenuButton()
         {
-            throw new NotImplementedException();
+            _defaultUI.SetActive(false);
+            _mainMenuUI.SetActive(true);
         }
 
-        public void ExitMainMenu()
+        private void BackButton()
+        {
+            _mainMenuUI.SetActive(false);
+            _defaultUI.SetActive(true);
+        }
+
+        private void QuitButton()
         {
             Application.Quit();
-            Debug.Log("Game closed");
+            Debug.Log("The game will be closed in the real game ");
         }
     }
 }
