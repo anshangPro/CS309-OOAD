@@ -6,7 +6,7 @@ public class TestingBot : MonoBehaviour
     // Start is called before the first frame update
     public new Rigidbody rigidbody;
 
-    void Start()
+    void Start()    
     {
         rigidbody = GetComponent<Rigidbody>();
         Console.WriteLine("Game start");

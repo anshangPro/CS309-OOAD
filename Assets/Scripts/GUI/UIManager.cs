@@ -1,6 +1,7 @@
 using System;
 using GUI;
 using Interfaces;
+using StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +9,9 @@ namespace GUI
 {
     public class UIManager : MonoBehaviour, IClickable
     {
-        private static UIManager _instance;
+        public static UIManager Instance { get; }
 
-        public static UIManager Instance
-        {
-            get { return _instance; }
-        }
+        private GameManager _gameManager;
 
         /// 所有定义在Canvas下的按钮 
         private Button[] _buttonArray;
@@ -34,8 +32,11 @@ namespace GUI
 
         private void Start()
         {
+            _gameManager = GameManager.gameManager;
             CreateColliderForButton();
             _uIManager = GameObject.Find("UIManager");
+
+            // menu
             _mainMenuUI = _uIManager.transform.Find("MainMenuUI").gameObject;
             _defaultUI = _uIManager.transform.Find("DefaultUI").gameObject;
             _characterUI = _uIManager.transform.Find("CharacterUI").gameObject;
@@ -102,17 +103,19 @@ namespace GUI
 
         private void MenuButton()
         {
+            _gameManager.MenuButtonOnClick();
             _defaultUI.SetActive(false);
             _mainMenuUI.SetActive(true);
         }
 
         private void BackButton()
         {
+            _gameManager.BackButtonOnClick();
             _mainMenuUI.SetActive(false);
             _defaultUI.SetActive(true);
         }
 
-        private void QuitButton()
+        private static void QuitButton()
         {
             Application.Quit();
             Debug.Log("The game will be closed in the real game ");
