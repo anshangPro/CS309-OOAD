@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static Util.OverlayGrid;
 
 
 namespace Util
 {
-    public class OverlayGridTranslator
+    public class OverlayGridUtil
     {
         public static OverlayGridType TranslateDirection(Block preBlock, Block curBlock, Block nxtBlock)
         {
@@ -65,6 +66,12 @@ namespace Util
             }
     
             return OverlayGridType.None;
+        }
+
+        public static void SetOverlayGridToNone(List<Block> blocks)
+        {
+            blocks.RemoveAll(block => block == null);
+            blocks.ForEach(block => block.SetOverlayGridType(OverlayGridType.None));
         }
     }
 }

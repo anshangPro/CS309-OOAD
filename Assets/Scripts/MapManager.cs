@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Units;
@@ -35,11 +34,7 @@ public class MapManager : MonoBehaviour
     private void Start()
     {
         List<Block> path = FindPath(startBlock, endBlock, Map.Values.ToList());
-        path.Add(null);
-        for (int i = 1; i < path.Count - 1; i++)
-        {
-            path[i].SetOverlayGridType(OverlayGridTranslator.TranslateDirection(path[i - 1], path[i], path[i + 1]));
-        }
+        DisplayAlongPath(path);
     }
 
     public Block GetBlock(int localX, int localZ)
@@ -59,14 +54,10 @@ public class MapManager : MonoBehaviour
     {
         PriorityQueue<Block> queue = new PriorityQueue<Block>();
         queue.Add(start);
-        // queue.Push(start, start.F);
-        //List<Block> openList = new List<Block> { start };
         List<Block> closeList = new List<Block>();
 
         while (queue.Size() > 0)
         {
-            //Block cur = openList.OrderBy(block => block.F).First();
-            //openList.Remove(cur);
             Block cur = queue.PopFirst();
             closeList.Add(cur);
 
@@ -92,21 +83,6 @@ public class MapManager : MonoBehaviour
 
             foreach (Block nxt in GetNeighborBlocks(cur, reachableBlocks).Where(nxt => !closeList.Contains(nxt)))
             {
-                // nxt.g = GetManhattenDistance(start, nxt);
-                // nxt.h = GetManhattenDistance(nxt, end);
-                // if (preDict.Keys.Contains(nxt))
-                // {
-                //     preDict[nxt] = cur;
-                // }
-                // else
-                // {
-                //     preDict.Add(nxt, cur);
-                // }
-                //
-                // if (!openList.Contains(nxt))
-                // {
-                //     openList.Add(nxt);
-                // }
                 if (queue.Contains(nxt))
                 {
                     if (cur.g + nxt.moveCost < nxt.g)
@@ -166,11 +142,14 @@ public class MapManager : MonoBehaviour
 
     public void DisplayAlongPath(List<Block> path)
     {
-        path.Add(null);
+        if (path.Last() != null)
+        {
+            path.Add(null);
+        }
 
         for (int i = 1; i < path.Count - 1; i++)
         {
-            path[i].SetOverlayGridType(OverlayGridTranslator.TranslateDirection(path[i - 1], path[i], path[i + 1]));
+            path[i].SetOverlayGridType(OverlayGridUtil.TranslateDirection(path[i - 1], path[i], path[i + 1]));
         }
     }
 
