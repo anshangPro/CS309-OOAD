@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using GUI;
 using Units;
 using UnityEngine;
+using Util;
 
 namespace StateMachine
 {
@@ -12,6 +15,12 @@ namespace StateMachine
         public Unit selectedUnit;
         public Unit selectedEnemy;
         public Unit[] pieces;
+
+
+        public List<Block> movableBlocks; //当前角色能移动的方块
+        public Block selectedBlock; //当前玩家选中的方块
+        public List<Block> path; //角色的移动路径
+
 
         public int mainPlayer;
         public int nextPlayer;
@@ -38,7 +47,6 @@ namespace StateMachine
         private void FixedUpdate()
         {
             WithdrawChoice();
-            LightBlocks();
         }
 
         public void MenuButtonOnClick()
@@ -80,21 +88,23 @@ namespace StateMachine
             //右键撤销使用攻击/技能/道具
             if (Status is GameStatus.FightMenu && Input.GetMouseButton(1))
             {
-                ////
+                EnterMenuAfterMove();
+                //假设当前只有攻击操作 不能选择技能道具等等
+                UIManager.Instance.ShowMenuAfterMove();
             }
         }
 
+        /// <summary>
+        /// 显示当前被选中人物的可达路径
+        /// </summary>
+        /// <returns></returns>
         private bool LightBlocks()
         {
-            if (Status == GameStatus.Character && selectedUnit != null)
-            {
-                Debug.Log(selectedUnit.onBlock.name);
-                GameObject onBlock = selectedUnit.onBlock; //当前角色所在的方块
-                MapManager.Instance.DisplayInRange(selectedUnit);
-                return true;
-            }
-
-            return false;
+            if (Status != GameStatus.Character || selectedUnit == null) return false;
+            // GameObject onBlock = selectedUnit.onBlock; //当前角色所在的方块
+            // 所在方块还没有初始化
+            movableBlocks = MapManager.Instance.DisplayInRange(selectedUnit);
+            return true;
         }
 
 
@@ -104,11 +114,12 @@ namespace StateMachine
         /// <param name="unit"> 棋子 </param>
         public void UnitOnClick(Unit unit)
         {
-            // 从Default进入待移动状态
+            // 从Default进入待character状态
             if (Status == GameStatus.Default && IsMyPiece(unit))
             {
                 selectedUnit = unit;
                 EnterCharacter();
+                LightBlocks();
             }
             // 在攻击菜单中选择敌人
             else if (Status == GameStatus.FightMenu && !IsMyPiece(unit))
@@ -120,22 +131,46 @@ namespace StateMachine
 
         /// <summary>
         /// 每次单元格被点击的时候调用此方法,进行移动
+        /// 第一次点击时展示A*最短路径，第二次点击时若方块相同角色移动到目标位置
         /// </summary>
         /// <param name="block"> 单元格 </param>
-        public void BlockOnClick(GameObject block)
+        public void BlockOnClick(Block block)
         {
             if (Status == GameStatus.Character)
             {
-                // if (cell.Moveable(selectedUnit))
-                // {
-                //     selectedUnit.Move(arg1, arg2, arg3);
-                //     EnterMoving();
-                // }
+                //第一次点击到当前方块：展示路径
+                if (block != selectedBlock)
+                {
+                    selectedBlock = block;
+                    Block currentBlock = selectedUnit.onBlock.GetComponent<Block>();
+                    path = MapManager.Instance.FindPath(currentBlock, selectedBlock, movableBlocks);
+                    MapManager.Instance.DisplayAlongPath(path);
+                }
+                // 第二次点击到当前方块：移动到目标位置
+                else
+                {
+                    //将可移动的方块清空,选中的方块清空
+                    OverlayGridUtil.SetOverlayGridToNone(movableBlocks);
+                    movableBlocks = null;
+                    selectedBlock = null;
+                    EnterMove();
+
+                    /////////////////////////////////
+                    //不知道方法是否存在时延，假设有时延
+
+                    Moving();
+
+                    /////////////////////////////////
+
+                    EnterMenuAfterMove();
+
+                    UIManager.Instance.ShowMenuAfterMove();
+                }
             }
         }
 
         /// <summary>
-        /// 点击攻击按钮，从人物菜单进入攻击菜单
+        /// 点击攻击按钮，由选择菜单进入选择攻击对象的状态
         /// </summary>
         public void AttackButtonOnClick()
         {
@@ -169,8 +204,12 @@ namespace StateMachine
             selectedUnit = null;
         }
 
+        /// <summary>
+        /// 当前状态为move,播放移动动画和路径显示，当角色到达目标位置时，进入下一个状态
+        /// </summary>
         public void Moving()
         {
+            selectedUnit.MoveAlongPath(path);
         }
 
 
@@ -191,10 +230,6 @@ namespace StateMachine
             (mainPlayer, nextPlayer) = (nextPlayer, mainPlayer);
 
             Debug.Log("Turn end, now player is: " + mainPlayer);
-        }
-
-        private class StatusController
-        {
         }
 
         private bool IsMyPiece(Unit piece)
@@ -234,6 +269,11 @@ namespace StateMachine
         private void EnterFightMenu()
         {
             Status = GameStatus.FightMenu;
+        }
+
+        private void EnterMenuAfterMove()
+        {
+            Status = GameStatus.MenuAfterMove;
         }
     }
 }

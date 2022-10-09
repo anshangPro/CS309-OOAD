@@ -72,6 +72,12 @@ namespace GUI
                 case "QuitButton":
                     QuitButton();
                     break;
+
+                // menuAfterMove:
+                case "AttackButton":
+                    AttackButton();
+                    break;
+
                 default:
                     Debug.Log("No button is clicked. Wrong operation!");
                     check = false;
@@ -87,7 +93,6 @@ namespace GUI
         private void CreateColliderForButton()
         {
             _buttonArray = GetComponentsInChildren<Button>(true); //获取所有的Button按钮
-            Debug.Log(_buttonArray.ToString());
             foreach (Button button in _buttonArray)
             {
                 if (button.gameObject.GetComponent<Collider>() == null) continue;
@@ -114,6 +119,18 @@ namespace GUI
             _mainMenuUI.SetActive(false);
             _defaultUI.SetActive(true);
         }
+
+        public void ShowMenuAfterMove()
+        {
+            _menuAfterMoveUI.SetActive(true);
+        }
+
+        private void AttackButton()
+        {
+            _gameManager.AttackButtonOnClick();
+            _menuAfterMoveUI.SetActive(false);
+        }
+
 
         private static void QuitButton()
         {

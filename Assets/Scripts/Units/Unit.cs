@@ -22,6 +22,17 @@ namespace Units
 
         public GameObject onBlock;
 
+
+        protected virtual void Start()
+        {
+            health = maxHealth;
+        }
+
+        protected virtual void Update()
+        {
+            gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
+        }
+
         protected virtual void MoveToBlock(GameObject block)
         {
             Vector3 newPos = DstBlock2DstPos3(block);
@@ -30,7 +41,14 @@ namespace Units
             transform.position = Vector3.MoveTowards(transform.position, newPos, speed * Time.deltaTime);
         }
 
-        protected virtual void MoveAlongPath(List<Block> path)
+
+        /// <summary>
+        /// 找到当前这个unit站的方块
+        /// </summary>
+        /// <returns>
+        /// 当前Unit所在的Block
+        /// </returns>
+        public virtual void MoveAlongPath(List<Block> path)
         {
             hasMoved = true;
             if (path.Count <= 0)
@@ -106,16 +124,6 @@ namespace Units
         {
             hasMoved = false;
             hasAttacked = false;
-        }
-
-        protected virtual void Start()
-        {
-            health = maxHealth;
-        }
-
-        protected virtual void Update()
-        {
-            gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
         }
     }
 }

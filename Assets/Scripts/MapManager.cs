@@ -9,7 +9,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance { get; private set; }
 
     public readonly Dictionary<Vector2Int, Block> Map = new();
-    
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,6 +31,7 @@ public class MapManager : MonoBehaviour
 
     public Block startBlock;
     public Block endBlock;
+
     private void Start()
     {
         List<Block> path = FindPath(startBlock, endBlock, Map.Values.ToList());
@@ -132,12 +133,15 @@ public class MapManager : MonoBehaviour
     ///   method <c>DisplayInRange</c></para>.
     /// </summary>
     /// <param name="unit"></param>
-    public void DisplayInRange(Unit unit)
+    public List<Block> DisplayInRange(Unit unit)
     {
-        foreach (Block block in FindInRange(unit.onBlock.GetComponent<Block>(), unit.agility))
+        List<Block> movableBlocks = FindInRange(unit.onBlock.GetComponent<Block>(), unit.agility);
+        foreach (Block block in movableBlocks)
         {
             block.SetOverlayGridType(OverlayGrid.OverlayGridType.White);
         }
+
+        return movableBlocks;
     }
 
     public void DisplayAlongPath(List<Block> path)
