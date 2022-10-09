@@ -1,6 +1,6 @@
-using UnityEngine;
-
-public class Enemy : Unit
+namespace Units
 {
-
+    public class Enemy : Unit
+    {
+    }
 }

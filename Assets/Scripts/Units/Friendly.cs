@@ -1,6 +1,7 @@
-using UnityEngine;
-
-public class Friendly : Unit
+namespace Units
 {
+    public class Friendly : Unit
+    {
     
+    }
 }

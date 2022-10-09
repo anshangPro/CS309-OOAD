@@ -1,3 +1,4 @@
+using Units;
 using UnityEngine;
 
 namespace StateMachine
@@ -34,15 +35,11 @@ namespace StateMachine
         }
 
 
-        // private void Update()
-        // {
-        //     //右键回到default,已选中清空
-        //     if (Input.GetMouseButton(1))
-        //     {
-        //         selectedUnit = null;
-        //         EnterDefault();
-        //     }
-        // }
+        private void FixedUpdate()
+        {
+            WithdrawChoice();
+            LightBlocks();
+        }
 
         public void MenuButtonOnClick()
         {
@@ -70,39 +67,70 @@ namespace StateMachine
             }
         }
 
+        //在两个可能的状态下撤销操作
+        private void WithdrawChoice()
+        {
+            //右键撤销选择当前角色
+            if (Status is GameStatus.Character && Input.GetMouseButton(1))
+            {
+                selectedUnit = null;
+                EnterDefault();
+            }
+
+            //右键撤销使用攻击/技能/道具
+            if (Status is GameStatus.FightMenu && Input.GetMouseButton(1))
+            {
+                ////
+            }
+        }
+
+        private bool LightBlocks()
+        {
+            if (Status == GameStatus.Character && selectedUnit != null)
+            {
+                Debug.Log(selectedUnit.onBlock.name);
+                GameObject onBlock = selectedUnit.onBlock; //当前角色所在的方块
+                MapManager.Instance.DisplayInRange(selectedUnit);
+                return true;
+            }
+
+            return false;
+        }
+
 
         /// <summary>
         /// 每次棋子被点击的时候调用此方法
         /// </summary>
-        /// <param name="piece"> 棋子 </param>
-        public void PieceOnClick(Unit piece)
+        /// <param name="unit"> 棋子 </param>
+        public void UnitOnClick(Unit unit)
         {
             // 从Default进入待移动状态
-            if (Status == GameStatus.Default && IsMyPiece(piece))
+            if (Status == GameStatus.Default && IsMyPiece(unit))
             {
-                EnterMove();
-                selectedUnit = piece;
+                selectedUnit = unit;
+                EnterCharacter();
             }
             // 在攻击菜单中选择敌人
-            else if (Status == GameStatus.FightMenu && !IsMyPiece(piece))
+            else if (Status == GameStatus.FightMenu && !IsMyPiece(unit))
             {
-                selectedEnemy = piece;
+                selectedEnemy = unit;
+                EnterFight();
             }
         }
 
         /// <summary>
         /// 每次单元格被点击的时候调用此方法,进行移动
         /// </summary>
-        /// <param name="cell"> 单元格 </param>
-        public void CellOnClick(GameObject cell)
+        /// <param name="block"> 单元格 </param>
+        public void BlockOnClick(GameObject block)
         {
-            if (Status == GameStatus.Move)
+            if (Status == GameStatus.Character)
             {
-                //if (cell.Moveable(selectedUnit))
-                //{
-                //    selectedUnit.Move(arg1, arg2, arg3);
-                //    EnterMoving();
-                //}
+                // if (cell.Moveable(selectedUnit))
+                // {
+                //     selectedUnit.Move(arg1, arg2, arg3);
+                //     EnterMoving();
+                // }
             }
         }
 
@@ -165,11 +193,19 @@ namespace StateMachine
             Debug.Log("Turn end, now player is: " + mainPlayer);
         }
 
+        private class StatusController
+        {
+        }
+
         private bool IsMyPiece(Unit piece)
         {
             return (mainPlayer == 0 && piece is Friendly) || (mainPlayer == 1 && piece is Enemy);
         }
 
+
+        /// <summary>
+        /// 用于轮转状态机的接口
+        /// </summary>
         private void EnterDefault()
         {
             Status = GameStatus.Default;

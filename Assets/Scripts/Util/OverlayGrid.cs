@@ -19,7 +19,7 @@ namespace Util
             LineX = 10,
             LineZ = 11
         }
-        
+
         public static readonly Sprite Arrow = Resources.Load<Sprite>("Sprites/Arrow");
         public static readonly Sprite Corner = Resources.Load<Sprite>("Sprites/Corner");
         public static readonly Sprite Line = Resources.Load<Sprite>("Sprites/Line");
