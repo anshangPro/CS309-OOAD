@@ -2,19 +2,23 @@ using System.Collections.Generic;
 using Interfaces;
 using StateMachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static Util.PositionUtil;
 
 namespace Units
 {
     public class Unit : MonoBehaviour, IClickable
     {
-        [SerializeField] private string unitName;
-        [SerializeField] private float maxHealth;
-        [SerializeField] private float health;
-        [SerializeField] private float damage;
-        [SerializeField] private float defense;
+        [SerializeField] public string UnitName { get; set; }
+        [SerializeField] public float MaxHealth { get; set; }
+        [SerializeField] public float Health { get; set; }
+        [SerializeField] public float Damage { get; set; }
+        [SerializeField] public float Defense { get; set; }
+        /// <summary>
+        /// 敏捷值
+        /// </summary>
+        [SerializeField] public int Agility { get; set; }
 
-        [SerializeField] public int agility;
 
         private const float Delta = 0.00001f;
         private bool hasMoved;
@@ -25,7 +29,7 @@ namespace Units
 
         protected virtual void Start()
         {
-            health = maxHealth;
+            Health = MaxHealth;
         }
 
         protected virtual void Update()
@@ -79,7 +83,7 @@ namespace Units
         public virtual void Attack(Unit target)
         {
             hasAttacked = true;
-            float realDamage = damage - target.defense;
+            float realDamage = Damage - target.Defense;
 
             if (realDamage <= 0)
                 return;
@@ -94,10 +98,10 @@ namespace Units
         /// <param name="realDamage"> 伤害值: float </param>
         protected virtual void TakeDamage(Unit from, float realDamage)
         {
-            if (health <= realDamage)
-                health = 0;
+            if (Health <= realDamage)
+                Health = 0;
             else
-                health -= realDamage;
+                Health -= realDamage;
         }
 
         /// <summary>

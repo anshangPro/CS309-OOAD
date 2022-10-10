@@ -135,7 +135,7 @@ public class MapManager : MonoBehaviour
     /// <param name="unit"></param>
     public List<Block> DisplayInRange(Unit unit)
     {
-        List<Block> movableBlocks = FindInRange(unit.onBlock.GetComponent<Block>(), unit.agility);
+        List<Block> movableBlocks = FindInRange(unit.onBlock.GetComponent<Block>(), unit.Agility);
         foreach (Block block in movableBlocks)
         {
             block.SetOverlayGridType(OverlayGrid.OverlayGridType.White);
