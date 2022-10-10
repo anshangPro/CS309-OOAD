@@ -73,5 +73,11 @@ namespace Util
             blocks.RemoveAll(block => block == null);
             blocks.ForEach(block => block.SetOverlayGridType(OverlayGridType.None));
         }
+
+        public static void SetOverlayGridToWhite(List<Block> blocks)
+        {
+            blocks.RemoveAll(block => block == null);
+            blocks.ForEach(block => block.SetOverlayGridType(OverlayGridType.White));
+        }
     }
 }

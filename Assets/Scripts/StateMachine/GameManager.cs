@@ -141,6 +141,8 @@ namespace StateMachine
                 //第一次点击到当前方块：展示路径
                 if (block != selectedBlock)
                 {
+                    OverlayGridUtil.SetOverlayGridToWhite(path);
+                    path = null;
                     selectedBlock = block;
                     Block currentBlock = selectedUnit.onBlock.GetComponent<Block>();
                     path = MapManager.Instance.FindPath(currentBlock, selectedBlock, movableBlocks);

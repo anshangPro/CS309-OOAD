@@ -32,11 +32,11 @@ public class MapManager : MonoBehaviour
     public Block startBlock;
     public Block endBlock;
 
-    private void Start()
-    {
-        List<Block> path = FindPath(startBlock, endBlock, Map.Values.ToList());
-        DisplayAlongPath(path);
-    }
+    // private void Start()
+    // {
+    //     List<Block> path = FindPath(startBlock, endBlock, Map.Values.ToList());
+    //     DisplayAlongPath(path);
+    // }
 
     public Block GetBlock(int localX, int localZ)
     {

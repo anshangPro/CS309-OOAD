@@ -14,10 +14,11 @@ namespace Units
         [SerializeField] public float Health { get; set; }
         [SerializeField] public float Damage { get; set; }
         [SerializeField] public float Defense { get; set; }
+
         /// <summary>
         /// 敏捷值
         /// </summary>
-        [SerializeField] public int Agility { get; set; }
+        [SerializeField] public int Agility  { get; set; }
 
 
         private const float Delta = 0.00001f;
@@ -30,6 +31,7 @@ namespace Units
         protected virtual void Start()
         {
             Health = MaxHealth;
+            Agility = 4;
         }
 
         protected virtual void Update()
