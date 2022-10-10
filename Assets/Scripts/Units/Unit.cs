@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Interfaces;
 using StateMachine;
@@ -70,7 +71,13 @@ namespace Units
                 SetOnBlock(path[0].gameObject);
                 path.RemoveAt(0);
             }
+
+            if (path.Count == 0)
+            {
+                return;
+            }
         }
+        
 
         protected virtual void SetOnBlock(GameObject block)
         {

@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using GUI;
 using Units;
+using Unity.VisualScripting;
 using UnityEngine;
 using Util;
+using Unit = Units.Unit;
 
 namespace StateMachine
 {
@@ -20,6 +23,8 @@ namespace StateMachine
         public List<Block> movableBlocks; //当前角色能移动的方块
         public Block selectedBlock; //当前玩家选中的方块
         public List<Block> path; //角色的移动路径
+
+        private List<Block> _copyPath = new();
 
 
         public int mainPlayer;
@@ -59,6 +64,11 @@ namespace StateMachine
             {
                 Debug.Log("Fail to go to MainMenu");
             }
+        }
+
+        private void LateUpdate()
+        {
+            Moving();
         }
 
         public void BackButtonOnClick()
@@ -126,6 +136,7 @@ namespace StateMachine
             {
                 selectedEnemy = unit;
                 EnterFight();
+                selectedBlock = null;
             }
         }
 
@@ -154,19 +165,8 @@ namespace StateMachine
                     //将可移动的方块清空,选中的方块清空
                     OverlayGridUtil.SetOverlayGridToNone(movableBlocks);
                     movableBlocks = null;
-                    selectedBlock = null;
+                    path.ForEach(item => _copyPath.Add(item));
                     EnterMove();
-
-                    /////////////////////////////////
-                    //不知道方法是否存在时延，假设有时延
-
-                    Moving();
-
-                    /////////////////////////////////
-
-                    EnterMenuAfterMove();
-
-                    UIManager.Instance.ShowMenuAfterMove();
                 }
             }
         }
@@ -209,9 +209,19 @@ namespace StateMachine
         /// <summary>
         /// 当前状态为move,播放移动动画和路径显示，当角色到达目标位置时，进入下一个状态
         /// </summary>
-        public void Moving()
+        private void Moving()
         {
-            selectedUnit.MoveAlongPath(path);
+            Debug.Log($"unit: {selectedUnit}");
+            Debug.Log($"block: {selectedBlock}");
+            if (Status == GameStatus.Move && selectedUnit.onBlock != selectedBlock.gameObject)
+            {
+                selectedUnit.MoveAlongPath(_copyPath);
+            }
+            else if (Status == GameStatus.Move && selectedUnit.onBlock == selectedBlock.gameObject)
+            {
+                EnterMenuAfterMove();
+                UIManager.Instance.ShowMenuAfterMove();
+            }
         }
 
 

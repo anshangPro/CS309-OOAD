@@ -9,7 +9,7 @@ namespace GUI
 {
     public class UIManager : MonoBehaviour, IClickable
     {
-        public static UIManager Instance { get; }
+        public static UIManager Instance { get; private set; }
 
         private GameManager _gameManager;
 
@@ -32,6 +32,7 @@ namespace GUI
 
         private void Start()
         {
+            Instance = this;
             _gameManager = GameManager.gameManager;
             CreateColliderForButton();
             _uIManager = GameObject.Find("UIManager");
