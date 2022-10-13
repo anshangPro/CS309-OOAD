@@ -1,25 +1,23 @@
-using System;
 using System.Collections.Generic;
 using Interfaces;
 using StateMachine;
 using UnityEngine;
-using UnityEngine.Serialization;
 using static Util.PositionUtil;
 
 namespace Units
 {
     public class Unit : MonoBehaviour, IClickable
     {
-        [SerializeField] public string UnitName { get; set; }
-        [SerializeField] public float MaxHealth { get; set; }
-        [SerializeField] public float Health { get; set; }
-        [SerializeField] public float Damage { get; set; }
-        [SerializeField] public float Defense { get; set; }
+        public string UnitName { get; set; }
+        public float MaxHealth { get; set; }
+        public float Health { get; set; }
+        public float Damage { get; set; }
+        public float Defense { get; set; }
 
         /// <summary>
         /// 敏捷值
         /// </summary>
-        [SerializeField] public int Agility  { get; set; }
+        public int Agility  { get; set; }
 
 
         private const float Delta = 0.00001f;
