@@ -17,7 +17,8 @@ namespace Units
         /// <summary>
         /// 敏捷值
         /// </summary>
-        public int Agility  { get; set; }
+
+        public int Mv  { get; set; }
 
 
         private const float Delta = 0.00001f;
@@ -30,7 +31,9 @@ namespace Units
         protected virtual void Start()
         {
             Health = MaxHealth;
-            Agility = 4;
+            Mv = 5;
+            transform.position = DstBlock2DstPos3(onBlock);
+            SetOnBlock(onBlock);
         }
 
         protected virtual void Update()
@@ -80,7 +83,9 @@ namespace Units
         protected virtual void SetOnBlock(GameObject block)
         {
             transform.position = DstBlock2DstPos3(block);
+            onBlock.GetComponent<Block>().standUnit = null;
             onBlock = block;
+            onBlock.GetComponent<Block>().standUnit = this;
         }
 
         /// <summary>
