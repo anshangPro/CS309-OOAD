@@ -216,11 +216,13 @@ namespace StateMachine
             if (Status == GameStatus.Move && selectedUnit.onBlock != selectedBlock.gameObject)
             {
                 selectedUnit.MoveAlongPath(_copyPath);
+                selectedUnit.GetComponent<Animator>().SetBool("running", true);
             }
             else if (Status == GameStatus.Move && selectedUnit.onBlock == selectedBlock.gameObject)
             {
                 EnterMenuAfterMove();
                 UIManager.Instance.ShowMenuAfterMove();
+                selectedUnit.GetComponent<Animator>().SetBool("running", false);
             }
         }
 
