@@ -3,13 +3,15 @@ using Interfaces;
 using StateMachine;
 using UnityEngine;
 using static Util.OverlayGrid;
+using Units;
 
 public class Block : MonoBehaviour, IComparable<Block>, IClickable
 {
     public int X => (int)transform.localPosition.x;
     public int Z => (int)transform.localPosition.z;
     public Vector2Int Position2D => new(X, Z);
-
+    public bool isWalkable = true;
+    public Unit standUnit;
     public float g;
     public float h;
 
@@ -21,7 +23,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     public Block parent;
     public float moveCost;
 
-
+    private static readonly Quaternion YRotate0 = Quaternion.Euler(90.0f, 0.0f, 0.0f);
     private static readonly Quaternion YRotate90 = Quaternion.Euler(90.0f, 90.0f, 0.0f);
     private static readonly Quaternion YRotate180 = Quaternion.Euler(90.0f, 180.0f, 0.0f);
     private static readonly Quaternion YRotate270 = Quaternion.Euler(90.0f, 270.0f, 0.0f);
@@ -81,6 +83,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     {
         g = h = 0;
         parent = null;
+        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().gameObject.transform.rotation = YRotate0;
     }
 
     public int CompareTo(Block other)

@@ -53,13 +53,23 @@ public class MapManager : MonoBehaviour
     /// <returns>起点到终点的最短路径（包括起点和终点）</returns>
     public List<Block> FindPath(Block start, Block end, List<Block> reachableBlocks)
     {
-        PriorityQueue<Block> queue = new PriorityQueue<Block>();
-        queue.Add(start);
+        if (!reachableBlocks.Contains(end))
+        {
+            return null;
+        }
+
+        foreach (Block block in Map.Values)
+        {
+            block.Flush();
+        }
+        
+        PriorityQueue<Block> openList = new PriorityQueue<Block>();
+        openList.Add(start);
         List<Block> closeList = new List<Block>();
 
-        while (queue.Size() > 0)
+        while (openList.Size() > 0)
         {
-            Block cur = queue.PopFirst();
+            Block cur = openList.PopFirst();
             closeList.Add(cur);
 
             if (cur == end)
@@ -74,17 +84,12 @@ public class MapManager : MonoBehaviour
                 path.Add(start);
                 path.Reverse();
 
-                foreach (Block block in path)
-                {
-                    block.Flush();
-                }
-
                 return path;
             }
 
             foreach (Block nxt in GetNeighborBlocks(cur, reachableBlocks).Where(nxt => !closeList.Contains(nxt)))
             {
-                if (queue.Contains(nxt))
+                if (openList.Contains(nxt))
                 {
                     if (cur.g + nxt.moveCost < nxt.g)
                     {
@@ -97,7 +102,7 @@ public class MapManager : MonoBehaviour
                     nxt.g = cur.g + nxt.moveCost;
                     nxt.h = GetManhattenDistance(nxt, end);
                     nxt.parent = cur;
-                    queue.Add(nxt);
+                    openList.Add(nxt);
                 }
             }
         }
@@ -135,7 +140,7 @@ public class MapManager : MonoBehaviour
     /// <param name="unit"></param>
     public List<Block> DisplayInRange(Unit unit)
     {
-        List<Block> movableBlocks = FindInRange(unit.onBlock.GetComponent<Block>(), unit.Agility);
+        List<Block> movableBlocks = FindInRange(unit.onBlock.GetComponent<Block>(), unit.Mv);
         foreach (Block block in movableBlocks)
         {
             block.SetOverlayGridType(OverlayGrid.OverlayGridType.White);
@@ -146,6 +151,11 @@ public class MapManager : MonoBehaviour
 
     public void DisplayAlongPath(List<Block> path)
     {
+        if (path == null || path.Count == 0)
+        {
+            return;
+        }
+        
         if (path.Last() != null)
         {
             path.Add(null);
