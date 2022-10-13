@@ -130,7 +130,16 @@ public class MapManager : MonoBehaviour
             stepCnt++;
         }
 
-        return inRangeBlock.Distinct().ToList();
+        inRangeBlock = inRangeBlock.Distinct().ToList();
+        List<Block> res = new List<Block>();
+        foreach (Block block in inRangeBlock)
+        {
+            if (block.isWalkable)
+            {
+                res.Add(block);
+            }
+        }
+        return res;
     }
 
     /// <summary>
