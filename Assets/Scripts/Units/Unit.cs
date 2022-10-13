@@ -19,6 +19,7 @@ namespace Units
         /// </summary>
 
         public int Mv  { get; set; }
+        public bool canBeTarget { get; set; }
 
 
         private const float Delta = 0.00001f;
@@ -126,7 +127,15 @@ namespace Units
             // TODO 敌方回合：作为攻击目标
             if (!hasMoved || !hasAttacked)
             {
-                GameManager.gameManager.UnitOnClick(this);
+                GameManager.gameManager.GetComponent<Animator>().SetTrigger("unitClicked");
+                // TODO GameData
+                return true;
+            }
+
+            if (canBeTarget)
+            {
+                GameManager.gameManager.GetComponent<Animator>().SetTrigger("enemyClicked");
+                // TODO GameData
                 return true;
             }
 

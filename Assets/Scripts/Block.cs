@@ -106,7 +106,9 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     /// </summary>
     public bool IsClicked()
     {
-        GameManager.gameManager.BlockOnClick(this);
+        // TODO Validate double click
+        GameManager.gameManager.GetComponent<Animator>().SetTrigger("blockClicked");
+        // TODO GameData
         return true;
     }
 }

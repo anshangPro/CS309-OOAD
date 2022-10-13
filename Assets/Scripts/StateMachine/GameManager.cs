@@ -122,23 +122,23 @@ namespace StateMachine
         /// 每次棋子被点击的时候调用此方法
         /// </summary>
         /// <param name="unit"> 棋子 </param>
-        public void UnitOnClick(Unit unit)
-        {
-            // 从Default进入待character状态
-            if (Status == GameStatus.Default && IsMyPiece(unit))
-            {
-                selectedUnit = unit;
-                EnterCharacter();
-                LightBlocks();
-            }
-            // 在攻击菜单中选择敌人
-            else if (Status == GameStatus.FightMenu && !IsMyPiece(unit))
-            {
-                selectedEnemy = unit;
-                EnterFight();
-                selectedBlock = null;
-            }
-        }
+        // public void UnitOnClick(Unit unit)
+        // {
+        //     // 从Default进入待character状态
+        //     if (Status == GameStatus.Default && IsMyPiece(unit))
+        //     {
+        //         selectedUnit = unit;
+        //         EnterCharacter();
+        //         LightBlocks();
+        //     }
+        //     // 在攻击菜单中选择敌人
+        //     else if (Status == GameStatus.FightMenu && !IsMyPiece(unit))
+        //     {
+        //         selectedEnemy = unit;
+        //         EnterFight();
+        //         selectedBlock = null;
+        //     }
+        // }
 
         /// <summary>
         /// 每次单元格被点击的时候调用此方法,进行移动
