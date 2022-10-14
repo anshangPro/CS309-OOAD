@@ -30,6 +30,8 @@ namespace Units
         private bool hasAttacked;
 
         public GameObject onBlock;
+        private static readonly int UnitClicked = Animator.StringToHash("unitClicked");
+        private static readonly int EnemyClicked = Animator.StringToHash("enemyClicked");
 
 
         protected virtual void Start()
@@ -153,18 +155,16 @@ namespace Units
 
             if (!hasMoved || !hasAttacked)
             {
-                gameData.SelectedUnit = this;
                 // 进入状态UnitChosen
-                animator.SetTrigger("unitClicked");
-                // TODO GameData
+                gameData.SelectedUnit = this;
+                animator.SetTrigger(UnitClicked);
             }
 
             if (canBeTarget)
             {
-                // 进入状态Fight
+                // 进入状态fight
                 gameData.SelectedEnemy = this;
-                animator.SetTrigger("enemyClicked");
-                // TODO GameData
+                animator.SetTrigger(EnemyClicked);
             }
 
             return false;

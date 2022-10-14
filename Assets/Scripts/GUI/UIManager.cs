@@ -126,7 +126,7 @@ namespace GUI
 
         private void AttackButton()
         {
-            _gameManager.AttackButtonOnClick();
+            // _gameManager.AttackButtonOnClick();
             _menuAfterMoveUI.SetActive(false);
         }
 
