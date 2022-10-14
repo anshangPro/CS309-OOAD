@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using GameData;
 using Interfaces;
 using StateMachine;
@@ -29,6 +30,8 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     private static readonly Quaternion YRotate90 = Quaternion.Euler(90.0f, 90.0f, 0.0f);
     private static readonly Quaternion YRotate180 = Quaternion.Euler(90.0f, 180.0f, 0.0f);
     private static readonly Quaternion YRotate270 = Quaternion.Euler(90.0f, 270.0f, 0.0f);
+    private static readonly int BlockConfirmed = Animator.StringToHash("blockConfirmed");
+    private static readonly int BlockSelected = Animator.StringToHash("blockSelected");
 
     public void SetOverlayGridType(OverlayGridType type)
     {
@@ -105,15 +108,53 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     }
 
     /// <summary>
-    /// 当前一个方块被点击
+    /// 每次单元格被点击的时候调用此方法,进行移动
+    /// 第一次点击时展示A*最短路径，第二次点击时若方块相同角色移动到目标位置
     /// </summary>
     public bool IsClicked()
     {
-        // TODO Validate double click
-        GameManager.gameManager.GetComponent<Animator>().SetTrigger("blockClicked");
-        // TODO GameData
+        GameDataManager gameData = GameDataManager.Instance;
+        Animator animator = GameManager.gameManager.GetComponent<Animator>();
+        // 当前方块是第二次被点击
+        if (gameData.SelectedBlock == this && gameData.MovableBlocks.Contains(this))
+        {
+            //将可移动的方块清空,选中的方块清空
+            OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
+            gameData.MovableBlocks = null;
+            gameData.SelectedBlock = null;
+            gameData.Path.ForEach(item => gameData.CopyPath.Add(item));
+            animator.SetTrigger(BlockConfirmed);
+        }
+        else
+        {
+            // 设置路径
+            if (gameData.Path != null)
+            {
+                OverlayGridUtil.SetOverlayGridToWhite(gameData.Path);
+            }
+
+            gameData.Path = null;
+            Block currentBlock = gameData.SelectedUnit.onBlock.GetComponent<Block>();
+            gameData.Path = MapManager.Instance.FindPath(currentBlock, this, gameData.MovableBlocks);
+            MapManager.Instance.DisplayAlongPath(gameData.Path);
+            animator.SetTrigger(BlockSelected);
+        }
+
+        gameData.SelectedBlock = this;
 
 
+        // // TODO Validate double click
+        // // TODO GameData
+        // if (Util.StateMachine.GetCurrentStatus(animator) == GameStatus.UnitChosen.ToString())
+        // {
+        //     OverlayGridUtil.SetOverlayGridToWhite(path);
+        //     path = null;
+        //     selectedBlock = block;
+        //     Block currentBlock = selectedUnit.onBlock.GetComponent<Block>();
+        //     path = MapManager.Instance.FindPath(currentBlock, selectedBlock, movableBlocks);
+        //     MapManager.Instance.DisplayAlongPath(path);
+        // }
+        //
         // //第一次点击到当前方块：展示路径
         // if (this != GameDataManager.Instance.SelectedBlock)
         // {

@@ -109,14 +109,12 @@ namespace GUI
 
         private void MenuButton()
         {
-            _gameManager.MenuButtonOnClick();
             _defaultUI.SetActive(false);
             _mainMenuUI.SetActive(true);
         }
 
         private void BackButton()
         {
-            _gameManager.BackButtonOnClick();
             _mainMenuUI.SetActive(false);
             _defaultUI.SetActive(true);
         }
@@ -128,7 +126,7 @@ namespace GUI
 
         private void AttackButton()
         {
-            _gameManager.AttackButtonOnClick();
+            // _gameManager.AttackButtonOnClick();
             _menuAfterMoveUI.SetActive(false);
         }
 
