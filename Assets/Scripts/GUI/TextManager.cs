@@ -25,9 +25,8 @@ namespace GUI
             _tmp.text = GameManager.gameManager.Status switch
             {
                 GameStatus.Default => "Default",
-                GameStatus.Character => "Character",
+                GameStatus.UnitChosen => "Character",
                 GameStatus.Move => "Move",
-                GameStatus.MainMenu => "MainMenu",
                 GameStatus.MenuAfterMove => "MenuAfterMove",
                 GameStatus.FightMenu => "FightMenu",
                 GameStatus.Fight => "Fight",
