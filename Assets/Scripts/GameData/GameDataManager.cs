@@ -7,6 +7,14 @@ namespace GameData
     {
         private static GameDataManager _instance = null;
 
+        private GameDataManager()
+        {
+        }
+
+        public static GameDataManager Instance
+        {
+            get { return _instance ??= new GameDataManager(); }
+        }
 
         public Unit SelectedUnit = null;
         public Unit SelectedEnemy = null;
@@ -22,14 +30,5 @@ namespace GameData
 
         public int MainPlayer = 0;
         public int NextPlayer = 0;
-
-        private GameDataManager()
-        {
-        }
-
-        public static GameDataManager Instance
-        {
-            get { return _instance ??= new GameDataManager(); }
-        }
     }
 }

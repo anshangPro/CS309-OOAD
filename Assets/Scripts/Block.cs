@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
+using GameData;
 using Interfaces;
 using StateMachine;
 using UnityEngine;
 using static Util.OverlayGrid;
 using Units;
+using Util;
 
 public class Block : MonoBehaviour, IComparable<Block>, IClickable
 {
@@ -83,7 +86,8 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     {
         g = h = 0;
         parent = null;
-        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().gameObject.transform.rotation = YRotate0;
+        gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().gameObject.transform.rotation =
+            YRotate0;
     }
 
     public int CompareTo(Block other)
@@ -106,9 +110,48 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     /// </summary>
     public bool IsClicked()
     {
-        // TODO Validate double click
-        GameManager.gameManager.GetComponent<Animator>().SetTrigger("blockClicked");
-        // TODO GameData
+        GameDataManager gameData = GameDataManager.Instance;
+        Animator animator = GameManager.gameManager.GetComponent<Animator>();
+        animator.SetTrigger("blockClicked");
+
+
+        // 当前方块是第二次被点击
+        if (gameData.SelectedBlock == this && gameData.MovableBlocks.Contains(gameData.SelectedBlock))
+        {
+        }
+
+        // // TODO Validate double click
+        // // TODO GameData
+        // if (Util.StateMachine.GetCurrentStatus(animator) == GameStatus.UnitChosen.ToString())
+        // {
+        //     OverlayGridUtil.SetOverlayGridToWhite(path);
+        //     path = null;
+        //     selectedBlock = block;
+        //     Block currentBlock = selectedUnit.onBlock.GetComponent<Block>();
+        //     path = MapManager.Instance.FindPath(currentBlock, selectedBlock, movableBlocks);
+        //     MapManager.Instance.DisplayAlongPath(path);
+        // }
+        //
+        // //第一次点击到当前方块：展示路径
+        // if (this != GameDataManager.Instance.SelectedBlock)
+        // {
+        //     OverlayGridUtil.SetOverlayGridToWhite(path);
+        //     path = null;
+        //     selectedBlock = block;
+        //     Block currentBlock = selectedUnit.onBlock.GetComponent<Block>();
+        //     path = MapManager.Instance.FindPath(currentBlock, selectedBlock, movableBlocks);
+        //     MapManager.Instance.DisplayAlongPath(path);
+        // }
+        // // 第二次点击到当前方块：移动到目标位置
+        // else
+        // {
+        //     //将可移动的方块清空,选中的方块清空
+        //     OverlayGridUtil.SetOverlayGridToNone(movableBlocks);
+        //     movableBlocks = null;
+        //     path.ForEach(item => _copyPath.Add(item));
+        //     EnterMove();
+        // }
+
         return true;
     }
 }

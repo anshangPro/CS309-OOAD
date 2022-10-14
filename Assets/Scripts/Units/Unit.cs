@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using GameData;
 using Interfaces;
 using StateMachine;
 using UnityEngine;
@@ -18,7 +20,8 @@ namespace Units
         /// 敏捷值
         /// </summary>
 
-        public int Mv  { get; set; }
+        public int Mv { get; set; }
+
         public bool canBeTarget { get; set; }
 
 
@@ -79,7 +82,7 @@ namespace Units
                 return;
             }
         }
-        
+
 
         protected virtual void SetOnBlock(GameObject block)
         {
@@ -123,20 +126,45 @@ namespace Units
         /// <returns> 点击是否成功: bool </returns>
         public bool IsClicked()
         {
+            // public void UnitOnClick(Unit unit)
+            // {
+            //     // 从Default进入待character状态
+            //     if (Status == GameStatus.Default && IsMyPiece(unit))
+            //     {
+            //         selectedUnit = unit;
+            //         EnterCharacter();
+            //         LightBlocks();
+            //     }
+            //     // 在攻击菜单中选择敌人
+            //     else if (Status == GameStatus.FightMenu && !IsMyPiece(unit))
+            //     {
+            //         selectedEnemy = unit;
+            //         EnterFight();
+            //         selectedBlock = null;
+            //     }
+            // }
+
+
             // 自己回合：行动、攻击
             // TODO 敌方回合：作为攻击目标
+
+            Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            GameDataManager gameData = GameDataManager.Instance;
+
             if (!hasMoved || !hasAttacked)
             {
-                GameManager.gameManager.GetComponent<Animator>().SetTrigger("unitClicked");
+                gameData.SelectedUnit = this;
+                // 进入状态UnitChosen
+                animator.SetTrigger("unitClicked");
                 // TODO GameData
-                return true;
             }
 
             if (canBeTarget)
             {
-                GameManager.gameManager.GetComponent<Animator>().SetTrigger("enemyClicked");
+                // 进入状态Fight
+                gameData.SelectedEnemy = this;
+                animator.SetTrigger("enemyClicked");
                 // TODO GameData
-                return true;
             }
 
             return false;

@@ -54,42 +54,17 @@ namespace StateMachine
             WithdrawChoice();
         }
 
-        public void MenuButtonOnClick()
-        {
-            if (Status == GameStatus.Default)
-            {
-                EnterMainMenu();
-            }
-            else
-            {
-                Debug.Log("Fail to go to MainMenu");
-            }
-        }
-
         private void LateUpdate()
         {
             Moving();
         }
 
-        public void BackButtonOnClick()
-        {
-            switch (Status)
-            {
-                case GameStatus.MainMenu:
-                    EnterDefault();
-                    break;
-                ////存在其他的BackButton
-                default:
-                    Debug.Log("Incorrect status");
-                    break;
-            }
-        }
 
         //在两个可能的状态下撤销操作
         private void WithdrawChoice()
         {
             //右键撤销选择当前角色
-            if (Status is GameStatus.Character && Input.GetMouseButton(1))
+            if (Status is GameStatus.UnitChosen && Input.GetMouseButton(1))
             {
                 selectedUnit = null;
                 EnterDefault();
@@ -108,14 +83,14 @@ namespace StateMachine
         /// 显示当前被选中人物的可达路径
         /// </summary>
         /// <returns></returns>
-        private bool LightBlocks()
-        {
-            if (Status != GameStatus.Character || selectedUnit == null) return false;
-            // GameObject onBlock = selectedUnit.onBlock; //当前角色所在的方块
-            // 所在方块还没有初始化
-            movableBlocks = MapManager.Instance.DisplayInRange(selectedUnit);
-            return true;
-        }
+        // public bool LightBlocks()
+        // {
+        //     if (Status != GameStatus.UnitChosen || selectedUnit == null) return false;
+        //     // GameObject onBlock = selectedUnit.onBlock; //当前角色所在的方块
+        //     // 所在方块还没有初始化
+        //     movableBlocks = MapManager.Instance.DisplayInRange(selectedUnit);
+        //     return true;
+        // }
 
 
         /// <summary>
@@ -147,7 +122,7 @@ namespace StateMachine
         /// <param name="block"> 单元格 </param>
         public void BlockOnClick(Block block)
         {
-            if (Status == GameStatus.Character)
+            if (Status == GameStatus.UnitChosen)
             {
                 //第一次点击到当前方块：展示路径
                 if (block != selectedBlock)
@@ -260,14 +235,10 @@ namespace StateMachine
             Status = GameStatus.Default;
         }
 
-        private void EnterMainMenu()
-        {
-            Status = GameStatus.MainMenu;
-        }
 
         private void EnterCharacter()
         {
-            Status = GameStatus.Character;
+            Status = GameStatus.UnitChosen;
         }
 
         private void EnterMove()

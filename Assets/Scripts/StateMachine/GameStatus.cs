@@ -3,11 +3,11 @@ namespace StateMachine
     public enum GameStatus
     {
         Default,
-        Character,
+        UnitChosen,
         FightMenu,
         Fight,
+        ButtonSelected,
         Move,
-        MainMenu,
         MenuAfterMove
     }
 }
