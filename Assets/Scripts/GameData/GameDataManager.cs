@@ -19,6 +19,7 @@ namespace GameData
         public Unit SelectedUnit = null;
         public Unit SelectedEnemy = null;
         public Unit[] Pieces = null;
+        public List<Unit> AllUnits = new();
 
 
         public List<Block> MovableBlocks = new(); //当前角色能移动的方块
