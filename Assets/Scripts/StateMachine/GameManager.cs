@@ -25,8 +25,6 @@ namespace StateMachine
         public Block selectedBlock; //当前玩家选中的方块
         public List<Block> path; //角色的移动路径
 
-        private List<Block> _copyPath = new();
-
 
         public int mainPlayer;
         public int nextPlayer;
@@ -49,75 +47,6 @@ namespace StateMachine
             nextPlayer = 1;
         }
 
-
-        // private void FixedUpdate()
-        // {
-        //     WithdrawChoice();
-        // }
-
-        // private void LateUpdate()
-        // {
-        //     Moving();
-        // }
-
-
-        //在两个可能的状态下撤销操作
-
-        // private void WithdrawChoice()
-        // {
-        //     //右键撤销选择当前角色
-        //     if (Status is GameStatus.UnitChosen && Input.GetMouseButton(1))
-        //     {
-        //         selectedUnit = null;
-        //         EnterDefault();
-        //     }
-        //
-        //     //右键撤销使用攻击/技能/道具
-        //     if (Status is GameStatus.FightMenu && Input.GetMouseButton(1))
-        //     {
-        //         EnterMenuAfterMove();
-        //         //假设当前只有攻击操作 不能选择技能道具等等
-        //         UIManager.Instance.ShowMenuAfterMove();
-        //     }
-        // }
-
-
-        //
-        // /// <summary>
-        // /// 点击攻击按钮，由选择菜单进入选择攻击对象的状态
-        // /// </summary>
-        // public void AttackButtonOnClick()
-        // {
-        //     if (Status == GameStatus.MenuAfterMove)
-        //     {
-        //         EnterFightMenu();
-        //     }
-        // }
-        //
-        //
-        // /// <summary>
-        // /// 选定物品和敌人后，点击确定开始攻击
-        // /// </summary>
-        // public void StartAttack()
-        // {
-        //     if (Status == GameStatus.FightMenu && selectedEnemy != null)
-        //     {
-        //         EnterFight();
-        //         selectedUnit.Attack(selectedEnemy);
-        //     }
-        // }
-        //
-        //
-        // /// <summary>
-        // /// 攻击结算后回到Default状态
-        // /// </summary>
-        // public void FinishAttack()
-        // {
-        //     EnterDefault();
-        //     selectedEnemy = null;
-        //     selectedUnit = null;
-        // }
-
         /// <summary>
         /// 当前状态为move,播放移动动画和路径显示，当角色到达目标位置时，进入下一个状态
         /// </summary>
@@ -127,12 +56,12 @@ namespace StateMachine
             selectedBlock = GameDataManager.Instance.SelectedBlock;
             Debug.Log($"unit: {selectedUnit}");
             Debug.Log($"block: {selectedBlock}");
-            if (selectedUnit.onBlock != selectedBlock.gameObject)
+            if (selectedUnit.onBlock != selectedBlock)
             {
-                selectedUnit.MoveAlongPath(_copyPath);
+                selectedUnit.MoveAlongPath(GameData.GameDataManager.Instance.Path);
                 selectedUnit.GetComponent<Animator>().SetBool("running", true);
             }
-            else if (selectedUnit.onBlock == selectedBlock.gameObject)
+            else if (selectedUnit.onBlock == selectedBlock)
             {
                 // EnterMenuAfterMove();
                 UIManager.Instance.ShowMenuAfterMove();
@@ -164,40 +93,5 @@ namespace StateMachine
         {
             return (mainPlayer == 0 && piece is Friendly) || (mainPlayer == 1 && piece is Enemy);
         }
-
-
-        // /// <summary>
-        // /// 用于轮转状态机的接口
-        // /// </summary>
-        // private void EnterDefault()
-        // {
-        //     Status = GameStatus.Default;
-        // }
-        //
-        //
-        // private void EnterCharacter()
-        // {
-        //     Status = GameStatus.UnitChosen;
-        // }
-        //
-        // private void EnterMove()
-        // {
-        //     Status = GameStatus.Move;
-        // }
-        //
-        // private void EnterFight()
-        // {
-        //     Status = GameStatus.Fight;
-        // }
-        //
-        // private void EnterFightMenu()
-        // {
-        //     Status = GameStatus.FightMenu;
-        // }
-        //
-        // private void EnterMenuAfterMove()
-        // {
-        //     Status = GameStatus.MenuAfterMove;
-        // }
     }
 }

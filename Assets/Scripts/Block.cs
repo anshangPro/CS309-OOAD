@@ -134,7 +134,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
             }
 
             gameData.Path = null;
-            Block currentBlock = gameData.SelectedUnit.onBlock.GetComponent<Block>();
+            Block currentBlock = gameData.SelectedUnit.onBlock;
             gameData.Path = MapManager.Instance.FindPath(currentBlock, this, gameData.MovableBlocks);
             MapManager.Instance.DisplayAlongPath(gameData.Path);
             animator.SetTrigger(BlockSelected);

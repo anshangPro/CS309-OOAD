@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -472,11 +472,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2006387850462556672, guid: 0bb8bbb63784cd54090157c15ab9cd42, type: 3}
   m_PrefabInstance: {fileID: 52625839}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &60250269 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1926091684721727668, guid: 0bb8bbb63784cd54090157c15ab9cd42, type: 3}
-  m_PrefabInstance: {fileID: 949503382}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &61560349
 PrefabInstance:
@@ -4296,7 +4291,7 @@ PrefabInstance:
     - target: {fileID: 2825057957642499560, guid: c047391aab5ead74f88472e0a5aa10ac, type: 3}
       propertyPath: onBlock
       value: 
-      objectReference: {fileID: 60250269}
+      objectReference: {fileID: 949503384}
     - target: {fileID: 2825057957642499563, guid: c047391aab5ead74f88472e0a5aa10ac, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6923,7 +6918,7 @@ PrefabInstance:
     - target: {fileID: 7296537334147626628, guid: 1aa146454c7d2884fb9c1e34d56d25e7, type: 3}
       propertyPath: onBlock
       value: 
-      objectReference: {fileID: 1760775297}
+      objectReference: {fileID: 2103327352}
     - target: {fileID: 7296537334147626631, guid: 1aa146454c7d2884fb9c1e34d56d25e7, type: 3}
       propertyPath: m_Name
       value: Elf_Ranger
@@ -10330,6 +10325,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2006387850462556672, guid: 0bb8bbb63784cd54090157c15ab9cd42, type: 3}
   m_PrefabInstance: {fileID: 949503382}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &949503384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1108770194952201438, guid: 0bb8bbb63784cd54090157c15ab9cd42, type: 3}
+  m_PrefabInstance: {fileID: 949503382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e5d81cdb03f1f40bb18a29cf820cf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &957549476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18502,11 +18508,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2006387850462556672, guid: 0bb8bbb63784cd54090157c15ab9cd42, type: 3}
   m_PrefabInstance: {fileID: 1756606573}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1760775297 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1926091684721727668, guid: 0bb8bbb63784cd54090157c15ab9cd42, type: 3}
-  m_PrefabInstance: {fileID: 704578478}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1772653543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22406,6 +22407,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2006387850462556672, guid: 0bb8bbb63784cd54090157c15ab9cd42, type: 3}
   m_PrefabInstance: {fileID: 704578478}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2103327352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1108770194952201438, guid: 0bb8bbb63784cd54090157c15ab9cd42, type: 3}
+  m_PrefabInstance: {fileID: 704578478}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e5d81cdb03f1f40bb18a29cf820cf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2118210670
 PrefabInstance:
   m_ObjectHideFlags: 0

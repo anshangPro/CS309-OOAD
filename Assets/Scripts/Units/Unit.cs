@@ -29,7 +29,7 @@ namespace Units
         private bool hasMoved;
         private bool hasAttacked;
 
-        public GameObject onBlock;
+        public Block onBlock;
         private static readonly int UnitClicked = Animator.StringToHash("unitClicked");
         private static readonly int EnemyClicked = Animator.StringToHash("enemyClicked");
 
@@ -47,7 +47,7 @@ namespace Units
             gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
         }
 
-        protected virtual void MoveToBlock(GameObject block)
+        protected virtual void MoveToBlock(Block block)
         {
             Vector3 newPos = DstBlock2DstPos3(block);
 
@@ -70,12 +70,12 @@ namespace Units
                 return;
             }
 
-            MoveToBlock(path[0].gameObject);
+            MoveToBlock(path[0]);
 
             if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z),
-                    DstBlock2DstPos2(path[0].gameObject)) < Delta)
+                    DstBlock2DstPos2(path[0])) < Delta)
             {
-                SetOnBlock(path[0].gameObject);
+                SetOnBlock(path[0]);
                 path.RemoveAt(0);
             }
 
@@ -86,12 +86,12 @@ namespace Units
         }
 
 
-        protected virtual void SetOnBlock(GameObject block)
+        protected virtual void SetOnBlock(Block block)
         {
             transform.position = DstBlock2DstPos3(block);
-            onBlock.GetComponent<Block>().standUnit = null;
+            onBlock.standUnit = null;
             onBlock = block;
-            onBlock.GetComponent<Block>().standUnit = this;
+            onBlock.standUnit = this;
         }
 
         /// <summary>
