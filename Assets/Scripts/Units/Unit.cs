@@ -10,6 +10,7 @@ namespace Units
 {
     public class Unit : MonoBehaviour, IClickable
     {
+        public int ofPlayer { get; set; }
         public string UnitName { get; set; }
         public float MaxHealth { get; set; }
         public float Health { get; set; }
@@ -23,8 +24,8 @@ namespace Units
         public int Mv { get; set; }
 
         public bool canBeTarget { get; set; }
-        public bool hasMoved { get; set; }
-        public bool hasAttacked { get; set; }
+        private bool hasMoved { get; set; }
+        private bool hasAttacked { get; set; }
 
 
         private const float Delta = 0.00001f;
@@ -128,35 +129,14 @@ namespace Units
         /// <returns> 点击是否成功: bool </returns>
         public bool IsClicked()
         {
-            // public void UnitOnClick(Unit unit)
-            // {
-            //     // 从Default进入待character状态
-            //     if (Status == GameStatus.Default && IsMyPiece(unit))
-            //     {
-            //         selectedUnit = unit;
-            //         EnterCharacter();
-            //         LightBlocks();
-            //     }
-            //     // 在攻击菜单中选择敌人
-            //     else if (Status == GameStatus.FightMenu && !IsMyPiece(unit))
-            //     {
-            //         selectedEnemy = unit;
-            //         EnterFight();
-            //         selectedBlock = null;
-            //     }
-            // }
-
-
-            // 自己回合：行动、攻击
-            // TODO 敌方回合：作为攻击目标
-
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             GameDataManager gameData = GameDataManager.Instance;
 
+            Debug.Log(ofPlayer);
             if (!hasMoved || !hasAttacked)
             {
-                // 进入状态UnitChosen
                 gameData.SelectedUnit = this;
+                // 进入状态UnitChosen
                 animator.SetTrigger(UnitClicked);
             }
 
@@ -177,6 +157,15 @@ namespace Units
         {
             hasMoved = false;
             hasAttacked = false;
+        }
+
+        /// <summary>
+        /// 己方回合结束，重置 移动/攻击 能力
+        /// </summary>
+        public void OnTurnEnd()
+        {
+            hasMoved = true;
+            hasAttacked = true;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace GameData
 
         public Unit SelectedUnit = null;
         public Unit SelectedEnemy = null;
-        public List<List<Unit>> UnitsOfPlayers = new();
+        public List<Unit>[] UnitsOfPlayers = new List<Unit>[PlayerNum];
 
 
         public List<Block> MovableBlocks = new(); //当前角色能移动的方块
@@ -31,7 +31,7 @@ namespace GameData
         public List<Block> CopyPath = new();
 
 
-        public int PlayerNum = 2;
+        public static int PlayerNum = 2;
         public int MainPlayer = 0;
         public int NextPlayer = 1;
     }
