@@ -118,34 +118,13 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
         // 当前方块是第二次被点击
         if (gameData.SelectedBlock == this && gameData.MovableBlocks.Contains(this))
         {
-            //将可移动的方块清空,选中的方块清空
-            OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
-            gameData.MovableBlocks.Clear();
-            gameData.SelectedBlock = null;
-            gameData.Path.ForEach(item => gameData.CopyPath.Add(item));
             animator.SetTrigger(BlockConfirmed);
         }
         else
         {
-            // 设置路径
-            if (gameData.Path != null)
-            {
-                OverlayGridUtil.SetOverlayGridToWhite(gameData.Path);
-            }
-
-            gameData.Path = null;
-
-            if (gameData.SelectedUnit != null)
-            {
-                Block currentBlock = gameData.SelectedUnit.onBlock;
-                gameData.Path = MapManager.Instance.FindPath(currentBlock, this, gameData.MovableBlocks);
-                MapManager.Instance.DisplayAlongPath(gameData.Path);
-            }
+            gameData.SelectedBlock = this;
             animator.SetTrigger(BlockSelected);
         }
-
-        gameData.SelectedBlock = this;
-
 
         // // TODO Validate double click
         // // TODO GameData

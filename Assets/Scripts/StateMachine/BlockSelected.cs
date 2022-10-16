@@ -1,17 +1,30 @@
-using System.Collections.Generic;
-using GameData;
 using UnityEngine;
 using Util;
+using GameData;
 
 namespace StateMachine
 {
     public class BlockSelected : StateMachineBehaviour
     {
+        GameDataManager gameData = GameDataManager.Instance;
         
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-         
+            // 设置路径
+            if (gameData.Path != null)
+            {
+                OverlayGridUtil.SetOverlayGridToWhite(gameData.Path);
+            }
+
+            gameData.Path = null;
+
+            if (gameData.SelectedUnit != null)
+            {
+                Block currentBlock = gameData.SelectedUnit.onBlock;
+                gameData.Path = MapManager.Instance.FindPath(currentBlock, gameData.SelectedBlock, gameData.MovableBlocks);
+                MapManager.Instance.DisplayAlongPath(gameData.Path);
+            }
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,6 +35,11 @@ namespace StateMachine
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            //将可移动的方块清空,选中的方块清空
+            OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
+            gameData.MovableBlocks.Clear();
+            gameData.SelectedBlock = null;
+            gameData.Path.ForEach(item => gameData.CopyPath.Add(item));
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
