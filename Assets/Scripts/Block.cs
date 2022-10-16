@@ -120,7 +120,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
         {
             //将可移动的方块清空,选中的方块清空
             OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
-            gameData.MovableBlocks = null;
+            gameData.MovableBlocks.Clear();
             gameData.SelectedBlock = null;
             gameData.Path.ForEach(item => gameData.CopyPath.Add(item));
             animator.SetTrigger(BlockConfirmed);
@@ -134,9 +134,13 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
             }
 
             gameData.Path = null;
-            Block currentBlock = gameData.SelectedUnit.onBlock;
-            gameData.Path = MapManager.Instance.FindPath(currentBlock, this, gameData.MovableBlocks);
-            MapManager.Instance.DisplayAlongPath(gameData.Path);
+
+            if (gameData.SelectedUnit != null)
+            {
+                Block currentBlock = gameData.SelectedUnit.onBlock;
+                gameData.Path = MapManager.Instance.FindPath(currentBlock, this, gameData.MovableBlocks);
+                MapManager.Instance.DisplayAlongPath(gameData.Path);
+            }
             animator.SetTrigger(BlockSelected);
         }
 

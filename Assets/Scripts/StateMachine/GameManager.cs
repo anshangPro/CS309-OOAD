@@ -54,18 +54,17 @@ namespace StateMachine
         {
             selectedUnit = GameDataManager.Instance.SelectedUnit;
             selectedBlock = GameDataManager.Instance.SelectedBlock;
-            Debug.Log($"unit: {selectedUnit}");
-            Debug.Log($"block: {selectedBlock}");
             if (selectedUnit.onBlock != selectedBlock)
             {
                 selectedUnit.MoveAlongPath(GameData.GameDataManager.Instance.Path);
                 selectedUnit.GetComponent<Animator>().SetBool("running", true);
             }
-            else if (selectedUnit.onBlock == selectedBlock)
+            else
             {
                 // EnterMenuAfterMove();
                 UIManager.Instance.ShowMenuAfterMove();
                 selectedUnit.GetComponent<Animator>().SetBool("running", false);
+                GameManager.gameManager.GetComponent<Animator>().SetTrigger("moveFinished");
             }
         }
 

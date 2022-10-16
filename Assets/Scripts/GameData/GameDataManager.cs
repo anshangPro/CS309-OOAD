@@ -21,9 +21,9 @@ namespace GameData
         public Unit[] Pieces = null;
 
 
-        public List<Block> MovableBlocks = null; //当前角色能移动的方块
+        public List<Block> MovableBlocks = new(); //当前角色能移动的方块
         public Block SelectedBlock = null;       //玩家第一次选中的方块
-        public List<Block> Path = null; //角色的移动路径
+        public List<Block> Path = new(); //角色的移动路径
 
         public List<Block> CopyPath = new();
 
