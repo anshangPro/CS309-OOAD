@@ -1,5 +1,6 @@
-using GameData;
 using UnityEngine;
+using GameData;
+using Util;
 
 namespace StateMachine
 {
@@ -11,6 +12,10 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = GameStatus.UnitChosen;
+            OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
+            gameData.MovableBlocks.Clear();
+            gameData.Path.Clear();
+            gameData.SelectedBlock = null;
             gameData.MovableBlocks = MapManager.Instance.DisplayInRange(gameData.SelectedUnit);
         }
 

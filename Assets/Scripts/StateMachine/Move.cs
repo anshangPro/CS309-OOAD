@@ -22,7 +22,6 @@ namespace StateMachine
             OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
             gameData.MovableBlocks.Clear();
             gameData.SelectedBlock = null;
-            gameData.Path.ForEach(item => gameData.CopyPath.Add(item));
             selectedUnit.GetComponent<Animator>().SetBool("running", true);
         }
 

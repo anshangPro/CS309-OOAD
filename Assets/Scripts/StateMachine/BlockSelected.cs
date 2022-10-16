@@ -13,12 +13,9 @@ namespace StateMachine
         {
             gameData.gameStatus = StateMachine.GameStatus.BlockSelected;
             // 设置路径
-            if (gameData.Path != null)
-            {
-                OverlayGridUtil.SetOverlayGridToWhite(gameData.Path);
-            }
+            OverlayGridUtil.SetOverlayGridToWhite(gameData.Path);
 
-            gameData.Path = null;
+            gameData.Path.Clear();
 
             if (gameData.SelectedUnit != null)
             {

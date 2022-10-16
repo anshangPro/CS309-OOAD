@@ -28,8 +28,6 @@ namespace GameData
         public Block SelectedBlock = null;       //玩家第一次选中的方块
         public List<Block> Path = new(); //角色的移动路径
 
-        public List<Block> CopyPath = new();
-
 
         public static int PlayerNum = 2;
         public int MainPlayer = 0;

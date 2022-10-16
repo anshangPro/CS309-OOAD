@@ -55,7 +55,7 @@ public class MapManager : MonoBehaviour
     {
         if (!reachableBlocks.Contains(end))
         {
-            return null;
+            return new List<Block>();
         }
 
         foreach (Block block in Map.Values)
