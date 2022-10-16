@@ -1,5 +1,6 @@
 using UnityEngine;
 using GUI;
+using Util;
 using Units;
 using GameData;
 
@@ -7,6 +8,7 @@ namespace StateMachine
 {
     public class Move : StateMachineBehaviour
     {
+        GameDataManager gameData = GameDataManager.Instance;
         Unit selectedUnit;
         Block selectedBlock;
 
@@ -15,6 +17,11 @@ namespace StateMachine
         {
             selectedUnit = GameDataManager.Instance.SelectedUnit;
             selectedBlock = GameDataManager.Instance.SelectedBlock;
+            //将可移动的方块清空,选中的方块清空
+            OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
+            gameData.MovableBlocks.Clear();
+            gameData.SelectedBlock = null;
+            gameData.Path.ForEach(item => gameData.CopyPath.Add(item));
             selectedUnit.GetComponent<Animator>().SetBool("running", true);
         }
 

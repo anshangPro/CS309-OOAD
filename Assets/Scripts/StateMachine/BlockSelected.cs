@@ -28,19 +28,14 @@ namespace StateMachine
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-        }
+        // public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        // {
+        // }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-            //将可移动的方块清空,选中的方块清空
-            OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
-            gameData.MovableBlocks.Clear();
-            gameData.SelectedBlock = null;
-            gameData.Path.ForEach(item => gameData.CopyPath.Add(item));
-        }
+        // public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        // {
+        // }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
         //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
