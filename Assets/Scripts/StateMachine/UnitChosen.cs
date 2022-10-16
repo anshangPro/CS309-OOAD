@@ -5,10 +5,12 @@ namespace StateMachine
 {
     public class UnitChosen : StateMachineBehaviour
     {
+        private GameDataManager gameData = GameDataManager.Instance;
+        
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            GameDataManager gameData = GameDataManager.Instance;
+            gameData.gameStatus = GameStatus.UnitChosen;
             gameData.MovableBlocks = MapManager.Instance.DisplayInRange(gameData.SelectedUnit);
         }
 

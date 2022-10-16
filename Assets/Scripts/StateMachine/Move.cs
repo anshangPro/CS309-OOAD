@@ -15,6 +15,7 @@ namespace StateMachine
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            gameData.gameStatus = StateMachine.GameStatus.Move;
             selectedUnit = GameDataManager.Instance.SelectedUnit;
             selectedBlock = GameDataManager.Instance.SelectedBlock;
             //将可移动的方块清空,选中的方块清空

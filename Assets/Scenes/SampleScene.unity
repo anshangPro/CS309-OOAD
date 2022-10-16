@@ -4348,6 +4348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Elf_Ranger
       objectReference: {fileID: 0}
+    - target: {fileID: 2825057957642499567, guid: c047391aab5ead74f88472e0a5aa10ac, type: 3}
+      propertyPath: m_TagString
+      value: Player_0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c047391aab5ead74f88472e0a5aa10ac, type: 3}
 --- !u!1001 &364035341
@@ -6922,6 +6926,10 @@ PrefabInstance:
     - target: {fileID: 7296537334147626631, guid: 1aa146454c7d2884fb9c1e34d56d25e7, type: 3}
       propertyPath: m_Name
       value: Elf_Ranger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296537334147626631, guid: 1aa146454c7d2884fb9c1e34d56d25e7, type: 3}
+      propertyPath: m_TagString
+      value: Player_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aa146454c7d2884fb9c1e34d56d25e7, type: 3}

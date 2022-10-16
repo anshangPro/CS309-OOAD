@@ -11,6 +11,7 @@ namespace StateMachine
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            gameData.gameStatus = StateMachine.GameStatus.BlockSelected;
             // 设置路径
             if (gameData.Path != null)
             {

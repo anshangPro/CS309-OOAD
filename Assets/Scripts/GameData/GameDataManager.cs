@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Units;
+using StateMachine;
 
 namespace GameData
 {
@@ -16,9 +17,11 @@ namespace GameData
             get { return _instance ??= new GameDataManager(); }
         }
 
+        public GameStatus gameStatus = GameStatus.Default;
+
         public Unit SelectedUnit = null;
         public Unit SelectedEnemy = null;
-        public Unit[] Pieces = null;
+        public List<List<Unit>> UnitsOfPlayers = new();
 
 
         public List<Block> MovableBlocks = new(); //当前角色能移动的方块
@@ -28,7 +31,8 @@ namespace GameData
         public List<Block> CopyPath = new();
 
 
+        public int PlayerNum = 2;
         public int MainPlayer = 0;
-        public int NextPlayer = 0;
+        public int NextPlayer = 1;
     }
 }

@@ -23,11 +23,11 @@ namespace Units
         public int Mv { get; set; }
 
         public bool canBeTarget { get; set; }
+        public bool hasMoved { get; set; }
+        public bool hasAttacked { get; set; }
 
 
         private const float Delta = 0.00001f;
-        private bool hasMoved;
-        private bool hasAttacked;
 
         public Block onBlock;
         private static readonly int UnitClicked = Animator.StringToHash("unitClicked");

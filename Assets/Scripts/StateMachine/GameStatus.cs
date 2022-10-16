@@ -4,10 +4,10 @@ namespace StateMachine
     {
         Default,
         UnitChosen,
-        FightMenu,
-        Fight,
-        ButtonSelected,
+        BlockSelected,
         Move,
-        MenuAfterMove
+        MenuAfterMove,
+        FightMenu,
+        Fight
     }
 }

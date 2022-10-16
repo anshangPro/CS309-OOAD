@@ -22,10 +22,11 @@ namespace GUI
         // Update is called once per frame
         private void FixedUpdate()
         {
-            _tmp.text = GameManager.gameManager.Status switch
+            _tmp.text = GameData.GameDataManager.Instance.gameStatus switch
             {
                 GameStatus.Default => "Default",
-                GameStatus.UnitChosen => "Character",
+                GameStatus.UnitChosen => "UnitChosen",
+                GameStatus.BlockSelected => "BlockSelected",
                 GameStatus.Move => "Move",
                 GameStatus.MenuAfterMove => "MenuAfterMove",
                 GameStatus.FightMenu => "FightMenu",
