@@ -48,28 +48,6 @@ namespace StateMachine
         }
 
         /// <summary>
-        /// 当前状态为move,播放移动动画和路径显示，当角色到达目标位置时，进入下一个状态
-        /// </summary>
-        public void Moving()
-        {
-            selectedUnit = GameDataManager.Instance.SelectedUnit;
-            selectedBlock = GameDataManager.Instance.SelectedBlock;
-            if (selectedUnit.onBlock != selectedBlock)
-            {
-                selectedUnit.MoveAlongPath(GameData.GameDataManager.Instance.Path);
-                selectedUnit.GetComponent<Animator>().SetBool("running", true);
-            }
-            else
-            {
-                // EnterMenuAfterMove();
-                UIManager.Instance.ShowMenuAfterMove();
-                selectedUnit.GetComponent<Animator>().SetBool("running", false);
-                GameManager.gameManager.GetComponent<Animator>().SetTrigger("moveFinished");
-            }
-        }
-
-
-        /// <summary>
         /// 交换玩家，重设棋子行动力
         /// </summary>
         public void TurnEnd()
