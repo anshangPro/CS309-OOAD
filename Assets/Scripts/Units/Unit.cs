@@ -40,8 +40,6 @@ namespace Units
             Mv = 5;
             transform.position = DstBlock2DstPos3(onBlock);
             SetOnBlock(onBlock);
-            
-            GameDataManager.Instance.AllUnits.Add(this);
         }
 
         protected virtual void Update()
