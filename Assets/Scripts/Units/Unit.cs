@@ -20,7 +20,6 @@ namespace Units
         /// <summary>
         /// 敏捷值
         /// </summary>
-
         public int Mv { get; set; }
 
         public bool canBeTarget { get; set; }
