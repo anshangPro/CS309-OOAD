@@ -16,6 +16,7 @@ namespace Units
         public float Health { get; set; }
         public float Damage { get; set; }
         public float Defense { get; set; }
+        public int AtkRange = 1;
 
         /// <summary>
         /// 敏捷值
@@ -138,6 +139,7 @@ namespace Units
                 gameData.SelectedUnit = this;
                 // 进入状态UnitChosen
                 animator.SetTrigger(UnitClicked);
+                return true;
             }
 
             if (canBeTarget)

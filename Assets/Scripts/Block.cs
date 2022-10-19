@@ -33,6 +33,13 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     private static readonly int BlockConfirmed = Animator.StringToHash("blockConfirmed");
     private static readonly int BlockSelected = Animator.StringToHash("blockSelected");
 
+    public void SetHighlightColor(Color color)
+    {
+        SpriteRenderer spriteRenderer = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = WhiteGrid;
+        spriteRenderer.color = color;
+    }
+
     public void SetOverlayGridType(OverlayGridType type)
     {
         SpriteRenderer overlayRenderer = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
@@ -116,7 +123,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
         GameDataManager gameData = GameDataManager.Instance;
         Animator animator = GameManager.gameManager.GetComponent<Animator>();
         // 当前方块是第二次被点击
-        if (gameData.SelectedBlock == this && gameData.MovableBlocks.Contains(this))
+        if (gameData.SelectedBlock == this && gameData.HighlightBlocks.Contains(this))
         {
             animator.SetTrigger(BlockConfirmed);
         }

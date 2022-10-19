@@ -24,7 +24,7 @@ namespace GameData
         public List<Unit>[] UnitsOfPlayers = new List<Unit>[PlayerNum];
 
 
-        public List<Block> MovableBlocks = new(); //当前角色能移动的方块
+        public List<Block> HighlightBlocks = new(); //角色能移动的方块 或 角色能攻击到的范围
         public Block SelectedBlock = null;       //玩家第一次选中的方块
         public List<Block> Path = new(); //角色的移动路径
 

@@ -19,8 +19,8 @@ namespace StateMachine
             selectedUnit = GameDataManager.Instance.SelectedUnit;
             selectedBlock = GameDataManager.Instance.SelectedBlock;
             //将可移动的方块清空,选中的方块清空
-            OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
-            gameData.MovableBlocks.Clear();
+            OverlayGridUtil.SetOverlayGridToNone(gameData.HighlightBlocks);
+            gameData.HighlightBlocks.Clear();
             gameData.SelectedBlock = null;
             selectedUnit.GetComponent<Animator>().SetBool("running", true);
         }

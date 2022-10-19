@@ -9,6 +9,7 @@ public class FightMenu : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         gameData.gameStatus = StateMachine.GameStatus.FightMenu;
+        MapManager.Instance.HighlightUnitAtkRange(gameData.SelectedUnit);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

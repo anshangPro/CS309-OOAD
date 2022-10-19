@@ -20,7 +20,7 @@ namespace StateMachine
             if (gameData.SelectedUnit != null)
             {
                 Block currentBlock = gameData.SelectedUnit.onBlock;
-                gameData.Path = MapManager.Instance.FindPath(currentBlock, gameData.SelectedBlock, gameData.MovableBlocks);
+                gameData.Path = MapManager.Instance.FindPath(currentBlock, gameData.SelectedBlock, gameData.HighlightBlocks);
                 MapManager.Instance.DisplayAlongPath(gameData.Path);
             }
         }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameData;
 using Units;
 using UnityEngine;
 using Util;
@@ -206,5 +207,21 @@ public class MapManager : MonoBehaviour
     private float GetManhattenDistance(Block start, Block end)
     {
         return Mathf.Abs(start.X - end.X) + Mathf.Abs(start.Z - end.Z);
+    }
+
+    public void HighlightUnitAtkRange(Unit unit)
+    {
+        if (unit == null)
+        {
+            return;
+        }
+        
+        GameDataManager.Instance.HighlightBlocks.Clear();
+        GameDataManager.Instance.HighlightBlocks.AddRange(FindInRange(unit.onBlock, unit.AtkRange));
+        GameDataManager.Instance.HighlightBlocks.RemoveAt(0);
+        foreach (Block highlightBlock in GameDataManager.Instance.HighlightBlocks)
+        {
+            highlightBlock.SetHighlightColor(Color.red);
+        }
     }
 }

@@ -12,11 +12,11 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = GameStatus.UnitChosen;
-            OverlayGridUtil.SetOverlayGridToNone(gameData.MovableBlocks);
-            gameData.MovableBlocks.Clear();
+            OverlayGridUtil.SetOverlayGridToNone(gameData.HighlightBlocks);
+            gameData.HighlightBlocks.Clear();
             gameData.Path.Clear();
             gameData.SelectedBlock = null;
-            gameData.MovableBlocks = MapManager.Instance.DisplayInRange(gameData.SelectedUnit);
+            gameData.HighlightBlocks = MapManager.Instance.DisplayInRange(gameData.SelectedUnit);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
