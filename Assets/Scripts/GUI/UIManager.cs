@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace GUI
 {
-    public class UIManager : MonoBehaviour, IClickable
+    public class UIManager : MonoBehaviour
     {
         public static UIManager Instance { get; private set; }
 
@@ -28,15 +28,25 @@ namespace GUI
         private GameObject _menuAfterMoveUI;
         private GameObject _fightMenuUI;
         private GameObject _fightUI;
-
+        
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(Instance);
+            }
+        }
 
         private void Start()
         {
-            Instance = this;
             _gameManager = GameManager.gameManager;
             CreateColliderForButton();
             _uIManager = GameObject.Find("UIManager");
-
             // menu
             _mainMenuUI = _uIManager.transform.Find("MainMenuUI").gameObject;
             _defaultUI = _uIManager.transform.Find("DefaultUI").gameObject;
@@ -45,47 +55,6 @@ namespace GUI
             _menuAfterMoveUI = _uIManager.transform.Find("MenuAfterMoveUI").gameObject;
             _fightMenuUI = _uIManager.transform.Find("FightMenuUI").gameObject;
             _fightUI = _uIManager.transform.Find("FightUI").gameObject;
-        }
-
-        /// <summary>
-        /// 有按钮被点击到 
-        /// </summary>
-        public bool IsClicked()
-        {
-            bool check = true;
-            Debug.Log("Hit object: " + MouseController.GameObjectName);
-            switch (MouseController.GameObjectName)
-            {
-                // default_state:
-                case "MenuButton":
-                    Debug.Log("MenuButton is clicked !");
-                    MenuButton();
-                    break;
-
-
-                // main_menu_state:
-                case "SaveButton":
-                    // 存档功能待实现
-                    break;
-                case "BackButton":
-                    BackButton();
-                    break;
-                case "QuitButton":
-                    QuitButton();
-                    break;
-
-                // menuAfterMove:
-                case "AttackButton":
-                    AttackButton();
-                    break;
-
-                default:
-                    Debug.Log("No button is clicked. Wrong operation!");
-                    check = false;
-                    break;
-            }
-
-            return check;
         }
 
         /// <summary>
@@ -107,34 +76,35 @@ namespace GUI
         }
 
 
-        private void MenuButton()
+        internal void MenuButton()
         {
             _defaultUI.SetActive(false);
             _mainMenuUI.SetActive(true);
         }
 
-        private void BackButton()
+        internal void BackButton()
         {
             _mainMenuUI.SetActive(false);
             _defaultUI.SetActive(true);
         }
 
-        public void ShowMenuAfterMove()
+        internal void ShowMenuAfterMove()
         {
             _menuAfterMoveUI.SetActive(true);
         }
 
-        private void AttackButton()
+        internal void AttackButton()
         {
             // _gameManager.AttackButtonOnClick();
+            
             _menuAfterMoveUI.SetActive(false);
         }
 
 
-        private static void QuitButton()
+        internal void QuitButton()
         {
-            Application.Quit();
             Debug.Log("The game will be closed in the real game ");
+            Application.Quit();
         }
     }
 }

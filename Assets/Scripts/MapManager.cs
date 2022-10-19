@@ -20,6 +20,7 @@ public class MapManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         for (int i = 0; i < gameObject.transform.childCount; i++)

@@ -17,6 +17,7 @@ namespace StateMachine
             else
             {
                 gameManager = this;
+                DontDestroyOnLoad(gameManager);
             }
         }
     }
