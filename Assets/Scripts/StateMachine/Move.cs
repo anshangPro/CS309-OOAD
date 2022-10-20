@@ -13,7 +13,7 @@ namespace StateMachine
         Block selectedBlock;
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.Move;
             selectedUnit = GameDataManager.Instance.SelectedUnit;
@@ -40,7 +40,7 @@ namespace StateMachine
         }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             UIManager.Instance.ShowMenuAfterMove();
             selectedUnit.GetComponent<Animator>().SetBool("running", false);
