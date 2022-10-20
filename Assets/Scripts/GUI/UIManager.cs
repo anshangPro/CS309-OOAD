@@ -30,7 +30,8 @@ namespace GUI
         private GameObject _fightUI;
 
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
-        
+        private static readonly int SkipAttackClicked = Animator.StringToHash("skipAttackClicked");
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -101,8 +102,16 @@ namespace GUI
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(AttackClicked);
             _menuAfterMoveUI.SetActive(false);
+            _fightMenuUI.SetActive(true);
         }
 
+
+        internal void SkipAttackButton()
+        {
+            Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            animator.SetTrigger(SkipAttackClicked);
+            _fightMenuUI.SetActive(false);
+        }
 
         internal void QuitButton()
         {
