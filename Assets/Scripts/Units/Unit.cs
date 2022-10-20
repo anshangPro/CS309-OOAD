@@ -182,11 +182,22 @@ namespace Units
             hasAttacked = true;
         }
 
+        /// <summary>
+        /// 当前角色已经移动完
+        /// </summary>
         public void Moved()
         {
             hasMoved = true;
         }
-        
+
+        /// <summary>
+        /// 当前角色已经攻击完
+        /// </summary>
+        public void Attacked()
+        {
+            hasAttacked = true;
+        }
+
         /// <summary>
         /// 更新面板数据，仅能当升级 初始化时 由具体单位调用
         /// </summary>
@@ -194,7 +205,7 @@ namespace Units
         {
             this.MaxHealth = BaseHealth + (int)Math.Round(level * 3.5);
             this.MaxMp = BaseMp + level;
-            this.Mv = Math.Min(BaseMv + (int)Math.Floor((decimal)level/10), 10);
+            this.Mv = Math.Min(BaseMv + (int)Math.Floor((decimal)level / 10), 10);
             this.Defense = BaseDefense + level * DefenseUpdateRate;
             this.Damage = BaseDamage + level * 2 + (int)Math.Floor((decimal)level / 5) * 5;
         }

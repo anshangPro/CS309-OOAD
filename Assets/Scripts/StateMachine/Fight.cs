@@ -13,13 +13,18 @@ namespace StateMachine
             gameData.gameStatus = StateMachine.GameStatus.Fight;
             gameData.MovedUnit.Attack(gameData.SelectedEnemy);
             Debug.Log(gameData.MovedUnit + " Attack " + gameData.SelectedEnemy);
+            gameData.MovedUnit.Attacked();
+            
+            
+            
+            
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-        //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        //{
-        //    
-        //}
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            //TODO: 添加当前角色攻击敌方角色，和敌方角色承受伤害的动画
+        }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
