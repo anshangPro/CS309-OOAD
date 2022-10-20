@@ -111,6 +111,7 @@ namespace GUI
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(SkipAttackClicked);
             _fightMenuUI.SetActive(false);
+            
         }
 
         internal void QuitButton()

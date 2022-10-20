@@ -17,9 +17,9 @@ namespace StateMachine
 
             gameData.Path.Clear();
 
-            if (gameData.SelectedUnit != null)  
+            if (gameData.SelectedFriend != null)  
             {
-                Block currentBlock = gameData.SelectedUnit.onBlock;
+                Block currentBlock = gameData.SelectedFriend.onBlock;
                 gameData.Path = MapManager.Instance.FindPath(currentBlock, gameData.SelectedBlock, gameData.HighlightBlocks);
                 MapManager.Instance.DisplayAlongPath(gameData.Path);
             }

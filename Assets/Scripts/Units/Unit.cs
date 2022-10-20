@@ -147,10 +147,15 @@ namespace Units
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             GameDataManager gameData = GameDataManager.Instance;
 
+            gameData.SelectedUnit = this;
             Debug.Log(ofPlayer);
             if (!hasMoved || !hasAttacked)
             {
-                gameData.SelectedUnit = this;
+                if (gameData.gameStatus == GameStatus.UnitChosen)
+                {
+                    gameData.SelectedFriend = this;
+                }
+
                 // 进入状态UnitChosen
                 animator.SetTrigger(UnitClicked);
                 return true;
@@ -160,6 +165,10 @@ namespace Units
             {
                 // 进入状态fight
                 gameData.SelectedEnemy = this;
+                if (gameData.HighlightBlocks.Contains(this.onBlock))
+                {
+                }
+
                 animator.SetTrigger(EnemyClicked);
             }
 
