@@ -11,7 +11,7 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.FightMenu;
-            MapManager.Instance.HighlightUnitAtkRange(gameData.SelectedUnit);
+            MapManager.Instance.HighlightUnitAtkRange(gameData.MovedUnit);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -20,6 +20,7 @@ namespace GameData
         public GameStatus gameStatus = GameStatus.Default;
 
         public Unit SelectedUnit = null;
+        public Unit MovedUnit = null;   //移动后需要结算的角色
         public Unit SelectedEnemy = null;
         public List<Unit>[] UnitsOfPlayers = new List<Unit>[PlayerNum];
 

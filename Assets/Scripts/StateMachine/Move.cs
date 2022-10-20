@@ -23,6 +23,8 @@ namespace StateMachine
             gameData.HighlightBlocks.Clear();
             gameData.SelectedBlock = null;
             selectedUnit.GetComponent<Animator>().SetBool("running", true);
+            GameDataManager.Instance.SelectedUnit.Moved();
+            GameDataManager.Instance.MovedUnit = selectedUnit;
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -45,6 +47,7 @@ namespace StateMachine
         {
             UIManager.Instance.ShowMenuAfterMove();
             selectedUnit.GetComponent<Animator>().SetBool("running", false);
+            
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

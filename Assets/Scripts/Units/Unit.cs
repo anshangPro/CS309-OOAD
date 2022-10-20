@@ -42,7 +42,6 @@ namespace Units
         private bool hasMoved { get; set; }
         private bool hasAttacked { get; set; }
 
-
         private const float Delta = 0.00001f;
 
         public Block onBlock;
@@ -147,7 +146,6 @@ namespace Units
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             GameDataManager gameData = GameDataManager.Instance;
 
-            Debug.Log(ofPlayer);
             if (!hasMoved || !hasAttacked)
             {
                 gameData.SelectedUnit = this;
@@ -183,7 +181,11 @@ namespace Units
             hasMoved = true;
             hasAttacked = true;
         }
-        
+
+        public void Moved()
+        {
+            hasMoved = true;
+        }
         
         /// <summary>
         /// 更新面板数据，仅能当升级 初始化时 由具体单位调用

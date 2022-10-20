@@ -11,6 +11,8 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.Fight;
+            gameData.MovedUnit.Attack(gameData.SelectedEnemy);
+            Debug.Log(gameData.MovedUnit + " Attack " + gameData.SelectedEnemy);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
