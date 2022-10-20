@@ -11,17 +11,32 @@ namespace Units
     public class Unit : MonoBehaviour, IClickable
     {
         public int ofPlayer { get; set; }
-        public string UnitName { get; set; }
-        public float MaxHealth { get; set; }
-        public float Health { get; set; }
-        public float Damage { get; set; }
-        public float Defense { get; set; }
+        public string UnitName { get; internal set; }
+        public float MaxHealth { get; internal set; }
+        public float Health { get; internal set; }
+        public float MaxMp { get; internal set; }
+        public float Mp { get; internal set; }
+        public float Damage { get; internal set; }
+        public float Defense { get; internal set; }
+        public int level { get; internal set; }
         public int AtkRange = 1;
 
         /// <summary>
         /// 敏捷值
         /// </summary>
-        public int Mv { get; set; }
+        public int Mv { get; internal set; }
+
+        internal float BaseHealth;
+        internal float BaseMp;
+        internal float BaseDamage;
+        internal float BaseDefense;
+        internal float DefenseUpdateRate;
+        internal int BaseAtkRange = 1;
+
+        /// <summary>
+        /// 敏捷值
+        /// </summary>
+        internal int BaseMv;
 
         public bool canBeTarget { get; set; }
         private bool hasMoved { get; set; }
@@ -167,6 +182,19 @@ namespace Units
         {
             hasMoved = true;
             hasAttacked = true;
+        }
+        
+        
+        /// <summary>
+        /// 更新面板数据，仅能当升级 初始化时 由具体单位调用
+        /// </summary>
+        internal void UpdatePanel()
+        {
+            this.MaxHealth = BaseHealth + (int)Math.Round(level * 3.5);
+            this.MaxMp = BaseMp + level;
+            this.Mv = Math.Min(BaseMv + (int)Math.Floor((decimal)level/10), 10);
+            this.Defense = BaseDefense + level * DefenseUpdateRate;
+            this.Damage = BaseDamage + level * 2 + (int)Math.Floor((decimal)level / 5) * 5;
         }
     }
 }
