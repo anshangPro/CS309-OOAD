@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using GameData;
 using UnityEngine;
-using Util;
 
 namespace StateMachine
 {
@@ -13,7 +11,7 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.FightMenu;
-            MapManager.Instance.HighlightUnitAtkRange(gameData.SelectedFriend);
+            MapManager.Instance.HighlightUnitAtkRange(gameData.SelectedUnit);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,12 +21,10 @@ namespace StateMachine
         //}
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-            gameData.HighlightBlocks.ForEach(block => block.SetHighlightColor(new Color(255, 255, 255, 1.0f)));
-            OverlayGridUtil.SetOverlayGridToWhite(gameData.HighlightBlocks);
-            gameData.HighlightBlocks.Clear();
-        }
+        //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        //{
+        //    
+        //}
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
         //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

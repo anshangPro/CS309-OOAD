@@ -16,7 +16,7 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.Move;
-            selectedUnit = GameDataManager.Instance.SelectedFriend;
+            selectedUnit = GameDataManager.Instance.SelectedUnit;
             selectedBlock = GameDataManager.Instance.SelectedBlock;
             //将可移动的方块清空,选中的方块清空
             OverlayGridUtil.SetOverlayGridToNone(gameData.HighlightBlocks);
