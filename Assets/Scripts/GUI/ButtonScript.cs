@@ -43,6 +43,9 @@ namespace GUI
                 case "AttackButton":
                     _uiManager.AttackButton();
                     break;
+                // fightMenu:
+                case "SkipAttackButton":
+                    _uiManager.
 
                 default:
                     Debug.Log("No button is clicked. Wrong operation!");
