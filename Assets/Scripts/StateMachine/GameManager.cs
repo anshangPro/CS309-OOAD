@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using Unit = Units.Unit;
 
 namespace StateMachine
 {
