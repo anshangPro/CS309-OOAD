@@ -30,6 +30,7 @@ namespace StateMachine
         {
             if (selectedUnit.onBlock == selectedBlock)
             {
+                selectedBlock = null;
                 GameManager.gameManager.GetComponent<Animator>().SetTrigger("moveFinished");
             }
             else

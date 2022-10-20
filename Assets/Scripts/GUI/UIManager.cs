@@ -28,6 +28,8 @@ namespace GUI
         private GameObject _menuAfterMoveUI;
         private GameObject _fightMenuUI;
         private GameObject _fightUI;
+
+        private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
         
         private void Awake()
         {
@@ -96,7 +98,8 @@ namespace GUI
         internal void AttackButton()
         {
             // _gameManager.AttackButtonOnClick();
-            
+            Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            animator.SetTrigger(AttackClicked);
             _menuAfterMoveUI.SetActive(false);
         }
 
