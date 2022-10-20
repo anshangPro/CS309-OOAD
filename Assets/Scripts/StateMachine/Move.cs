@@ -35,6 +35,7 @@ namespace StateMachine
             }
             else
             {
+                Debug.Log($"<========={GameDataManager.Instance.Path.Count}=========>");
                 selectedUnit.MoveAlongPath(GameData.GameDataManager.Instance.Path);
             }
         }

@@ -176,6 +176,8 @@ public class MapManager : MonoBehaviour
         {
             path[i].SetOverlayGridType(OverlayGridUtil.TranslateDirection(path[i - 1], path[i], path[i + 1]));
         }
+
+        path.RemoveAll(block => block == null);
     }
 
     public List<Block> GetNeighborBlocks(Block block, List<Block> searchableBlocks)
