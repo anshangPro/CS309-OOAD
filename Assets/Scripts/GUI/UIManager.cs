@@ -118,5 +118,10 @@ namespace GUI
             Debug.Log("The game will be closed in the real game ");
             Application.Quit();
         }
+
+        public void HideSkipAttackButton()
+        {
+            _fightMenuUI.SetActive(false);
+        }
     }
 }

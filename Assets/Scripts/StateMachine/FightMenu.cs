@@ -1,4 +1,5 @@
 using GameData;
+using GUI;
 using Units;
 using UnityEngine;
 
@@ -27,6 +28,7 @@ namespace StateMachine
          public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             MapManager.Instance.HighlightUnitAtkRangeExit(_highlightedUnit);
+            UIManager.Instance.HideSkipAttackButton();
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
