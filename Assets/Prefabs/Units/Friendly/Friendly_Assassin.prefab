@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8035068661788064163}
   - component: {fileID: 8035068661788064166}
   m_Layer: 8
-  m_Name: Assassin
+  m_Name: Friendly_Assassin
   m_TagString: Player_0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
