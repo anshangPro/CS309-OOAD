@@ -1,17 +1,20 @@
 using GameData;
+using Units;
 using UnityEngine;
 
 namespace StateMachine
 {
     public class FightMenu : StateMachineBehaviour
     {
-        private GameDataManager gameData = GameDataManager.Instance;
+        private GameDataManager _gameData = GameDataManager.Instance;
+        private Unit _highlightedUnit;
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            gameData.gameStatus = StateMachine.GameStatus.FightMenu;
-            MapManager.Instance.HighlightUnitAtkRange(gameData.MovedUnit);
+            _gameData.gameStatus = StateMachine.GameStatus.FightMenu;
+            MapManager.Instance.HighlightUnitAtkRange(_gameData.MovedUnit);
+            _highlightedUnit = _gameData.MovedUnit;
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -20,17 +23,17 @@ namespace StateMachine
         //    
         //}
 
-        // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        //{
-        //    
-        //}
+         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+        //  public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        // {
+        //     MapManager.Instance.HighlightUnitAtkRangeExit(_highlightedUnit);
+        // }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
-        //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        //{
-        //    // Implement code that processes and affects root motion
-        //}
+        override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            MapManager.Instance.HighlightUnitAtkRangeExit(_highlightedUnit);
+        }
 
         // OnStateIK is called right after Animator.OnAnimatorIK()
         //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

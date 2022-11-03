@@ -146,7 +146,7 @@ namespace Units
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             GameDataManager gameData = GameDataManager.Instance;
 
-            if (!hasMoved || !hasAttacked)
+            if ((!hasMoved || !hasAttacked) && canChoose(gameData.gameStatus))
             {
                 gameData.SelectedUnit = this;
                 // 进入状态UnitChosen
@@ -162,6 +162,17 @@ namespace Units
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// 当前角色是否可处于可被选择的状态下
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns>boolean </returns>
+        private bool canChoose(GameStatus status)
+        {
+            List<GameStatus> gameStatusList = new List<GameStatus>() { GameStatus.Default,  GameStatus.UnitChosen, GameStatus.Fight};
+            return gameStatusList.Contains(status);
         }
 
         /// <summary>
