@@ -227,4 +227,21 @@ public class MapManager : MonoBehaviour
             highlightBlock.SetHighlightColor(Color.red);
         }
     }
+
+    public void HighlightUnitAtkRangeExit(Unit unit)
+    {
+        if (unit == null)
+        {
+            return;
+        }
+        
+        GameDataManager.Instance.HighlightBlocks.Clear();
+        GameDataManager.Instance.HighlightBlocks.AddRange(FindInRange(unit.onBlock, unit.AtkRange));
+        GameDataManager.Instance.HighlightBlocks.RemoveAt(0);
+        foreach (Block highlightBlock in GameDataManager.Instance.HighlightBlocks)
+        {
+            highlightBlock.SetOverlayGridType(OverlayGrid.OverlayGridType.None);
+            
+        }
+    }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using GameData;
 using Units;
 using UnityEngine;
@@ -7,14 +8,13 @@ namespace StateMachine
 {
     public class Default : StateMachineBehaviour
     {
-        private int currentPlayer = -1;
         private GameDataManager gameData = GameDataManager.Instance;
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.Default;
-            if (currentPlayer == -1)
+            if (gameData.CurrentPlayer == -1)
             {
                 // 初始化游戏数据
 
@@ -22,7 +22,7 @@ namespace StateMachine
                 List<Unit> units = new();
                 for(int playerNumber = 0; playerNumber < GameData.GameDataManager.PlayerNum; playerNumber++)
                 {
-                    GameObject[] unitObjects = GameObject.FindGameObjectsWithTag("Player_" + playerNumber.ToString());
+                    GameObject[] unitObjects = GameObject.FindGameObjectsWithTag($"Player_{playerNumber}");
                     units.Clear();
                     foreach(GameObject unitObject in unitObjects)
                     {
@@ -31,17 +31,17 @@ namespace StateMachine
                         thisUnit.ofPlayer = playerNumber;
                         thisUnit.OnTurnEnd();
                         units.Add(thisUnit);
-                        Debug.Log("Player_" + playerNumber.ToString() + " has unit: " + units[units.Count - 1].ToString());
+                        Debug.Log($"Player_{playerNumber.ToString()} has unit: {units.Last().ToString()}");
                     }
                     gameData.UnitsOfPlayers[playerNumber] = new List<Unit>(units);
                 }
             }
 
-            if (currentPlayer != gameData.MainPlayer)
+            if (gameData.CurrentPlayer != gameData.MainPlayer)
             {
-                if (currentPlayer != -1)
+                if (gameData.CurrentPlayer != -1)
                 {
-                    foreach (Unit unit in gameData.UnitsOfPlayers[currentPlayer])
+                    foreach (Unit unit in gameData.UnitsOfPlayers[gameData.CurrentPlayer])
                     {
                         // 设置已结束回合的所有单位 hasMoved, hasAttacked 属性为 True
                         unit.OnTurnEnd();
@@ -49,14 +49,15 @@ namespace StateMachine
                 }
 
                 //交换玩家 **设置下一玩家，确认回合结束不在此处**
-                currentPlayer = gameData.MainPlayer;
-                foreach (Unit unit in gameData.UnitsOfPlayers[currentPlayer])
+                // TODO 这里的转换逻辑是没做完的 by 周凡卜
+                gameData.CurrentPlayer = gameData.MainPlayer;
+                foreach (Unit unit in gameData.UnitsOfPlayers[gameData.CurrentPlayer])
                 {
                     // 设置正开始回合的所有单位 hasMoved, hasAttacked 属性为 False
                     unit.OnTurnBegin();
                 }
 
-                Debug.Log("Turn end, now player is: " + currentPlayer);
+                Debug.Log("Turn end, now player is: " + gameData.CurrentPlayer);
             }
         }
 

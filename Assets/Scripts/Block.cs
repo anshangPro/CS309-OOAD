@@ -87,6 +87,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
                 break;
             default:
                 overlayRenderer.sprite = null;
+                overlayRenderer.color = Color.white;
                 break;
         }
     }
@@ -113,6 +114,17 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
 
         return 0;
     }
+    
+    /// <summary>
+    /// 当前角色是否可处于可被选择的状态下
+    /// </summary>
+    /// <param name="status"></param>
+    /// <returns>boolean </returns>
+    private bool CanChoose(GameStatus status)
+    {
+        List<GameStatus> gameStatusList = new List<GameStatus>() { GameStatus.Default, GameStatus.UnitChosen, GameStatus.FightMenu};
+        return gameStatusList.Contains(status);
+    }
 
     /// <summary>
     /// 每次单元格被点击的时候调用此方法,进行移动
@@ -121,50 +133,22 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     public bool IsClicked()
     {
         GameDataManager gameData = GameDataManager.Instance;
-        Animator animator = GameManager.gameManager.GetComponent<Animator>();
-        // 当前方块是第二次被点击
-        if (gameData.SelectedBlock == this && gameData.HighlightBlocks.Contains(this))
+        if (CanChoose(gameData.gameStatus)) 
         {
-            animator.SetTrigger(BlockConfirmed);
-        }
-        else
-        {
-            gameData.SelectedBlock = this;
-            animator.SetTrigger(BlockSelected);
-        }
+            Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            // 当前方块是第二次被点击
+            if (gameData.SelectedBlock == this && gameData.HighlightBlocks.Contains(this))
+            {
+                animator.SetTrigger(BlockConfirmed);
+            }
+            else
+            {
+                gameData.SelectedBlock = this;
+                animator.SetTrigger(BlockSelected);
+            }
 
-        // // TODO Validate double click
-        // // TODO GameData
-        // if (Util.StateMachine.GetCurrentStatus(animator) == GameStatus.UnitChosen.ToString())
-        // {
-        //     OverlayGridUtil.SetOverlayGridToWhite(path);
-        //     path = null;
-        //     selectedBlock = block;
-        //     Block currentBlock = selectedUnit.onBlock.GetComponent<Block>();
-        //     path = MapManager.Instance.FindPath(currentBlock, selectedBlock, movableBlocks);
-        //     MapManager.Instance.DisplayAlongPath(path);
-        // }
-        //
-        // //第一次点击到当前方块：展示路径
-        // if (this != GameDataManager.Instance.SelectedBlock)
-        // {
-        //     OverlayGridUtil.SetOverlayGridToWhite(path);
-        //     path = null;
-        //     selectedBlock = block;
-        //     Block currentBlock = selectedUnit.onBlock.GetComponent<Block>();
-        //     path = MapManager.Instance.FindPath(currentBlock, selectedBlock, movableBlocks);
-        //     MapManager.Instance.DisplayAlongPath(path);
-        // }
-        // // 第二次点击到当前方块：移动到目标位置
-        // else
-        // {
-        //     //将可移动的方块清空,选中的方块清空
-        //     OverlayGridUtil.SetOverlayGridToNone(movableBlocks);
-        //     movableBlocks = null;
-        //     path.ForEach(item => _copyPath.Add(item));
-        //     EnterMove();
-        // }
-
-        return true;
+            return true;
+        }
+        return false;
     }
 }
