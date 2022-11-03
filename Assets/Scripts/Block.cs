@@ -114,6 +114,17 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
 
         return 0;
     }
+    
+    /// <summary>
+    /// 当前角色是否可处于可被选择的状态下
+    /// </summary>
+    /// <param name="status"></param>
+    /// <returns>boolean </returns>
+    private bool CanChoose(GameStatus status)
+    {
+        List<GameStatus> gameStatusList = new List<GameStatus>() { GameStatus.Default, GameStatus.UnitChosen, GameStatus.FightMenu};
+        return gameStatusList.Contains(status);
+    }
 
     /// <summary>
     /// 每次单元格被点击的时候调用此方法,进行移动
@@ -122,17 +133,22 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     public bool IsClicked()
     {
         GameDataManager gameData = GameDataManager.Instance;
-        Animator animator = GameManager.gameManager.GetComponent<Animator>();
-        // 当前方块是第二次被点击
-        if (gameData.SelectedBlock == this && gameData.HighlightBlocks.Contains(this))
+        if (CanChoose(gameData.gameStatus)) 
         {
-            animator.SetTrigger(BlockConfirmed);
+            Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            // 当前方块是第二次被点击
+            if (gameData.SelectedBlock == this && gameData.HighlightBlocks.Contains(this))
+            {
+                animator.SetTrigger(BlockConfirmed);
+            }
+            else
+            {
+                gameData.SelectedBlock = this;
+                animator.SetTrigger(BlockSelected);
+            }
+
+            return true;
         }
-        else
-        {
-            gameData.SelectedBlock = this;
-            animator.SetTrigger(BlockSelected);
-        }
-        return true;
+        return false;
     }
 }

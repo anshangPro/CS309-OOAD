@@ -171,7 +171,7 @@ namespace Units
         /// <returns>boolean </returns>
         private bool canChoose(GameStatus status)
         {
-            List<GameStatus> gameStatusList = new List<GameStatus>() { GameStatus.Default,  GameStatus.UnitChosen, GameStatus.Fight};
+            List<GameStatus> gameStatusList = new List<GameStatus>() { GameStatus.Default,  GameStatus.UnitChosen, GameStatus.FightMenu};
             return gameStatusList.Contains(status);
         }
 
