@@ -32,6 +32,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     private static readonly Quaternion YRotate270 = Quaternion.Euler(90.0f, 270.0f, 0.0f);
     private static readonly int BlockConfirmed = Animator.StringToHash("blockConfirmed");
     private static readonly int BlockSelected = Animator.StringToHash("blockSelected");
+    private static readonly int EnemyClicked = Animator.StringToHash("enemyClicked");
 
     public void SetHighlightColor(Color color)
     {
@@ -114,7 +115,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
 
         return 0;
     }
-    
+
     /// <summary>
     /// 当前角色是否可处于可被选择的状态下
     /// </summary>
@@ -122,7 +123,8 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     /// <returns>boolean </returns>
     private bool CanChoose(GameStatus status)
     {
-        List<GameStatus> gameStatusList = new List<GameStatus>() { GameStatus.Default, GameStatus.UnitChosen, GameStatus.FightMenu};
+        List<GameStatus> gameStatusList = new List<GameStatus>()
+            { GameStatus.Default, GameStatus.BlockSelected, GameStatus.UnitChosen, GameStatus.FightMenu };
         return gameStatusList.Contains(status);
     }
 
@@ -133,11 +135,20 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
     public bool IsClicked()
     {
         GameDataManager gameData = GameDataManager.Instance;
-        if (CanChoose(gameData.gameStatus)) 
+        if (CanChoose(gameData.gameStatus))
         {
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
-            // 当前方块是第二次被点击
-            if (gameData.SelectedBlock == this && gameData.HighlightBlocks.Contains(this))
+            if (gameData.gameStatus == GameStatus.FightMenu)
+            {
+                if (standUnit != null && standUnit.CanFightWith())
+                {
+                    gameData.SelectedEnemy = this.standUnit;
+                    animator.SetTrigger(EnemyClicked);
+                    return true;
+                }
+                
+            }
+            else if (gameData.SelectedBlock == this && gameData.HighlightBlocks.Contains(this)) // 当前方块是第二次被点击
             {
                 animator.SetTrigger(BlockConfirmed);
             }
@@ -146,7 +157,6 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
                 gameData.SelectedBlock = this;
                 animator.SetTrigger(BlockSelected);
             }
-
             return true;
         }
         return false;

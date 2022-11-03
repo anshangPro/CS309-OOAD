@@ -23,6 +23,10 @@ namespace GameData
         public List<Block> HighlightBlocks; //角色能移动的方块 或 角色能攻击到的范围
         public Block SelectedBlock = null;       //玩家第一次选中的方块
         public List<Block> Path; //角色的移动路径
+
+
+        public bool AttackAnimeFinished = false;
+        public bool TakeDamageAnimeFinished = false;
         
         
         private static GameDataManager _instance = new();

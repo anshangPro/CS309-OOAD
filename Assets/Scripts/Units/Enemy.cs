@@ -27,7 +27,17 @@ namespace Units
             //return disMap.ElementAt(0).Key;
             return null;
         }
-        
-        
+
+        public override string GetType()
+        {
+            return "Enemy";
+        }
+
+        public override bool CanFightWith()
+        {
+            String opposite = GameDataManager.Instance.MovedUnit.GetType();
+            //TODO 需要判断是否在攻击范围内 by 周凡卜 2022/11/3
+            return opposite.Equals("Friendly");
+        }
     }
 }

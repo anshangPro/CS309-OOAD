@@ -38,15 +38,16 @@ namespace Units
         /// </summary>
         internal int BaseMv;
 
-        public bool canBeTarget { get; set; }
         private bool hasMoved { get; set; }
         private bool hasAttacked { get; set; }
 
         private const float Delta = 0.00001f;
 
         public Block onBlock;
-        private static readonly int UnitClicked = Animator.StringToHash("unitClicked");
-        private static readonly int EnemyClicked = Animator.StringToHash("enemyClicked");
+        private static readonly int UnitClickedAnime = Animator.StringToHash("unitClicked");
+        private static readonly int EnemyClickedAnime = Animator.StringToHash("enemyClicked");
+        private static readonly int AttackMeleeAnime = Animator.StringToHash("attack_melee");
+        private static readonly int TakeDamageAnime = Animator.StringToHash("take_damage");
 
 
         protected virtual void Start()
@@ -110,7 +111,7 @@ namespace Units
         }
 
         /// <summary>
-        /// 攻击行为
+        /// 攻击行为 在结尾时调用 进行伤害的计算
         /// </summary>
         /// <param name="target"> 攻击目标: Unit </param>
         public virtual void Attack(Unit target)
@@ -150,15 +151,15 @@ namespace Units
             {
                 gameData.SelectedUnit = this;
                 // 进入状态UnitChosen
-                animator.SetTrigger(UnitClicked);
+                animator.SetTrigger(UnitClickedAnime);
                 return true;
             }
 
-            if (canBeTarget)
+            if (CanFightWith())
             {
                 // 进入状态fight
                 gameData.SelectedEnemy = this;
-                animator.SetTrigger(EnemyClicked);
+                animator.SetTrigger(EnemyClickedAnime);
             }
 
             return false;
@@ -220,5 +221,35 @@ namespace Units
             this.Defense = BaseDefense + level * DefenseUpdateRate;
             this.Damage = BaseDamage + level * 2 + (int)Math.Floor((decimal)level / 5) * 5;
         }
+
+        public virtual bool CanFightWith()
+        {
+            return false;
+        }
+
+        public virtual String GetType()
+        {
+            return "Unit";
+        }
+
+        /// <summary>
+        /// 播放自身的攻击动画
+        /// </summary>
+        public void PlayAttackAnime()
+        {
+            Animator selfAnimator = this.GetComponent<Animator>();
+            selfAnimator.SetTrigger(AttackMeleeAnime);
+        }
+
+        /// <summary>
+        /// 播放敌方的受伤动画
+        /// </summary>
+        public void PlayTakeDamageAnime()
+        {
+            Debug.Log("take damage");
+            Animator oppositeAnimator = GameDataManager.Instance.SelectedEnemy.GetComponent<Animator>();
+            oppositeAnimator.SetTrigger(TakeDamageAnime);
+        }
+
     }
 }
