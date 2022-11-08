@@ -147,7 +147,7 @@ namespace Units
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             GameDataManager gameData = GameDataManager.Instance;
 
-            if ((!hasMoved || !hasAttacked) && canChoose(gameData.gameStatus))
+            if (!hasMoved && canChoose(gameData.gameStatus))
             {
                 gameData.SelectedUnit = this;
                 // 进入状态UnitChosen
@@ -155,7 +155,7 @@ namespace Units
                 return true;
             }
 
-            if (CanFightWith())
+            if (gameData.gameStatus == GameStatus.FightMenu && CanFightWith())
             {
                 // 进入状态fight
                 gameData.SelectedEnemy = this;
