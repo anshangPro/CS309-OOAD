@@ -37,7 +37,7 @@ namespace StateMachine
                 }
             }
 
-            if (gameData.CurrentPlayer != gameData.MainPlayer)
+            if (gameData.CurrentPlayer != gameData.NextPlayer)
             {
                 if (gameData.CurrentPlayer != -1)
                 {
@@ -50,7 +50,7 @@ namespace StateMachine
 
                 //交换玩家 **设置下一玩家，确认回合结束不在此处**
                 // TODO 这里的转换逻辑是没做完的 by 周凡卜
-                gameData.CurrentPlayer = gameData.MainPlayer;
+                gameData.CurrentPlayer = gameData.NextPlayer;
                 foreach (Unit unit in gameData.UnitsOfPlayers[gameData.CurrentPlayer])
                 {
                     // 设置正开始回合的所有单位 hasMoved, hasAttacked 属性为 False
