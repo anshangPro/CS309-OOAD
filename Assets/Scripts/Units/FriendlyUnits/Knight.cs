@@ -4,7 +4,7 @@ namespace Units.FriendlyUnits
     /// <summary>
     /// 剑士
     /// </summary>
-    public class Knight : Unit
+    public class Knight : Friendly
     {
         public Knight()
         {

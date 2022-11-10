@@ -3,7 +3,7 @@
     /// <summary>
     /// 武僧
     /// </summary>
-    public class Monk : Unit
+    public class Monk : Friendly
     {
         public Monk()
         {

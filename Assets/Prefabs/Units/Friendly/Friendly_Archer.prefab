@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7296537334147626624}
   - component: {fileID: 7296537334147626627}
   - component: {fileID: 7296537334147626626}
-  - component: {fileID: 7296537334147626628}
   - component: {fileID: 7296537334147626625}
+  - component: {fileID: 141453284265372805}
   m_Layer: 8
   m_Name: Friendly_Archer
   m_TagString: Untagged
@@ -107,20 +107,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7296537334147626628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7296537334147626631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4675bc93740154591debea3a16326c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AtkRange: 1
-  onBlock: {fileID: 0}
 --- !u!136 &7296537334147626625
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -135,3 +121,17 @@ CapsuleCollider:
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!114 &141453284265372805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7296537334147626631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c9cf9f20d14fb896307d530ba9b4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AtkRange: 1
+  onBlock: {fileID: 0}

@@ -68,5 +68,39 @@ public class MouseController : MonoBehaviour
                 }
             }
         }
+
+        FloatPane();
+    }
+
+    private float _deltaTime = -1;
+    private bool _canShowFloatPanel = true;
+    private GameObject _unit;
+
+    private void FloatPane()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        String layer = "Units";
+        RaycastHit hitObj;
+        LayerMask.NameToLayer("TransparentFX");
+        bool hit = Physics.Raycast(ray, out hitObj, Mathf.Infinity, 1 << LayerMask.NameToLayer(layer));
+        if (hit)
+        {
+            GameObject hitGameObject = hitObj.collider.gameObject; 
+            GameObjectName = hitGameObject.name;
+            if (hitGameObject.GetComponent<IFloatPanel>() != null)
+            {
+                hitGameObject.GetComponent<IFloatPanel>().ShowPanel();
+                _canShowFloatPanel = false;
+                _unit = hitGameObject;
+                _deltaTime = Time.time;
+            }
+        }
+
+        if (!_canShowFloatPanel && Time.time - _deltaTime > 0.1)
+        {
+            _canShowFloatPanel = true;
+            GameObject panel = LeftDownInfoPanelController.FloatPanel;
+            panel.SetActive(false);
+        }
     }
 }

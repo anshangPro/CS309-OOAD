@@ -4,7 +4,7 @@ namespace Units.FriendlyUnits
     /// <summary>
     /// 刺客
     /// </summary>
-    public class Assassin : Unit
+    public class Assassin : Friendly
     {
         public Assassin()
         {

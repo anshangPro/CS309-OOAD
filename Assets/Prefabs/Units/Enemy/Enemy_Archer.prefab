@@ -119,12 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287be8e5d7406424c96d588088eb5f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Enemy ranger
-  maxHealth: 10
-  health: 0
-  damage: 2
-  defense: 1
-  agility: 5
+  AtkRange: 1
   onBlock: {fileID: 0}
 --- !u!136 &2825057957642499561
 CapsuleCollider:

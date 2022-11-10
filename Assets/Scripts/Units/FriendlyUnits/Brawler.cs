@@ -6,7 +6,7 @@ namespace Units.FriendlyUnits
     /// <summary>
     /// 拳击手
     /// </summary>
-    public class Brawler : Unit
+    public class Brawler : Friendly
     {
         public Brawler()
         {
