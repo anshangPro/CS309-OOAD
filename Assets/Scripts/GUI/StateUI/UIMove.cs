@@ -1,3 +1,4 @@
+using GameData;
 using Interfaces;
 using UnityEngine;
 
@@ -5,6 +6,9 @@ namespace GUI.StateUI
 {
     public class UIMove : StateMachineBehaviour
     {
+        
+        GameDataManager gameData = GameDataManager.Instance;
+        
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {

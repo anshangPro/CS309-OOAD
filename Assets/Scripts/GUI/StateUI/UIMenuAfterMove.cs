@@ -1,10 +1,14 @@
+using GameData;
 using Interfaces;
 using UnityEngine;
 
 namespace GUI.StateUI
 {
-    public class UIMenuAfterMove : StateMachineBehaviour, IClickable
+    public class UIMenuAfterMove : StateMachineBehaviour
     {
+        GameDataManager gameData = GameDataManager.Instance;
+        
+        
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -34,15 +38,5 @@ namespace GUI.StateUI
         //{
         //    // Implement code that sets up animation IK (inverse kinematics)
         //}
-
-
-        /// <summary>
-        ///  MenuAfterMove 的状态下存在按钮被点击
-        /// </summary>
-        /// <returns> 按钮是否被成功点击 </returns>
-        public bool IsClicked()
-        {
-            return true;
-        }
     }
 }

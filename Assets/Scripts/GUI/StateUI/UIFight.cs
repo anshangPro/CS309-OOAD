@@ -1,3 +1,4 @@
+using GameData;
 using Interfaces;
 using UnityEngine;
 
@@ -5,9 +6,13 @@ namespace GUI.StateUI
 {
     public class UIFight : StateMachineBehaviour
     {
+        
+        GameDataManager gameData = GameDataManager.Instance;
+        
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            gameData.MovedUnit.PlayAttackAnime();
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

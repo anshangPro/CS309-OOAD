@@ -14,10 +14,6 @@ namespace StateMachine
             gameData.MovedUnit.Attack(gameData.SelectedEnemy);
             Debug.Log(gameData.MovedUnit + " Attack " + gameData.SelectedEnemy);
             gameData.MovedUnit.Attacked();
-            
-            gameData.MovedUnit.PlayAttackAnime();
-            
-            
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
