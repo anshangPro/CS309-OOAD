@@ -12,17 +12,6 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.BlockSelected;
-            // 设置路径
-            OverlayGridUtil.SetOverlayGridToWhite(gameData.Path);
-
-            gameData.Path.Clear();
-
-            if (gameData.SelectedUnit != null)  
-            {
-                Block currentBlock = gameData.SelectedUnit.onBlock;
-                gameData.Path = MapManager.Instance.FindPath(currentBlock, gameData.SelectedBlock, gameData.HighlightBlocks);
-                MapManager.Instance.DisplayAlongPath(gameData.Path);
-            }
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
