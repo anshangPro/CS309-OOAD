@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8371a2e942a461ba606b007e629d11e, type: 3}
-  m_Name: FirstAidKit
+  m_Script: {fileID: 11500000, guid: bd474c7644274934ab38ff70c6f12e19, type: 3}
+  m_Name: HealthDrug
   m_EditorClassIdentifier: 
-  ItemName: 
-  ItemSprite: {fileID: 0}
-  ItemHeld: 1
-  ItemInfo: 
+  itemName: HealthDrug
+  itemSprite: {fileID: 1430929124, guid: ebb5422419fd559419357ca98089429b, type: 3}
+  itemHeld: 1
+  itemInfo: help to recover the hp of chess
