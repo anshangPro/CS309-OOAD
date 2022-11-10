@@ -14349,6 +14349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1376447241}
   - component: {fileID: 1376447242}
+  - component: {fileID: 1376447243}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -14397,6 +14398,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6318905f0afc1a4f9df6ae2b94d7235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1376447243
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376447240}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b79c1c2f9ea58cc479a1f84d4995f14a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1377146187
 PrefabInstance:
   m_ObjectHideFlags: 0

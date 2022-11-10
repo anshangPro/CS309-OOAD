@@ -45,9 +45,7 @@ namespace StateMachine
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            UIManager.Instance.ShowMenuAfterMove();
             selectedUnit.GetComponent<Animator>().SetBool("running", false);
-            
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
