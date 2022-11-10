@@ -74,8 +74,6 @@ public class MouseController : MonoBehaviour
 
     private float _deltaTime = -1;
     private bool _canShowFloatPanel = true;
-    private GameObject _unit;
-
     private void FloatPane()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -91,7 +89,6 @@ public class MouseController : MonoBehaviour
             {
                 hitGameObject.GetComponent<IFloatPanel>().ShowPanel();
                 _canShowFloatPanel = false;
-                _unit = hitGameObject;
                 _deltaTime = Time.time;
             }
         }
