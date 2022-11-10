@@ -14,10 +14,6 @@ namespace StateMachine
             gameData.MovedUnit.Attack(gameData.SelectedEnemy);
             Debug.Log(gameData.MovedUnit + " Attack " + gameData.SelectedEnemy);
             gameData.MovedUnit.Attacked();
-            
-            gameData.MovedUnit.PlayAttackAnime();
-            
-            
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -27,7 +23,7 @@ namespace StateMachine
         }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.MovedUnit = null;
             gameData.SelectedEnemy = null;

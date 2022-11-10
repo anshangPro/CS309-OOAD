@@ -1,7 +1,7 @@
 ﻿
 namespace Units.FriendlyUnits
 {
-    public class Wizard : Unit
+    public class Wizard : Friendly
     {
         public Wizard()
         {

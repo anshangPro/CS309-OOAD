@@ -1,18 +1,18 @@
 using GameData;
-using GUI;
-using Units;
+using Interfaces;
 using UnityEngine;
 
-namespace StateMachine
+namespace GUI.StateUI
 {
-    public class FightMenu : StateMachineBehaviour
+    public class UIMenuAfterMove : StateMachineBehaviour
     {
-        private GameDataManager _gameData = GameDataManager.Instance;
-
+        GameDataManager gameData = GameDataManager.Instance;
+        
+        
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            _gameData.gameStatus = StateMachine.GameStatus.FightMenu;
+            UIManager.Instance.MenuAfterMoveUI.SetActive(true);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -21,16 +21,17 @@ namespace StateMachine
         //    
         //}
 
-         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            UIManager.Instance.MenuAfterMoveUI.SetActive(false);
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
-        // override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        // {
-        //     MapManager.Instance.HighlightUnitAtkRangeExit(_highlightedUnit);
-        // }
+        //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        //{
+        //    // Implement code that processes and affects root motion
+        //}
 
         // OnStateIK is called right after Animator.OnAnimatorIK()
         //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

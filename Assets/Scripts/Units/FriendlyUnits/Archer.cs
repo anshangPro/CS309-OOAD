@@ -5,7 +5,7 @@ namespace Units.FriendlyUnits
     /// <summary>
     /// 弓箭手
     /// </summary>
-    public class Archer : Unit
+    public class Archer : Friendly
     {
         public Archer()
         {

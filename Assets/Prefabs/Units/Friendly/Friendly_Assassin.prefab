@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8035068661788064167}
   - component: {fileID: 8035068661788064164}
   - component: {fileID: 8035068661788064165}
-  - component: {fileID: 8035068661788064163}
   - component: {fileID: 8035068661788064166}
+  - component: {fileID: 2638976890639456183}
   m_Layer: 8
   m_Name: Friendly_Assassin
   m_TagString: Player_0
@@ -107,20 +107,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8035068661788064163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8035068661788064160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4675bc93740154591debea3a16326c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AtkRange: 1
-  onBlock: {fileID: 0}
 --- !u!136 &8035068661788064166
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -135,3 +121,17 @@ CapsuleCollider:
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!114 &2638976890639456183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035068661788064160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fded310fca148c8b02f9a24e5b925af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AtkRange: 1
+  onBlock: {fileID: 0}

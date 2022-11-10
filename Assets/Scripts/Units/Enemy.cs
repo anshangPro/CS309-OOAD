@@ -7,6 +7,13 @@ namespace Units
 {
     public class Enemy : Unit
     {
+        public Enemy()
+        {
+            this.BaseHealth = 20;
+            this.BaseMp = 10;
+            UpdatePanel();
+        }
+        
         public override void Attack(Unit target)
         {
             base.Attack(target);

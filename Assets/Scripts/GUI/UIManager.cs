@@ -1,6 +1,3 @@
-using System;
-using GUI;
-using Interfaces;
 using StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +8,6 @@ namespace GUI
     {
         public static UIManager Instance { get; private set; }
 
-        private GameManager _gameManager;
 
         /// 所有定义在Canvas下的按钮 
         private Button[] _buttonArray;
@@ -19,15 +15,21 @@ namespace GUI
         /// UI 总父节点
         private GameObject _uIManager;
 
-        /// UI菜单节点
-        private GameObject _mainMenuUI;
 
-        private GameObject _defaultUI;
-        private GameObject _characterUI;
-        private GameObject _moveUI;
-        private GameObject _menuAfterMoveUI;
-        private GameObject _fightMenuUI;
-        private GameObject _fightUI;
+        /// UI菜单节点
+        public GameObject MainMenuUI { get; private set; }
+
+        public GameObject DefaultUI { get; private set; }
+
+        public GameObject CharacterUI { get; private set; }
+
+        public GameObject MoveUI { get; private set; }
+
+        public GameObject MenuAfterMoveUI { get; private set; }
+
+        public GameObject FightMenuUI { get; private set; }
+
+        public GameObject FightUI { get; private set; }
 
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
         private static readonly int SkipAttackClicked = Animator.StringToHash("skipAttackClicked");
@@ -47,17 +49,16 @@ namespace GUI
 
         private void Start()
         {
-            _gameManager = GameManager.gameManager;
             CreateColliderForButton();
             _uIManager = GameObject.Find("UIManager");
             // menu
-            _mainMenuUI = _uIManager.transform.Find("MainMenuUI").gameObject;
-            _defaultUI = _uIManager.transform.Find("DefaultUI").gameObject;
-            _characterUI = _uIManager.transform.Find("CharacterUI").gameObject;
-            _moveUI = _uIManager.transform.Find("MoveUI").gameObject;
-            _menuAfterMoveUI = _uIManager.transform.Find("MenuAfterMoveUI").gameObject;
-            _fightMenuUI = _uIManager.transform.Find("FightMenuUI").gameObject;
-            _fightUI = _uIManager.transform.Find("FightUI").gameObject;
+            MainMenuUI = _uIManager.transform.Find("MainMenuUI").gameObject;
+            DefaultUI = _uIManager.transform.Find("DefaultUI").gameObject;
+            CharacterUI = _uIManager.transform.Find("CharacterUI").gameObject;
+            MoveUI = _uIManager.transform.Find("MoveUI").gameObject;
+            MenuAfterMoveUI = _uIManager.transform.Find("MenuAfterMoveUI").gameObject;
+            FightMenuUI = _uIManager.transform.Find("FightMenuUI").gameObject;
+            FightUI = _uIManager.transform.Find("FightUI").gameObject;
         }
 
         /// <summary>
@@ -81,19 +82,14 @@ namespace GUI
 
         internal void MenuButton()
         {
-            _defaultUI.SetActive(false);
-            _mainMenuUI.SetActive(true);
+            DefaultUI.SetActive(false);
+            MainMenuUI.SetActive(true);
         }
 
         internal void BackButton()
         {
-            _mainMenuUI.SetActive(false);
-            _defaultUI.SetActive(true);
-        }
-
-        internal void ShowMenuAfterMove()
-        {
-            _menuAfterMoveUI.SetActive(true);
+            MainMenuUI.SetActive(false);
+            DefaultUI.SetActive(true);
         }
 
         internal void AttackButton()
@@ -101,8 +97,6 @@ namespace GUI
             // _gameManager.AttackButtonOnClick();
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(AttackClicked);
-            _menuAfterMoveUI.SetActive(false);
-            _fightMenuUI.SetActive(true);
         }
 
 
@@ -110,18 +104,12 @@ namespace GUI
         {
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(SkipAttackClicked);
-            _fightMenuUI.SetActive(false);
         }
 
         internal void QuitButton()
         {
             Debug.Log("The game will be closed in the real game ");
             Application.Quit();
-        }
-
-        public void HideSkipAttackButton()
-        {
-            _fightMenuUI.SetActive(false);
         }
     }
 }

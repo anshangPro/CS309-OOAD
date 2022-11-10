@@ -11,6 +11,8 @@ namespace StateMachine
         GameDataManager gameData = GameDataManager.Instance;
         Unit selectedUnit;
         Block selectedBlock;
+        private static readonly int Running = Animator.StringToHash("running");
+        private static readonly int MoveFinished = Animator.StringToHash("moveFinished");
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -22,7 +24,7 @@ namespace StateMachine
             OverlayGridUtil.SetOverlayGridToNone(gameData.HighlightBlocks);
             gameData.HighlightBlocks.Clear();
             gameData.SelectedBlock = null;
-            selectedUnit.GetComponent<Animator>().SetBool("running", true);
+            selectedUnit.GetComponent<Animator>().SetBool(Running, true);
             GameDataManager.Instance.SelectedUnit.Moved();
             GameDataManager.Instance.MovedUnit = selectedUnit;
         }
@@ -33,7 +35,7 @@ namespace StateMachine
             if (selectedUnit.onBlock == selectedBlock)
             {
                 selectedBlock = null;
-                GameManager.gameManager.GetComponent<Animator>().SetTrigger("moveFinished");
+                GameManager.gameManager.GetComponent<Animator>().SetTrigger(MoveFinished);
             }
             else
             {
@@ -45,9 +47,7 @@ namespace StateMachine
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            UIManager.Instance.ShowMenuAfterMove();
-            selectedUnit.GetComponent<Animator>().SetBool("running", false);
-            
+            selectedUnit.GetComponent<Animator>().SetBool(Running, false);
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -1,18 +1,21 @@
 using GameData;
-using GUI;
+using Interfaces;
 using Units;
 using UnityEngine;
 
-namespace StateMachine
+namespace GUI.StateUI
 {
-    public class FightMenu : StateMachineBehaviour
+    public class UIFightMenu : StateMachineBehaviour
     {
-        private GameDataManager _gameData = GameDataManager.Instance;
+        GameDataManager gameData = GameDataManager.Instance;
+        private Unit _highlightedUnit;
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            _gameData.gameStatus = StateMachine.GameStatus.FightMenu;
+            UIManager.Instance.FightMenuUI.SetActive(true);
+            MapManager.Instance.HighlightUnitAtkRange(gameData.MovedUnit);
+            _highlightedUnit = gameData.MovedUnit;
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -21,9 +24,11 @@ namespace StateMachine
         //    
         //}
 
-         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            UIManager.Instance.FightMenuUI.SetActive(false);
+            MapManager.Instance.HighlightUnitAtkRangeExit(_highlightedUnit);
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

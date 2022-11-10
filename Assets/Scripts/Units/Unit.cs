@@ -8,7 +8,7 @@ using static Util.PositionUtil;
 
 namespace Units
 {
-    public class Unit : MonoBehaviour, IClickable
+    public class Unit : MonoBehaviour, IClickable, IFloatPanel
     {
         public int ofPlayer { get; set; }
         public string UnitName { get; internal set; }
@@ -52,8 +52,8 @@ namespace Units
 
         protected virtual void Start()
         {
-            Health = MaxHealth;
-            Mv = 5;
+            // Health = MaxHealth;
+            // Mv = 5;
             transform.position = DstBlock2DstPos3(onBlock);
             SetOnBlock(onBlock);
         }
@@ -220,6 +220,9 @@ namespace Units
             this.Mv = Math.Min(BaseMv + (int)Math.Floor((decimal)level / 10), 10);
             this.Defense = BaseDefense + level * DefenseUpdateRate;
             this.Damage = BaseDamage + level * 2 + (int)Math.Floor((decimal)level / 5) * 5;
+
+            Health = MaxHealth;
+            Mp = MaxMp;
         }
 
         public virtual bool CanFightWith()
@@ -249,6 +252,17 @@ namespace Units
             Debug.Log("take damage");
             Animator oppositeAnimator = GameDataManager.Instance.SelectedEnemy.GetComponent<Animator>();
             oppositeAnimator.SetTrigger(TakeDamageAnime);
+        }
+
+        public void ShowPanel()
+        {
+            LeftDownInfoPanelController controller = LeftDownInfoPanelController.Instance;
+            controller.magic = (int)Mp;
+            controller.maxMagic = (int)MaxMp;
+            controller.health = (int)Health;
+            controller.maxHealth = (int)MaxHealth;
+            controller.FixedUpdate();
+            controller.gameObject.SetActive(true);
         }
 
     }
