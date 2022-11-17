@@ -221,6 +221,8 @@ namespace Units
         public void Died()
         {
             Destroy(gameObject);
+            GameDataManager gameData = GameDataManager.Instance;
+            gameData.GetCurrentPlayer().UnitsList.Remove(this);
         }
 
         /// <summary>
