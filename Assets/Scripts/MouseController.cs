@@ -101,14 +101,14 @@ public class MouseController : MonoBehaviour
                 ori.x = 1650;
                 floatPanel.transform.position = ori;
             }
-            else
+            else if(Input.mousePosition.x > 1120 && Input.mousePosition.y < 400)
             {
                 ori.x = 270;
                 floatPanel.transform.position = ori;
             }
         }
 
-        if (!_canShowFloatPanel && Time.time - _deltaTime > 0.1)
+        if (!_canShowFloatPanel && Time.time - _deltaTime > 0.5)
         {
             _canShowFloatPanel = true;
             GameObject panel = LeftDownInfoPanelController.FloatPanel;
