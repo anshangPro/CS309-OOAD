@@ -57,6 +57,7 @@ namespace StateMachine
                 gameData.TurnRound();
                 foreach (Unit unit in gameData.GetCurrentPlayer().UnitsList)
                 {
+                    Debug.Log($"Now is {gameData.GetCurrentPlayer()}'s turn");
                     // 设置正开始回合的所有单位 hasMoved, hasAttacked 属性为 False
                     unit.OnTurnBegin();
                 }

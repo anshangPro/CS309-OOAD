@@ -161,7 +161,6 @@ namespace Units
                 // 进入状态fight
                 gameData.SelectedEnemy = this;
                 animator.SetTrigger(EnemyClickedAnime);
-                gameData.GetCurrentPlayer().FinishedUnit++;
             }
 
             return false;
@@ -202,6 +201,7 @@ namespace Units
         public void Moved()
         {
             hasMoved = true;
+            GameDataManager.Instance.GetCurrentPlayer().FinishedUnit++;
         }
 
         /// <summary>
@@ -221,6 +221,8 @@ namespace Units
         public void Died()
         {
             Destroy(gameObject);
+            GameDataManager gameData = GameDataManager.Instance;
+            gameData.GetCurrentPlayer().UnitsList.Remove(this);
         }
 
         /// <summary>
