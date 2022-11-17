@@ -31,58 +31,31 @@ namespace StateMachine
                         thisUnit.ofPlayer = playerNumber;
                         thisUnit.OnTurnEnd();
                         units.Add(thisUnit);
-                        Debug.Log($"Player_{playerNumber.ToString()} has unit: {units.Last().ToString()}");
+                        Debug.Log($"Player_{playerNumber.ToString()} has unit: {units.Last()}");
                     }
-                    gameData.UnitsOfPlayers[playerNumber] = new List<Unit>(units);
+                    gameData.Players[playerNumber].UnitsList = new List<Unit>(units);
                 }
             }
-
-            if (gameData.CurrentPlayer != gameData.NextPlayer)
+            
+            if (gameData.GetCurrentPlayer().TurnFinish())
             {
-                if (gameData.CurrentPlayer != -1)
+                foreach (Unit unit in gameData.GetCurrentPlayer().UnitsList)
                 {
-                    foreach (Unit unit in gameData.UnitsOfPlayers[gameData.CurrentPlayer])
-                    {
-                        // 设置已结束回合的所有单位 hasMoved, hasAttacked 属性为 True
-                        unit.OnTurnEnd();
-                    }
+                    // 设置已结束回合的所有单位 hasMoved, hasAttacked 属性为 True
+                    unit.OnTurnEnd();
                 }
-
-                //交换玩家 **设置下一玩家，确认回合结束不在此处**
-                // TODO 这里的转换逻辑是没做完的 by 周凡卜
-                gameData.CurrentPlayer = gameData.NextPlayer;
-                foreach (Unit unit in gameData.UnitsOfPlayers[gameData.CurrentPlayer])
-                {
-                    // 设置正开始回合的所有单位 hasMoved, hasAttacked 属性为 False
-                    unit.OnTurnBegin();
-                }
-
-                Debug.Log("Turn end, now player is: " + gameData.CurrentPlayer);
             }
+
+            //交换玩家 **设置下一玩家，确认回合结束不在此处**
+            // TODO 这里的转换逻辑是没做完的 by 周凡卜
+            gameData.TurnRound();
+            foreach (Unit unit in gameData.GetCurrentPlayer().UnitsList)
+            {
+                // 设置正开始回合的所有单位 hasMoved, hasAttacked 属性为 False
+                unit.OnTurnBegin();
+            }
+
+            Debug.Log("Turn end, now player is: " + gameData.CurrentPlayer);
         }
-
-        // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-        //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        //{
-        //    
-        //}
-
-        // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        //{
-        //    
-        //}
-
-        // OnStateMove is called right after Animator.OnAnimatorMove()
-        //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        //{
-        //    // Implement code that processes and affects root motion
-        //}
-
-        // OnStateIK is called right after Animator.OnAnimatorIK()
-        //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        //{
-        //    // Implement code that sets up animation IK (inverse kinematics)
-        //}
     }
 }
