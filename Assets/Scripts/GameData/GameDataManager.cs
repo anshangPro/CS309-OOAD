@@ -53,6 +53,7 @@ namespace GameData
         public void TurnRound()
         {
             CurrentPlayer = (CurrentPlayer == 0) ? 1 : 0;
+            GetCurrentPlayer().FinishedUnit = 0;
         }
 
     }
