@@ -1,4 +1,6 @@
-﻿using Interfaces;
+﻿using GUI.Backpack;
+using Interfaces;
+using Units.Items;
 using UnityEngine;
 
 namespace GUI
@@ -29,6 +31,7 @@ namespace GUI
                 case "BackpackButton":
                     Debug.Log("BackpackButton is clicked !");
                     _uiManager.BackpackButton();
+                    BackpackManager.Instance.InsertItemToUI(ScriptableObject.CreateInstance<HealthDrug>());
                     break;
 
 
