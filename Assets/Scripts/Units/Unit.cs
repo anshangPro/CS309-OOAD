@@ -164,6 +164,7 @@ namespace Units
                 // 进入状态fight
                 gameData.SelectedEnemy = this;
                 animator.SetTrigger(EnemyClickedAnime);
+                gameData.GetCurrentPlayer().FinishedUnit++;
             }
 
             return false;

@@ -7,7 +7,7 @@ namespace GameData
     {
         public List<Unit> UnitsList = new List<Unit>();
         public int Index;
-        public int FinishedUnit;
+        public int FinishedUnit = 0;
         public bool IsRobot;
 
         public bool TurnFinish()
