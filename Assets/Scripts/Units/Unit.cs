@@ -48,6 +48,7 @@ namespace Units
         private static readonly int EnemyClickedAnime = Animator.StringToHash("enemyClicked");
         private static readonly int AttackMeleeAnime = Animator.StringToHash("attack_melee");
         private static readonly int TakeDamageAnime = Animator.StringToHash("take_damage");
+        private static readonly int DeathAnime = Animator.StringToHash("death");
 
 
         protected virtual void Start()
@@ -133,7 +134,10 @@ namespace Units
         protected virtual void TakeDamage(Unit from, float realDamage)
         {
             if (Health <= realDamage)
+            {
                 Health = 0;
+                gameObject.GetComponent<Animator>().SetTrigger(DeathAnime);
+            }
             else
                 Health -= realDamage;
         }
@@ -208,6 +212,11 @@ namespace Units
         public void Attacked()
         {
             hasAttacked = true;
+        }
+
+        public void Died()
+        {
+            Destroy(gameObject);
         }
 
         /// <summary>
