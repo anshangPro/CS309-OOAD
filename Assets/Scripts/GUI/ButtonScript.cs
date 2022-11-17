@@ -6,6 +6,7 @@ namespace GUI
     public class ButtonScript : MonoBehaviour, IClickable
     {
         private UIManager _uiManager;
+
         private void Start()
         {
             _uiManager = UIManager.Instance;
@@ -21,10 +22,13 @@ namespace GUI
             Debug.Log("Hit object: " + MouseController.GameObjectName);
             switch (MouseController.GameObjectName)
             {
-                // default_state:
                 case "MenuButton":
                     Debug.Log("MenuButton is clicked !");
                     _uiManager.MenuButton();
+                    break;
+                case "BackpackButton":
+                    Debug.Log("BackpackButton is clicked !");
+                    _uiManager.BackpackButton();
                     break;
 
 
