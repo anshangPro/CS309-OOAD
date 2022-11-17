@@ -35,7 +35,7 @@ namespace GameData
             Path = new List<Block>();
             for (int i = 0; i < Players.Capacity; i++)
             {
-                Players[i] = new Player();
+                Players.Add(new Player());
                 Players[i].Index = i;
             }
         }

@@ -35,6 +35,7 @@ namespace StateMachine
                     }
                     gameData.Players[playerNumber].UnitsList = new List<Unit>(units);
                 }
+                gameData.CurrentPlayer = 0;
             }
             
             if (gameData.GetCurrentPlayer().TurnFinish())
