@@ -72,9 +72,34 @@
 | 测试用例修改 | test:     |
 | 其他优化     | chore:    |
 
+## 地图存储格式
 
+```json
+{
+  "blocks": [
+    {
+      "type": "grass_block",
+      "coordinate": [0, 1, 2], 
+      "attribute": "value"
+    },
+    {
+      "type": "dirt_block",
+      "coordinate": [1, 1, 4]
+    }
+  ],
+  "environment": {
+    "Tree": [
+      [0, 0],
+      [1, 2],
+      [11.4, 51.4]
+    ],
+    "House":[
+      [1, 2]
+    ]
+  }
+}
+```
 
-## 需求
+`blocks`里面存一个list。list里面存许多dict。每个dict表示一个方块。每个dict里面必须有`type`和`coordinate`两个属性，分别表示block的类型和坐标（三维）。dict可以添加其余optional属性来限制block的某些属性。
 
-- [ ] 场景初始化时游戏对象的加载
-- [ ] 自定义读取地图，通过文件的
+`environment`里存环境对象。key表示某个地形的prefab的类型，value是一个list，其中每个list对象存当前prefab在实例化时需要固定的坐标。
