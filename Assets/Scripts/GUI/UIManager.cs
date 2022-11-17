@@ -31,6 +31,8 @@ namespace GUI
 
         public GameObject FightUI { get; private set; }
 
+        public GameObject BackpackUI { get; private set; }
+
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
         private static readonly int SkipAttackClicked = Animator.StringToHash("skipAttackClicked");
 
@@ -59,6 +61,7 @@ namespace GUI
             MenuAfterMoveUI = _uIManager.transform.Find("MenuAfterMoveUI").gameObject;
             FightMenuUI = _uIManager.transform.Find("FightMenuUI").gameObject;
             FightUI = _uIManager.transform.Find("FightUI").gameObject;
+            BackpackUI = _uIManager.transform.Find("BackpackUI").gameObject;
         }
 
         /// <summary>
@@ -77,6 +80,11 @@ namespace GUI
                 buttonBoxCollider.size = new Vector3(buttonSize.x, buttonSize.y, 2);
                 buttonBoxCollider.center = new Vector3(0, 0, 1);
             }
+        }
+
+        internal void BackpackButton()
+        {
+            BackpackUI.SetActive(!BackpackUI.activeSelf);
         }
 
 

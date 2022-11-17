@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using GameData;
+using Interfaces;
 
 namespace Units
 {
     public class Friendly : Unit
     {
-        public LinkedList<Item> Package = new LinkedList<Item>();
+        public LinkedList<ITem> Package = new LinkedList<ITem>();
         public LinkedList<Skill> Skills = new LinkedList<Skill>();
-        
+
         public override string GetType()
         {
             return "Friendly";
