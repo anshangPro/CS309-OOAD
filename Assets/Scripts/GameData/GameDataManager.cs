@@ -7,8 +7,9 @@ namespace GameData
     public sealed class GameDataManager
     {
         public static int PlayerNum = 2;
-        public int NextPlayer = 0;
         public int CurrentPlayer = -1;
+        public bool Pve = false;
+        public List<Player> Players = new List<Player>(PlayerNum);
 
 
         public GameStatus gameStatus = GameStatus.Default;
@@ -16,7 +17,6 @@ namespace GameData
         public Unit SelectedUnit = null;
         public Unit MovedUnit = null;   //移动后需要结算的角色
         public Unit SelectedEnemy = null;
-        public List<Unit>[] UnitsOfPlayers;
 
         public List<Block> HighlightBlocks; //角色能移动的方块 或 角色能攻击到的范围
         public Block SelectedBlock = null;       //玩家第一次选中的方块
@@ -31,14 +31,28 @@ namespace GameData
 
         private GameDataManager()
         {
-            UnitsOfPlayers = new List<Unit>[PlayerNum];
             HighlightBlocks = new List<Block>();
             Path = new List<Block>();
+            for (int i = 0; i < Players.Capacity; i++)
+            {
+                Players.Add(new Player());
+                Players[i].Index = i;
+            }
         }
 
         public static GameDataManager Instance
         {
             get { return _instance; }
+        }
+
+        public Player GetCurrentPlayer()
+        {
+            return Players[CurrentPlayer];
+        }
+
+        public void TurnRound()
+        {
+            CurrentPlayer = (CurrentPlayer == 0) ? 1 : 0;
         }
 
     }
