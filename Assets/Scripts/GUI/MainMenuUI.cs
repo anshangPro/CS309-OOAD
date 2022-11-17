@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,12 +9,14 @@ namespace GUI
     {
         private GameObject mainMenu;
         private GameObject selectSceneMenu;
+        private bool[] scenceLoaded;
 
         private void Start()
         {
-            mainMenu = GameObject.Find("ManiMenu");
+            mainMenu = GameObject.Find("MainMenu");
             selectSceneMenu = GameObject.Find("SelectSceneMenu");
-            
+            scenceLoaded = new bool[SceneManager.sceneCount];
+
             mainMenu.SetActive(true);
             selectSceneMenu.SetActive(false);
         }

@@ -1,5 +1,6 @@
 using StateMachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace GUI
@@ -116,8 +117,7 @@ namespace GUI
 
         internal void QuitButton()
         {
-            Debug.Log("The game will be closed in the real game ");
-            Application.Quit();
+            SceneManager.LoadScene("Scenes/MainMenu");
         }
     }
 }
