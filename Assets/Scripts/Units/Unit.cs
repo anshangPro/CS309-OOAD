@@ -134,10 +134,7 @@ namespace Units
         protected virtual void TakeDamage(Unit from, float realDamage)
         {
             if (Health <= realDamage)
-            {
                 Health = 0;
-                gameObject.GetComponent<Animator>().SetTrigger(DeathAnime);
-            }
             else
                 Health -= realDamage;
         }
@@ -213,6 +210,12 @@ namespace Units
         public void Attacked()
         {
             hasAttacked = true;
+        }
+
+        public void DamageTaken()
+        {
+            if (Health <= 0)
+                gameObject.GetComponent<Animator>().SetTrigger(DeathAnime);
         }
 
         public void Died()
