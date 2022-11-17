@@ -92,6 +92,21 @@ public class MouseController : MonoBehaviour
                 _deltaTime = Time.time;
             }
         }
+        
+        if (!_canShowFloatPanel){
+            LeftDownInfoPanelController floatPanel = LeftDownInfoPanelController.Instance;
+            Vector3 ori = floatPanel.transform.position;
+            if (Input.mousePosition.x < 800 && Input.mousePosition.y < 400)
+            {
+                ori.x = 1650;
+                floatPanel.transform.position = ori;
+            }
+            else
+            {
+                ori.x = 270;
+                floatPanel.transform.position = ori;
+            }
+        }
 
         if (!_canShowFloatPanel && Time.time - _deltaTime > 0.1)
         {
