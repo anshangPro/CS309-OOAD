@@ -11,6 +11,7 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.Fight;
+            gameData.MovedUnit.PlayAttackAnime();
             gameData.MovedUnit.Attack(gameData.SelectedEnemy);
             Debug.Log(gameData.MovedUnit + " Attack " + gameData.SelectedEnemy);
             gameData.MovedUnit.Attacked();
