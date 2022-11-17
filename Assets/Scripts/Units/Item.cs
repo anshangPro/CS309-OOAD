@@ -1,13 +1,20 @@
-﻿using System;
-using Interfaces;
+﻿using UnityEngine;
 
 namespace Units
 {
-    /// <summary>
-    /// TODO: 因为C#不支持多继承，为了特定的物品既实现item又实现ScriptableObject,将item改写为接口 by 张琦
-    /// </summary>
-    [Obsolete("改为使用ITem接口的实现方式", true)]
-    public abstract class Item
+    [CreateAssetMenu(fileName = "New Item", menuName = "New Item")]
+    public class Item : ScriptableObject
     {
+        public string itemName; //物品名字
+        public Sprite itemImage; //物品的照片
+        public int itemNum = 1; //物品的数量，默认是一个，因为拾取第一个后直接为1，再拾取就直接+1即可
+
+        [TextArea] //改变输入框格式，提示输入框容量
+        public string itemInfo;
+
+        public virtual bool ItemUse(Unit unit)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
