@@ -1,8 +1,6 @@
-﻿using Interfaces;
-
-namespace Units.Items
+﻿namespace Units.Items
 {
-    public class HealthDrug : Item
+    public class MagicDrug : Item
     {
         public override bool ItemUse(Unit unit)
         {
