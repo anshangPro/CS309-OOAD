@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Units
 {
-    [CreateAssetMenu(fileName = "New Backpack", menuName = "New Backpack")]
-    public class Backpack : ScriptableObject
+    public class Backpack
     {
         /// <summary>
         /// 玩家背包，因为储存多个物品，所以是一个集合
+        /// HashTable: name -> object
         /// </summary>
-        public List<Item> itemList = new();
+        public Hashtable ItemSet = new();
     }
 }

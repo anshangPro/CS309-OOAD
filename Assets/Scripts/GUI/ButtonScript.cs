@@ -31,7 +31,7 @@ namespace GUI
                 case "BackpackButton":
                     Debug.Log("BackpackButton is clicked !");
                     _uiManager.BackpackButton();
-                    BackpackManager.Instance.InsertItemToUI(ScriptableObject.CreateInstance<HealthDrug>());
+                    BackpackManager.Instance.InsertItem(new HealthDrug());
                     break;
 
 
