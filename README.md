@@ -78,28 +78,29 @@
 {
   "blocks": [
     {
-      "type": "grass_block",
+      "type": 0,
       "coordinate": [0, 1, 2], 
-      "attribute": "value"
+      "cost": 1
     },
     {
-      "type": "dirt_block",
-      "coordinate": [1, 1, 4]
+      "type": 1,
+      "coordinate": [1, 1, 4],
+      "cost": 1
     }
   ],
   "environment": {
     "Tree": [
-      [0, 0],
-      [1, 2],
-      [11.4, 51.4]
+      [0, 0, 0],
+      [1, 2, 1],
+      [11, 45, 14]
     ],
     "House":[
-      [1, 2]
+      [1, 2, 0]
     ]
   }
 }
 ```
 
-`blocks`里面存一个list。list里面存许多dict。每个dict表示一个方块。每个dict里面必须有`type`和`coordinate`两个属性，分别表示block的类型和坐标（三维）。dict可以添加其余optional属性来限制block的某些属性。
+`blocks`里面存一个list。list里面存许多dict。每个dict表示一个方块。每个dict里面必须有`type`和`coordinate`两个属性，分别表示block的类型和坐标（三维）。`cost`表示方块的移动消耗。dict可以添加其余optional属性来限制block的某些属性。
 
 `environment`里存环境对象。key表示某个地形的prefab的类型，value是一个list，其中每个list对象存当前prefab在实例化时需要固定的坐标。
