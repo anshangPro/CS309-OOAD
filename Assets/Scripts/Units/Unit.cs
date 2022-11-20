@@ -22,6 +22,8 @@ namespace Units
         public float Defense { get; internal set; }
         public int level { get; internal set; }
         public int AtkRange = 1;
+        public int Exp = 0;
+        private int RewardExp = 120;
 
         /// <summary>
         /// 敏捷值
@@ -136,9 +138,27 @@ namespace Units
         protected virtual void TakeDamage(Unit from, float realDamage)
         {
             if (Health <= realDamage)
+            {
                 Health = 0;
+                from.AddExp(RewardExp);
+            }
             else
+            {
                 Health -= realDamage;
+            }
+        }
+
+        public void AddExp(int amount)
+        {
+            int curExpUpperBound = level * 100;
+            Exp += amount;
+            while (Exp >= curExpUpperBound)
+            {
+                level++;
+                Debug.Log($"{this} update to level {level}");
+                Exp -= curExpUpperBound;
+                curExpUpperBound = level * 100;
+            }
         }
 
         /// <summary>
@@ -281,6 +301,8 @@ namespace Units
             controller.maxMagic = (int)MaxMp;
             controller.health = (int)Health;
             controller.maxHealth = (int)MaxHealth;
+            controller.maxEnergy = level * 100;
+            controller.energy = Exp;
             controller.FixedUpdate();
             controller.gameObject.SetActive(true);
         }
