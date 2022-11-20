@@ -8,7 +8,7 @@ namespace Archive
 {
     public static class GameLoader
     {
-        public static Tuple<BlockDTO[], EnviromentDto[]> LoadMap(string filepath)
+        public static Tuple<BlockDTO[], EnviromentDTO[]> LoadMap(string filepath)
         {
             string json;
             using (StreamReader sr = new StreamReader(filepath))
@@ -20,12 +20,12 @@ namespace Archive
 
             BlockDTO[] blockDTOs = JsonConvert.DeserializeObject<BlockDTO[]>(jObj["blocks"]!.ToString());
 
-            EnviromentDto[] environmentDTOs = JsonConvert.DeserializeObject<EnviromentDto[]>(jObj["environment"]!.ToString());
+            EnviromentDTO[] environmentDTOs = JsonConvert.DeserializeObject<EnviromentDTO[]>(jObj["environment"]!.ToString());
 
-            return new Tuple<BlockDTO[], EnviromentDto[]>(blockDTOs, environmentDTOs);
+            return new Tuple<BlockDTO[], EnviromentDTO[]>(blockDTOs, environmentDTOs);
         }
 
-        public static UniDto[] LoadUnit(string filepath)
+        public static UnitDTO[] LoadUnit(string filepath)
         {
             string json;
             using (StreamReader sr = new StreamReader(filepath))
@@ -34,7 +34,7 @@ namespace Archive
             }
 
             JObject jObj = JObject.Parse(json);
-            return JsonConvert.DeserializeObject<UniDto[]>(jObj["units"]!.ToString());
+            return JsonConvert.DeserializeObject<UnitDTO[]>(jObj["units"]!.ToString());
         }
     }
 }

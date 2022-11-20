@@ -45,6 +45,12 @@ namespace StateMachine
                 }
             }
 
+            if (gameData.GetCurrentPlayer().IsRobot)
+            {
+                // TODO: robot 操作here
+                // TODO: 直接fast back to default
+            }
+
             if (gameData.GetCurrentPlayer().TurnFinish())
             {
                 foreach (Unit unit in gameData.GetCurrentPlayer().UnitsList)

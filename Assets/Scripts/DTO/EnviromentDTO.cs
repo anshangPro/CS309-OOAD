@@ -2,7 +2,7 @@
 
 namespace DTO
 {
-    public class EnviromentDto
+    public class EnviromentDTO
     {
         public string type;
         public int[][] coordinates;

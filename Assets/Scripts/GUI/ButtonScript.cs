@@ -1,4 +1,5 @@
-﻿using GUI.Backpack;
+﻿using Archive;
+using GUI.Backpack;
 using Interfaces;
 using Units.Items;
 using UnityEngine;
@@ -38,6 +39,7 @@ namespace GUI
                 // main_menu_state:
                 case "SaveButton":
                     // 存档功能待实现
+                    MapSaver.Save();
                     break;
                 case "BackButton":
                     _uiManager.BackButton();
