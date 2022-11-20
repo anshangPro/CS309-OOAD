@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DTO;
 using GameData;
 using Interfaces;
 using StateMachine;
@@ -279,6 +280,22 @@ namespace Units
             controller.maxHealth = (int)MaxHealth;
             controller.FixedUpdate();
             controller.gameObject.SetActive(true);
+        }
+
+        public void CopyFrom(UnitDTO unit)
+        {
+            type = unit.type;
+            onBlock = GameDataManager.Instance.blockList[new Vector2(unit.coornidate[0], unit.coornidate[1])].Item1
+                .GetComponent<Block>();
+            onBlock.standUnit = this;
+            UnitName = unit.UnitName;
+            MaxHealth = unit.MaxHealth;
+            Health = unit.Health;
+            MaxMp = unit.MaxMp;
+            Mp = unit.Mp;
+            Damage = unit.Damage;
+            Defense = unit.Defense;
+            AtkRange = unit.AtkRange;
         }
 
     }

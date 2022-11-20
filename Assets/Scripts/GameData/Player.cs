@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DTO;
 using Units;
 
 namespace GameData
@@ -13,6 +14,15 @@ namespace GameData
         public bool TurnFinish()
         {
             return FinishedUnit == UnitsList.Count;
+        }
+        
+        public Player(){}
+
+        public Player(PlayerDTO player)
+        {
+            this.Index = player.Index;
+            this.FinishedUnit = player.FinishedUnit;
+            this.IsRobot = player.IsRobot;
         }
     }
 }

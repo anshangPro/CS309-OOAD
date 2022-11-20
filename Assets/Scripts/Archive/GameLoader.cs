@@ -36,5 +36,16 @@ namespace Archive
             JObject jObj = JObject.Parse(json);
             return JsonConvert.DeserializeObject<UnitDTO[]>(jObj["units"]!.ToString());
         }
+
+        public static SaveDTO LoadSave(string path)
+        {
+            string json;
+            using (StreamReader sc = new StreamReader(path))
+            {
+                json = sc.ReadToEnd();
+                SaveDTO save = JsonConvert.DeserializeObject<SaveDTO>(json);
+                return save;
+            }
+        }
     }
 }
