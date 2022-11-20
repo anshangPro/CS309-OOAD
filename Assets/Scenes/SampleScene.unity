@@ -6301,6 +6301,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabb66cff17847e798db803e4cdfeba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &548683028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 988988861697342253, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
+  m_PrefabInstance: {fileID: 988988861172254265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &548683031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548683028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50aa8e8c6101e4c4facfb06ed468a78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &549900203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23658,21 +23675,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 988988861697342253, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 988988861697342255, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 988988861697342255, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 946.1415
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 988988861697342255, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 615.874
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 988988861697342255, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.307617
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 988988861697342255, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
       propertyPath: m_LocalRotation.w

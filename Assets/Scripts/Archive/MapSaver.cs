@@ -23,7 +23,7 @@ namespace Archive
 
             save.Players = players;
             save.blocks = new List<BlockDTO>();
-            foreach (KeyValuePair<int, Tuple<GameObject, BlockDTO>> pair in data.blockList)
+            foreach (KeyValuePair<Vector2, Tuple<GameObject, BlockDTO>> pair in data.blockList)
             {
                 save.blocks.Add(pair.Value.Item2);
             }
