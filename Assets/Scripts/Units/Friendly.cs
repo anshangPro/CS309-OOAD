@@ -17,9 +17,14 @@ namespace Units
 
         public override bool CanFightWith()
         {
-            String opposite = GameDataManager.Instance.MovedUnit.GetType();
+            int opposite = GameDataManager.Instance.MovedUnit.ofPlayer;
             //TODO 需要判断是否在攻击范围内 by 周凡卜 2022/11/3
-            return opposite.Equals("Enemy");
+            Unit movedUnit = GameDataManager.Instance.MovedUnit;
+            if (!MapManager.Instance.FindInRange(movedUnit.onBlock, movedUnit.AtkRange).Contains(onBlock))
+            {
+                return false;
+            }
+            return opposite.Equals(this.ofPlayer);
         }
     }
 }
