@@ -8,6 +8,7 @@ namespace Units.FriendlyUnits
     {
         public Knight()
         {
+            this.type = 3;
             this.UnitName = "Knight";
             this.level = 1;
             this.BaseHealth = 30;

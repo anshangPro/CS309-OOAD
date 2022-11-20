@@ -7,6 +7,7 @@
     {
         public Monk()
         {
+            this.type = 4;
             this.UnitName = "Monk";
             this.level = 1;
             this.BaseHealth = 28;

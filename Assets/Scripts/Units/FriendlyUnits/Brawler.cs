@@ -10,6 +10,7 @@ namespace Units.FriendlyUnits
     {
         public Brawler()
         {
+            this.type = 2;
             this.UnitName = "Brawler";
             this.level = 1;
             this.BaseHealth = 30;

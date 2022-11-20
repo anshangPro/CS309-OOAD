@@ -10,6 +10,7 @@ namespace Units
 {
     public class Unit : MonoBehaviour, IClickable, IFloatPanel
     {
+        public int type { get; internal set; }
         public int ofPlayer { get; set; }
         public string UnitName { get; internal set; }
         public float MaxHealth { get; internal set; }

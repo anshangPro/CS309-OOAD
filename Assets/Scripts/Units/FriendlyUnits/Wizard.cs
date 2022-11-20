@@ -5,6 +5,7 @@ namespace Units.FriendlyUnits
     {
         public Wizard()
         {
+            this.type = 5;
             this.UnitName = "Wizard";
             this.level = 1;
             this.BaseHealth = 24;
