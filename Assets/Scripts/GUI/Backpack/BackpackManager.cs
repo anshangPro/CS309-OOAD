@@ -1,4 +1,5 @@
-﻿using Units;
+﻿using System.Linq;
+using Units;
 using UnityEngine;
 
 namespace GUI.Backpack
@@ -12,10 +13,10 @@ namespace GUI.Backpack
 
         public GameObject backpackUI;
         public ItemUI itemPrefab;
-        public Units.Backpack backpack;
+        public Units.Backpack Backpack = new();
 
 
-        private void FixedUpdate()
+        private void OnEnable()
         {
             UpdateItemToUI();
         }
@@ -31,27 +32,43 @@ namespace GUI.Backpack
         }
 
         /// <summary>
-        /// 在UI中将一个物体的数据仓库显示出来
+        /// 将道具插入背包中 并更新在UI中将一个物体的数据仓库显示出来
         /// </summary>
         /// <param name="item"></param>
-        public void InsertItemToUI(Item item)
+        public void InsertItem(Item item)
+        {
+            if (Backpack.ItemSet.ContainsKey(item.ItemName))
+            {
+                foreach (Item a in Backpack.ItemSet.Values)
+                {
+                    a.ItemNum++;
+                }
+            }
+            else
+            {
+                Backpack.ItemSet.Add(item.ItemName, item);
+                UpdateItemToUI();
+            }
+        }
+
+        private static void InsertItemToUI(Item item)
         {
             ItemUI grid = Instantiate(Instance.itemPrefab, Instance.backpackUI.transform);
-            grid.itemImage.sprite = item.itemImage;
-            grid.itemNum.text = item.itemNum.ToString();
+            grid.itemImage.sprite = item.ItemImage;
+            grid.itemNum.text = item.ItemNum.ToString();
         }
 
         /// <summary>
         /// 将背包数据仓库中所有物体显示在UI上
         /// </summary>
-        private void UpdateItemToUI()
+        private static void UpdateItemToUI()
         {
             for (int i = 0; i < Instance.backpackUI.transform.childCount; i++)
             {
                 Destroy(Instance.backpackUI.transform.GetChild(i).gameObject);
             }
 
-            foreach (Item item in Instance.backpack.itemList)
+            foreach (Item item in Instance.Backpack.ItemSet.Values)
             {
                 InsertItemToUI(item);
             }

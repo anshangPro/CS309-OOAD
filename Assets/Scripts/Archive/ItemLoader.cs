@@ -12,7 +12,7 @@ namespace Archive
         public List<GameObject> blockList = new List<GameObject>();
         private void Awake()
         {
-            Tuple<BlockDTO[], EnviromentDto[]> save = MapLoader.Load("Save/save1.json");
+            Tuple<BlockDTO[], EnviromentDto[]> save = GameLoader.LoadMap("Save/save1.json");
             foreach (BlockDTO block in save.Item1)
             {
                 Debug.Log(block.type);
