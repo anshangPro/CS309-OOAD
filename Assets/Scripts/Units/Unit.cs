@@ -217,14 +217,17 @@ namespace Units
         public void DamageTaken()
         {
             if (Health <= 0)
+            {
                 gameObject.GetComponent<Animator>().SetTrigger(DeathAnime);
+            }
         }
 
         public void Died()
         {
             Destroy(gameObject);
             GameDataManager gameData = GameDataManager.Instance;
-            gameData.GetCurrentPlayer().UnitsList.Remove(this);
+            gameData.Players[ofPlayer].UnitsList.Remove(this);
+            onBlock.standUnit = null;
         }
 
         /// <summary>
