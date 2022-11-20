@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DTO;
 using Units;
 using StateMachine;
+using Units.AI;
+using Units.AI.Evaluator;
 using UnityEngine;
 
 namespace GameData
@@ -28,6 +30,8 @@ namespace GameData
 
         public bool AttackAnimeFinished = false;
         public bool TakeDamageAnimeFinished = false;
+
+        public Searcher searcher = new(new GreedyEvaluator());
         
         
         private static GameDataManager _instance = new();
