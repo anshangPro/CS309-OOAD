@@ -71,7 +71,7 @@ public class CameraMove : MonoBehaviour
         {
             Vector3 front = _transform.forward;
             front.y *= -1;
-            _transform.Translate(Input.GetAxis("Mouse Y") * 0.48f * moveSpeed * front, Space.Self);
+            _transform.Translate(Input.GetAxis("Mouse Y") * -0.2f * moveSpeed * front, Space.Self);
             _transform.Translate(Input.GetAxis("Mouse X") * 0.2f * moveSpeed * Vector3.left, Space.Self);
         }
 
