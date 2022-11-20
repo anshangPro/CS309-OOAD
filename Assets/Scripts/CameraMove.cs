@@ -16,7 +16,7 @@ public class CameraMove : MonoBehaviour
     private float _yRotation = 0;
     private bool _rotating = false;
     private bool _moving = false;
-
+    
     private void Awake()
     {
         _transform = camera.transform;
@@ -29,10 +29,10 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
-        MoveCamera();
+        _cameraPosition = _transform.position;
         RotateCamera();
         ChangeCameraHeight();
-        camera.transform.position = _cameraPosition;
+        MoveCamera();
     }
 
     private void RotateCamera()
@@ -69,9 +69,10 @@ public class CameraMove : MonoBehaviour
 
         if (_moving)
         {
-            //Input.GetAxis("MouseX")获取鼠标移动的X轴的距离
-            _cameraPosition.x -= Input.GetAxis("Mouse X") * moveSpeed;
-            _cameraPosition.z -= Input.GetAxis("Mouse Y") * 0.48f * moveSpeed;
+            Vector3 front = _transform.forward;
+            front.y *= -1;
+            _transform.Translate(Input.GetAxis("Mouse Y") * 0.48f * moveSpeed * front, Space.Self);
+            _transform.Translate(Input.GetAxis("Mouse X") * 0.2f * moveSpeed * Vector3.left, Space.Self);
         }
 
         if (Input.GetMouseButtonUp(2))
@@ -84,6 +85,7 @@ public class CameraMove : MonoBehaviour
     {
         _cameraPosition.y += Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * 400f;
         _cameraPosition.y = ClampValue(_cameraPosition.y, 8, 20);
+        camera.transform.position = _cameraPosition;
     }
 
     private static float GetDistance(Vector3 a, Vector3 b)
