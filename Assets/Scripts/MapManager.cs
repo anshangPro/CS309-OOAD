@@ -23,13 +23,6 @@ public class MapManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-        for (int i = 0; i < gameObject.transform.childCount; i++)
-        {
-            Vector3 position = gameObject.transform.GetChild(i).localPosition;
-            Map.Add(new Vector2Int((int)position.x, (int)position.z),
-                gameObject.transform.GetChild(i).GetComponent<Block>());
-        }
     }
 
     public Block GetBlock(int localX, int localZ)

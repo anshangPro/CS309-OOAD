@@ -22,16 +22,18 @@ namespace Archive
         /// <summary>
         /// 全部载入方块的gameObject以及类型
         /// </summary>
-        public Dictionary<int, Tuple<GameObject, BlockDTO>> LocToBlock = new Dictionary<int, Tuple<GameObject, BlockDTO>>();
+        public Dictionary<Vector2, Tuple<GameObject, BlockDTO>> LocToBlock = new Dictionary<Vector2, Tuple<GameObject, BlockDTO>>();
 
         private void Awake()
         {
+            MapManager map = MapManager.Instance;
             Tuple<BlockDTO[], EnviromentDTO[]> save = GameLoader.LoadMap("Save/save1.json");
             foreach (BlockDTO block in save.Item1)
             {
                 GameObject blockObj = Instantiate(blocks[block.type], block.GetCoordinate(), 
                     Quaternion.identity, gameObject.transform);
-                LocToBlock.Add(block.coordinate[0] * 100 + block.coordinate[2], new Tuple<GameObject, BlockDTO>(blockObj, block));
+                LocToBlock.Add(new Vector2(block.coordinate[0], block.coordinate[2]), new Tuple<GameObject, BlockDTO>(blockObj, block));
+                map.Map.Add(new Vector2Int(block.coordinate[0], block.coordinate[2]), blockObj.GetComponent<Block>());
             }
 
             for (int i = 0; i < 6; i++)
@@ -39,11 +41,11 @@ namespace Archive
                 GameObject unitObj = Instantiate(UnitPrefeb[i]);
                 Unit unit = unitObj.GetComponent<Unit>();
 
-                unit.onBlock = LocToBlock[0 * 100 + i * 2].Item1.GetComponent<Block>();
+                unit.onBlock = LocToBlock[new Vector2(0, i * 2)].Item1.GetComponent<Block>();
                 GameDataManager.Instance.Players[0].UnitsList.Add(unit);
                 unitObj = Instantiate(UnitPrefeb[i]);
                 unit = unitObj.GetComponent<Unit>();
-                unit.onBlock = LocToBlock[2 * 100 + i * 2].Item1.GetComponent<Block>();
+                unit.onBlock = LocToBlock[new Vector2(2, i * 2)].Item1.GetComponent<Block>();
                 GameDataManager.Instance.Players[1].UnitsList.Add(unit);
             }
             GameDataManager.Instance.blockList = LocToBlock;

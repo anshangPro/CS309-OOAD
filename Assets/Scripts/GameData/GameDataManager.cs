@@ -13,7 +13,7 @@ namespace GameData
         public int CurrentPlayer = -1;
         public bool Pve = false;
         public List<Player> Players = new List<Player>(PlayerNum);
-        public Dictionary<int, Tuple<GameObject, BlockDTO>> blockList;
+        public Dictionary<Vector2, Tuple<GameObject, BlockDTO>> blockList;
 
         public GameStatus gameStatus = GameStatus.Default;
 
@@ -32,9 +32,10 @@ namespace GameData
         
         private static GameDataManager _instance = new();
 
-        public static Tuple<GameObject, BlockDTO> GetBlock(int x, int y)
+        public Tuple<GameObject, BlockDTO> GetBlock(int x, int y)
         {
-            return _instance.blockList[100 * x + y];
+            Vector2Int dst = new Vector2Int(x, y);
+            return blockList.ContainsKey(dst) ? blockList[dst] : null;
         }
 
         private GameDataManager()
