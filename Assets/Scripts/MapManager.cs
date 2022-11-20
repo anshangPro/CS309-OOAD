@@ -97,7 +97,7 @@ public class MapManager : MonoBehaviour
         return new List<Block>();
     }
 
-    public List<Block> FindInRange(Block centerBlock, int range)
+    public List<Block> FindInRange(Block centerBlock, int range, bool fight=false, bool search = false)
     {
         List<Block> inRangeBlock = new List<Block>();
         int stepCnt = 0;
@@ -109,7 +109,7 @@ public class MapManager : MonoBehaviour
             List<Block> surroundingBlocks = new List<Block>();
             foreach (Block block in blocksOfPreStep)
             {
-                surroundingBlocks.AddRange(GetNeighborBlocks(block, Map.Values.ToList()));
+                surroundingBlocks.AddRange(GetNeighborBlocks(block, Map.Values.ToList(), fight, search));
             }
 
             inRangeBlock.AddRange(surroundingBlocks);
@@ -165,27 +165,31 @@ public class MapManager : MonoBehaviour
         path.RemoveAll(block => block == null);
     }
 
-    public List<Block> GetNeighborBlocks(Block block, List<Block> searchableBlocks)
+    public List<Block> GetNeighborBlocks(Block block, List<Block> searchableBlocks, bool fight=false, bool search=false)
     {
         List<Block> neighborBlocks = new List<Block>();
 
         Block now = GetBlock(block.X + 1, block.Z);
-        if (searchableBlocks.Contains(now) && now.standUnit is null)
+        if (searchableBlocks.Contains(now) 
+            && (search || (now.standUnit is null && !fight) || (fight && now.standUnit is not null && now.standUnit.CanFightWith())))
         {
             neighborBlocks.Add(now);
         }
         now = GetBlock(block.X - 1, block.Z);
-        if (searchableBlocks.Contains(now) && now.standUnit is null)
+        if (searchableBlocks.Contains(now) 
+            && (search || (now.standUnit is null && !fight) || (fight && now.standUnit is not null && now.standUnit.CanFightWith())))
         {
             neighborBlocks.Add(now);
         }
         now = GetBlock(block.X, block.Z + 1);
-        if (searchableBlocks.Contains(now) && now.standUnit is null)
+        if (searchableBlocks.Contains(now) 
+            && (search || (now.standUnit is null && !fight) || (fight && now.standUnit is not null && now.standUnit.CanFightWith())))
         {
             neighborBlocks.Add(now);
         }
         now = GetBlock(block.X, block.Z - 1);
-        if (searchableBlocks.Contains(now) && now.standUnit is null)
+        if (searchableBlocks.Contains(now) 
+            && (search || (now.standUnit is null && !fight) || (fight && now.standUnit is not null && now.standUnit.CanFightWith())))
         {
             neighborBlocks.Add(now);
         }
@@ -206,7 +210,7 @@ public class MapManager : MonoBehaviour
         }
         
         GameDataManager.Instance.HighlightBlocks.Clear();
-        GameDataManager.Instance.HighlightBlocks.AddRange(FindInRange(unit.onBlock, unit.AtkRange));
+        GameDataManager.Instance.HighlightBlocks.AddRange(FindInRange(unit.onBlock, unit.AtkRange, true));
         GameDataManager.Instance.HighlightBlocks.RemoveAt(0);
         foreach (Block highlightBlock in GameDataManager.Instance.HighlightBlocks)
         {
@@ -222,7 +226,7 @@ public class MapManager : MonoBehaviour
         }
         
         GameDataManager.Instance.HighlightBlocks.Clear();
-        GameDataManager.Instance.HighlightBlocks.AddRange(FindInRange(unit.onBlock, unit.AtkRange));
+        GameDataManager.Instance.HighlightBlocks.AddRange(FindInRange(unit.onBlock, unit.AtkRange, true));
         GameDataManager.Instance.HighlightBlocks.RemoveAt(0);
         foreach (Block highlightBlock in GameDataManager.Instance.HighlightBlocks)
         {
