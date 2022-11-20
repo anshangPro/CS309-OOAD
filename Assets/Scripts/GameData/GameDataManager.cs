@@ -59,6 +59,11 @@ namespace GameData
             return Players[CurrentPlayer];
         }
 
+        public Player GetOppositePlayer()
+        {
+            return CurrentPlayer == 0 ? Players[1] : Players[0];
+        }
+
         public void TurnRound()
         {
             CurrentPlayer = (CurrentPlayer == 0) ? 1 : 0;
