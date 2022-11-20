@@ -1,4 +1,5 @@
 ﻿using System;
+using GameData;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,24 +8,28 @@ namespace GUI
 {
     public class MainMenuUI : MonoBehaviour
     {
-        private GameObject mainMenu;
-        private GameObject selectSceneMenu;
+        private GameObject _mainMenu;
+        private GameObject _selectSceneMenu;
+        private GameObject _selectModeMenu;
         private bool[] scenceLoaded;
 
         private void Start()
         {
-            mainMenu = GameObject.Find("MainMenu");
-            selectSceneMenu = GameObject.Find("SelectSceneMenu");
+            _mainMenu = GameObject.Find("MainMenu");
+            _selectSceneMenu = GameObject.Find("SelectSceneMenu");
+            _selectModeMenu = GameObject.Find("SelectModeMenu");
             scenceLoaded = new bool[SceneManager.sceneCount];
 
-            mainMenu.SetActive(true);
-            selectSceneMenu.SetActive(false);
+            _mainMenu.SetActive(true);
+            _selectSceneMenu.SetActive(false);
+            _selectModeMenu.SetActive(false);
         }
 
         public void PlayBtn()
         {
-            mainMenu.SetActive(false);
-            selectSceneMenu.SetActive(true);
+            _mainMenu.SetActive(false);
+            _selectSceneMenu.SetActive(false);
+            _selectModeMenu.SetActive(true);
         }
 
         public void ExitBtn()
@@ -38,8 +43,28 @@ namespace GUI
 
         public void BackBtn()
         {
-            selectSceneMenu.SetActive(false);
-            mainMenu.SetActive(true);
+            _mainMenu.SetActive(true);
+            _selectSceneMenu.SetActive(false);
+            _selectModeMenu.SetActive(false);
+        }
+
+        public void PvpModeButton()
+        {
+            GameDataManager.Instance.Pve = false;
+            EnterSelectSceneMenu();
+        }
+
+        public void PveModeButton()
+        {
+            GameDataManager.Instance.Pve = true;
+            EnterSelectSceneMenu();
+        }
+
+        private void EnterSelectSceneMenu()
+        {
+            _mainMenu.SetActive(false);
+            _selectSceneMenu.SetActive(true);
+            _selectModeMenu.SetActive(false);
         }
 
         public void LoadSuperFlatScene()
