@@ -22,19 +22,14 @@ namespace StateMachine
                 List<Unit> units = new();
                 for (int playerNumber = 0; playerNumber < GameData.GameDataManager.PlayerNum; playerNumber++)
                 {
-                    GameObject[] unitObjects = GameObject.FindGameObjectsWithTag($"Player_{playerNumber}");
-                    units.Clear();
-                    foreach (GameObject unitObject in unitObjects)
+                    foreach (Unit thisUnit in gameData.Players[playerNumber].UnitsList)
                     {
-                        Unit thisUnit = unitObject.GetComponent<Unit>();
                         // 初始化所有棋子状态机相关属性
                         thisUnit.ofPlayer = playerNumber;
                         thisUnit.OnTurnEnd();
                         units.Add(thisUnit);
                         Debug.Log($"Player_{playerNumber.ToString()} has unit: {units.Last()}");
                     }
-
-                    gameData.Players[playerNumber].UnitsList = new List<Unit>(units);
                 }
 
                 gameData.CurrentPlayer = 0;
