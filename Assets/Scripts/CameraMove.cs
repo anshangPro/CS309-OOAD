@@ -69,10 +69,12 @@ public class CameraMove : MonoBehaviour
 
         if (_moving)
         {
-            Vector3 front = _transform.forward;
-            front.y *= -1;
-            _transform.Translate(Input.GetAxis("Mouse Y") * -0.2f * moveSpeed * front, Space.Self);
-            _transform.Translate(Input.GetAxis("Mouse X") * 0.2f * moveSpeed * Vector3.left, Space.Self);
+            Vector3 mouse = new Vector3(-Input.GetAxis("Mouse X"), 0, -Input.GetAxis("Mouse Y"));
+            mouse = _transform.TransformPoint(mouse);
+            Quaternion qua = Quaternion.AngleAxis(-_transform.eulerAngles.x, _transform.right);
+            Vector3 position = _transform.position;
+            mouse = 0.3f * (qua * (mouse - position)) + position;
+            _transform.position = mouse;
         }
 
         if (Input.GetMouseButtonUp(2))
