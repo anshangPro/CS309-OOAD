@@ -140,7 +140,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             if (gameData.gameStatus == GameStatus.FightMenu)
             {
-                if (standUnit != null && standUnit.CanFightWith())
+                if (standUnit is not null && standUnit.CanFightWith())
                 {
                     gameData.SelectedEnemy = this.standUnit;
                     animator.SetTrigger(EnemyClicked);
@@ -152,7 +152,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
             {
                 animator.SetTrigger(BlockConfirmed);
             }
-            else
+            else if (standUnit is null)
             {
                 gameData.SelectedBlock = this;
                 animator.SetTrigger(BlockSelected);
