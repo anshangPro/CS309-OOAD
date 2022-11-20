@@ -169,24 +169,25 @@ public class MapManager : MonoBehaviour
     {
         List<Block> neighborBlocks = new List<Block>();
 
-        if (searchableBlocks.Contains(GetBlock(block.X + 1, block.Z)))
+        Block now = GetBlock(block.X + 1, block.Z);
+        if (searchableBlocks.Contains(now) && now.standUnit is null)
         {
-            neighborBlocks.Add(GetBlock(block.X + 1, block.Z));
+            neighborBlocks.Add(now);
         }
-
-        if (searchableBlocks.Contains(GetBlock(block.X - 1, block.Z)))
+        now = GetBlock(block.X - 1, block.Z);
+        if (searchableBlocks.Contains(now) && now.standUnit is null)
         {
-            neighborBlocks.Add(GetBlock(block.X - 1, block.Z));
+            neighborBlocks.Add(now);
         }
-
-        if (searchableBlocks.Contains(GetBlock(block.X, block.Z + 1)))
+        now = GetBlock(block.X, block.Z + 1);
+        if (searchableBlocks.Contains(now) && now.standUnit is null)
         {
-            neighborBlocks.Add(GetBlock(block.X, block.Z + 1));
+            neighborBlocks.Add(now);
         }
-
-        if (searchableBlocks.Contains(GetBlock(block.X, block.Z - 1)))
+        now = GetBlock(block.X, block.Z - 1);
+        if (searchableBlocks.Contains(now) && now.standUnit is null)
         {
-            neighborBlocks.Add(GetBlock(block.X, block.Z - 1));
+            neighborBlocks.Add(now);
         }
 
         return neighborBlocks;
