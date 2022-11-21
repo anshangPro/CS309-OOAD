@@ -28,7 +28,7 @@ namespace Archive
         {
             GameDataManager data = GameDataManager.Instance;
             MapManager map = MapManager.Instance;
-            SaveDTO save = GameLoader.LoadSave("Save/save1.json");
+            SaveDTO save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
             foreach (BlockDTO block in save.blocks)
             {
                 GameObject blockObj = Instantiate(blocks[block.type], block.GetCoordinate(), 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using GameData;
 using UnityEditor;
 using UnityEngine;
@@ -11,14 +13,16 @@ namespace GUI
         private GameObject _mainMenu;
         private GameObject _selectSceneMenu;
         private GameObject _selectModeMenu;
-        private bool[] scenceLoaded;
 
+        private Dictionary<string, string> _sceneToJson = new Dictionary<string, string>()
+        {
+            {"Scenes/SampleScene", "save1.json"}
+        };
         private void Start()
         {
             _mainMenu = GameObject.Find("MainMenu");
             _selectSceneMenu = GameObject.Find("SelectSceneMenu");
             _selectModeMenu = GameObject.Find("SelectModeMenu");
-            scenceLoaded = new bool[SceneManager.sceneCount];
 
             _mainMenu.SetActive(true);
             _selectSceneMenu.SetActive(false);
@@ -69,6 +73,7 @@ namespace GUI
 
         public void LoadSuperFlatScene()
         {
+            GameDataManager.Instance.JsonToLoad = Path.Combine("Save", _sceneToJson["Scenes/SampleScene"]);
             SceneManager.LoadScene("Scenes/SampleScene");
         }
     }

@@ -26,12 +26,15 @@ namespace GameData
         public List<Block> HighlightBlocks; //角色能移动的方块 或 角色能攻击到的范围
         public Block SelectedBlock = null;       //玩家第一次选中的方块
         public List<Block> Path; //角色的移动路径
+        public List<Block> SelectableUnitOnBlocks = new(); //用于指示当前玩家可选角色的绿色高亮方块
 
 
         public bool AttackAnimeFinished = false;
         public bool TakeDamageAnimeFinished = false;
 
         public Searcher searcher = new(new GreedyEvaluator());
+
+        public string JsonToLoad = "Save/save1.json";
         
         
         private static GameDataManager _instance = new();
