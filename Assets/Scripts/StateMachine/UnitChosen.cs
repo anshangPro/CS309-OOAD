@@ -14,6 +14,9 @@ namespace StateMachine
             gameData.gameStatus = GameStatus.UnitChosen;
             OverlayGridUtil.SetOverlayGridToNone(gameData.HighlightBlocks);
             gameData.HighlightBlocks.Clear();
+
+            HighlightBlockUtil.HighlightSelectableUnitOnBlocks();
+
             gameData.Path.Clear();
             gameData.SelectedBlock = null;
             gameData.HighlightBlocks = MapManager.Instance.DisplayInRange(gameData.SelectedUnit);

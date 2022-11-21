@@ -20,9 +20,11 @@ namespace StateMachine
         // }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        // public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        // {
-        // }
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            gameData.SelectableUnitOnBlocks.ForEach(block => block.SetOverlayGridType(OverlayGrid.OverlayGridType.None));
+            gameData.SelectableUnitOnBlocks.Clear();
+        }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
         //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -3,6 +3,7 @@ using System.Linq;
 using GameData;
 using Units;
 using UnityEngine;
+using Util;
 
 namespace StateMachine
 {
@@ -63,7 +64,8 @@ namespace StateMachine
                     unit.OnTurnBegin();
                 }
             }
-
+            
+            HighlightBlockUtil.HighlightSelectableUnitOnBlocks();
 
             Debug.Log("Turn end, now player is: " + gameData.CurrentPlayer);
         }

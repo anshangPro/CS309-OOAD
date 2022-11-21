@@ -5,6 +5,7 @@ using GameData;
 using Interfaces;
 using StateMachine;
 using UnityEngine;
+using Util;
 using static Util.PositionUtil;
 
 namespace Units
@@ -42,7 +43,7 @@ namespace Units
         /// </summary>
         internal int BaseMv;
 
-        private bool hasMoved { get; set; }
+        public bool hasMoved { get; set; }
         private bool hasAttacked { get; set; }
 
         private const float Delta = 0.00001f;
