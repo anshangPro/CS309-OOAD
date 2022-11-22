@@ -20,6 +20,12 @@ namespace StateMachine
             gameData.Path.Clear();
             gameData.SelectedBlock = null;
             gameData.HighlightBlocks = MapManager.Instance.DisplayInRange(gameData.SelectedUnit);
+
+            if (gameData.RobotTest)
+            {
+                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
+                gameData.agent.ClickBlockToMoveOn();
+            }
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

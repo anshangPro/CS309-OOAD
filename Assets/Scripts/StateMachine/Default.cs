@@ -41,10 +41,13 @@ namespace StateMachine
                 }
             }
 
-            if (gameData.GetCurrentPlayer().IsRobot)
+            if (gameData.RobotTest)
             {
                 // TODO: robot 操作here
+                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
                 // TODO: 直接fast back to default
+                gameData.agent.Think();
+                gameData.agent.ClickUnitToMove();
             }
 
             if (gameData.GetCurrentPlayer().TurnFinish())

@@ -12,6 +12,12 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.BlockSelected;
+            
+            if (gameData.RobotTest)
+            {
+                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
+                gameData.agent.ConfirmBlockToMoveOn();
+            }
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

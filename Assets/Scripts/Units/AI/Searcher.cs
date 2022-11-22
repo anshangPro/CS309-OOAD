@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameData;
 using Units.AI.Evaluator;
@@ -13,22 +14,24 @@ namespace Units.AI
         {
             _evaluator = evaluator;
         }
-        
+
         /// <summary>
         /// 根据当前的Evaluator进行对每个敌对棋子评估，选出最优的目标棋子
         /// </summary>
-        /// <param name="self">即将移动的棋子</param>
-        /// <returns>返回去往目标棋子的路径</returns>
-        public List<Block> Search(Unit self)
+        /// <param name="selfUnits">己方units，就是AI方的units</param>
+        /// <param name="enemyUnits"></param>
+        /// <returns>unit二元组。第一个unit表示己方棋子，第二个unit表示地方棋子</returns>
+        public Tuple<Unit, Unit> Search(List<Unit> selfUnits, List<Unit> enemyUnits)
         {
-            List<Unit> enemies = GameDataManager.Instance.GetOppositePlayer().UnitsList;
-            enemies.Sort((a, b) =>
+            List<Tuple<Unit, Unit>> unitPairs = (from selfUnit in selfUnits from enemyUnit in enemyUnits select new Tuple<Unit, Unit>(selfUnit, enemyUnit)).ToList();
+            unitPairs.Sort((a, b) =>
             {
-                float valueOfA = _evaluator.Evaluate(self, a);
-                float valueOfB = _evaluator.Evaluate(self, b);
-                return valueOfA.CompareTo(valueOfB);
+                float valueOfPairA = _evaluator.Evaluate(a.Item1, a.Item2);
+                float valueOfPairB = _evaluator.Evaluate(b.Item1, b.Item2);
+                return valueOfPairA.CompareTo(valueOfPairB);
             });
-            return FindPathTo(self, enemies[0]);
+
+            return unitPairs.First();
         }
 
         /// <summary>
@@ -43,6 +46,7 @@ namespace Units.AI
             Block end = target.onBlock;
             List<Block> reachableBlocks = MapManager.Instance.FindInRange(start, self.AtkRange);
             // TODO: 当目标不在可移动范围内时需要处理
+            
             return MapManager.Instance.FindPath(start, end, reachableBlocks);
         }
     }
