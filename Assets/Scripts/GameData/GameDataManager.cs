@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DTO;
+using GUI.Skills;
 using Units;
 using StateMachine;
 using Units.AI;
@@ -27,6 +28,12 @@ namespace GameData
         public Block SelectedBlock = null;       //玩家第一次选中的方块
         public List<Block> Path; //角色的移动路径
         public List<Block> SelectableUnitOnBlocks = new(); //用于指示当前玩家可选角色的绿色高亮方块
+        
+        //技能用私有地
+        public SkillOption SelectedSkill; //使用什么技能
+        public Unit SkillAffected; //对谁使用这个技能
+        public bool SkillShowing = false;
+        //技能用私有地
 
 
         public bool AttackAnimeFinished = false;

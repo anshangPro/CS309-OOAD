@@ -1,3 +1,4 @@
+using GameData;
 using StateMachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,6 +34,8 @@ namespace GUI
         public GameObject FightUI { get; private set; }
 
         public GameObject BackpackUI { get; private set; }
+        
+        public GameObject SkillPanel { get; private set; }
 
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
         private static readonly int SkipAttackClicked = Animator.StringToHash("skipAttackClicked");
@@ -63,6 +66,8 @@ namespace GUI
             FightMenuUI = _uIManager.transform.Find("FightMenuUI").gameObject;
             FightUI = _uIManager.transform.Find("FightUI").gameObject;
             BackpackUI = _uIManager.transform.Find("BackpackUI").gameObject;
+
+            SkillPanel = _uIManager.transform.Find("SkillPanel").gameObject;
         }
 
         /// <summary>
@@ -101,11 +106,19 @@ namespace GUI
             DefaultUI.SetActive(true);
         }
 
+        internal void SkillButtion()
+        {
+            SkillPanel.SetActive(true);
+            GameDataManager.Instance.SkillShowing = true;
+            this.MenuAfterMoveUI.SetActive(false);
+        }
+
         internal void AttackButton()
         {
             // _gameManager.AttackButtonOnClick();
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(AttackClicked);
+            this.MenuAfterMoveUI.SetActive(false);
         }
 
 

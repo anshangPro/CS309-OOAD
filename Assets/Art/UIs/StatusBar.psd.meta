@@ -3,7 +3,7 @@ guid: a74c4822647fc614ba5ffc635763ed37
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -63,7 +63,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -536,6 +535,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: OptionBar
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 114
+        width: 638
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ac7b264dc2cb646825be67fa058166
+      internalID: 466173680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -548,7 +568,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       StatusBar_Button: 203233900
-      StatusBar_Left_Arrow: 387610363
+      StatusBar_Red: -1761695857
       StatusBar_29: -960288937
       StatusBar_Skull: 2133955894
       StatusBar_Square_Button: 1064496730
@@ -580,11 +600,12 @@ TextureImporter:
       StatusBar_Confirm_Circle: -513723749
       StatusBar_ClickBox_Square: -1637312747
       StatusBar_Cross: -1506419860
-      StatusBar_26: -202122430
-      StatusBar_Orange: 974195506
-      StatusBar_34: -978769380
+      OptionBar: 466173680
       StatusBar_22: 455097799
-      StatusBar_Red: -1761695857
+      StatusBar_26: -202122430
+      StatusBar_34: -978769380
+      StatusBar_Left_Arrow: 387610363
+      StatusBar_Orange: 974195506
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 1

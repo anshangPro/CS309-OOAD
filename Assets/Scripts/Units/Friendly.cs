@@ -8,7 +8,6 @@ namespace Units
     public class Friendly : Unit
     {
         public LinkedList<Item> Package = new();
-        public LinkedList<Skill> Skills = new();
 
         public override string GetType()
         {

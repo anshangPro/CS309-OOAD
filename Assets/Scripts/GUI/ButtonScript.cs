@@ -56,6 +56,9 @@ namespace GUI
                 case "SkipAttackButton":
                     _uiManager.SkipAttackButton();
                     break;
+                case "SkillButton":
+                    _uiManager.SkillButtion();
+                    break;
                 default:
                     Debug.Log("No button is clicked. Wrong operation!");
                     check = false;

@@ -1,4 +1,5 @@
 using GameData;
+using GUI;
 using UnityEngine;
 
 namespace StateMachine
@@ -17,6 +18,7 @@ namespace StateMachine
                 // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
                 gameData.agent.ClickAttackButton();
             }
+            UIManager.Instance.MenuAfterMoveUI.SetActive(true);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

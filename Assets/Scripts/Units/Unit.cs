@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DTO;
 using GameData;
@@ -10,7 +11,7 @@ using static Util.PositionUtil;
 
 namespace Units
 {
-    public class Unit : MonoBehaviour, IClickable, IFloatPanel
+    public abstract class Unit : MonoBehaviour, IClickable, IFloatPanel
     {
         public int type { get; internal set; }
         public int ofPlayer { get; set; }
@@ -25,6 +26,8 @@ namespace Units
         public int AtkRange = 1;
         public int Exp = 0;
         private int RewardExp = 120;
+
+        public LinkedList<Skill> Skills;
 
         /// <summary>
         /// 敏捷值
@@ -264,6 +267,11 @@ namespace Units
 
             Health = MaxHealth;
             Mp = MaxMp;
+            
+            foreach (Skill skill in Skills)
+            {
+                skill.RemainSkillPoint = skill.SkillPoint;
+            }
         }
 
         public virtual bool CanFightWith()
@@ -322,6 +330,11 @@ namespace Units
             Damage = unit.Damage;
             Defense = unit.Defense;
             AtkRange = unit.AtkRange;
+        }
+
+        public Unit()
+        {
+            this.Skills = new LinkedList<Skill>();
         }
 
     }
