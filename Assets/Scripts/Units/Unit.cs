@@ -75,6 +75,8 @@ namespace Units
 
         protected virtual void MoveToBlock(Block block)
         {
+            FaceTo(block.gameObject.transform);
+
             Vector3 newPos = DstBlock2DstPos3(block);
 
             const float speed = 5.0f;
@@ -288,17 +290,16 @@ namespace Units
         /// <summary>
         /// 使该单位面向对象。此乃正道。
         /// </summary>
-        public void FaceTo(Unit target)
+        public void FaceTo(Transform target)
         {
-            Transform target_transform = target.gameObject.GetComponent<SpriteRenderer>().transform;
             Transform camera_transform = gameObject.GetComponent<SpriteRenderer>().transform;
             double camera_euler_Y = camera_transform.eulerAngles.y;
             if (camera_euler_Y > 180.0)
                 camera_euler_Y -= 360.0;
 
             // 180° 特判
-            if (target_transform.position.x == camera_transform.position.x &&
-                target_transform.position.z < camera_transform.position.z)
+            if (target.position.x == camera_transform.position.x &&
+                target.position.z < camera_transform.position.z)
             {
                 gameObject.GetComponent<SpriteRenderer>().flipX = (camera_euler_Y < 0);
                 Debug.Log("target angle: 180");
@@ -307,8 +308,8 @@ namespace Units
             }
 
             double angle = camera_euler_Y - Math.Atan2(
-                target_transform.position.x - camera_transform.position.x,
-                target_transform.position.z - camera_transform.position.z
+                target.position.x - camera_transform.position.x,
+                target.position.z - camera_transform.position.z
             ) / Math.PI * 180;
             if (angle > 180.0)
                 angle -= 360.0;
@@ -325,7 +326,7 @@ namespace Units
         public void PlayAttackAnime()
         {
             Animator selfAnimator = this.GetComponent<Animator>();
-            FaceTo(GameDataManager.Instance.SelectedEnemy);
+            FaceTo(GameDataManager.Instance.SelectedEnemy.gameObject.GetComponent<SpriteRenderer>().transform);
             selfAnimator.SetTrigger(AttackMeleeAnime);
         }
 
@@ -337,7 +338,7 @@ namespace Units
             Debug.Log("take damage");
             Unit target = GameDataManager.Instance.SelectedEnemy;
             Animator oppositeAnimator = target.GetComponent<Animator>();
-            target.FaceTo(this);
+            target.FaceTo(this.gameObject.GetComponent<SpriteRenderer>().transform);
             oppositeAnimator.SetTrigger(TakeDamageAnime);
         }
 
