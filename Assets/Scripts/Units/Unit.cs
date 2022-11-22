@@ -69,7 +69,8 @@ namespace Units
 
         protected virtual void Update()
         {
-            gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
+            Vector3 old_eu = gameObject.GetComponent<SpriteRenderer>().transform.eulerAngles;
+            gameObject.GetComponent<SpriteRenderer>().transform.eulerAngles = new Vector3(old_eu.x, Camera.main.transform.eulerAngles.y, old_eu.z);
         }
 
         protected virtual void MoveToBlock(Block block)
@@ -285,11 +286,21 @@ namespace Units
         }
 
         /// <summary>
+        /// 使该单位面向对象。此乃正道。
+        /// </summary>
+        public void FaceTo(Unit target)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            Debug.Log("flipped");
+        }
+
+        /// <summary>
         /// 播放自身的攻击动画
         /// </summary>
         public void PlayAttackAnime()
         {
             Animator selfAnimator = this.GetComponent<Animator>();
+            FaceTo(GameDataManager.Instance.SelectedEnemy);
             selfAnimator.SetTrigger(AttackMeleeAnime);
         }
 
@@ -299,7 +310,9 @@ namespace Units
         public void PlayTakeDamageAnime()
         {
             Debug.Log("take damage");
-            Animator oppositeAnimator = GameDataManager.Instance.SelectedEnemy.GetComponent<Animator>();
+            Unit target = GameDataManager.Instance.SelectedEnemy;
+            Animator oppositeAnimator = target.GetComponent<Animator>();
+            target.FaceTo(this);
             oppositeAnimator.SetTrigger(TakeDamageAnime);
         }
 
