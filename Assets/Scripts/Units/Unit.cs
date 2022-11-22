@@ -290,8 +290,33 @@ namespace Units
         /// </summary>
         public void FaceTo(Unit target)
         {
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            Debug.Log("flipped");
+            Transform target_transform = target.gameObject.GetComponent<SpriteRenderer>().transform;
+            Transform camera_transform = gameObject.GetComponent<SpriteRenderer>().transform;
+            double camera_euler_Y = camera_transform.eulerAngles.y;
+            if (camera_euler_Y > 180.0)
+                camera_euler_Y -= 360.0;
+
+            // 180° 特判
+            if (target_transform.position.x == camera_transform.position.x &&
+                target_transform.position.z < camera_transform.position.z)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = (camera_euler_Y < 0);
+                Debug.Log("target angle: 180");
+                Debug.Log("flipped: " + (camera_euler_Y).ToString());
+                return;
+            }
+
+            double angle = camera_euler_Y - Math.Atan2(
+                target_transform.position.x - camera_transform.position.x,
+                target_transform.position.z - camera_transform.position.z
+            ) / Math.PI * 180;
+            if (angle > 180.0)
+                angle -= 360.0;
+            if (angle < -180.0)
+                angle += 360.0;
+
+            gameObject.GetComponent<SpriteRenderer>().flipX = (angle > 0);
+            Debug.Log("target angle: " + angle.ToString());
         }
 
         /// <summary>
