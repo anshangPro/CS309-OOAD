@@ -13,6 +13,12 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             _gameData.gameStatus = StateMachine.GameStatus.FightMenu;
+            
+            if (_gameData.RobotTest)
+            {
+                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
+                _gameData.agent.ClickEnemyToAttack();
+            }
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

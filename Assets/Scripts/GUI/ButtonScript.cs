@@ -10,7 +10,7 @@ namespace GUI
     {
         private UIManager _uiManager;
 
-        private void Start()
+        private void Awake()
         {
             _uiManager = UIManager.Instance;
         }

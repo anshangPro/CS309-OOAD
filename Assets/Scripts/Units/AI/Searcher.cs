@@ -31,7 +31,7 @@ namespace Units.AI
                 return valueOfPairA.CompareTo(valueOfPairB);
             });
 
-            return unitPairs.First();
+            return unitPairs.First(pair => !pair.Item1.hasMoved);
         }
 
         /// <summary>

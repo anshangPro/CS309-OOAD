@@ -54,7 +54,14 @@ namespace Units.AI
 
         public void ClickAttackButton()
         {
+            MouseController.GameObjectName = "AttackButton";
             GameObject.Find("AttackButton").GetComponent<ButtonScript>().IsClicked();
+        }
+
+        public void ClickEnemyToAttack()
+        {
+            _pair.Item2.IsClicked();
+            Debug.Log($"Click unit {_blockToMoveOn.gameObject.name} at {_blockToMoveOn.gameObject.transform.position}");
         }
 
         private Block ChooseBlockMoveTo(Unit self, Unit target)

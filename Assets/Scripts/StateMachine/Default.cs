@@ -47,15 +47,6 @@ namespace StateMachine
                 }
             }
 
-            if (gameData.RobotTest)
-            {
-                // TODO: robot 操作here
-                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
-                // TODO: 直接fast back to default
-                gameData.agent.Think();
-                gameData.agent.ClickUnitToMove();
-            }
-
             if (gameData.GetCurrentPlayer().TurnFinish())
             {
                 foreach (Unit unit in gameData.GetCurrentPlayer().UnitsList)
@@ -72,6 +63,14 @@ namespace StateMachine
                     // 设置正开始回合的所有单位 hasMoved, hasAttacked 属性为 False
                     unit.OnTurnBegin();
                 }
+            }
+            if (gameData.RobotTest)
+            {
+                // TODO: robot 操作here
+                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
+                // TODO: 直接fast back to default
+                gameData.agent.Think();
+                gameData.agent.ClickUnitToMove();
             }
             
             HighlightBlockUtil.HighlightSelectableUnitOnBlocks();

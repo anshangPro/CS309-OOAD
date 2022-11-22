@@ -13,12 +13,13 @@ namespace StateMachine
         {
             gameData.gameStatus = StateMachine.GameStatus.MenuAfterMove;
             
+            UIManager.Instance.MenuAfterMoveUI.SetActive(true);
+            
             if (gameData.RobotTest)
             {
                 // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
                 gameData.agent.ClickAttackButton();
             }
-            UIManager.Instance.MenuAfterMoveUI.SetActive(true);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
