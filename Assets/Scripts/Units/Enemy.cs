@@ -44,9 +44,8 @@ namespace Units
         {
             int opposite = GameDataManager.Instance.MovedUnit.ofPlayer;
             
-            //TODO 需要判断是否在攻击范围内 by 周凡卜 2022/11/3
             Unit movedUnit = GameDataManager.Instance.MovedUnit;
-            if (!MapManager.Instance.FindInRange(movedUnit.onBlock, movedUnit.AtkRange, true, true).Contains(onBlock))
+            if (!MapManager.Instance.GetFightBlocks(movedUnit.onBlock, movedUnit, movedUnit.AtkRange).Contains(onBlock))
             {
                 return false;
             }

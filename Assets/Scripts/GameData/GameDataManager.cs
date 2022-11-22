@@ -40,7 +40,7 @@ namespace GameData
         public bool TakeDamageAnimeFinished = false;
 
         public Agent agent = new(new Searcher(new GreedyEvaluator()));
-        public bool RobotTest = true;
+        public bool RobotTest = false;
 
         public string JsonToLoad = "Save/save1.json";
         
