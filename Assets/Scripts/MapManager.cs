@@ -50,13 +50,15 @@ public class MapManager : MonoBehaviour
             block.Flush();
         }
         
-        PriorityQueue<Block> openList = new PriorityQueue<Block>();
-        openList.Add(start);
+        List<Block> openList = new List<Block> { start };
         List<Block> closeList = new List<Block>();
 
-        while (openList.Size() > 0)
+        while (openList.Count > 0)
         {
-            Block cur = openList.PopFirst();
+            openList.Sort();
+            Block cur = openList.First();
+            openList.Remove(cur);
+            
             closeList.Add(cur);
 
             if (cur == end)
