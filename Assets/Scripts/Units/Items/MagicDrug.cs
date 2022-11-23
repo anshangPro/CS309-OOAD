@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameData;
+using UnityEngine;
 
 namespace Units.Items
 {
@@ -11,9 +12,10 @@ namespace Units.Items
             ItemImage = sprites[202];
         }
 
-        public override bool ItemUse(Unit unit)
+        public static void ItemUse()
         {
-            throw new System.NotImplementedException();
+            Unit selectedUnit = GameDataManager.Instance.SelectedUnit;
+            selectedUnit.Mp += 10;
         }
     }
 }

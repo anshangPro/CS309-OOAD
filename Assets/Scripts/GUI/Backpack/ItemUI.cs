@@ -1,5 +1,8 @@
 using System;
+using GameData;
 using Interfaces;
+using StateMachine;
+using Units.Items;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +12,7 @@ namespace GUI.Backpack
     {
         public Image itemImage;
         public Text itemNum;
+        private static readonly int ItemClicked = Animator.StringToHash("itemClicked");
 
         // ReSharper disable once IdentifierTypo
         private const string Templete = "IteamSpritesheet_";
@@ -22,16 +26,23 @@ namespace GUI.Backpack
 
             const string magicDrug = Templete + "202";
 
-            switch (spriteName)
+            if (GameDataManager.Instance.gameStatus == GameStatus.MenuAfterMove)
             {
-                case healthDrug:
-                    // healthDrug.
-                    break;
+                switch (spriteName)
+                {
+                    case healthDrug:
+                        HealthDrug.ItemUse();
+                        break;
 
-                case magicDrug:
-                    break;
-                default:
-                    throw new NotImplementedException();
+                    case magicDrug:
+                        MagicDrug.ItemUse();
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+
+                Animator animator = GameManager.gameManager.GetComponent<Animator>();
+                animator.SetTrigger(ItemClicked);
             }
 
             return true;

@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using GameData;
+using UnityEngine;
 
 namespace Units.Items
 {
+    // 给当前行动的单位 +10 血
     public class HealthDrug : Item
     {
         public HealthDrug()
@@ -9,12 +11,13 @@ namespace Units.Items
             ItemName = "HealthDrug";
             var sprites = Resources.LoadAll<Sprite>("Sprites/IteamSpritesheet");
             ItemImage = sprites[201];
-        }   
+        }
 
 
-        public override bool ItemUse(Unit unit)
+        public static void ItemUse()
         {
-            throw new System.NotImplementedException();
+            Unit selectedUnit = GameDataManager.Instance.SelectedUnit;
+            selectedUnit.Health += 10;
         }
     }
 }
