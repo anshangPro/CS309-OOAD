@@ -34,7 +34,7 @@ namespace GUI
         public GameObject FightUI { get; private set; }
 
         public GameObject BackpackUI { get; private set; }
-        
+
         public GameObject SkillPanel { get; private set; }
 
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
@@ -93,6 +93,11 @@ namespace GUI
             BackpackUI.SetActive(!BackpackUI.activeSelf);
         }
 
+        internal void ItemButton()
+        {
+            MenuAfterMoveUI.SetActive(false);
+            BackpackUI.SetActive(true);
+        }
 
         internal void MenuButton()
         {
@@ -110,7 +115,7 @@ namespace GUI
         {
             SkillPanel.SetActive(true);
             GameDataManager.Instance.SkillShowing = true;
-            this.MenuAfterMoveUI.SetActive(false);
+            MenuAfterMoveUI.SetActive(false);
         }
 
         internal void AttackButton()
@@ -131,6 +136,13 @@ namespace GUI
         internal void QuitButton()
         {
             SceneManager.LoadScene("Scenes/MainMenu");
+        }
+
+        internal void ClosePanelButton()
+        {
+            SkillPanel.SetActive(false);
+            DefaultUI.SetActive(true);
+            MenuAfterMoveUI.SetActive(true);
         }
     }
 }

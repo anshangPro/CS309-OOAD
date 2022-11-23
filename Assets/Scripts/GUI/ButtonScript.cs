@@ -9,7 +9,7 @@ namespace GUI
 {
     public class ButtonScript : MonoBehaviour, IClickable
     {
-        private UIManager _uiManager;
+        private static UIManager _uiManager = UIManager.Instance;
 
         private void Awake()
         {
@@ -31,6 +31,8 @@ namespace GUI
             Debug.Log("Hit object: " + MouseController.GameObjectName);
             switch (MouseController.GameObjectName)
             {
+                
+                // default UI
                 case "MenuButton":
                     Debug.Log("MenuButton is clicked !");
                     _uiManager.MenuButton();
@@ -42,7 +44,7 @@ namespace GUI
                     break;
 
 
-                // main_menu_state:
+                // main_menu:
                 case "SaveButton":
                     // 存档功能待实现
                     MapSaver.Save();
@@ -58,6 +60,8 @@ namespace GUI
                 case "AttackButton":
                     _uiManager.AttackButton();
                     break;
+                
+                
                 // fightMenu:
                 case "SkipAttackButton":
                     _uiManager.SkipAttackButton();
@@ -65,11 +69,19 @@ namespace GUI
                 case "SkillButton":
                     _uiManager.SkillButtion();
                     break;
+                case "ItemButton":
+                    _uiManager.ItemButton();
+                    break;
+
+                // skillPanel
+                case "closePanelButton":
+                    _uiManager.ClosePanelButton();
+                    break;
                 default:
                     Debug.Log("No button is clicked. Wrong operation!");
                     check = false;
                     break;
-            }
+            }   
 
             return check;
         }

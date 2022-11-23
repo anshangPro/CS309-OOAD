@@ -13,7 +13,7 @@ using Util;
 public class MouseController : MonoBehaviour
 {
     private UIManager _uiManager = UIManager.Instance;
-    public static String GameObjectName = "";
+    public static string GameObjectName = "";
 
     private void Start()
     {
