@@ -67,9 +67,9 @@ namespace Units.AI
         private Block ChooseBlockMoveTo(Unit self, Unit target)
         {
             List<Block> neighbors = MapManager.Instance.GetNeighborBlocks(target.onBlock,
-                MapManager.Instance.FindInRange(self.onBlock, self.AtkRange));
+                MapManager.Instance.FindInRange(self.onBlock, self.Mv));
             neighbors.Sort((a, b) => (int)Vector3.Distance(a.gameObject.transform.position, b.gameObject.transform.position));
-            return neighbors.First();
+            return neighbors.First(block => block.standUnit == null);
         }
     }
 }
