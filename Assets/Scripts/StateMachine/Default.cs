@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using GameData;
+using GUI;
 using Units;
 using UnityEngine;
 using Util;
@@ -47,6 +48,11 @@ namespace StateMachine
                 }
             }
 
+            if (gameData.IsGameOver())
+            {
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
+
             if (gameData.GetCurrentPlayer().TurnFinish())
             {
                 foreach (Unit unit in gameData.GetCurrentPlayer().UnitsList)
@@ -64,13 +70,10 @@ namespace StateMachine
                     unit.OnTurnBegin();
                 }
             }
-            if (gameData.RobotTest)
+            if (gameData.ShouldAgentOperate())
             {
-                // TODO: robot 操作here
-                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
-                // TODO: 直接fast back to default
-                gameData.agent.Think();
-                gameData.agent.ClickUnitToMove();
+                gameData.Agent.Think();
+                gameData.Agent.ClickUnitToMove();
             }
             
             HighlightBlockUtil.HighlightSelectableUnitOnBlocks();

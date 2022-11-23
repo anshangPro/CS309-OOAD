@@ -1,4 +1,5 @@
-﻿using Archive;
+﻿using System;
+using Archive;
 using GUI.Backpack;
 using Interfaces;
 using Units.Items;
@@ -11,6 +12,11 @@ namespace GUI
         private UIManager _uiManager;
 
         private void Awake()
+        {
+            _uiManager = UIManager.Instance;
+        }
+
+        private void Start()
         {
             _uiManager = UIManager.Instance;
         }

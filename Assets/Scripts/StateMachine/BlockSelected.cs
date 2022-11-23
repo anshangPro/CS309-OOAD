@@ -13,10 +13,9 @@ namespace StateMachine
         {
             gameData.gameStatus = StateMachine.GameStatus.BlockSelected;
             
-            if (gameData.RobotTest)
-            {
-                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
-                gameData.agent.ConfirmBlockToMoveOn();
+            if (gameData.ShouldAgentOperate())
+            { 
+                gameData.Agent.ConfirmBlockToMoveOn();
             }
         }
 

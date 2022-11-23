@@ -15,10 +15,9 @@ namespace StateMachine
             
             UIManager.Instance.MenuAfterMoveUI.SetActive(true);
             
-            if (gameData.RobotTest)
+            if (gameData.ShouldAgentOperate())
             {
-                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
-                gameData.agent.ClickAttackButton();
+                gameData.Agent.ClickAttackButton();
             }
         }
 

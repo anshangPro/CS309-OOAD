@@ -14,10 +14,9 @@ namespace StateMachine
         {
             _gameData.gameStatus = StateMachine.GameStatus.FightMenu;
             
-            if (_gameData.RobotTest)
+            if (_gameData.ShouldAgentOperate())
             {
-                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
-                _gameData.agent.ClickEnemyToAttack();
+                _gameData.Agent.ClickEnemyToAttack();
             }
         }
 

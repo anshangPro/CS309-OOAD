@@ -21,10 +21,9 @@ namespace StateMachine
             gameData.SelectedBlock = null;
             gameData.HighlightBlocks = MapManager.Instance.DisplayInRange(gameData.SelectedUnit);
 
-            if (gameData.RobotTest)
+            if (gameData.ShouldAgentOperate())
             {
-                // TODO: RobotTest 需要换成 gameDta.GetCurrentPlayer().IsRobot
-                gameData.agent.ClickBlockToMoveOn();
+                gameData.Agent.ClickBlockToMoveOn();
             }
         }
 
