@@ -68,7 +68,9 @@ namespace Units.AI
         {
             List<Block> neighbors = MapManager.Instance.GetNeighborBlocks(target.onBlock,
                 MapManager.Instance.FindInRange(self.onBlock, self.Mv));
-            neighbors.Sort((a, b) => (int)Vector3.Distance(a.gameObject.transform.position, b.gameObject.transform.position));
+            neighbors.Sort((a, b) => Vector3.Distance(self.onBlock.gameObject.transform.position, a.gameObject.transform.position)
+                .CompareTo(Vector3.Distance(self.onBlock.gameObject.transform.position,
+                    b.gameObject.transform.position)));
             return neighbors.First(block => block.standUnit == null);
         }
     }
