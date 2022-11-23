@@ -25,7 +25,7 @@ namespace GUI.Backpack
             switch (spriteName)
             {
                 case healthDrug:
-                    healthDrug.
+                    // healthDrug.
                     break;
 
                 case magicDrug:
