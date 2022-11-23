@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GameData;
 using Units.AI.Evaluator;
+using Util;
 
 namespace Units.AI
 {
@@ -24,6 +25,7 @@ namespace Units.AI
         public Tuple<Unit, Unit> Search(List<Unit> selfUnits, List<Unit> enemyUnits)
         {
             List<Tuple<Unit, Unit>> unitPairs = (from selfUnit in selfUnits from enemyUnit in enemyUnits select new Tuple<Unit, Unit>(selfUnit, enemyUnit)).ToList();
+            unitPairs = ListUtil.Shuffle(unitPairs);
             unitPairs.Sort((a, b) =>
             {
                 float valueOfPairA = _evaluator.Evaluate(a.Item1, a.Item2);
