@@ -39,6 +39,7 @@ namespace GUI
 
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
         private static readonly int SkipAttackClicked = Animator.StringToHash("skipAttackClicked");
+        private static readonly int SkipMoveClicked = Animator.StringToHash("skipMoveClicked");
 
         private void Awake()
         {
@@ -126,6 +127,12 @@ namespace GUI
             this.MenuAfterMoveUI.SetActive(false);
         }
 
+        internal void SkipMoveButton()
+        {
+            GameDataManager.Instance.SelectedBlock = GameDataManager.Instance.SelectedUnit.onBlock;
+            Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            animator.SetTrigger(SkipMoveClicked);
+        }
 
         internal void SkipAttackButton()
         {

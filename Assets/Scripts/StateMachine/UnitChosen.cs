@@ -1,5 +1,6 @@
 using UnityEngine;
 using GameData;
+using GUI;
 using Util;
 
 namespace StateMachine
@@ -7,7 +8,7 @@ namespace StateMachine
     public class UnitChosen : StateMachineBehaviour
     {
         private GameDataManager gameData = GameDataManager.Instance;
-        
+
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -25,6 +26,8 @@ namespace StateMachine
             {
                 gameData.Agent.ClickBlockToMoveOn();
             }
+
+            UIManager.Instance.CharacterUI.SetActive(true);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -36,7 +39,7 @@ namespace StateMachine
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            
+            UIManager.Instance.CharacterUI.SetActive(false);
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -31,7 +31,6 @@ namespace GUI
             Debug.Log("Hit object: " + MouseController.GameObjectName);
             switch (MouseController.GameObjectName)
             {
-                
                 // default UI
                 case "MenuButton":
                     Debug.Log("MenuButton is clicked !");
@@ -56,12 +55,18 @@ namespace GUI
                     _uiManager.QuitButton();
                     break;
 
+                // unit:
+                case "SkipMoveButton":
+                    _uiManager.SkipMoveButton();
+                    break;
+
+                
                 // menuAfterMove:
                 case "AttackButton":
                     _uiManager.AttackButton();
                     break;
-                
-                
+
+
                 // fightMenu:
                 case "SkipAttackButton":
                     _uiManager.SkipAttackButton();
@@ -81,7 +86,7 @@ namespace GUI
                     Debug.Log("No button is clicked. Wrong operation!");
                     check = false;
                     break;
-            }   
+            }
 
             return check;
         }
