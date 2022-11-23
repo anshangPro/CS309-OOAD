@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Units;
+using Units.Items;
 using UnityEngine;
 
 namespace GUI.Backpack
@@ -13,7 +15,9 @@ namespace GUI.Backpack
 
         public GameObject backpackUI;
         public ItemUI itemPrefab;
-        public Units.Backpack Backpack = new();
+
+        
+        private readonly Units.Backpack _backpack = new();
 
 
         private void OnEnable()
@@ -29,6 +33,12 @@ namespace GUI.Backpack
             }
 
             Instance = this;
+            
+            for (int i = 0; i < 2; i++)
+            {
+                InsertItem(new HealthDrug());
+                InsertItem(new MagicDrug());
+            }
         }
 
         /// <summary>
@@ -37,16 +47,16 @@ namespace GUI.Backpack
         /// <param name="item"></param>
         public void InsertItem(Item item)
         {
-            if (Backpack.ItemSet.ContainsKey(item.ItemName))
+            if (_backpack.ItemSet.ContainsKey(item.ItemName))
             {
-                foreach (Item a in Backpack.ItemSet.Values)
+                foreach (Item a in _backpack.ItemSet.Values)
                 {
                     a.ItemNum++;
                 }
             }
             else
             {
-                Backpack.ItemSet.Add(item.ItemName, item);
+                _backpack.ItemSet.Add(item.ItemName, item);
                 UpdateItemToUI();
             }
         }
@@ -68,7 +78,7 @@ namespace GUI.Backpack
                 Destroy(Instance.backpackUI.transform.GetChild(i).gameObject);
             }
 
-            foreach (Item item in Instance.Backpack.ItemSet.Values)
+            foreach (Item item in Instance._backpack.ItemSet.Values)
             {
                 InsertItemToUI(item);
             }

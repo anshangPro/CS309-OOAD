@@ -39,7 +39,7 @@ namespace GUI
                 case "BackpackButton":
                     Debug.Log("BackpackButton is clicked !");
                     _uiManager.BackpackButton();
-                    BackpackManager.Instance.InsertItem(new HealthDrug());
+                    // BackpackManager.Instance.InsertItem(new HealthDrug());
                     break;
 
 
@@ -52,12 +52,12 @@ namespace GUI
                     _uiManager.BackButton();
                     break;
                 case "QuitButton":
-                    _uiManager.QuitButton();
+                    UIManager.QuitButton();
                     break;
 
                 // unit:
                 case "SkipMoveButton":
-                    _uiManager.SkipMoveButton();
+                    UIManager.SkipMoveButton();
                     break;
 
                 
@@ -69,7 +69,7 @@ namespace GUI
 
                 // fightMenu:
                 case "SkipAttackButton":
-                    _uiManager.SkipAttackButton();
+                    UIManager.SkipAttackButton();
                     break;
                 case "SkillButton":
                     _uiManager.SkillButtion();

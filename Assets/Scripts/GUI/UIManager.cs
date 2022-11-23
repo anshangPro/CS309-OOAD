@@ -67,7 +67,7 @@ namespace GUI
             FightMenuUI = _uIManager.transform.Find("FightMenuUI").gameObject;
             FightUI = _uIManager.transform.Find("FightUI").gameObject;
             BackpackUI = _uIManager.transform.Find("BackpackUI").gameObject;
-
+            
             SkillPanel = _uIManager.transform.Find("SkillPanel").gameObject;
         }
 
@@ -92,6 +92,11 @@ namespace GUI
         internal void BackpackButton()
         {
             BackpackUI.SetActive(!BackpackUI.activeSelf);
+            if (GameDataManager.Instance.gameStatus == GameStatus.MenuAfterMove
+                && BackpackUI.activeSelf == false)
+            {
+                MenuAfterMoveUI.SetActive(true);
+            }
         }
 
         internal void ItemButton()
@@ -124,23 +129,23 @@ namespace GUI
             // _gameManager.AttackButtonOnClick();
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(AttackClicked);
-            this.MenuAfterMoveUI.SetActive(false);
+            MenuAfterMoveUI.SetActive(false);
         }
 
-        internal void SkipMoveButton()
+        internal static void SkipMoveButton()
         {
             GameDataManager.Instance.SelectedBlock = GameDataManager.Instance.SelectedUnit.onBlock;
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(SkipMoveClicked);
         }
 
-        internal void SkipAttackButton()
+        internal static void SkipAttackButton()
         {
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(SkipAttackClicked);
         }
 
-        internal void QuitButton()
+        internal static void QuitButton()
         {
             SceneManager.LoadScene("Scenes/MainMenu");
         }
