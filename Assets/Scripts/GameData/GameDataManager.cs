@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using DTO;
+using GUI;
 using GUI.Skills;
 using Units;
 using StateMachine;
 using Units.AI;
 using Units.AI.Evaluator;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameData
 {
@@ -100,6 +103,20 @@ namespace GameData
         public bool ShouldAgentOperate()
         {
             return Pve && GetCurrentPlayer().IsRobot && !IsGameOver();
+        }
+
+        public void GameOver()
+        {
+            UIManager.Instance.GameOverMenuUI.SetActive(true);
+            int winnerPlayerId = 0;
+            for (int i = 0; i < Players.Count; i++)
+            {
+                if (Players[i].UnitsList.Count(unit => unit.Health > 0) > 0)
+                {
+                    winnerPlayerId = i;
+                }
+            }
+            UIManager.Instance.WinnerPlayerIDText.text = winnerPlayerId.ToString();
         }
     }
 }

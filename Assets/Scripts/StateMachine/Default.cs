@@ -50,7 +50,7 @@ namespace StateMachine
 
             if (gameData.IsGameOver())
             {
-                UnityEditor.EditorApplication.isPlaying = false;
+                gameData.GameOver();
             }
 
             if (gameData.GetCurrentPlayer().TurnFinish())

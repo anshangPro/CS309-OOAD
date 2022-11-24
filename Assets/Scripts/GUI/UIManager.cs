@@ -1,5 +1,6 @@
 using GameData;
 using StateMachine;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -36,6 +37,9 @@ namespace GUI
         public GameObject BackpackUI { get; private set; }
 
         public GameObject SkillPanel { get; private set; }
+        
+        public GameObject GameOverMenuUI { get; private set; }
+        public TMP_Text WinnerPlayerIDText { get; set; }
 
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
         private static readonly int SkipAttackClicked = Animator.StringToHash("skipAttackClicked");
@@ -69,6 +73,8 @@ namespace GUI
             BackpackUI = _uIManager.transform.Find("BackpackUI").gameObject;
             
             SkillPanel = _uIManager.transform.Find("SkillPanel").gameObject;
+            GameOverMenuUI = _uIManager.transform.Find("GameoverMenuUI").gameObject;
+            WinnerPlayerIDText = GameOverMenuUI.transform.Find("WinnerPlayerID").gameObject.GetComponent<TMP_Text>();
         }
 
         /// <summary>

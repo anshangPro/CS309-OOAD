@@ -71,6 +71,7 @@ namespace Units.AI
             neighbors.Sort((a, b) => Vector3.Distance(self.onBlock.gameObject.transform.position, a.gameObject.transform.position)
                 .CompareTo(Vector3.Distance(self.onBlock.gameObject.transform.position,
                     b.gameObject.transform.position)));
+            // TODO: 逻辑需要加强，有时候这里的neighbors会为空
             return neighbors.First(block => block.standUnit == null);
         }
     }

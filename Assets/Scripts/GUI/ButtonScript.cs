@@ -4,6 +4,7 @@ using GUI.Backpack;
 using Interfaces;
 using Units.Items;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GUI
 {
@@ -82,6 +83,15 @@ namespace GUI
                 case "closePanelButton":
                     _uiManager.ClosePanelButton();
                     break;
+                
+                case "NextLevelButton":
+                    // TODO: 需要实现下一关卡的切换
+                    break;
+                
+                case "ExitGameButton":
+                    SceneManager.LoadScene("Scenes/MainMenu");
+                    break;
+                
                 default:
                     Debug.Log("No button is clicked. Wrong operation!");
                     check = false;
