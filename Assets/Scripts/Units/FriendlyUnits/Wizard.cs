@@ -18,7 +18,7 @@ namespace Units.FriendlyUnits
             this.BaseDamage = 18;
             this.BaseAtkRange = 1;
             this.DefenseUpdateRate = 1f;
-            this.Skills.AddLast(new FireBall());
+            this.Skills.AddLast(new WaterBall());
             foreach (Skill skill in Skills)
             {
                 skill.BelongTo = this;

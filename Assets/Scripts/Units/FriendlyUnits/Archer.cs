@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Units.Skills;
+using UnityEngine;
 
 namespace Units.FriendlyUnits
 {
@@ -19,6 +20,11 @@ namespace Units.FriendlyUnits
             this.BaseDamage = 15;
             this.BaseAtkRange = 1;
             this.DefenseUpdateRate = 1f;
+            this.Skills.AddLast(new Snipe());
+            foreach (Skill skill in Skills)
+            {
+                skill.BelongTo = this;
+            }
             UpdatePanel();
         }
     }

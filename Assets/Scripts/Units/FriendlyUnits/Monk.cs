@@ -1,4 +1,6 @@
-﻿namespace Units.FriendlyUnits
+﻿using Units.Skills;
+
+namespace Units.FriendlyUnits
 {
     /// <summary>
     /// 武僧
@@ -17,6 +19,11 @@
             this.BaseDamage = 15;
             this.BaseAtkRange = 1;
             this.DefenseUpdateRate = 1.1f;
+            this.Skills.AddLast(new Ban());
+            foreach (Skill skill in Skills)
+            {
+                skill.BelongTo = this;
+            }
             UpdatePanel();
         }
     }
