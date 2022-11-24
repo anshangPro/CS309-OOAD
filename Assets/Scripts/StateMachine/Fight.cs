@@ -20,7 +20,6 @@ namespace StateMachine
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            //TODO: 添加当前角色攻击敌方角色，和敌方角色承受伤害的动画
         }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
