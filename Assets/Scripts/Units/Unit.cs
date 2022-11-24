@@ -162,6 +162,7 @@ namespace Units
             while (Exp >= curExpUpperBound)
             {
                 level++;
+                UpdatePanel();
                 Debug.Log($"{this} update to level {level}");
                 Exp -= curExpUpperBound;
                 curExpUpperBound = level * 100;
@@ -351,6 +352,13 @@ namespace Units
             controller.maxHealth = (int)MaxHealth;
             controller.maxEnergy = level * 100;
             controller.energy = Exp;
+
+            controller.atk = (int)Damage;
+            controller.def = (int)Defense;
+            controller.move = Mv;
+            controller.level = level;
+            controller.name = UnitName;
+            
             controller.FixedUpdate();
             controller.gameObject.SetActive(true);
         }
