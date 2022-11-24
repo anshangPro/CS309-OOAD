@@ -69,8 +69,9 @@ namespace Units
 
         protected virtual void Update()
         {
+            //gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
             Vector3 old_eu = gameObject.GetComponent<SpriteRenderer>().transform.eulerAngles;
-            gameObject.GetComponent<SpriteRenderer>().transform.eulerAngles = new Vector3(old_eu.x, Camera.main.transform.eulerAngles.y, old_eu.z);
+            gameObject.GetComponent<SpriteRenderer>().transform.eulerAngles = new Vector3(-old_eu.x, Camera.main.transform.eulerAngles.y, old_eu.z);
         }
 
         protected virtual void MoveToBlock(Block block)
