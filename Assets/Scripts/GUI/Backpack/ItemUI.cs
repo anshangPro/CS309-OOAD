@@ -26,6 +26,8 @@ namespace GUI.Backpack
 
             const string magicDrug = Templete + "202";
 
+            const string expDrug = Templete + "28";
+
             if (GameDataManager.Instance.gameStatus == GameStatus.MenuAfterMove)
             {
                 switch (spriteName)
@@ -37,15 +39,16 @@ namespace GUI.Backpack
                     case magicDrug:
                         MagicDrug.Instance.ItemUse();
                         break;
-                    default:
-                        throw new NotImplementedException();
+
+                    case expDrug:
+                        ExpDrug.Instance.ItemUse();
+                        break;
                 }
 
                 Animator animator = GameManager.gameManager.GetComponent<Animator>();
                 animator.SetTrigger(ItemClicked);
+                UIManager.Instance.BackpackUI.SetActive(!UIManager.Instance.BackpackUI.activeSelf);
             }
-
-            UIManager.Instance.BackpackUI.SetActive(!UIManager.Instance.BackpackUI.activeSelf);
 
             // TODO: 这里需要设置一下使用道具的动画trigger by 张琦
             return true;

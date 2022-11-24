@@ -34,6 +34,7 @@ namespace GUI.Backpack
             {
                 InsertItem(new HealthDrug());
                 InsertItem(new MagicDrug());
+                InsertItem(new ExpDrug());
             }
         }
 
