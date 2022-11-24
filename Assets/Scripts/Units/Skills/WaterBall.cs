@@ -1,13 +1,13 @@
 ﻿namespace Units.Skills
 {
-    public class FireBall: Skill
+    public class WaterBall: Skill
     {
-        private int _rangeEnhance = 1;
-        private int _damageEnhance = 5;    
+        private readonly int _rangeEnhance = 1;
+        private readonly int _damageEnhance = 5;    
         
-        public FireBall()
+        public WaterBall()
         {
-            Name = "Fire Ball";
+            Name = "Water Ball";
             SkillPoint = 10;
             RemainSkillPoint = 10;
         }
