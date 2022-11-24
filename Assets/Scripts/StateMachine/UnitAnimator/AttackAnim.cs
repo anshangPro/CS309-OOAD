@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace StateMachine.UnitAnimator
 {
-    public class AttackMelee : StateMachineBehaviour
+    public class AttackAnim : StateMachineBehaviour
     {
         private static readonly int attackFinished = Animator.StringToHash("attackFinished");
         
