@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Units
@@ -10,6 +11,6 @@ namespace Units
         /// 玩家背包，因为储存多个物品，所以是一个集合
         /// HashTable: name -> object
         /// </summary>
-        public Hashtable ItemSet = new();
+        public Dictionary<string, Item> ItemSet = new();
     }
 }

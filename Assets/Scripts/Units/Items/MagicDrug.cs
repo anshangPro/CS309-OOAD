@@ -1,10 +1,13 @@
 ﻿using GameData;
+using GUI.Backpack;
 using UnityEngine;
 
 namespace Units.Items
 {
     public class MagicDrug : Item
     {
+        public static MagicDrug Instance { get; } = new();
+
         public MagicDrug()
         {
             ItemName = "MagicDrug";
@@ -12,10 +15,18 @@ namespace Units.Items
             ItemImage = sprites[202];
         }
 
-        public static void ItemUse()
+        public override void ItemUse()
         {
             Unit selectedUnit = GameDataManager.Instance.SelectedUnit;
             selectedUnit.Mp += 10;
+            float currentMp = selectedUnit.Mp;
+            selectedUnit.Mp = (currentMp + 10 <= selectedUnit.MaxMp)
+                ? selectedUnit.Mp + 10
+                : selectedUnit.MaxMp;
+
+            GameDataManager.Instance.Backpack.ItemSet[Instance.ItemName].ItemNum--;
+
+            BackpackManager.UpdateItemToUI();
         }
     }
 }

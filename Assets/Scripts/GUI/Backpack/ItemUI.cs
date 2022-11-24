@@ -31,11 +31,11 @@ namespace GUI.Backpack
                 switch (spriteName)
                 {
                     case healthDrug:
-                        HealthDrug.ItemUse();
+                        HealthDrug.Instance.ItemUse();
                         break;
 
                     case magicDrug:
-                        MagicDrug.ItemUse();
+                        MagicDrug.Instance.ItemUse();
                         break;
                     default:
                         throw new NotImplementedException();
@@ -45,6 +45,9 @@ namespace GUI.Backpack
                 animator.SetTrigger(ItemClicked);
             }
 
+            UIManager.Instance.BackpackUI.SetActive(!UIManager.Instance.BackpackUI.activeSelf);
+
+            // TODO: 这里需要设置一下使用道具的动画trigger by 张琦
             return true;
         }
     }

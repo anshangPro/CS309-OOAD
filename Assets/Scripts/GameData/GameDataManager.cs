@@ -22,19 +22,24 @@ namespace GameData
         public GameStatus gameStatus = GameStatus.Default;
 
         public Unit SelectedUnit = null;
-        public Unit MovedUnit = null;   //移动后需要结算的角色
+        public Unit MovedUnit = null; //移动后需要结算的角色
         public Unit SelectedEnemy = null;
 
         public List<Block> HighlightBlocks; //角色能移动的方块 或 角色能攻击到的范围
-        public Block SelectedBlock = null;       //玩家第一次选中的方块
+        public Block SelectedBlock = null; //玩家第一次选中的方块
         public List<Block> Path; //角色的移动路径
         public List<Block> SelectableUnitOnBlocks = new(); //用于指示当前玩家可选角色的绿色高亮方块
-        
+
         //技能用私有地
         public SkillOption SelectedSkill; //使用什么技能
         public Unit SkillAffected; //对谁使用这个技能
+
         public bool SkillShowing = false;
         //技能用私有地
+
+
+        //玩家背包
+        public readonly Backpack Backpack = new();
 
 
         public bool AttackAnimeFinished = false;
@@ -44,8 +49,8 @@ namespace GameData
         public const bool RobotTest = true;
 
         public string JsonToLoad = "Save/save1.json";
-        
-        
+
+
         private static GameDataManager _instance = new();
 
         public Tuple<GameObject, BlockDTO> GetBlock(int x, int y)
@@ -96,6 +101,5 @@ namespace GameData
         {
             return Pve && GetCurrentPlayer().IsRobot && !IsGameOver();
         }
-
     }
 }
