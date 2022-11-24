@@ -8,6 +8,8 @@ public class CameraMove : MonoBehaviour
     public float xRotationSpeed = 250.0f;
     public float yRotationSpeed = 120.0f;
     public float moveSpeed = 1f;
+    public int maxHeight = 20;
+    public int minHeight = 3;
 
     private Vector3 _cameraPosition;
     private Quaternion _rotateEuler;
@@ -86,7 +88,7 @@ public class CameraMove : MonoBehaviour
     private void ChangeCameraHeight()
     {
         _cameraPosition.y += Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * 400f;
-        _cameraPosition.y = ClampValue(_cameraPosition.y, 8, 20);
+        _cameraPosition.y = ClampValue(_cameraPosition.y, minHeight, maxHeight);
         camera.transform.position = _cameraPosition;
     }
 
