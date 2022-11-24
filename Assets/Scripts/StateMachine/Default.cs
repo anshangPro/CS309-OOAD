@@ -15,10 +15,13 @@ namespace StateMachine
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (gameData.SelectedSkill is not null && gameData.SelectedSkill.Skill is not null)
+            if (gameData.SelectedSkill is not null)
             {
-                gameData.SelectedSkill.Skill.CancelEffect();
-                gameData.SelectedSkill.Skill = null;
+                if (gameData.SelectedSkill.Skill is not null)
+                {
+                    gameData.SelectedSkill.Skill.CancelEffect();
+                }
+                gameData.SelectedSkill = null;
             }
             
             gameData.gameStatus = StateMachine.GameStatus.Default;
