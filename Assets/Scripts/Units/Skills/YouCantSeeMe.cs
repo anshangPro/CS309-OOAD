@@ -1,13 +1,13 @@
 ﻿namespace Units.Skills
 {
-    public class FireBall: Skill
+    public class YouCantSeeMe: Skill
     {
-        private int _rangeEnhance = 1;
-        private int _damageEnhance = 5;    
+        private readonly int _rangeEnhance = 2;
+        private readonly int _damageEnhance = 1;    
         
-        public FireBall()
+        public YouCantSeeMe()
         {
-            Name = "Fire Ball";
+            Name = "You can't see me";
             SkillPoint = 10;
             RemainSkillPoint = 10;
         }

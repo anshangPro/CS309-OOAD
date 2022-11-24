@@ -55,6 +55,7 @@ namespace Units
         private static readonly int UnitClickedAnime = Animator.StringToHash("unitClicked");
         private static readonly int EnemyClickedAnime = Animator.StringToHash("enemyClicked");
         private static readonly int AttackMeleeAnime = Animator.StringToHash("attack_melee");
+        private static readonly int AttackSkillAnime = Animator.StringToHash("attack_skill");
         private static readonly int TakeDamageAnime = Animator.StringToHash("take_damage");
         private static readonly int DeathAnime = Animator.StringToHash("death");
 
@@ -329,7 +330,13 @@ namespace Units
         {
             Animator selfAnimator = this.GetComponent<Animator>();
             FaceTo(GameDataManager.Instance.SelectedEnemy.gameObject.GetComponent<SpriteRenderer>().transform);
-            selfAnimator.SetTrigger(AttackMeleeAnime);
+            if (GameDataManager.Instance.SelectedSkill is not null)
+            {
+                selfAnimator.SetTrigger(AttackSkillAnime);
+            } else
+            {
+                selfAnimator.SetTrigger(AttackMeleeAnime);
+            }
         }
 
         /// <summary>

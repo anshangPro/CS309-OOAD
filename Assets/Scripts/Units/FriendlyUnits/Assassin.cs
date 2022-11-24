@@ -1,4 +1,6 @@
 ﻿
+using Units.Skills;
+
 namespace Units.FriendlyUnits
 {
     /// <summary>
@@ -18,6 +20,11 @@ namespace Units.FriendlyUnits
             this.BaseDamage = 20;
             this.BaseAtkRange = 1;
             this.DefenseUpdateRate = 0.9f;
+            this.Skills.AddLast(new GroundFissure());
+            foreach (Skill skill in Skills)
+            {
+                skill.BelongTo = this;
+            }
             UpdatePanel();
         }
     }
