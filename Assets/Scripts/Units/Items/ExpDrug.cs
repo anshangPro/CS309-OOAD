@@ -20,6 +20,7 @@ namespace Units.Items
             Unit selectedUnit = GameDataManager.Instance.SelectedUnit;
             selectedUnit.level++;
             selectedUnit.UpdatePanel();
+            selectedUnit.Exp = 0;
 
             GameDataManager.Instance.Backpack.ItemSet[Instance.ItemName].ItemNum--;
             BackpackManager.UpdateItemToUI();
