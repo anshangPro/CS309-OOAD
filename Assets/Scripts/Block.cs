@@ -153,7 +153,7 @@ public class Block : MonoBehaviour, IComparable<Block>, IClickable
             {
                 animator.SetTrigger(BlockConfirmed);
             }
-            else if (standUnit is null)
+            else if (standUnit is null  && gameData.HighlightBlocks.Contains(this))
             {
                 gameData.SelectedBlock = this;
                 animator.SetTrigger(BlockSelected);
