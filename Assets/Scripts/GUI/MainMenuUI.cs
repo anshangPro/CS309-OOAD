@@ -16,7 +16,7 @@ namespace GUI
 
         private Dictionary<string, string> _sceneToJson = new Dictionary<string, string>()
         {
-            {"Scenes/SampleScene", "pve_test.json"}
+            {"Scenes/SampleScene", "temp.json"}
         };
         private void Start()
         {

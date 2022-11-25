@@ -1,18 +1,35 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DTO
 {
     public class EnviromentDTO
     {
         public string type;
-        public int[][] coordinates;
+        public float[][] coordinates;
 
-        public Vector3Int[] GetCoordinates()
+        public static EnviromentDTO InitFrom(string pType, List<GameObject> environmentList)
         {
-            Vector3Int[] res = new Vector3Int[coordinates.Length];
+            EnviromentDTO enviromentDto = new EnviromentDTO();
+            enviromentDto.type = pType;
+            enviromentDto.coordinates = new float[environmentList.Count][];
+            for (int i = 0; i < environmentList.Count; i++)
+            {
+                enviromentDto.coordinates[i] = new float[3];
+                enviromentDto.coordinates[i][0] = environmentList[i].transform.position.x;
+                enviromentDto.coordinates[i][1] = environmentList[i].transform.position.y;
+                enviromentDto.coordinates[i][2] = environmentList[i].transform.position.z;
+            }
+
+            return enviromentDto;
+        }
+
+        public Vector3[] GetCoordinates()
+        {
+            Vector3[] res = new Vector3[coordinates.Length];
             for (int i = 0; i < res.Length; i++)
             {
-                res[i] = new Vector3Int(coordinates[i][0], coordinates[i][1], coordinates[i][2]);
+                res[i] = new Vector3(coordinates[i][0], coordinates[i][1], coordinates[i][2]);
             }
 
             return res;

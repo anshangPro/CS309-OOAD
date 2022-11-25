@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DTO
@@ -8,8 +9,24 @@ namespace DTO
     {
         public int type;
         public int[] coordinate;
-        public int cost;
+        public float cost;
+        public bool isWalkable;
         public Dictionary<string, string> optional;
+        
+        public static BlockDTO InitFrom(Block block)
+        {
+            BlockDTO blockDto = new BlockDTO();
+            blockDto.type = block.type;
+            blockDto.coordinate = new[]
+            {
+                (int)block.transform.position.x,
+                (int)block.transform.position.y,
+                (int)block.transform.position.z
+            };
+            blockDto.cost = block.moveCost;
+            blockDto.isWalkable = block.isWalkable;
+            return blockDto;
+        }
 
         public Vector3Int GetCoordinate()
         {

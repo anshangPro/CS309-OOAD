@@ -10,6 +10,7 @@ using Util;
 
 public class Block : MonoBehaviour, IComparable<Block>, IClickable
 {
+    public int type;
     public int X => (int)transform.localPosition.x;
     public int Z => (int)transform.localPosition.z;
     public Vector2Int Position2D => new(X, Z);
