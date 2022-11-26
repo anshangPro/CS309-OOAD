@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -6563,16 +6563,16 @@ TextureImporter:
       IteamSpritesheet_104: -253920035
       IteamSpritesheet_144: -202269583
       IteamSpritesheet_279: -2079185506
+      IteamSpritesheet_152: -941238442
       IteamSpritesheet_137: -1460517906
       IteamSpritesheet_94: 1089504943
-      IteamSpritesheet_152: -941238442
+      IteamSpritesheet_286: -592180649
       IteamSpritesheet_121: -1058546166
       IteamSpritesheet_271: -1683031446
       IteamSpritesheet_166: 1764272656
       IteamSpritesheet_262: 457253167
       IteamSpritesheet_223: 2041118371
       IteamSpritesheet_211: -664922942
-      IteamSpritesheet_286: -592180649
       IteamSpritesheet_272: -453945275
       IteamSpritesheet_222: -326903624
       IteamSpritesheet_297: -401413349
