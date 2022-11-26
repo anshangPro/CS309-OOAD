@@ -16,7 +16,7 @@ namespace StateMachine
             
             if (_gameData.ShouldAgentOperate())
             {
-                _gameData.Agent.ClickEnemyToAttack();
+                _gameData.Agent.ClickEnemyToAttackOrSkipAttack();
             }
         }
 
