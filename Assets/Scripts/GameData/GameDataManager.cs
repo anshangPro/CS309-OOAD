@@ -51,7 +51,7 @@ namespace GameData
         public readonly Agent Agent = new(new Searcher(new GreedyEvaluator()));
         public const bool RobotTest = true;
 
-        public string JsonToLoad = "Save/save1.json";
+        public string JsonToLoad = "Save/Scene_0.json";
 
 
         private static GameDataManager _instance = new();
