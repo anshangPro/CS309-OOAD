@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2638976890639456183}
   m_Layer: 8
   m_Name: Friendly_Assassin
-  m_TagString: Player_0
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fded310fca148c8b02f9a24e5b925af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ofPlayer: 0
   AtkRange: 1
   Exp: 0
   onBlock: {fileID: 0}

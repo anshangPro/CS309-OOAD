@@ -7,6 +7,7 @@ TagManager:
   - Player_0
   - Player_1
   - FloatPanel
+  - Unit
   layers:
   - Default
   - TransparentFX
