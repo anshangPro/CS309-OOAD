@@ -40,10 +40,13 @@ namespace GUI
                 case "BackpackButton":
                     Debug.Log("BackpackButton is clicked !");
                     _uiManager.BackpackButton();
-                    // BackpackManager.Instance.InsertItem(new HealthDrug());
                     break;
-
-
+                
+                // Backpack UI
+                case "closeBackpackButton":
+                    _uiManager.BackpackButton();
+                    break;
+                
                 // main_menu:
                 case "SaveButton":
                     // 存档功能待实现
@@ -61,7 +64,7 @@ namespace GUI
                     UIManager.SkipMoveButton();
                     break;
 
-                
+
                 // menuAfterMove:
                 case "AttackButton":
                     _uiManager.AttackButton();
@@ -83,15 +86,15 @@ namespace GUI
                 case "closePanelButton":
                     _uiManager.ClosePanelButton();
                     break;
-                
+
                 case "NextLevelButton":
                     // TODO: 需要实现下一关卡的切换
                     break;
-                
+
                 case "ExitGameButton":
                     SceneManager.LoadScene("Scenes/MainMenu");
                     break;
-                
+
                 default:
                     Debug.Log("No button is clicked. Wrong operation!");
                     check = false;

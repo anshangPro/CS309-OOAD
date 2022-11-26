@@ -12,9 +12,10 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.MenuAfterMove;
-            
+
             UIManager.Instance.MenuAfterMoveUI.SetActive(true);
-            
+            UIManager.Instance.SetVisiableBackpackButton();
+
             if (gameData.ShouldAgentOperate())
             {
                 gameData.Agent.ClickAttackButton();
@@ -28,10 +29,10 @@ namespace StateMachine
         //}
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        //{
-        //    
-        //}
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            UIManager.Instance.SetVisiableBackpackButton();
+        }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
         //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

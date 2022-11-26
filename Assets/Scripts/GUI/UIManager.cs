@@ -37,7 +37,7 @@ namespace GUI
         public GameObject BackpackUI { get; private set; }
 
         public GameObject SkillPanel { get; private set; }
-        
+
         public GameObject GameOverMenuUI { get; private set; }
         public TMP_Text WinnerPlayerIDText { get; set; }
 
@@ -71,7 +71,7 @@ namespace GUI
             FightMenuUI = _uIManager.transform.Find("FightMenuUI").gameObject;
             FightUI = _uIManager.transform.Find("FightUI").gameObject;
             BackpackUI = _uIManager.transform.Find("BackpackUI").gameObject;
-            
+
             SkillPanel = _uIManager.transform.Find("SkillPanel").gameObject;
             GameOverMenuUI = _uIManager.transform.Find("GameoverMenuUI").gameObject;
             WinnerPlayerIDText = GameOverMenuUI.transform.Find("WinnerPlayerID").gameObject.GetComponent<TMP_Text>();
@@ -161,6 +161,12 @@ namespace GUI
             SkillPanel.SetActive(false);
             DefaultUI.SetActive(true);
             MenuAfterMoveUI.SetActive(true);
+        }
+
+        public void SetVisiableBackpackButton()
+        {
+            GameObject backPackButton = DefaultUI.transform.Find("BackpackButton").gameObject;
+            backPackButton.SetActive(!backPackButton.activeSelf);
         }
     }
 }
