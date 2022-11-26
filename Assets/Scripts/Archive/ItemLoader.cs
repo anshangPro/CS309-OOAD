@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using DTO;
 using GameData;
 using Units;
@@ -35,40 +36,45 @@ namespace Archive
             {
                 EnvironmentPrefabDict.Add(environment.name, environment);
             }
+            // TODO: 记得删掉这里
+            // MapSaver.SaveAll();
+            // Debug.Log("");
         }
 
         private void Start()
         {
-            GameDataManager data = GameDataManager.Instance;
-            MapManager map = MapManager.Instance;
-            SaveDTO save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
-            foreach (BlockDTO block in save.blocks)
-            {
-                GameObject blockObj = Instantiate(blocks[block.type], block.GetCoordinate(), 
-                    Quaternion.identity, gameObject.transform);
-                LocToBlock.Add(new Vector2(block.coordinate[0], block.coordinate[2]), new Tuple<GameObject, BlockDTO>(blockObj, block));
-                map.Map.Add(new Vector2Int(block.coordinate[0], block.coordinate[2]), blockObj.GetComponent<Block>());
-            }
-            GameDataManager.Instance.blockList = LocToBlock;
-            
-            foreach (PlayerDTO player in save.Players)
-            {
-                Player p = new Player(player);
-                foreach(UnitDTO u in player.Units)
-                {
-                    GameObject unitObj = Instantiate(UnitPrefeb[u.type]);
-                    Unit unit = unitObj.GetComponent<Unit>();
-                    unit.CopyFrom(u);
-                    p.UnitsList.Add(unit);
-                }
-                data.Players[player.Index] = p;
-            }
+            // GameDataManager data = GameDataManager.Instance;
+            // MapManager map = MapManager.Instance;
+            // SaveDTO save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
+            // foreach (BlockDTO block in save.blocks)
+            // {
+            //     GameObject blockObj = Instantiate(blocks[block.type], block.GetCoordinate(), 
+            //         Quaternion.identity, gameObject.transform);
+            //     LocToBlock.Add(new Vector2(block.coordinate[0], block.coordinate[2]), new Tuple<GameObject, BlockDTO>(blockObj, block));
+            //     map.Map.Add(new Vector2Int(block.coordinate[0], block.coordinate[2]), blockObj.GetComponent<Block>());
+            // }
+            // GameDataManager.Instance.blockList = LocToBlock;
+            //
+            // foreach (PlayerDTO player in save.Players)
+            // {
+            //     Player p = new Player(player);
+            //     foreach(UnitDTO u in player.Units)
+            //     {
+            //         GameObject unitObj = Instantiate(UnitPrefeb[u.type]);
+            //         Unit unit = unitObj.GetComponent<Unit>();
+            //         unit.CopyFrom(u);
+            //         p.UnitsList.Add(unit);
+            //     }
+            //     data.Players[player.Index] = p;
+            // }
             
             // TODO: 加载方式换成这样
-            // SaveDTO save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
-            // LoadBlocksFrom(save);
-            // LoadPlayersFrom(save);
-            // LoadEnvironmentFrom(save);
+            SaveDTO save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
+            LoadBlocksFrom(save);
+            LoadEnvironmentFrom(save);
+            LoadPlayersFrom(save);
+            
+            // MapSaver.SaveAll();
 
             // for (int i = 0; i < 6; i++)
             // {
@@ -92,6 +98,9 @@ namespace Archive
                 GameObject blockObj = Instantiate(blocks[block.type], block.GetCoordinate(), 
                     Quaternion.identity, gameObject.transform);
                 blockObj.GetComponent<Block>().isWalkable = block.isWalkable;
+                if (LocToBlock.Keys.ToList().Contains(new Vector2(block.coordinate[0], block.coordinate[2])))
+                    continue;
+                
                 LocToBlock.Add(new Vector2(block.coordinate[0], block.coordinate[2]), new Tuple<GameObject, BlockDTO>(blockObj, block));
                 map.Map.Add(new Vector2Int(block.coordinate[0], block.coordinate[2]), blockObj.GetComponent<Block>());
             }
@@ -111,7 +120,9 @@ namespace Archive
                     GameObject block = Instantiate(gameObj, gameObject.transform);
                     block.transform.position = new Vector3(enviromentDto.coordinates[i][0], enviromentDto.coordinates[i][1],
                         enviromentDto.coordinates[i][2]);
-                    block.transform.rotation = Quaternion.identity;
+                    block.transform.rotation = Quaternion.Euler(enviromentDto.rotation[i][0],
+                        enviromentDto.rotation[i][1],
+                        enviromentDto.rotation[i][2]);
                 }
             }
         }
