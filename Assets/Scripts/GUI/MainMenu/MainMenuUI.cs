@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using GameData;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GUI
+namespace GUI.MainMenu
 {
     public class MainMenuUI : MonoBehaviour
     {
