@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 523140587253314553}
-  - component: {fileID: 5881504504568097163}
+  - component: {fileID: 5337958010825639661}
   m_Layer: 0
   m_Name: Spruce_1
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5881504504568097163
+--- !u!114 &5337958010825639661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 867296125917522243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc83833454d4812a3273730807bf728, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a6096feb1714771b4f112023d042235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: Spruce_1

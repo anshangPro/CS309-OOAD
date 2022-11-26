@@ -1005,6 +1005,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7902887243482290076}
+  - component: {fileID: 5479114147319095899}
   m_Layer: 0
   m_Name: WindMill_0
   m_TagString: Untagged
@@ -1043,6 +1044,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5479114147319095899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7415003884051631398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6096feb1714771b4f112023d042235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: WindMill_0
 --- !u!1 &7901450962022201407
 GameObject:
   m_ObjectHideFlags: 0

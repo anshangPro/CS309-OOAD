@@ -424,6 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3194053603661730378}
+  - component: {fileID: 5417587101231583900}
   m_Layer: 0
   m_Name: WoodenHouse_0
   m_TagString: Untagged
@@ -461,6 +462,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5417587101231583900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817105440660261104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6096feb1714771b4f112023d042235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: WoodenHouse_0
 --- !u!1 &4005391240281634875
 GameObject:
   m_ObjectHideFlags: 0
