@@ -1,3 +1,4 @@
+using System;
 using StateMachine;
 using TMPro;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace GUI
         private void Start()
         {
             // 显示状态的文本
-            _curState = transform.Find("CurState").gameObject;
+            _curState = gameObject;
             _tmp = _curState.GetComponent<TMP_Text>();
         }
 
@@ -32,6 +33,18 @@ namespace GUI
                 GameStatus.FightMenu => "FightMenu",
                 GameStatus.Fight => "Fight",
                 _ => _tmp.text
+            };
+
+            _tmp.color = GameData.GameDataManager.Instance.gameStatus switch
+            {
+                GameStatus.Default => Color.black,
+                GameStatus.UnitChosen => Color.blue,
+                GameStatus.BlockSelected => Color.magenta,
+                GameStatus.Move => Color.blue,
+                GameStatus.MenuAfterMove => Color.black,
+                GameStatus.FightMenu => Color.red,
+                GameStatus.Fight => Color.red,
+                _ => Color.white
             };
         }
     }
