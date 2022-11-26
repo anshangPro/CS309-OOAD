@@ -63,8 +63,9 @@ namespace GUI
                 case "SkipMoveButton":
                     UIManager.SkipMoveButton();
                     break;
-
-
+                case "LoadButton":
+                    _uiManager.LoadButton();
+                    break;
                 // menuAfterMove:
                 case "AttackButton":
                     _uiManager.AttackButton();

@@ -37,8 +37,11 @@ namespace GUI
         public GameObject BackpackUI { get; private set; }
 
         public GameObject SkillPanel { get; private set; }
-
+        
         public GameObject GameOverMenuUI { get; private set; }
+        
+        public GameObject LoadMenuUI { get; private set; }
+        
         public TMP_Text WinnerPlayerIDText { get; set; }
 
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
@@ -71,7 +74,7 @@ namespace GUI
             FightMenuUI = _uIManager.transform.Find("FightMenuUI").gameObject;
             FightUI = _uIManager.transform.Find("FightUI").gameObject;
             BackpackUI = _uIManager.transform.Find("BackpackUI").gameObject;
-
+            LoadMenuUI = _uIManager.transform.Find("SavePanel").gameObject;
             SkillPanel = _uIManager.transform.Find("SkillPanel").gameObject;
             GameOverMenuUI = _uIManager.transform.Find("GameoverMenuUI").gameObject;
             WinnerPlayerIDText = GameOverMenuUI.transform.Find("WinnerPlayerID").gameObject.GetComponent<TMP_Text>();
@@ -117,6 +120,12 @@ namespace GUI
             MainMenuUI.SetActive(true);
         }
 
+        internal void LoadButton()
+        {
+            MainMenuUI.SetActive(false);
+            LoadMenuUI.SetActive(true);
+        }
+
         internal void BackButton()
         {
             MainMenuUI.SetActive(false);
@@ -126,7 +135,7 @@ namespace GUI
         internal void SkillButtion()
         {
             SkillPanel.SetActive(true);
-            GameDataManager.Instance.SkillShowing = true;
+            GameDataManager.Instance.PanelShowing = true;
             MenuAfterMoveUI.SetActive(false);
         }
 

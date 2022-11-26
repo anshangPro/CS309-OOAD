@@ -13,6 +13,7 @@ namespace GUI.Skills
         private void OnEnable()
         {
             Unit p = GameDataManager.Instance.MovedUnit;
+            GameDataManager.Instance.PanelShowing = true;
             if (p is null) return;
             foreach (Skill pSkill in p.Skills)
             {
@@ -24,6 +25,7 @@ namespace GUI.Skills
 
         private void OnDisable()
         {
+            GameDataManager.Instance.PanelShowing = false;
             int len = content.transform.childCount;
             for (int i = 0; i < len; i++)
             {
