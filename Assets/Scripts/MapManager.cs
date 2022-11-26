@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance { get; private set; }
 
     public readonly Dictionary<Vector2Int, Block> Map = new();
+    public List<GameObject> environment = new();
 
     private void Awake()
     {

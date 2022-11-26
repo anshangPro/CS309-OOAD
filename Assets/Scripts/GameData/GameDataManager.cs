@@ -37,9 +37,12 @@ namespace GameData
         public SkillOption SelectedSkill; //使用什么技能
         public Unit SkillAffected; //对谁使用这个技能
 
-        public bool SkillShowing = false;
+        public bool PanelShowing = false;
         //技能用私有地
-
+        //存档加载槽用
+        public readonly string SavePath = "./Save";
+        public string JsonToLoad = "Save/SampleScene.json";
+        //存档加载槽用
 
         //玩家背包
         public readonly Backpack Backpack = new();
@@ -50,8 +53,6 @@ namespace GameData
 
         public readonly Agent Agent = new(new Searcher(new GreedyEvaluator()));
         public const bool RobotTest = true;
-
-        public string JsonToLoad = "Save/Scene_0.json";
 
 
         private static GameDataManager _instance = new();

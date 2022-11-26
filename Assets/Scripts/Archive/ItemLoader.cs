@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Security.Cryptography;
 using DTO;
 using GameData;
+using StateMachine;
 using Units;
 using UnityEngine;
 
@@ -11,6 +13,8 @@ namespace Archive
 {
     public class ItemLoader: MonoBehaviour
     {
+        public static ItemLoader Instance { get; private set; }
+        
         /// <summary>
         /// 方块预制体
         /// </summary>
@@ -32,6 +36,14 @@ namespace Archive
 
         private void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
             foreach (GameObject environment in EnvironmentPrefab)
             {
                 EnvironmentPrefabDict.Add(environment.name, environment);
@@ -41,7 +53,7 @@ namespace Archive
             // Debug.Log("");
         }
 
-        private void Start()
+        public void Start()
         {
             // GameDataManager data = GameDataManager.Instance;
             // MapManager map = MapManager.Instance;
@@ -90,6 +102,36 @@ namespace Archive
             // }
         }
 
+        public void GoDefault()
+        {
+            GameDataManager data = GameDataManager.Instance;
+            MapManager map = MapManager.Instance;
+            data.gameStatus = GameStatus.Default;
+            data.CurrentPlayer = -1;
+            data.blockList.Clear();
+
+            foreach (Player player in data.Players)
+            {
+                foreach (Unit unit in player.UnitsList)
+                {
+                    Destroy(unit.gameObject);
+                }
+                player.UnitsList.Clear();
+            }
+
+            foreach (GameObject env in map.environment)
+            {
+                Destroy(env);
+            }
+            map.environment.Clear();
+
+            foreach (KeyValuePair<Vector2Int, Block> blockPair in map.Map)
+            {
+                Destroy(blockPair.Value.gameObject);
+            }
+            map.Map.Clear();
+        }
+
         private void LoadBlocksFrom([NotNull] SaveDTO saveDto)
         {
             MapManager map = MapManager.Instance;
@@ -112,17 +154,18 @@ namespace Archive
             if (saveDto.environment == null || saveDto.environment.Count == 0)
                 return;
             
-            foreach (EnviromentDTO enviromentDto in saveDto.environment)
+            foreach (EnviromentDTO environmentDto in saveDto.environment)
             {
-                GameObject gameObj = EnvironmentPrefabDict[enviromentDto.type];
-                for (int i = 0; i < enviromentDto.coordinates.Length; i++)
+                GameObject gameObj = EnvironmentPrefabDict[environmentDto.type];
+                for (int i = 0; i < environmentDto.coordinates.Length; i++)
                 {
                     GameObject block = Instantiate(gameObj, gameObject.transform);
-                    block.transform.position = new Vector3(enviromentDto.coordinates[i][0], enviromentDto.coordinates[i][1],
-                        enviromentDto.coordinates[i][2]);
-                    block.transform.rotation = Quaternion.Euler(enviromentDto.rotation[i][0],
-                        enviromentDto.rotation[i][1],
-                        enviromentDto.rotation[i][2]);
+                    MapManager.Instance.environment.Add(block);
+                    block.transform.position = new Vector3(environmentDto.coordinates[i][0], environmentDto.coordinates[i][1],
+                        environmentDto.coordinates[i][2]);
+                    block.transform.rotation = Quaternion.Euler(environmentDto.rotation[i][0],
+                        environmentDto.rotation[i][1],
+                        environmentDto.rotation[i][2]);
                 }
             }
         }
