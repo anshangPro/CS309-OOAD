@@ -6,6 +6,7 @@ using DTO;
 using GameData;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using Units;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ namespace Archive
 
             save.Players = players;
             save.blocks = new List<BlockDTO>();
+            
             foreach (KeyValuePair<Vector2, Tuple<GameObject, BlockDTO>> pair in data.blockList)
             {
                 save.blocks.Add(pair.Value.Item2);
@@ -46,20 +48,36 @@ namespace Archive
             }
         }
 
-        public static void Test()
+        public static void SaveAll()
         {
             SaveDTO saveDto = new SaveDTO();
             SaveMapInto(saveDto);
+            SavePlayersInto(saveDto);
 
             string json = saveDto.ToJsonString();
-            using StreamWriter writer = new StreamWriter("save/export_map_test.json");
+            using StreamWriter writer = new StreamWriter("save/Scene_0.json");
             writer.Write(json);
             writer.Flush();
         }
 
+        /// <summary>
+        /// 保存人物，用于地图编辑模式
+        /// </summary>
+        /// <param name="saveDto"></param>
         public static void SavePlayersInto([NotNull] SaveDTO saveDto)
         {
-            
+            GameObject[] allUnits = GameObject.FindGameObjectsWithTag("Unit");
+            List<IGrouping<int,GameObject>> groupPlayers = allUnits.GroupBy(unit => unit.GetComponent<Units.Unit>().ofPlayer).ToList();
+            List<Player> players = new List<Player>();
+            foreach (IGrouping<int,GameObject> unitsOfOnePlayer in groupPlayers)
+            {
+                Player player = new Player();
+                player.UnitsList = unitsOfOnePlayer.Select(unit => unit.GetComponent<Unit>()).ToList();
+                player.Index = unitsOfOnePlayer.Key;
+                players.Add(player);
+            }
+
+            saveDto.Players = players.Select(player => new PlayerDTO(player)).ToList();
         }
 
         public static void SaveMapInto([NotNull] SaveDTO saveDto)
