@@ -1,3 +1,4 @@
+using GameData;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour
@@ -32,9 +33,12 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         _cameraPosition = _transform.position;
-        RotateCamera();
-        ChangeCameraHeight();
-        MoveCamera();
+        if (!GameDataManager.Instance.PanelShowing)
+        {
+            RotateCamera();
+            ChangeCameraHeight();
+            MoveCamera();
+        }
     }
 
     private void RotateCamera()

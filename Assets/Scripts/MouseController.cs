@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameData;
 using GUI;
 using Interfaces;
 using StateMachine;
@@ -68,8 +69,9 @@ public class MouseController : MonoBehaviour
                 }
             }
         }
-
-        FloatPane();
+        
+        if (!GameDataManager.Instance.PanelShowing)
+            FloatPane();
     }
 
     private float _deltaTime = -1;
