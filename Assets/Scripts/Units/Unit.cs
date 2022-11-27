@@ -248,7 +248,7 @@ namespace Units
 
         public void DamageTaken()
         {
-            if (Health <= 0)
+            if (Health < 0.1)
             {
                 gameObject.GetComponent<Animator>().SetTrigger(DeathAnime);
             }
