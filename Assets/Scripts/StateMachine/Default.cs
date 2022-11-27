@@ -15,15 +15,17 @@ namespace StateMachine
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            UIManager.Instance.SetVisiableWithdrawButton();
             if (gameData.SelectedSkill is not null)
             {
                 if (gameData.SelectedSkill.Skill is not null)
                 {
                     gameData.SelectedSkill.Skill.CancelEffect();
                 }
+
                 gameData.SelectedSkill = null;
             }
-            
+
             gameData.gameStatus = StateMachine.GameStatus.Default;
             if (gameData.CurrentPlayer == -1)
             {
@@ -73,15 +75,23 @@ namespace StateMachine
                     unit.OnTurnBegin();
                 }
             }
+
+            gameData.TakeSnapshot();
+
             if (gameData.ShouldAgentOperate())
             {
                 gameData.Agent.Think();
                 gameData.Agent.ClickUnitToMove();
             }
-            
+
             HighlightBlockUtil.HighlightSelectableUnitOnBlocks();
 
             Debug.Log("Turn end, now player is: " + gameData.CurrentPlayer);
+        }
+
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            UIManager.Instance.SetVisiableWithdrawButton();
         }
     }
 }

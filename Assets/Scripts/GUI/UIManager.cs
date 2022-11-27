@@ -177,5 +177,12 @@ namespace GUI
             GameObject backPackButton = DefaultUI.transform.Find("BackpackButton").gameObject;
             backPackButton.SetActive(!backPackButton.activeSelf);
         }
+        
+        
+        public void SetVisiableWithdrawButton()
+        {
+            GameObject withdrawMoveButton = DefaultUI.transform.Find("WithdrawMoveButton").gameObject;
+            withdrawMoveButton.SetActive(!withdrawMoveButton.activeSelf);
+        }
     }
 }

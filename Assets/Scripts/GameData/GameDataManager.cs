@@ -47,6 +47,8 @@ namespace GameData
         //玩家背包
         public readonly Backpack Backpack = new();
 
+        public readonly Stack<List<List<UnitSnapshot>>> CurPlayerGameHistory = new();
+
 
         public bool AttackAnimeFinished = false;
         public bool TakeDamageAnimeFinished = false;
@@ -93,6 +95,7 @@ namespace GameData
         {
             CurrentPlayer = (CurrentPlayer == 0) ? 1 : 0;
             GetCurrentPlayer().FinishedUnit = 0;
+            CurPlayerGameHistory.Clear();
         }
 
         public bool IsGameOver()
@@ -118,6 +121,31 @@ namespace GameData
                 }
             }
             UIManager.Instance.WinnerPlayerIDText.text = winnerPlayerId.ToString();
+        }
+
+        // TODO: 快照的方式需要改变，需要处理有人物死亡的情况
+        public void TakeSnapshot()
+        {
+            List<List<UnitSnapshot>> allPlayersSnapshot = Players.Select(player => player.UnitsList.Select(unit => new UnitSnapshot(unit)).ToList()).ToList();
+            CurPlayerGameHistory.Push(allPlayersSnapshot);
+        }
+
+        public static readonly int WithdrawAnime = Animator.StringToHash("withdrawClicked");
+        public void WithdrawMove()
+        {
+            if (CurPlayerGameHistory.Count == 1)
+                return;
+            
+            Debug.Log("Withdraw move");
+            CurPlayerGameHistory.Pop();
+            List<List<UnitSnapshot>> config = CurPlayerGameHistory.Peek(); // 棋面格局
+            foreach (UnitSnapshot unitToRecover in config.SelectMany(unitsToRecover => unitsToRecover))
+            {
+                unitToRecover.Unit.SetTo(unitToRecover);
+            }
+
+            CurPlayerGameHistory.Pop();
+            GameManager.gameManager.GetComponent<Animator>().SetTrigger(WithdrawAnime);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Units
         internal int BaseMv;
 
         public bool hasMoved { get; set; }
-        private bool hasAttacked { get; set; }
+        public bool hasAttacked { get; set; }
 
         private const float Delta = 0.00001f;
 
@@ -387,6 +387,26 @@ namespace Units
             Damage = unit.Damage;
             Defense = unit.Defense;
             AtkRange = unit.AtkRange;
+        }
+
+        public void SetTo(UnitSnapshot snapshot)
+        {
+            MaxHealth = snapshot.MaxHealth;
+            Health = snapshot.Health;
+            MaxMp = snapshot.MaxMp;
+            Mp = snapshot.Mp;
+            Damage = snapshot.Damage;
+            Defense = snapshot.Defense;
+            level = snapshot.Level;
+            AtkRange = snapshot.AtkRange;
+            Exp = snapshot.Exp;
+            Mv = snapshot.Mv;
+            hasMoved = snapshot.HasMoved;
+            hasAttacked = snapshot.HasAttacked;
+            onBlock.standUnit = null;
+            onBlock = snapshot.OnBlock;
+            onBlock.standUnit = this;
+            transform.position = DstBlock2DstPos3(onBlock);
         }
 
         public Unit()

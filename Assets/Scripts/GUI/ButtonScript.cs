@@ -1,5 +1,6 @@
 ﻿using System;
 using Archive;
+using GameData;
 using GUI.Backpack;
 using Interfaces;
 using Units.Items;
@@ -94,6 +95,10 @@ namespace GUI
 
                 case "ExitGameButton":
                     SceneManager.LoadScene("Scenes/MainMenu");
+                    break;
+                
+                case "WithdrawMoveButton":
+                    GameDataManager.Instance.WithdrawMove();
                     break;
 
                 default:
