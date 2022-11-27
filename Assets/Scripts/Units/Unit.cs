@@ -409,6 +409,10 @@ namespace Units
             onBlock = snapshot.OnBlock;
             onBlock.standUnit = this;
             transform.position = DstBlock2DstPos3(onBlock);
+            foreach (Skill skill in Skills)
+            {
+                skill.RemainSkillPoint = snapshot.SkillCounts[skill];
+            }
         }
 
         public Unit()
