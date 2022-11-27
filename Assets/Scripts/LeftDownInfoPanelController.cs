@@ -19,7 +19,7 @@ public class LeftDownInfoPanelController : MonoBehaviour
     public int maxHealth = 10;
     public int maxMagic = 10;
     public int maxEnergy = 10;
-    public int health;
+    public float health;
     public int magic;
     public int energy;
     public int atk;
@@ -27,8 +27,9 @@ public class LeftDownInfoPanelController : MonoBehaviour
     public int move;
     public int level;
     public string name;
+    public int AtkRange;
 
-    public TextMeshProUGUI tmpAtk, tmpDef, tmpMove, tmpLv, tmpName;
+    public TextMeshProUGUI tmpAtk, tmpDef, tmpMove, tmpLv, tmpName, tmpRange;
     
     
 
@@ -81,13 +82,14 @@ public class LeftDownInfoPanelController : MonoBehaviour
         HealthBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (health == 0) ? 0 : oriHealthLen * health / maxHealth);
         // MagicBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (magic == 0) ? 0 : oriMagicLen * magic / maxMagic);
         EnergyBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (energy == 0) ? 0 : oriEnergyLen * energy / maxEnergy);
-        tmpHP.SetText($"{health}/{maxHealth}");
+        tmpHP.SetText($"{health:#0.##}/{maxHealth}");
         tmpSP.SetText($"{energy}/{maxEnergy}");
         // tmpMP.SetText($"{magic}/{maxMagic}");
         
         tmpAtk.SetText($"Atk: {atk}");
         tmpDef.SetText($"Def: {def}");
         tmpMove.SetText($"Move: {move}");
+        tmpRange.SetText($"AtkRange: {AtkRange}");
         tmpLv.SetText($"Lv: {level}");
         tmpName.SetText(name);
     }

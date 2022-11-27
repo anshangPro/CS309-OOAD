@@ -358,7 +358,7 @@ namespace Units
             LeftDownInfoPanelController controller = LeftDownInfoPanelController.Instance;
             controller.magic = (int)Mp;
             controller.maxMagic = (int)MaxMp;
-            controller.health = (int)Health;
+            controller.health = Health;
             controller.maxHealth = (int)MaxHealth;
             controller.maxEnergy = level * 100;
             controller.energy = Exp;
@@ -366,6 +366,7 @@ namespace Units
             controller.atk = (int)Damage;
             controller.def = (int)Defense;
             controller.move = Mv;
+            controller.AtkRange = AtkRange;
             controller.level = level;
             controller.name = UnitName;
             
