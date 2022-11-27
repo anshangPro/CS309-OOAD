@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DefaultNamespace;
 using DTO;
 using GUI;
 using GUI.Skills;
@@ -9,8 +10,10 @@ using Units;
 using StateMachine;
 using Units.AI;
 using Units.AI.Evaluator;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unit = Units.Unit;
 
 namespace GameData
 {
@@ -135,11 +138,26 @@ namespace GameData
             Debug.Log("Withdraw move");
             CurPlayerGameHistory.Pop();
             List<List<UnitSnapshot>> config = CurPlayerGameHistory.Peek(); // 棋面格局
+            foreach (Player p in Players)
+            {
+                foreach (Unit unit in p.UnitsList)
+                {
+                    unit.DestroySelf();
+                }
+                p.UnitsList.Clear();
+            }
             foreach (UnitSnapshot unitToRecover in config.SelectMany(unitsToRecover => unitsToRecover))
             {
-                unitToRecover.Unit.SetTo(unitToRecover);
+                Unit unit = UnitFactory.Instance.GetUnit(unitToRecover.type);
+                unit.CopyFrom(unitToRecover.UnitDto);
+                unit.SetTo(unitToRecover);
+                unit.ofPlayer = unitToRecover.BelongTo;
+                Players[unit.ofPlayer].UnitsList.Add(unit);
             }
 
+            List<Unit> unitAfterLoad = GameDataManager.Instance.GetCurrentPlayer().UnitsList
+                .Where(unit => !unit.hasMoved && unit.Health > 0).ToList();
+            GetCurrentPlayer().FinishedUnit = GetCurrentPlayer().UnitsList.Count - unitAfterLoad.Count;
             CurPlayerGameHistory.Pop();
             GameManager.gameManager.GetComponent<Animator>().SetTrigger(WithdrawAnime);
         }

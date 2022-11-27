@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using DTO;
 
 namespace Units
 {
     public record UnitSnapshot
     {
-        public readonly Unit Unit;
+        public readonly UnitDTO UnitDto;
+        public readonly int BelongTo;
+        public readonly int type;
         public readonly float MaxHealth;
         public readonly float Health;
         public readonly float MaxMp;
@@ -18,11 +21,13 @@ namespace Units
         public readonly bool HasMoved;
         public readonly bool HasAttacked;
         public readonly Block OnBlock;
-        public readonly Dictionary<Skill, int> SkillCounts = new();
+        public readonly Dictionary<string, int> SkillCounts = new();
 
         public UnitSnapshot(Unit unit)
         {
-            Unit = unit;
+            BelongTo = unit.ofPlayer;
+            UnitDto = new UnitDTO(unit);
+            type = unit.type;
             MaxHealth = unit.MaxHealth;
             Health = unit.Health;
             MaxMp = unit.MaxMp;
@@ -38,7 +43,7 @@ namespace Units
             OnBlock = unit.onBlock;
             foreach (Skill skill in unit.Skills)
             {
-                SkillCounts.Add(skill, skill.RemainSkillPoint);
+                SkillCounts.Add(skill.Name, skill.RemainSkillPoint);
             }
         }
     }

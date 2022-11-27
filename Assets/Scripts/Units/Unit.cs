@@ -411,7 +411,7 @@ namespace Units
             transform.position = DstBlock2DstPos3(onBlock);
             foreach (Skill skill in Skills)
             {
-                skill.RemainSkillPoint = snapshot.SkillCounts[skill];
+                skill.RemainSkillPoint = snapshot.SkillCounts[skill.Name];
             }
         }
 
@@ -420,5 +420,9 @@ namespace Units
             this.Skills = new LinkedList<Skill>();
         }
 
+        public void DestroySelf()
+        {
+            Destroy(gameObject);
+        }
     }
 }
