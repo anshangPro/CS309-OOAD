@@ -1,3 +1,4 @@
+using Archive;
 using GameData;
 using StateMachine;
 using TMPro;
@@ -145,6 +146,12 @@ namespace GUI
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(AttackClicked);
             MenuAfterMoveUI.SetActive(false);
+        }
+        
+        internal void SaveButton()
+        {
+            MapSaver.Save();
+            MainMenuUI.SetActive(false);
         }
 
         internal static void SkipMoveButton()
