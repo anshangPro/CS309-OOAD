@@ -31,6 +31,7 @@ namespace Units.AI
         {
             _pair = _searcher.Search(GameDataManager.Instance.GetCurrentPlayer().UnitsList,
                 GameDataManager.Instance.GetOppositePlayer().UnitsList);
+            Debug.Log($"Think out: {_pair.Item1.name} on {_pair.Item1.onBlock.Position2D}, {_pair.Item2.name} on {_pair.Item2.onBlock.Position2D}");
         }
 
         public void ClickUnitToMove()
@@ -42,12 +43,24 @@ namespace Units.AI
         public void ClickBlockToMoveOn()
         {
             _blockToMoveOn = ChooseBlockMoveTo(_pair.Item1, _pair.Item2);
+            if (_blockToMoveOn == null)
+            {
+                Debug.Log($"Unit {_pair.Item1.name} on {_pair.Item1.onBlock.Position2D} has nowhere to go, skip move");
+                UIManager.SkipMoveButton();
+                return;
+            }
+
             _blockToMoveOn.IsClicked();
             Debug.Log($"Click block {_blockToMoveOn.gameObject.name} at {_blockToMoveOn.gameObject.transform.position}");
         }
 
         public void ConfirmBlockToMoveOn()
         {
+            if (_blockToMoveOn == null)
+            {
+                return;
+            }
+            
             _blockToMoveOn.IsClicked();
             Debug.Log($"Confirm block {_blockToMoveOn.gameObject.name} at {_blockToMoveOn.gameObject.transform.position}");
         }
@@ -67,7 +80,7 @@ namespace Units.AI
                 return;
             }
             _pair.Item2.IsClicked();
-            Debug.Log($"Click unit {_blockToMoveOn.gameObject.name} at {_blockToMoveOn.gameObject.transform.position}");
+            Debug.Log($"Click unit {_pair.Item2.name} at {_pair.Item2.onBlock.Position2D}");
         }
 
         private Block ChooseBlockMoveTo(Unit self, Unit target)
@@ -79,7 +92,7 @@ namespace Units.AI
                     b.gameObject.transform.position)));
 
             Block dstBlock = neighbors.First(block => block.standUnit == null);
-            List<Block> inRangeBlocks = MapManager.Instance.FindInRange(self.onBlock, target.Mv);
+            List<Block> inRangeBlocks = MapManager.Instance.FindInRange(self.onBlock, self.Mv);
             if (inRangeBlocks.Contains(dstBlock)) return neighbors.First(block => block.standUnit == null);
             
             // TODO: 逻辑需要加强，有时候这里的neighbors会为空
@@ -90,7 +103,16 @@ namespace Units.AI
                 return distA.CompareTo(distB);
             });
 
-            return inRangeBlocks.First();
+            try
+            {
+                dstBlock = inRangeBlocks.First(block => block.standUnit == null);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            return dstBlock;
         }
     }
 }
