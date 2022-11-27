@@ -384,6 +384,7 @@ namespace Units
             Health = unit.Health;
             MaxMp = unit.MaxMp;
             Mp = unit.Mp;
+            ofPlayer = unit.ofPlayer;
             Damage = unit.Damage;
             Defense = unit.Defense;
             AtkRange = unit.AtkRange;
