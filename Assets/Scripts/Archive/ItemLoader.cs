@@ -33,6 +33,8 @@ namespace Archive
         /// 全部载入方块的gameObject以及类型
         /// </summary>
         public Dictionary<Vector2, Tuple<GameObject, BlockDTO>> LocToBlock = new Dictionary<Vector2, Tuple<GameObject, BlockDTO>>();
+        
+        private static readonly int ReloadAnime = Animator.StringToHash("reload");
 
         private void Awake()
         {
@@ -102,14 +104,27 @@ namespace Archive
             // }
         }
 
-        public void GoDefault()
+        public void GoDefault(string save)
         {
             GameDataManager data = GameDataManager.Instance;
             MapManager map = MapManager.Instance;
             data.gameStatus = GameStatus.Default;
             data.CurrentPlayer = -1;
             data.blockList.Clear();
-
+            data.Pve = false;
+            
+            data.MovedUnit = null;
+            data.SelectedUnit = null;
+            data.MovedUnit = null;
+            data.SelectedEnemy = null;
+            
+            data.HighlightBlocks.Clear();
+            data.SelectedBlock = null;
+            data.Path.Clear();
+            data.SelectableUnitOnBlocks.Clear();
+            
+            data.SelectedSkill = null;
+            data.SkillAffected = null;
             foreach (Player player in data.Players)
             {
                 foreach (Unit unit in player.UnitsList)
@@ -130,6 +145,10 @@ namespace Archive
                 Destroy(blockPair.Value.gameObject);
             }
             map.Map.Clear();
+            data.JsonToLoad = save;
+            Start();
+            Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            animator.SetTrigger(ReloadAnime);
         }
 
         private void LoadBlocksFrom([NotNull] SaveDTO saveDto)

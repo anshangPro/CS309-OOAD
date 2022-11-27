@@ -29,9 +29,7 @@ namespace GUI.Save
             data.PanelShowing = false;
             UIManager.Instance.LoadMenuUI.SetActive(false);
             
-            ItemLoader.Instance.GoDefault();
-            data.JsonToLoad = Save;
-            ItemLoader.Instance.Start();
+            ItemLoader.Instance.GoDefault(Save);
             return true;
         }
     }
