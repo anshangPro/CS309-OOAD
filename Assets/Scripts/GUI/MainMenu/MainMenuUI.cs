@@ -8,9 +8,9 @@ namespace GUI.MainMenu
 {
     public class MainMenuUI : MonoBehaviour
     {
-        private GameObject _mainMenu;
-        private GameObject _selectSceneMenu;
-        private GameObject _selectModeMenu;
+        public GameObject _mainMenu;
+        public GameObject _selectSceneMenu;
+        public GameObject _selectModeMenu;
 
         private Dictionary<string, string> _sceneToJson = new Dictionary<string, string>()
         {
@@ -18,10 +18,6 @@ namespace GUI.MainMenu
         };
         private void Start()
         {
-            _mainMenu = GameObject.Find("MainMenu");
-            _selectSceneMenu = GameObject.Find("SelectSceneMenu");
-            _selectModeMenu = GameObject.Find("SelectModeMenu");
-
             _mainMenu.SetActive(true);
             _selectSceneMenu.SetActive(false);
             _selectModeMenu.SetActive(false);

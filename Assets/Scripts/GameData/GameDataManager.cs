@@ -51,7 +51,6 @@ namespace GameData
         public bool TakeDamageAnimeFinished = false;
 
         public readonly Agent Agent = new(new Searcher(new GreedyEvaluator()));
-        public const bool RobotTest = true;
 
 
         private static GameDataManager _instance = new();

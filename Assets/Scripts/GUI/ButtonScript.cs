@@ -50,8 +50,7 @@ namespace GUI
                 
                 // main_menu:
                 case "SaveButton":
-                    // 存档功能待实现
-                    MapSaver.Save();
+                    _uiManager.SaveButton();
                     break;
                 case "BackButton":
                     _uiManager.BackButton();

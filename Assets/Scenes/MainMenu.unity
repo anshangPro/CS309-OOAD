@@ -510,6 +510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cf70288b2c478fa63090af64e27b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainMenu: {fileID: 2052668557}
+  _selectSceneMenu: {fileID: 1171651683}
+  _selectModeMenu: {fileID: 1606142357}
 --- !u!4 &736862081
 Transform:
   m_ObjectHideFlags: 0
@@ -773,7 +776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1171651684
 RectTransform:
   m_ObjectHideFlags: 0
@@ -998,27 +1001,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3704110363407697872, guid: 38537b76b3e5af44099da84fecb8f8ce, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3704110363407697872, guid: 38537b76b3e5af44099da84fecb8f8ce, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3704110364014514317, guid: 38537b76b3e5af44099da84fecb8f8ce, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3704110364014514317, guid: 38537b76b3e5af44099da84fecb8f8ce, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3704110364014514317, guid: 38537b76b3e5af44099da84fecb8f8ce, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 3704110364058525480, guid: 38537b76b3e5af44099da84fecb8f8ce, type: 3}
       propertyPath: m_Name
       value: SavePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704110364058525480, guid: 38537b76b3e5af44099da84fecb8f8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3704110364058525483, guid: 38537b76b3e5af44099da84fecb8f8ce, type: 3}
       propertyPath: m_Pivot.x
@@ -1203,7 +1210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1606142358
 RectTransform:
   m_ObjectHideFlags: 0
