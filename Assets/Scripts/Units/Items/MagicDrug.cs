@@ -29,7 +29,7 @@ namespace Units.Items
                 skill.RemainSkillPoint = Mathf.Min(skill.SkillPoint, skill.RemainSkillPoint);
             }
 
-            GameDataManager.Instance.Backpack.ItemSet[Instance.ItemName].ItemNum--;
+            GameDataManager.Instance.GetCurrentPlayer().Backpack.ItemSet[Instance.ItemName].ItemNum--;
 
             BackpackManager.UpdateItemToUI();
         }

@@ -23,7 +23,7 @@ namespace Units.Items
             selectedUnit.Health = (currentHealth + 10 <= selectedUnit.MaxHealth)
                 ? selectedUnit.Health + 10
                 : selectedUnit.MaxHealth;
-            GameDataManager.Instance.Backpack.ItemSet[Instance.ItemName].ItemNum--;
+            GameDataManager.Instance.GetCurrentPlayer().Backpack.ItemSet[Instance.ItemName].ItemNum--;
 
 
             BackpackManager.UpdateItemToUI();

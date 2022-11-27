@@ -44,9 +44,6 @@ namespace GameData
         public string JsonToLoad = "Save/SampleScene.json";
         //存档加载槽用
 
-        //玩家背包
-        public readonly Backpack Backpack = new();
-
         public readonly Stack<List<List<UnitSnapshot>>> CurPlayerGameHistory = new();
 
 

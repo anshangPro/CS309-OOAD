@@ -10,6 +10,8 @@ namespace GameData
         public int Index;
         public int FinishedUnit = 0;
         public bool IsRobot;
+        //玩家背包
+        public readonly Backpack Backpack = new();
 
         public bool TurnFinish()
         {

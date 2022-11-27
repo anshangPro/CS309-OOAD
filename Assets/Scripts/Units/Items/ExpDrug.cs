@@ -22,7 +22,7 @@ namespace Units.Items
             selectedUnit.UpdatePanel();
             selectedUnit.Exp = 0;
 
-            GameDataManager.Instance.Backpack.ItemSet[Instance.ItemName].ItemNum--;
+            GameDataManager.Instance.GetCurrentPlayer().Backpack.ItemSet[Instance.ItemName].ItemNum--;
             BackpackManager.UpdateItemToUI();
         }
     }

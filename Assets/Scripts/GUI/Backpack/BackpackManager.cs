@@ -1,4 +1,5 @@
-﻿using GameData;
+﻿using System;
+using GameData;
 using Units;
 using Units.Items;
 using UnityEngine;
@@ -29,12 +30,25 @@ namespace GUI.Backpack
             }
 
             Instance = this;
+        }
 
-            for (int i = 0; i < 2; i++)
+        private void Start()
+        {
+            //优先级调后，保证player已经实例化
+            foreach (Player player in GameDataManager.Instance.Players)
             {
-                InsertItem(new HealthDrug());
-                InsertItem(new MagicDrug());
-                InsertItem(new ExpDrug());
+                Units.Backpack backpack = player.Backpack;
+                if (backpack.ItemSet.Count == 0)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        {
+                            InsertItem(new HealthDrug(), backpack);
+                            InsertItem(new MagicDrug(), backpack);
+                            InsertItem(new ExpDrug(), backpack);
+                        }
+                    }
+                }
             }
         }
 
@@ -43,18 +57,18 @@ namespace GUI.Backpack
         /// 考虑增加别的插入道具的方法
         /// </summary>
         /// <param name="item"></param>
-        public void InsertItem(Item item)
+        public void InsertItem(Item item, Units.Backpack backpack)
         {
-            if (GameDataManager.Instance.Backpack.ItemSet.ContainsKey(item.ItemName))
+            if (backpack.ItemSet.ContainsKey(item.ItemName))
             {
-                foreach (Item a in GameDataManager.Instance.Backpack.ItemSet.Values)
+                foreach (Item a in backpack.ItemSet.Values)
                 {
                     a.ItemNum++;
                 }
             }
             else
             {
-                GameDataManager.Instance.Backpack.ItemSet.Add(item.ItemName, item);
+                backpack.ItemSet.Add(item.ItemName, item);
                 UpdateItemToUI();
             }
         }
@@ -76,7 +90,8 @@ namespace GUI.Backpack
                 Destroy(Instance.backpackUI.transform.GetChild(i).gameObject);
             }
 
-            foreach (Item item in GameDataManager.Instance.Backpack.ItemSet.Values)
+            Units.Backpack backpack = GameDataManager.Instance.GetCurrentPlayer().Backpack;
+            foreach (Item item in backpack.ItemSet.Values)
             {
                 InsertItemToUI(item);
             }
