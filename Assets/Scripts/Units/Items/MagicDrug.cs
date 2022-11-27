@@ -18,11 +18,16 @@ namespace Units.Items
         public override void ItemUse()
         {
             Unit selectedUnit = GameDataManager.Instance.SelectedUnit;
-            selectedUnit.Mp += 10;
-            float currentMp = selectedUnit.Mp;
-            selectedUnit.Mp = (currentMp + 10 <= selectedUnit.MaxMp)
-                ? selectedUnit.Mp + 10
-                : selectedUnit.MaxMp;
+            // selectedUnit.Mp += 10;
+            // float currentMp = selectedUnit.Mp;
+            // selectedUnit.Mp = (currentMp + 10 <= selectedUnit.MaxMp)
+            //     ? selectedUnit.Mp + 10
+            //     : selectedUnit.MaxMp;
+            foreach (Skill skill in selectedUnit.Skills)
+            {
+                skill.RemainSkillPoint += 1;
+                skill.RemainSkillPoint = Mathf.Min(skill.SkillPoint, skill.RemainSkillPoint);
+            }
 
             GameDataManager.Instance.Backpack.ItemSet[Instance.ItemName].ItemNum--;
 
