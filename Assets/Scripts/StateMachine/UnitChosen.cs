@@ -40,6 +40,7 @@ namespace StateMachine
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             UIManager.Instance.CharacterUI.SetActive(false);
+            HighlightBlockUtil.DeHighlightSelectableUnitOnBlocks();
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

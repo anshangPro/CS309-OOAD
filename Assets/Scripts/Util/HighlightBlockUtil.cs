@@ -16,5 +16,14 @@ namespace Util
                 GameDataManager.Instance.SelectableUnitOnBlocks.Add(unit.onBlock);
             }
         }
+        
+        public static void DeHighlightSelectableUnitOnBlocks()
+        {
+            GameDataManager.Instance.SelectableUnitOnBlocks.Clear();
+            foreach (Unit unit in GameDataManager.Instance.GetCurrentPlayer().UnitsList.Where(unit => !unit.hasMoved && unit.Health > 0))
+            {
+                unit.onBlock.SetOverlayGridType(OverlayGrid.OverlayGridType.None);
+            }
+        }
     }
 }
