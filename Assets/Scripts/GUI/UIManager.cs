@@ -157,6 +157,7 @@ namespace GUI
         internal static void SkipMoveButton()
         {
             GameDataManager.Instance.SelectedBlock = GameDataManager.Instance.SelectedUnit.onBlock;
+            UIManager.Instance.FightMenuUI.SetActive(false);
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(SkipMoveClicked);
         }
