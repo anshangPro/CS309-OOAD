@@ -13,6 +13,8 @@ namespace StateMachine
         {
             gameData.gameStatus = StateMachine.GameStatus.BlockSelected;
             
+            HighlightBlockUtil.HighlightSelectableUnitOnBlocks();
+            
             if (gameData.ShouldAgentOperate())
             { 
                 gameData.Agent.ConfirmBlockToMoveOn();
