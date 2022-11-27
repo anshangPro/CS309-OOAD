@@ -34,6 +34,7 @@ namespace StateMachine
          public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             MapManager.Instance.HighlightUnitAtkRangeExit(_highlightedUnit);
+            UIManager.Instance.FightMenuUI.SetActive(false);
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

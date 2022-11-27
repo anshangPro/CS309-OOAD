@@ -164,7 +164,7 @@ namespace GUI
         internal static void SkipAttackButton()
         {
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
-            UIManager.Instance.FightMenuUI.SetActive(false);
+            Instance.FightMenuUI.SetActive(false);
             animator.SetTrigger(SkipAttackClicked);
         }
 
