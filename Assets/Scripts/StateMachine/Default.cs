@@ -18,11 +18,7 @@ namespace StateMachine
             UIManager.Instance.SetVisiableWithdrawButton();
             if (gameData.SelectedSkill is not null)
             {
-                if (gameData.SelectedSkill.Skill is not null)
-                {
-                    gameData.SelectedSkill.Skill.CancelEffect();
-                }
-
+                gameData.SelectedSkill.Skill.CancelEffect();
                 gameData.SelectedSkill = null;
             }
 

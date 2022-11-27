@@ -1,4 +1,6 @@
-﻿namespace Units.Skills
+﻿using GameData;
+
+namespace Units.Skills
 {
     public class Ban: Skill
     {
@@ -16,7 +18,13 @@
         {
             if (RemainSkillPoint > 0)
             {
+                RemainSkillPoint--;
                 return true;
+            }
+            else
+            {
+                CancelEffect();
+                GameDataManager.Instance.SelectedSkill = null;
             }
             return false;
         }
@@ -33,13 +41,9 @@
 
         public override bool CancelEffect()
         {
-            if (RemainSkillPoint > 0)
-            {
-                BelongTo.Damage -= _damageEnhance;
-                BelongTo.Mv -= _rangeEnhance;
-                return true;
-            }
-            return false;
+            BelongTo.Damage -= _damageEnhance;
+            BelongTo.AtkRange -= _rangeEnhance;
+            return true;
         }
     }
 }

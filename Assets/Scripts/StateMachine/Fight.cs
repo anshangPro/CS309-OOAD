@@ -11,6 +11,10 @@ namespace StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             gameData.gameStatus = StateMachine.GameStatus.Fight;
+            if (gameData.SelectedSkill is not null)
+            {
+                gameData.SelectedSkill.Skill.SkillUse(gameData.MovedUnit, gameData.SelectedEnemy);
+            }
             gameData.MovedUnit.PlayAttackAnime();
             gameData.MovedUnit.Attack(gameData.SelectedEnemy);
             Debug.Log(gameData.MovedUnit + " Attack " + gameData.SelectedEnemy);
