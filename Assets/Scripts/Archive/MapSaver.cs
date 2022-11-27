@@ -16,8 +16,8 @@ namespace Archive
     {
         private void Start()
         {
-            // Test();
-            // TODO: 保存地图功能测试完成之后记得删掉这一部分，MonoBehaviour也删除掉
+            // SaveAll();
+            // 上面这行代码用于unity编辑器编辑地图导出
         }
 
         public static void Save()
