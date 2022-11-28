@@ -2,7 +2,7 @@
 using Units;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Factory
 {
     public class UnitFactory : MonoBehaviour
     {
