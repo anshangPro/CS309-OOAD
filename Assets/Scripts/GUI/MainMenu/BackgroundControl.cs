@@ -40,18 +40,18 @@ public class BackgroundControl : MonoBehaviour
         }
     }
 
-    // public void HideAbove()
-    // {
-    //     base_y = init_y + above_y;
-    // }
+    public void GoAbove()
+    {
+        target_y = base_y + base_above_y;
+    }
 
-    // public void HideBelow()
-    // {
-    //     base_y = init_y + below_y;
-    // }
+    public void GoBelow()
+    {
+        target_y = base_y + base_below_y;
+    }
 
-    // public void ShowAtCenter()
-    // {
-    //     base_y = init_y;
-    // }
+    public void GoReset()
+    {
+        target_y = base_y;
+    }
 }
