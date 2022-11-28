@@ -122,9 +122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GUI.MainMenuUI, Assembly-CSharp
-        m_MethodName: PlayBtn
+      - m_Target: {fileID: 5537052103665411081, guid: a6b16d1fa03e9be41bda7d6b908c256a, type: 3}
+        m_TargetAssemblyTypeName: GUI.MainMenu.MainMenuUI, Assembly-CSharp
+        m_MethodName: ButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

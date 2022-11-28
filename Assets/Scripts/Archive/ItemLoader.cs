@@ -8,6 +8,7 @@ using GameData;
 using StateMachine;
 using Units;
 using UnityEngine;
+using Util;
 
 namespace Archive
 {
@@ -35,6 +36,8 @@ namespace Archive
         public Dictionary<Vector2, Tuple<GameObject, BlockDTO>> LocToBlock = new Dictionary<Vector2, Tuple<GameObject, BlockDTO>>();
         
         private static readonly int ReloadAnime = Animator.StringToHash("reload");
+
+        public List<AudioClip> bgmCandidate;
 
         private void Awake()
         {
@@ -87,7 +90,11 @@ namespace Archive
             LoadBlocksFrom(save);
             LoadEnvironmentFrom(save);
             LoadPlayersFrom(save);
-            
+
+            Camera.main!.GetComponent<AudioSource>().clip = bgmCandidate.OrderBy(bgm => Guid.NewGuid()).First();
+            Debug.Log($"Total {bgmCandidate.Count} bgm candidates");
+            Camera.main!.GetComponent<AudioSource>().Play();
+
             // MapSaver.SaveAll();
 
             // for (int i = 0; i < 6; i++)

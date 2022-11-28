@@ -8,30 +8,40 @@ namespace GUI.MainMenu
 {
     public class MainMenuUI : MonoBehaviour
     {
-        public GameObject _mainMenu;
-        public GameObject _selectSceneMenu;
-        public GameObject _selectModeMenu;
+        public GameObject mainMenu;
+        public GameObject selectSceneMenu;
+        public GameObject selectModeMenu;
+
+        public AudioClip buttonClicked;
 
         private Dictionary<string, string> _sceneToJson = new Dictionary<string, string>()
         {
             {"Scenes/SampleScene", "SampleScene.json"}
         };
+
+        private void ButtonClicked()
+        {
+            Camera.main!.GetComponent<AudioSource>().PlayOneShot(buttonClicked);
+        }
+
         private void Start()
         {
-            _mainMenu.SetActive(true);
-            _selectSceneMenu.SetActive(false);
-            _selectModeMenu.SetActive(false);
+            mainMenu.SetActive(true);
+            selectSceneMenu.SetActive(false);
+            selectModeMenu.SetActive(false);
         }
 
         public void PlayBtn()
         {
-            _mainMenu.SetActive(false);
-            _selectSceneMenu.SetActive(false);
-            _selectModeMenu.SetActive(true);
+            ButtonClicked();
+            mainMenu.SetActive(false);
+            selectSceneMenu.SetActive(false);
+            selectModeMenu.SetActive(true);
         }
 
         public void ExitBtn()
         {
+            ButtonClicked();
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -41,28 +51,31 @@ namespace GUI.MainMenu
 
         public void BackBtn()
         {
-            _mainMenu.SetActive(true);
-            _selectSceneMenu.SetActive(false);
-            _selectModeMenu.SetActive(false);
+            ButtonClicked();
+            mainMenu.SetActive(true);
+            selectSceneMenu.SetActive(false);
+            selectModeMenu.SetActive(false);
         }
 
         public void PvpModeButton()
         {
+            ButtonClicked();
             GameDataManager.Instance.Pve = false;
             EnterSelectSceneMenu();
         }
 
         public void PveModeButton()
         {
+            ButtonClicked();
             GameDataManager.Instance.Pve = true;
             EnterSelectSceneMenu();
         }
 
         private void EnterSelectSceneMenu()
         {
-            _mainMenu.SetActive(false);
-            _selectSceneMenu.SetActive(true);
-            _selectModeMenu.SetActive(false);
+            mainMenu.SetActive(false);
+            selectSceneMenu.SetActive(true);
+            selectModeMenu.SetActive(false);
         }
 
         public void LoadSuperFlatScene()
