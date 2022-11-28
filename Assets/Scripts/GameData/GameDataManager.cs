@@ -146,6 +146,11 @@ namespace GameData
                 }
                 p.UnitsList.Clear();
             }
+
+            foreach (Block block in MapManager.Instance.Map.Values.ToList())
+                block.standUnit = null;
+            
+            
             foreach (UnitSnapshot unitToRecover in config.SelectMany(unitsToRecover => unitsToRecover))
             {
                 Unit unit = UnitFactory.Instance.GetUnit(unitToRecover.type);
