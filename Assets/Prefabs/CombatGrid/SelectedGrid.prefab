@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6084400845182173671}
   - component: {fileID: 1597120859768816536}
+  - component: {fileID: 1980682889}
   m_Layer: 0
   m_Name: SelectedGrid
   m_TagString: Untagged
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1980682889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560194220700954431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57bd6ab1f8ce33b44903bf54930a5119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

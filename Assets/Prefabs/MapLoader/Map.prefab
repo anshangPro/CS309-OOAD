@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 988988861697342255}
   - component: {fileID: 988988861697342252}
-  - component: {fileID: 2025242172553574546}
-  m_Layer: 0
+  - component: {fileID: 548683031}
+  m_Layer: 11
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,11 @@ MonoBehaviour:
   - {fileID: 2817105440660261104, guid: c75a6c978b66c1d4bb24f23521f9b336, type: 3}
   - {fileID: 1296943455049342836, guid: 8e6cb8007054ab04790b200732f9e208, type: 3}
   - {fileID: 5710938517823476911, guid: b49b69ebc142eb6419cdef3bc986d93a, type: 3}
---- !u!114 &2025242172553574546
+  bgmCandidate:
+  - {fileID: 8300000, guid: eae73fb136cbddf4e831c9e7026e076a, type: 3}
+  - {fileID: 8300000, guid: 8480c431932b66647bce5e44dca84991, type: 3}
+  - {fileID: 8300000, guid: eae73fb136cbddf4e831c9e7026e076a, type: 3}
+--- !u!114 &548683031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,3 +85,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50aa8e8c6101e4c4facfb06ed468a78b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  environment: []

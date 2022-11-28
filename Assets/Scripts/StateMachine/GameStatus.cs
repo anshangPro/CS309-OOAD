@@ -1,6 +1,7 @@
 namespace StateMachine
 {
     /// <summary>
+    /// Start: 游戏的开始状态 在玩家点击存档后进入
     /// Default: 默认状态：可以选择一个单位，若为己方单位，会进入unitChosen状态，否则会显示单位的属性
     /// UnitChosen: 角色被选中状态：选中了一个己方单位，UI会展示单位可以走的路径，玩家可以选择一个范围内的方块进行移动
     /// BlockSelected: 方块被选中状态：选中一个状态，UI会展示角色到这个方块的最短路径，
@@ -13,6 +14,7 @@ namespace StateMachine
     /// </summary>
     public enum GameStatus
     {
+        Start,
         Default,  
         UnitChosen,
         BlockSelected,

@@ -33,6 +33,13 @@ namespace GUI
             Debug.Log("Hit object: " + MouseController.GameObjectName);
             switch (MouseController.GameObjectName)
             {
+                // start IO
+                // default UI
+                case "StartButton":
+                    Debug.Log("MenuButton is clicked !");
+                    _uiManager.StartButton();
+                    break;
+
                 // default UI
                 case "MenuButton":
                     Debug.Log("MenuButton is clicked !");
@@ -42,12 +49,12 @@ namespace GUI
                     Debug.Log("BackpackButton is clicked !");
                     _uiManager.BackpackButton();
                     break;
-                
+
                 // Backpack UI
                 case "closeBackpackButton":
                     _uiManager.BackpackButton();
                     break;
-                
+
                 // main_menu:
                 case "SaveButton":
                     _uiManager.SaveButton();
@@ -95,7 +102,7 @@ namespace GUI
                 case "ExitGameButton":
                     SceneManager.LoadScene("Scenes/MainMenu");
                     break;
-                
+
                 case "WithdrawMoveButton":
                     GameDataManager.Instance.WithdrawMove();
                     break;

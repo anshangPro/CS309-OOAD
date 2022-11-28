@@ -21,6 +21,8 @@ namespace GUI
 
 
         /// UI菜单节点
+        public GameObject StartUI { get; private set; }
+
         public GameObject MainMenuUI { get; private set; }
 
         public GameObject DefaultUI { get; private set; }
@@ -38,16 +40,19 @@ namespace GUI
         public GameObject BackpackUI { get; private set; }
 
         public GameObject SkillPanel { get; private set; }
-        
+
         public GameObject GameOverMenuUI { get; private set; }
-        
+
         public GameObject LoadMenuUI { get; private set; }
-        
+
+        public GameObject GameStateUI { get; private set; }
+
         public TMP_Text WinnerPlayerIDText { get; set; }
 
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
         private static readonly int SkipAttackClicked = Animator.StringToHash("skipAttackClicked");
         private static readonly int SkipMoveClicked = Animator.StringToHash("skipMoveClicked");
+        private static readonly int StartGame = Animator.StringToHash("startGame");
 
         private void Awake()
         {
@@ -67,6 +72,7 @@ namespace GUI
             CreateColliderForButton();
             _uIManager = GameObject.Find("UIManager");
             // menu
+            StartUI = _uIManager.transform.Find("StartUI").gameObject;
             MainMenuUI = _uIManager.transform.Find("MainMenuUI").gameObject;
             DefaultUI = _uIManager.transform.Find("DefaultUI").gameObject;
             CharacterUI = _uIManager.transform.Find("CharacterUI").gameObject;
@@ -78,6 +84,7 @@ namespace GUI
             LoadMenuUI = _uIManager.transform.Find("SavePanel").gameObject;
             SkillPanel = _uIManager.transform.Find("SkillPanel").gameObject;
             GameOverMenuUI = _uIManager.transform.Find("GameoverMenuUI").gameObject;
+            GameStateUI = _uIManager.transform.Find("GameStateUI").gameObject;
             WinnerPlayerIDText = GameOverMenuUI.transform.Find("WinnerPlayerID").gameObject.GetComponent<TMP_Text>();
         }
 
@@ -147,7 +154,7 @@ namespace GUI
             animator.SetTrigger(AttackClicked);
             MenuAfterMoveUI.SetActive(false);
         }
-        
+
         internal void SaveButton()
         {
             MapSaver.Save();
@@ -180,13 +187,22 @@ namespace GUI
             MenuAfterMoveUI.SetActive(true);
         }
 
+        internal void StartButton()
+        {
+            Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            animator.SetTrigger(StartGame);
+            StartUI.SetActive(false);
+            DefaultUI.SetActive(true);
+            GameStateUI.SetActive(true);
+        }
+
         public void SetVisiableBackpackButton()
         {
             GameObject backPackButton = DefaultUI.transform.Find("BackpackButton").gameObject;
             backPackButton.SetActive(!backPackButton.activeSelf);
         }
-        
-        
+
+
         public void SetVisiableWithdrawButton()
         {
             GameObject withdrawMoveButton = DefaultUI.transform.Find("WithdrawMoveButton").gameObject;
