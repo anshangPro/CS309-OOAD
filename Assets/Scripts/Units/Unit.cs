@@ -21,18 +21,40 @@ namespace Units
         public float MaxMp { get; internal set; }
         public float Mp { get; internal set; }
         public float Damage { get; internal set; }
-        public float Defense { get; internal set; }
+        private float _def;
+        public float Defense {
+            get
+            {
+                if (onBlock is not null)
+                {
+                    if (onBlock.type == 1)
+                    {
+                        return _def + 2;
+                    }
+                }
+                return _def;
+            }
+            internal set { _def = value; }
+        }
         public int level { get; internal set; }
         public int AtkRange = 1;
         public int Exp = 0;
         private int RewardExp = 120;
+
+        private bool _mvEnhance = false;
 
         public LinkedList<Skill> Skills;
 
         /// <summary>
         /// 敏捷值
         /// </summary>
-        public int Mv { get; internal set; }
+        private int _mv;
+
+        public int Mv
+        {
+            get => _mvEnhance ? _mv+1 : _mv;
+            internal set => _mv = value;
+            }
 
         internal float BaseHealth;
         internal float BaseMp;
@@ -221,6 +243,10 @@ namespace Units
         {
             hasMoved = false;
             hasAttacked = false;
+            if (onBlock.type == 2)
+            {
+                _mvEnhance = true;
+            }
         }
 
         /// <summary>
@@ -238,6 +264,7 @@ namespace Units
         public void Moved()
         {
             hasMoved = true;
+            _mvEnhance = false;
             GameDataManager.Instance.GetCurrentPlayer().FinishedUnit++;
         }
 

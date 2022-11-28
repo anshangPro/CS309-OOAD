@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DefaultNamespace;
+using Factory;
 using DTO;
 using GUI;
 using GUI.Skills;

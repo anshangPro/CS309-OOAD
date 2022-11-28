@@ -111,10 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e5d81cdb03f1f40bb18a29cf820cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   isWalkable: 1
   standUnit: {fileID: 0}
   g: 0
   h: 0
+  grass: 0
   parent: {fileID: 0}
   moveCost: 0
 --- !u!1 &3555920944189890484
