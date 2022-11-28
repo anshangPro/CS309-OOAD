@@ -156,6 +156,9 @@ namespace Units
             else
             {
                 Health -= realDamage;
+                if (Health <= 0.1)
+                    Health = 0;
+                
             }
         }
 
