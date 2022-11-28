@@ -1210,6 +1210,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 988988861697342252, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
+      propertyPath: blocks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 988988861697342252, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
+      propertyPath: blocks.Array.data[1]
+      value: 
+      objectReference: {fileID: 7140402004672850311, guid: 584415c62a147be48a9535636fad57f8, type: 3}
     - target: {fileID: 988988861697342253, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
       propertyPath: m_Name
       value: Map

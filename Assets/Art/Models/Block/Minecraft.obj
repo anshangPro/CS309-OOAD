@@ -1,0 +1,158 @@
+# Wavefront OBJ file made by Mineways version 10.01, http://mineways.com
+# World: [Block Test World]
+# Terrain file name: D:\Application\mineways\terrainExt.png
+# Color scheme: Standard
+# Tue Nov 29 02:35:38 2022
+
+# Selection location min to max: -94, 72, -207 to -94, 319, -207
+#   Non-empty selection location min to max: -94, 72, -207 to -94, 74, -207
+
+# Set render type: Wavefront OBJ absolute indices
+# Units for the model vertex data itself: meters
+
+# 24 vertices, 14 faces (28 triangles), 1 blocks, 2 billboards/bits
+# block dimensions: X=2 by Y=4 (height) by Z=2 blocks
+# Elevation shading: no
+# Lighting: no
+# Transparent water: no
+# Map grid: no
+# File type: Export all textures to three large images
+# Texture output RGB: YES
+# Texture output A: YES
+# Texture output RGBA: YES
+# Make groups objects: YES
+# Export separate objects: no
+# Individual blocks: no
+#   Split by block type: no
+# G3D full material: YES
+# Make Z the up direction instead of Y: no
+# Create composite overlay faces: no
+# Center model: YES
+# Export lesser blocks: YES
+# Fatten lesser blocks: no
+# Create block faces at the borders: YES
+# Make tree leaves solid: no
+# Use biomes: no
+# Rotate model 0.000000 degrees
+# Scale model by making each block 1000 mm high
+# Data operation options:
+#   Fill air bubbles: no; Seal off entrances: no; Fill in isolated tunnels in base of model: no
+#   Connect parts sharing an edge: no; Connect corner tips: no; Weld all shared edges: no
+#   Delete floating objects: trees and parts smaller than 16 blocks: no
+#   Hollow out bottom of model, making the walls 1000 mm thick: no; Superhollow: no
+# Melt snow blocks: no
+#   Debug: show separate parts as colors: no
+#   Debug: show weld blocks in bright colors: no
+
+# Full world path: D:\Minecraft\PCL\.minecraft\versions\1.18.2\saves\
+# Full terrainExt.png path: D:\Application\mineways\terrainExt.png
+# Full current path: D:\Application\mineways
+
+mtllib Minecraft.mtl
+vn -1 0 0
+vn 0 -1 0
+vn 0 0 -1
+vn 1 0 0
+vn 0 1 0
+vn 0 0 1
+vn -0.707107 0 -0.707107
+vn -0.707107 0 0.707107
+vn 0.707107 0 -0.707107
+vn 0.707107 0 0.707107
+vn -0.707107 -0.707107 0
+vn 0 -0.707107 -0.707107
+vn 0.707107 -0.707107 0
+vn 0 -0.707107 0.707107
+vn -0.707107 0.707107 0
+vn 0 0.707107 -0.707107
+vn 0.707107 0.707107 0
+vn 0 0.707107 0.707107
+vn -0.92388 0 -0.382683
+vn -0.92388 0 0.382683
+vn 0.92388 0 -0.382683
+vn 0.92388 0 0.382683
+vn -0.382683 0 -0.92388
+vn -0.382683 0 0.92388
+vn 0.382683 0 -0.92388
+vn 0.382683 0 0.92388
+vn -0.397273 0.9177 0
+vn 0.397273 -0.9177 0
+vn 0.397273 0.9177 0
+vn -0.397273 -0.9177 0
+vn 0 0.9177 -0.397273
+vn 0 -0.9177 0.397273
+vn 0 0.9177 0.397273
+vn 0 -0.9177 -0.397273
+vn -0.440932 0.897541 0
+vn 0.440932 -0.897541 0
+vn 0.440932 0.897541 0
+vn -0.440932 -0.897541 0
+vn 0 0.897541 -0.440932
+vn 0 -0.897541 0.440932
+vn 0 0.897541 0.440932
+vn 0 -0.897541 -0.440932
+# tall_grass_bottom
+vt 0.247070312 0.895507812
+vt 0.262695312 0.895507812
+vt 0.262695312 0.911132812
+vt 0.247070312 0.911132812
+# tall_grass_top
+vt 0.264648438 0.895507812
+vt 0.280273438 0.895507812
+vt 0.280273438 0.911132812
+vt 0.264648438 0.911132812
+# grass_block_side
+vt 0.053710938 0.983398438
+vt 0.069335938 0.983398438
+vt 0.069335938 0.999023438
+vt 0.053710938 0.999023438
+# dirt
+vt 0.036132812 0.983398438
+vt 0.051757812 0.983398438
+vt 0.051757812 0.999023438
+vt 0.036132812 0.999023438
+# grass_block_top
+vt 0.000976562 0.983398438
+vt 0.016601562 0.983398438
+vt 0.016601562 0.999023438
+vt 0.000976562 0.999023438
+v -0.047291 1 -0.0111742
+v 0.858959 1 0.895076
+v 0.858959 2 0.895076
+v -0.047291 2 -0.0111742
+v -0.047291 1 0.895076
+v 0.858959 1 -0.0111742
+v 0.858959 2 -0.0111742
+v -0.047291 2 0.895076
+v -0.047291 2 -0.0111742
+v 0.858959 2 0.895076
+v 0.858959 3 0.895076
+v -0.047291 3 -0.0111742
+v -0.047291 2 0.895076
+v 0.858959 2 -0.0111742
+v 0.858959 3 -0.0111742
+v -0.047291 3 0.895076
+v 0 0 0
+v 0 0 1
+v 0 1 1
+v 0 1 0
+v 1 0 1
+v 1 0 0
+v 1 1 0
+v 1 1 1
+
+usemtl MC_material
+f 18/10/1 19/11/1 20/12/1 17/9/1
+f 18/14/2 17/13/2 22/16/2 21/15/2
+f 17/10/3 20/11/3 23/12/3 22/9/3
+f 21/9/4 22/10/4 23/11/4 24/12/4
+f 19/18/5 24/19/5 23/20/5 20/17/5
+f 18/9/6 21/10/6 24/11/6 19/12/6
+f 1/1/8 2/2/8 3/3/8 4/4/8
+f 4/4/9 3/3/9 2/2/9 1/1/9
+f 5/1/10 6/2/10 7/3/10 8/4/10
+f 7/3/7 6/2/7 5/1/7 8/4/7
+f 9/5/8 10/6/8 11/7/8 12/8/8
+f 12/8/9 11/7/9 10/6/9 9/5/9
+f 13/5/10 14/6/10 15/7/10 16/8/10
+f 15/7/7 14/6/7 13/5/7 16/8/7

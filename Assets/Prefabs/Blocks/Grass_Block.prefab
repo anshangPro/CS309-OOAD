@@ -116,7 +116,6 @@ MonoBehaviour:
   standUnit: {fileID: 0}
   g: 0
   h: 0
-  grass: 0
   parent: {fileID: 0}
   moveCost: 0
 --- !u!1 &3555920944189890484
