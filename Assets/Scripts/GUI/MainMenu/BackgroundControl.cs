@@ -29,7 +29,7 @@ public class BackgroundControl : MonoBehaviour
         {
             rects[i].Translate(Vector3.left * base_speed_x * (i>>1) * Time.deltaTime);
             if (rects[i].position.x < - rects[i].rect.width / 2f)
-                rects[i].Translate(Vector3.right * (rects[i].rect.width + 1920f));
+                rects[i].Translate(Vector3.right * 2 * rects[i].rect.width);
 
             if (rects[i].position.y != target_y)
                 rects[i].position = Vector3.MoveTowards(
