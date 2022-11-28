@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace StateMachine
@@ -8,14 +9,13 @@ namespace StateMachine
 
         private void Awake()
         {
-            if (gameManager != null && gameManager != this)
+            if (gameManager != null && gameManager != this && !gameManager.gameObject.IsDestroyed())
             {
                 Destroy(gameObject);
             }
             else
             {
                 gameManager = this;
-                DontDestroyOnLoad(gameManager);
             }
         }
     }

@@ -182,7 +182,7 @@ namespace Units
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             GameDataManager gameData = GameDataManager.Instance;
 
-            if (!hasMoved && canChoose(gameData.gameStatus))
+            if (!hasMoved && canChoose(gameData.gameStatus) && gameData.CurrentPlayer == ofPlayer)
             {
                 gameData.SelectedUnit = this;
                 // 进入状态UnitChosen

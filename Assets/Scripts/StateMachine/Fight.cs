@@ -35,6 +35,10 @@ namespace StateMachine
             gameData.SelectedBlock = null;
             gameData.AttackAnimeFinished = false;
             gameData.TakeDamageAnimeFinished = false;
+            if (gameData.IsGameOver())
+            {
+                gameData.GameOver();
+            }
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()
