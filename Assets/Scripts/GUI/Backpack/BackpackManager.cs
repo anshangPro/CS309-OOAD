@@ -57,6 +57,7 @@ namespace GUI.Backpack
         /// 考虑增加别的插入道具的方法
         /// </summary>
         /// <param name="item"></param>
+        /// <param name="backpack"></param>
         public void InsertItem(Item item, Units.Backpack backpack)
         {
             if (backpack.ItemSet.ContainsKey(item.ItemName))
@@ -69,8 +70,8 @@ namespace GUI.Backpack
             else
             {
                 backpack.ItemSet.Add(item.ItemName, item);
-                UpdateItemToUI();
             }
+            UpdateItemToUI();
         }
 
         private static void InsertItemToUI(Item item)
