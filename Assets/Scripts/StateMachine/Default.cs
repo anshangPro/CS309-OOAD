@@ -49,11 +49,6 @@ namespace StateMachine
                 }
             }
 
-            if (gameData.IsGameOver())
-            {
-                gameData.GameOver();
-            }
-
             if (gameData.GetCurrentPlayer().TurnFinish())
             {
                 foreach (Unit unit in gameData.GetCurrentPlayer().UnitsList)
