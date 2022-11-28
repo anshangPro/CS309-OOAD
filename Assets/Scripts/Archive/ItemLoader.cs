@@ -38,6 +38,7 @@ namespace Archive
         private static readonly int ReloadAnime = Animator.StringToHash("reload");
 
         public List<AudioClip> bgmCandidate;
+        public AudioClip beenHitSound;
 
         private void Awake()
         {

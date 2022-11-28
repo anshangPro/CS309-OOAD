@@ -1211,6 +1211,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 988988861697342252, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
+      propertyPath: beenHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0cdc06e084e6d364fbd9548bc0d0b1f3, type: 3}
+    - target: {fileID: 988988861697342252, guid: 44f36cf75151a7343903838a13f25c8a, type: 3}
       propertyPath: blocks.Array.size
       value: 3
       objectReference: {fileID: 0}

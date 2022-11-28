@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Archive;
 using DTO;
 using GameData;
 using Interfaces;
@@ -453,6 +454,11 @@ namespace Units
         public void DestroySelf()
         {
             Destroy(gameObject);
+        }
+
+        public void PlayBeenHitSound()
+        {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(ItemLoader.Instance.beenHitSound);
         }
     }
 }
