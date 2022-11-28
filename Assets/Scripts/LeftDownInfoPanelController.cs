@@ -1,15 +1,11 @@
 using StateMachine;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LeftDownInfoPanelController : MonoBehaviour
 {
-
-    public static GameObject FloatPanel
-    {
-        get;
-        private set;
-    }
+    
 
     public static LeftDownInfoPanelController Instance
     {
@@ -40,23 +36,13 @@ public class LeftDownInfoPanelController : MonoBehaviour
     
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null && Instance != this && !Instance.gameObject.IsDestroyed())
         {
             Destroy(gameObject);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(Instance);
-        }
-        if (FloatPanel != null && FloatPanel != gameObject)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            FloatPanel = gameObject;
-            DontDestroyOnLoad(gameObject);
         }
     }
 

@@ -113,7 +113,7 @@ public class MouseController : MonoBehaviour
         if (!_canShowFloatPanel && Time.time - _deltaTime > 0.5)
         {
             _canShowFloatPanel = true;
-            GameObject panel = LeftDownInfoPanelController.FloatPanel;
+            GameObject panel = LeftDownInfoPanelController.Instance.gameObject;
             panel.SetActive(false);
         }
     }
