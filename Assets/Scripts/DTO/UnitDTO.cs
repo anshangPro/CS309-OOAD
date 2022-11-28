@@ -16,7 +16,7 @@ namespace DTO
         public float Mp;
         public float Damage;
         public float Defense;
-        public int level;
+        public int Level;
         public int AtkRange;
         public Dictionary<string, string> optional;
 
@@ -41,6 +41,7 @@ namespace DTO
             Damage = unit.Damage;
             Defense = unit.Defense;
             AtkRange = unit.AtkRange;
+            Level = unit.level;
             optional = new Dictionary<string, string>();
         }
     }
