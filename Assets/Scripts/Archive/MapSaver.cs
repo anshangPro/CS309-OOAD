@@ -72,11 +72,21 @@ namespace Archive
         public static void SaveAll()
         {
             SaveDTO saveDto = new SaveDTO();
+
+            saveDto.CameraPosition = new float[3];
+            saveDto.CameraPosition[0] = Camera.main!.transform.position.x;
+            saveDto.CameraPosition[1] = Camera.main!.transform.position.y;
+            saveDto.CameraPosition[2] = Camera.main!.transform.position.z;
+            saveDto.CameraRotation = new float[3];
+            saveDto.CameraRotation[0] = Camera.main!.transform.rotation.eulerAngles.x;
+            saveDto.CameraRotation[1] = Camera.main!.transform.rotation.eulerAngles.y;
+            saveDto.CameraRotation[2] = Camera.main!.transform.rotation.eulerAngles.z;
+            
             SaveMapInto(saveDto);
             SavePlayersInto(saveDto);
 
             string json = saveDto.ToJsonString();
-            using StreamWriter writer = new StreamWriter("save/Sky_Palace.json");
+            using StreamWriter writer = new StreamWriter("game-scene/Map-Windmill-Surrounded-by-Mountain.json");
             writer.Write(json);
             writer.Flush();
         }
