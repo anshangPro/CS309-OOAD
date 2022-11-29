@@ -76,7 +76,7 @@ namespace Archive
             SavePlayersInto(saveDto);
 
             string json = saveDto.ToJsonString();
-            using StreamWriter writer = new StreamWriter("save/Scene_0.json");
+            using StreamWriter writer = new StreamWriter("save/Sky_Palace.json");
             writer.Write(json);
             writer.Flush();
         }

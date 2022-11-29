@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &988988861697342253
+--- !u!1 &6622483880156461959
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 988988861697342255}
-  - component: {fileID: 988988861697342252}
-  - component: {fileID: 548683031}
+  - component: {fileID: 6622483880156461957}
+  - component: {fileID: 6622483880156461958}
+  - component: {fileID: 6223502038832283069}
   m_Layer: 11
   m_Name: Map
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &988988861697342255
+--- !u!4 &6622483880156461957
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988988861697342253}
+  m_GameObject: {fileID: 6622483880156461959}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &988988861697342252
+--- !u!114 &6622483880156461958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988988861697342253}
+  m_GameObject: {fileID: 6622483880156461959}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7858df8e697248f498a4559b5f29f3e6, type: 3}
@@ -47,6 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocks:
   - {fileID: 1926091684721727668, guid: 0bb8bbb63784cd54090157c15ab9cd42, type: 3}
+  - {fileID: 7140402004672850311, guid: 584415c62a147be48a9535636fad57f8, type: 3}
+  - {fileID: 5110819009408959387, guid: 1c9f475e03902b94f95a4c27259df46f, type: 3}
+  - {fileID: 491671244923078256, guid: 487824cb3aec97841abbb7073d6a27a1, type: 3}
+  - {fileID: 3875358681532722890, guid: a0fbfe013fa05a847806eec7c99be7f4, type: 3}
   UnitPrefeb:
   - {fileID: 7296537334147626631, guid: 1aa146454c7d2884fb9c1e34d56d25e7, type: 3}
   - {fileID: 8035068661788064160, guid: 5ede25ca4cc00b2408915fe15b4b3e18, type: 3}
@@ -69,17 +73,19 @@ MonoBehaviour:
   - {fileID: 2817105440660261104, guid: c75a6c978b66c1d4bb24f23521f9b336, type: 3}
   - {fileID: 1296943455049342836, guid: 8e6cb8007054ab04790b200732f9e208, type: 3}
   - {fileID: 5710938517823476911, guid: b49b69ebc142eb6419cdef3bc986d93a, type: 3}
+  - {fileID: 3195336090278387061, guid: d987fc7193011e04c9d5ef7ebea006ae, type: 3}
   bgmCandidate:
   - {fileID: 8300000, guid: eae73fb136cbddf4e831c9e7026e076a, type: 3}
   - {fileID: 8300000, guid: 8480c431932b66647bce5e44dca84991, type: 3}
   - {fileID: 8300000, guid: eae73fb136cbddf4e831c9e7026e076a, type: 3}
---- !u!114 &548683031
+  beenHitSound: {fileID: 8300000, guid: 0cdc06e084e6d364fbd9548bc0d0b1f3, type: 3}
+--- !u!114 &6223502038832283069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988988861697342253}
+  m_GameObject: {fileID: 6622483880156461959}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50aa8e8c6101e4c4facfb06ed468a78b, type: 3}

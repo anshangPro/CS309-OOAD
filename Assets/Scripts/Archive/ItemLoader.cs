@@ -8,6 +8,7 @@ using GameData;
 using StateMachine;
 using Units;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Util;
 
 namespace Archive
@@ -54,9 +55,12 @@ namespace Archive
             {
                 EnvironmentPrefabDict.Add(environment.name, environment);
             }
+            
             // TODO: 记得删掉这里
-            // MapSaver.SaveAll();
-            // Debug.Log("");
+            if (SceneManager.GetActiveScene().name != "Scene_0") return;
+            MapSaver.SaveAll();
+            Debug.Log("save successfully");
+            UnityEditor.EditorApplication.isPlaying = false;
         }
 
         public void Start()

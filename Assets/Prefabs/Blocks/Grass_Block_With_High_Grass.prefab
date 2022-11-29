@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 311724506980558690}
   - component: {fileID: 2747486171252002576}
   - component: {fileID: 1243745013145541541}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Grass_Block_With_High_Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
