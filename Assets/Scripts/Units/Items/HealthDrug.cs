@@ -1,5 +1,6 @@
 ﻿using GameData;
 using GUI.Backpack;
+using GUI.PopUpFont;
 using UnityEngine;
 
 namespace Units.Items
@@ -20,11 +21,15 @@ namespace Units.Items
         {
             Unit selectedUnit = GameDataManager.Instance.SelectedUnit;
             float currentHealth = selectedUnit.Health;
+
             selectedUnit.Health = (currentHealth + 10 <= selectedUnit.MaxHealth)
                 ? selectedUnit.Health + 10
                 : selectedUnit.MaxHealth;
+            
+            PopUpFontManager.Instance.CreatePopUp(selectedUnit.GetComponent<Transform>(),
+                "Hp +10 !", Color.red);
+            
             GameDataManager.Instance.GetCurrentPlayer().Backpack.ItemSet[Instance.ItemName].ItemNum--;
-
 
             BackpackManager.UpdateItemToUI();
         }

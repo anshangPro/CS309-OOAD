@@ -1,5 +1,6 @@
 ﻿using GameData;
 using GUI.Backpack;
+using GUI.PopUpFont;
 using UnityEngine;
 
 namespace Units.Items
@@ -21,6 +22,9 @@ namespace Units.Items
             selectedUnit.level++;
             selectedUnit.UpdatePanel();
             selectedUnit.Exp = 0;
+
+            PopUpFontManager.Instance.CreatePopUp(selectedUnit.GetComponent<Transform>(),
+                "Level Up!", Color.yellow);
 
             GameDataManager.Instance.GetCurrentPlayer().Backpack.ItemSet[Instance.ItemName].ItemNum--;
             BackpackManager.UpdateItemToUI();

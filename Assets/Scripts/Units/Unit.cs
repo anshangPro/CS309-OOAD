@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Archive;
 using DTO;
 using GameData;
+using GUI.PopUpFont;
 using Interfaces;
 using StateMachine;
 using UnityEngine;
@@ -23,7 +24,9 @@ namespace Units
         public float Mp { get; internal set; }
         public float Damage { get; internal set; }
         private float _def;
-        public float Defense {
+
+        public float Defense
+        {
             get
             {
                 if (onBlock is not null)
@@ -33,10 +36,12 @@ namespace Units
                         return _def + 2;
                     }
                 }
+
                 return _def;
             }
             internal set { _def = value; }
         }
+
         public int level { get; internal set; }
         public int AtkRange = 1;
         public int Exp = 0;
@@ -53,9 +58,9 @@ namespace Units
 
         public int Mv
         {
-            get => _mvEnhance ? _mv+1 : _mv;
+            get => _mvEnhance ? _mv + 1 : _mv;
             internal set => _mv = value;
-            }
+        }
 
         internal float BaseHealth;
         internal float BaseMp;
@@ -97,7 +102,8 @@ namespace Units
         {
             //gameObject.GetComponent<SpriteRenderer>().transform.LookAt(Camera.main.transform);
             Vector3 old_eu = gameObject.GetComponent<SpriteRenderer>().transform.eulerAngles;
-            gameObject.GetComponent<SpriteRenderer>().transform.eulerAngles = new Vector3(-old_eu.x, Camera.main.transform.eulerAngles.y, old_eu.z);
+            gameObject.GetComponent<SpriteRenderer>().transform.eulerAngles =
+                new Vector3(-old_eu.x, Camera.main.transform.eulerAngles.y, old_eu.z);
         }
 
         protected virtual void MoveToBlock(Block block)
@@ -171,6 +177,7 @@ namespace Units
         /// <param name="realDamage"> 伤害值: float </param>
         protected virtual void TakeDamage(Unit from, float realDamage)
         {
+            PopUpFontManager.Instance.CreatePopUp(GetComponent<Transform>(), "HP -" + realDamage + "!", Color.red);
             if (Health <= realDamage)
             {
                 Health = 0;
@@ -181,7 +188,6 @@ namespace Units
                 Health -= realDamage;
                 if (Health <= 0.1)
                     Health = 0;
-                
             }
         }
 
@@ -192,6 +198,7 @@ namespace Units
             while (Exp >= curExpUpperBound)
             {
                 level++;
+                PopUpFontManager.Instance.CreatePopUp(GetComponent<Transform>(), "Level Up!", Color.yellow);
                 UpdatePanel();
                 Debug.Log($"{this} update to level {level}");
                 Exp -= curExpUpperBound;
@@ -233,7 +240,8 @@ namespace Units
         /// <returns>boolean </returns>
         private bool canChoose(GameStatus status)
         {
-            List<GameStatus> gameStatusList = new List<GameStatus>() { GameStatus.Default,  GameStatus.UnitChosen, GameStatus.FightMenu};
+            List<GameStatus> gameStatusList = new List<GameStatus>()
+                { GameStatus.Default, GameStatus.UnitChosen, GameStatus.FightMenu };
             return gameStatusList.Contains(status);
         }
 
@@ -306,7 +314,7 @@ namespace Units
 
             Health = MaxHealth;
             Mp = MaxMp;
-            
+
             foreach (Skill skill in Skills)
             {
                 skill.RemainSkillPoint = skill.SkillPoint;
@@ -366,7 +374,8 @@ namespace Units
             if (GameDataManager.Instance.SelectedSkill is not null)
             {
                 selfAnimator.SetTrigger(AttackSkillAnime);
-            } else
+            }
+            else
             {
                 selfAnimator.SetTrigger(AttackMeleeAnime);
             }
@@ -400,7 +409,7 @@ namespace Units
             controller.AtkRange = AtkRange;
             controller.level = level;
             controller.name = UnitName;
-            
+
             controller.FixedUpdate();
             controller.gameObject.SetActive(true);
         }
