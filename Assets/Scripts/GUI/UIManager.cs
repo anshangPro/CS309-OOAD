@@ -159,6 +159,7 @@ namespace GUI
         {
             MapSaver.Save();
             MainMenuUI.SetActive(false);
+            DefaultUI.SetActive(true);
         }
 
         internal static void SkipMoveButton()
