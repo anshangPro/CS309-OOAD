@@ -33,6 +33,8 @@ namespace GUI.PopUpFont
         public void CreatePopUp(Transform position, string text, Color color)
         {
             GameObject popup = Instantiate(prefeb, position);
+            Canvas popCanvas = popup.GetComponent<Canvas>();
+            popCanvas.sortingLayerName = "Units";
             TextMeshProUGUI temp = popup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             temp.text = text;
             temp.color = color;
