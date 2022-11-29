@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2708695803060328800}
   - component: {fileID: 3833697827861101756}
   - component: {fileID: 1291169953283296489}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gold_Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}

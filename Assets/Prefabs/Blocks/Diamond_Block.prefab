@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4175120068337434076}
   - component: {fileID: 1235726586653262998}
   - component: {fileID: 2306851165181730818}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Diamond_Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
