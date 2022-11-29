@@ -51,6 +51,8 @@ MonoBehaviour:
   - {fileID: 5110819009408959387, guid: 1c9f475e03902b94f95a4c27259df46f, type: 3}
   - {fileID: 491671244923078256, guid: 487824cb3aec97841abbb7073d6a27a1, type: 3}
   - {fileID: 3875358681532722890, guid: a0fbfe013fa05a847806eec7c99be7f4, type: 3}
+  - {fileID: 4815335880147310469, guid: f3c32974db6d9d7468a7f6e9e9d8f2da, type: 3}
+  - {fileID: 5136125485583265511, guid: 7acd217c80d250944a0dd54b8d26b9ab, type: 3}
   UnitPrefeb:
   - {fileID: 7296537334147626631, guid: 1aa146454c7d2884fb9c1e34d56d25e7, type: 3}
   - {fileID: 8035068661788064160, guid: 5ede25ca4cc00b2408915fe15b4b3e18, type: 3}
@@ -74,6 +76,7 @@ MonoBehaviour:
   - {fileID: 1296943455049342836, guid: 8e6cb8007054ab04790b200732f9e208, type: 3}
   - {fileID: 5710938517823476911, guid: b49b69ebc142eb6419cdef3bc986d93a, type: 3}
   - {fileID: 3195336090278387061, guid: d987fc7193011e04c9d5ef7ebea006ae, type: 3}
+  - {fileID: 7604665830098859453, guid: 16d3743779ad6944694af066b9c9f2a6, type: 3}
   bgmCandidate:
   - {fileID: 8300000, guid: eae73fb136cbddf4e831c9e7026e076a, type: 3}
   - {fileID: 8300000, guid: 8480c431932b66647bce5e44dca84991, type: 3}
@@ -92,3 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   environment: []
+  beacons: []

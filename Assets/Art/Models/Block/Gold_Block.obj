@@ -1,0 +1,114 @@
+# Wavefront OBJ file made by Mineways version 10.01, http://mineways.com
+# World: world_2
+# Terrain file name: D:\Application\mineways\terrainExt.png
+# Color scheme: Standard
+# Tue Nov 29 21:37:54 2022
+
+# Selection location min to max: 58, 67, -169 to 58, 319, -169
+#   Non-empty selection location min to max: 58, 67, -169 to 58, 67, -169
+
+# Set render type: Wavefront OBJ absolute indices
+# Units for the model vertex data itself: meters
+
+# 8 vertices, 6 faces (12 triangles), 1 blocks, 0 billboards/bits
+# block dimensions: X=1 by Y=1 (height) by Z=1 blocks
+# Elevation shading: no
+# Lighting: no
+# Transparent water: no
+# Map grid: no
+# File type: Export all textures to three large images
+# Texture output RGB: YES
+# Texture output A: YES
+# Texture output RGBA: YES
+# Make groups objects: YES
+# Export separate objects: no
+# Individual blocks: no
+#   Split by block type: no
+# G3D full material: YES
+# Make Z the up direction instead of Y: no
+# Create composite overlay faces: no
+# Center model: YES
+# Export lesser blocks: YES
+# Fatten lesser blocks: no
+# Create block faces at the borders: YES
+# Make tree leaves solid: no
+# Use biomes: no
+# Rotate model 0.000000 degrees
+# Scale model by making each block 1000 mm high
+# Data operation options:
+#   Fill air bubbles: no; Seal off entrances: no; Fill in isolated tunnels in base of model: no
+#   Connect parts sharing an edge: no; Connect corner tips: no; Weld all shared edges: no
+#   Delete floating objects: trees and parts smaller than 16 blocks: no
+#   Hollow out bottom of model, making the walls 1000 mm thick: no; Superhollow: no
+# Melt snow blocks: no
+#   Debug: show separate parts as colors: no
+#   Debug: show weld blocks in bright colors: no
+
+# Full world path: D:\Minecraft\PCL\.minecraft\versions\1.18.2-Fabric 0.14.10\saves\world_2
+# Full terrainExt.png path: D:\Application\mineways\terrainExt.png
+# Full current path: D:\Application\mineways
+
+mtllib Minecraft.mtl
+vn -1 0 0
+vn 0 -1 0
+vn 0 0 -1
+vn 1 0 0
+vn 0 1 0
+vn 0 0 1
+vn -0.707107 0 -0.707107
+vn -0.707107 0 0.707107
+vn 0.707107 0 -0.707107
+vn 0.707107 0 0.707107
+vn -0.707107 -0.707107 0
+vn 0 -0.707107 -0.707107
+vn 0.707107 -0.707107 0
+vn 0 -0.707107 0.707107
+vn -0.707107 0.707107 0
+vn 0 0.707107 -0.707107
+vn 0.707107 0.707107 0
+vn 0 0.707107 0.707107
+vn -0.92388 0 -0.382683
+vn -0.92388 0 0.382683
+vn 0.92388 0 -0.382683
+vn 0.92388 0 0.382683
+vn -0.382683 0 -0.92388
+vn -0.382683 0 0.92388
+vn 0.382683 0 -0.92388
+vn 0.382683 0 0.92388
+vn -0.397273 0.9177 0
+vn 0.397273 -0.9177 0
+vn 0.397273 0.9177 0
+vn -0.397273 -0.9177 0
+vn 0 0.9177 -0.397273
+vn 0 -0.9177 0.397273
+vn 0 0.9177 0.397273
+vn 0 -0.9177 -0.397273
+vn -0.440932 0.897541 0
+vn 0.440932 -0.897541 0
+vn 0.440932 0.897541 0
+vn -0.440932 -0.897541 0
+vn 0 0.897541 -0.440932
+vn 0 -0.897541 0.440932
+vn 0 0.897541 0.440932
+vn 0 -0.897541 -0.440932
+# gold_block
+vt 0.405273438 0.983398438
+vt 0.420898438 0.983398438
+vt 0.420898438 0.999023438
+vt 0.405273438 0.999023438
+v 0 0 0
+v 0 0 1
+v 0 1 1
+v 0 1 0
+v 1 0 1
+v 1 0 0
+v 1 1 0
+v 1 1 1
+
+usemtl MC_material
+f 2/2/1 3/3/1 4/4/1 1/1/1
+f 2/1/2 1/4/2 6/3/2 5/2/2
+f 1/2/3 4/3/3 7/4/3 6/1/3
+f 5/1/4 6/2/4 7/3/4 8/4/4
+f 3/1/5 8/2/5 7/3/5 4/4/5
+f 2/1/6 5/2/6 8/3/6 3/4/6
