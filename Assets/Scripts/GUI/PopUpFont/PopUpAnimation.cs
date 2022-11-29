@@ -10,14 +10,14 @@ namespace GUI.PopUpFont
         public AnimationCurve scaleCurve;
         public AnimationCurve heightCurve;
 
-        private TextMeshProUGUI tmp;
-        private float time = 0;
-        private Vector3 origin;
+        private TextMeshProUGUI _tmp;
+        private float _time = 0;
+        private Vector3 _origin;
 
         private void Awake()
         {
-            tmp = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            origin = transform.position;
+            _tmp = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            _origin = transform.position;
         }
 
         void Start()
@@ -27,10 +27,10 @@ namespace GUI.PopUpFont
         // Update is called once per frame  
         void Update()
         {
-            tmp.color = new Color(1, 1, 1, opacityCurve.Evaluate(time));
-            transform.localScale = Vector3.one * scaleCurve.Evaluate(time);
-            transform.position = origin + new Vector3(0, 1 + heightCurve.Evaluate(time), 0);
-            time += Time.deltaTime;
+            // _tmp.color = new Color(1, 1, 1, opacityCurve.Evaluate(_time));
+            transform.localScale = Vector3.one * scaleCurve.Evaluate(_time);
+            transform.position = _origin + new Vector3(0, 1 + heightCurve.Evaluate(_time), 0);
+            _time += Time.deltaTime;
         }
     }
 }
