@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using GameData;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace GUI.MainMenu
 {
@@ -31,9 +29,19 @@ namespace GUI.MainMenu
             selectModeMenu.SetActive(false);
         }
 
-        public void PlayBtn()
+        public void NewGameBtn()
         {
             ButtonClicked();
+            MainMenuLoadPanel.JsonToLoadDir = MainMenuLoadPanel.JsonDirNewGame;
+            mainMenu.SetActive(false);
+            selectSceneMenu.SetActive(false);
+            selectModeMenu.SetActive(true);
+        }
+
+        public void LoadGameBtn()
+        {
+            ButtonClicked();
+            MainMenuLoadPanel.JsonToLoadDir = MainMenuLoadPanel.JsonDirLoadGame;
             mainMenu.SetActive(false);
             selectSceneMenu.SetActive(false);
             selectModeMenu.SetActive(true);
@@ -76,12 +84,6 @@ namespace GUI.MainMenu
             mainMenu.SetActive(false);
             selectSceneMenu.SetActive(true);
             selectModeMenu.SetActive(false);
-        }
-
-        public void LoadSuperFlatScene()
-        {
-            GameDataManager.Instance.JsonToLoad = Path.Combine("Save", _sceneToJson["Scenes/SampleScene"]);
-            SceneManager.LoadScene("Scenes/SampleScene");
         }
     }
 }
