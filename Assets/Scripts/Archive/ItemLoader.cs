@@ -120,6 +120,7 @@ namespace Archive
         {
             GameDataManager data = GameDataManager.Instance;
             MapManager map = MapManager.Instance;
+            data.CurPlayerGameHistory.Clear();
             data.gameStatus = GameStatus.Default;
             data.CurrentPlayer = -1;
             data.blockList.Clear();
