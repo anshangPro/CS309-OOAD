@@ -2151,6 +2151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4629256947121575080}
   - component: {fileID: 4629256947121575083}
+  - component: {fileID: 6950310741398740102}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -2204,6 +2205,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6318905f0afc1a4f9df6ae2b94d7235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6950310741398740102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629256947121575081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bbfa1c4f8e922342a54b8361ed104bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootTextCure:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shootParabolaCure:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MaxWaitCount: 20
+  accelerateThresholdValue: 10
+  accelerateFactor: 2
+  updateCreatDefualtTime: 0.2
+  moveLifeTime: 1
+  shootTextScaleFactor: 0.6
+  delayMoveTime: 0.3
+  initializedVerticalPositionOffset: 0.8
+  initializedHorizontalPositionOffset: 0
+  verticalMoveSpeed: 10
+  horizontalMoveSpeed: 10
+  textAnimationType: 1
+  textMoveType: 1
 --- !u!1 &4629256947133734320
 GameObject:
   m_ObjectHideFlags: 0
