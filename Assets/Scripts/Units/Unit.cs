@@ -124,12 +124,13 @@ namespace Units
 
         protected virtual void MoveToBlock(Block block)
         {
-            FaceTo(block.gameObject.transform);
+            const float speed = 5.0f;
 
             Vector3 newPos = DstBlock2DstPos3(block);
+            Vector3 moveTowards = Vector3.MoveTowards(transform.position, newPos, speed * Time.deltaTime);
 
-            const float speed = 5.0f;
-            transform.position = Vector3.MoveTowards(transform.position, newPos, speed * Time.deltaTime);
+            FaceTo(moveTowards);
+            transform.position = moveTowards;
         }
 
 
@@ -350,7 +351,7 @@ namespace Units
         /// <summary>
         /// 使该单位面向对象。此乃正道。
         /// </summary>
-        public void FaceTo(Transform target)
+        public void FaceTo(Vector3 target)
         {
             Transform camera_transform = gameObject.GetComponent<SpriteRenderer>().transform;
             double camera_euler_Y = camera_transform.eulerAngles.y;
@@ -358,18 +359,21 @@ namespace Units
                 camera_euler_Y -= 360.0;
 
             // 180° 特判
-            if (target.position.x == camera_transform.position.x &&
-                target.position.z < camera_transform.position.z)
+            if (target.x == camera_transform.position.x &&
+                target.z < camera_transform.position.z)
             {
-                gameObject.GetComponent<SpriteRenderer>().flipX = (camera_euler_Y < 0);
+                if (camera_euler_Y != 0)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().flipX = (camera_euler_Y < 0);
+                }
                 Debug.Log("target angle: 180");
                 Debug.Log("flipped: " + (camera_euler_Y).ToString());
                 return;
             }
 
             double angle = camera_euler_Y - Math.Atan2(
-                target.position.x - camera_transform.position.x,
-                target.position.z - camera_transform.position.z
+                target.x - camera_transform.position.x,
+                target.z - camera_transform.position.z
             ) / Math.PI * 180;
             if (angle > 180.0)
                 angle -= 360.0;
@@ -386,7 +390,7 @@ namespace Units
         public void PlayAttackAnime()
         {
             Animator selfAnimator = this.GetComponent<Animator>();
-            FaceTo(GameDataManager.Instance.SelectedEnemy.gameObject.GetComponent<SpriteRenderer>().transform);
+            FaceTo(GameDataManager.Instance.SelectedEnemy.gameObject.GetComponent<SpriteRenderer>().transform.position);
             if (GameDataManager.Instance.SelectedSkill is not null)
             {
                 selfAnimator.SetTrigger(AttackSkillAnime);
@@ -405,7 +409,7 @@ namespace Units
             Debug.Log("take damage");
             Unit target = GameDataManager.Instance.SelectedEnemy;
             Animator oppositeAnimator = target.GetComponent<Animator>();
-            target.FaceTo(this.gameObject.GetComponent<SpriteRenderer>().transform);
+            target.FaceTo(this.gameObject.GetComponent<SpriteRenderer>().transform.position);
             oppositeAnimator.SetTrigger(TakeDamageAnime);
         }
 
