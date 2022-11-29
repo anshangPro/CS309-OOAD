@@ -22,7 +22,23 @@ namespace Units
         public float Health { get; internal set; }
         public float MaxMp { get; internal set; }
         public float Mp { get; internal set; }
-        public float Damage { get; internal set; }
+        private float _damage;
+        public float Damage {
+            get
+            {
+                List<Block> beacon = MapManager.Instance.beacons;
+                Vector2Int loc = onBlock.Position2D;
+                foreach (Block block in beacon)
+                {
+                    if (Vector2Int.Distance(loc, block.Position2D) <= 3)
+                    {
+                        return _damage + 1;
+                    }
+                }
+                return _damage;
+            }
+            internal set => _damage = value;
+        }
         private float _def;
 
         public float Defense

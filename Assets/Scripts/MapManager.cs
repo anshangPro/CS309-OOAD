@@ -12,6 +12,7 @@ public class MapManager : MonoBehaviour
 
     public readonly Dictionary<Vector2Int, Block> Map = new();
     public List<GameObject> environment = new();
+    public List<Block> beacons = new();
 
     private void Awake()
     {

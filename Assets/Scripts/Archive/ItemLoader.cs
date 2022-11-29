@@ -120,6 +120,7 @@ namespace Archive
         {
             GameDataManager data = GameDataManager.Instance;
             MapManager map = MapManager.Instance;
+            data.CurPlayerGameHistory.Clear();
             data.gameStatus = GameStatus.Default;
             data.CurrentPlayer = -1;
             data.blockList.Clear();
@@ -175,7 +176,12 @@ namespace Archive
                     continue;
                 
                 LocToBlock.Add(new Vector2(block.coordinate[0], block.coordinate[2]), new Tuple<GameObject, BlockDTO>(blockObj, block));
-                map.Map.Add(new Vector2Int(block.coordinate[0], block.coordinate[2]), blockObj.GetComponent<Block>());
+                Block b = blockObj.GetComponent<Block>();
+                map.Map.Add(new Vector2Int(block.coordinate[0], block.coordinate[2]), b);
+                if (b.type == 3)
+                {
+                    map.beacons.Add(b);
+                }
             }
             GameDataManager.Instance.blockList = LocToBlock;
         }

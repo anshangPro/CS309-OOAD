@@ -13,6 +13,7 @@ using Units.AI.Evaluator;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Util;
 using Unit = Units.Unit;
 
 namespace GameData
@@ -142,6 +143,7 @@ namespace GameData
             {
                 foreach (Unit unit in p.UnitsList)
                 {
+                    unit.onBlock.SetOverlayGridType(OverlayGrid.OverlayGridType.None);
                     unit.DestroySelf();
                 }
                 p.UnitsList.Clear();
