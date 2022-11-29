@@ -204,9 +204,16 @@ namespace GUI
         }
 
 
-        public void SetVisiableWithdrawButton(bool active)
+        public void SetVisiableWithdrawButton(bool force=false)
         {
+            bool active;
             GameObject withdrawMoveButton = DefaultUI.transform.Find("WithdrawMoveButton").gameObject;
+            if (force || GameDataManager.Instance.gameStatus == GameStatus.Default)
+                active = true;
+            else
+            {
+                active = false;
+            }
             withdrawMoveButton.SetActive(active);
         }
     }
