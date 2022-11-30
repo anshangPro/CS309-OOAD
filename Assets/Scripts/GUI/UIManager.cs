@@ -178,7 +178,7 @@ namespace GUI
 
         internal static void QuitButton()
         {
-            SceneManager.LoadScene("Scenes/MainMenu");
+            LevelLoader.Instance.LoadNextScene("MainMenu");
         }
 
         internal void ClosePanelButton()

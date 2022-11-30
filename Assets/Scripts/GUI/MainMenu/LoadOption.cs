@@ -27,7 +27,7 @@ namespace GUI.MainMenu
             GameDataManager.Instance.PanelShowing = false;
             GameDataManager.Instance.JsonToLoad = jsonPath;
             // SceneManager.LoadScene("SampleScene");
-            LevelLoader.Instance.LoadNextScene();
+            LevelLoader.Instance.LoadNextScene("SampleScene");
         }
     }
 }

@@ -100,7 +100,9 @@ namespace GUI
                     break;
 
                 case "ExitGameButton":
-                    SceneManager.LoadScene("Scenes/MainMenu");
+                    Debug.Log("EXIT");
+                    LevelLoader.Instance.LoadNextScene("MainMenu");
+                    // SceneManager.LoadScene("MainMenu");
                     break;
 
                 case "WithdrawMoveButton":

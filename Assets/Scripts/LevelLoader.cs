@@ -32,9 +32,9 @@ public class LevelLoader : MonoBehaviour
     //     }
     // }
 
-    public void LoadNextScene()
+    public void LoadNextScene(string sceneName)
     {
-        StartCoroutine(LoadScene("SampleScene"));
+        StartCoroutine(LoadScene(sceneName));
     }
 
     IEnumerator LoadScene(string sceneName)
