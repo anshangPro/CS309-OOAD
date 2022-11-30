@@ -1,3 +1,5 @@
+using System;
+using Archive;
 using GameData;
 using UnityEngine;
 
@@ -28,6 +30,16 @@ public class CameraMove : MonoBehaviour
         _yRotation = -20;
         _rotateEuler = Quaternion.Euler(-_yRotation, -_xRotation, 0);
         _transform.rotation = _rotateEuler;
+    }
+
+    private void Start()
+    {
+        float[] initPosition = ItemLoader.Instance.Save.CameraPosition;
+        float[] initRotation = ItemLoader.Instance.Save.CameraRotation;
+        _transform.position = new Vector3(initPosition[0], initPosition[1], initPosition[2]);
+        _cameraPosition = new Vector3(initPosition[0], initPosition[1], initPosition[2]);
+        _transform.rotation= Quaternion.Euler(initRotation[0], initRotation[1], initRotation[2]);
+        _rotateEuler = Quaternion.Euler(initRotation[0], initRotation[1], initRotation[2]);
     }
 
     void Update()

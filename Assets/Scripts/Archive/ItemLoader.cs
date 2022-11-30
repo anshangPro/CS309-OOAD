@@ -35,6 +35,8 @@ namespace Archive
         /// 全部载入方块的gameObject以及类型
         /// </summary>
         public Dictionary<Vector2, Tuple<GameObject, BlockDTO>> LocToBlock = new Dictionary<Vector2, Tuple<GameObject, BlockDTO>>();
+
+        public SaveDTO Save;
         
         private static readonly int ReloadAnime = Animator.StringToHash("reload");
 
@@ -55,6 +57,8 @@ namespace Archive
             {
                 EnvironmentPrefabDict.Add(environment.name, environment);
             }
+            
+            Save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
             
             // TODO: 记得删掉这里
             if (SceneManager.GetActiveScene().name != "Scene_0") return;
@@ -91,10 +95,9 @@ namespace Archive
             // }
             
             // TODO: 加载方式换成这样
-            SaveDTO save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
-            LoadBlocksFrom(save);
-            LoadEnvironmentFrom(save);
-            LoadPlayersFrom(save);
+            LoadBlocksFrom(Save);
+            LoadEnvironmentFrom(Save);
+            LoadPlayersFrom(Save);
 
             Camera.main!.GetComponent<AudioSource>().clip = bgmCandidate.OrderBy(bgm => Guid.NewGuid()).First();
             Debug.Log($"Total {bgmCandidate.Count} bgm candidates");
