@@ -86,7 +86,7 @@ namespace Archive
             SavePlayersInto(saveDto);
 
             string json = saveDto.ToJsonString();
-            using StreamWriter writer = new StreamWriter("game-scene/Map-Windmill-Surrounded-by-Mountain.json");
+            using StreamWriter writer = new StreamWriter("game-scene/Map-With-Height.json");
             writer.Write(json);
             writer.Flush();
         }

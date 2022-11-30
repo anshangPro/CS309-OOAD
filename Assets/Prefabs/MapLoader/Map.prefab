@@ -77,6 +77,7 @@ MonoBehaviour:
   - {fileID: 5710938517823476911, guid: b49b69ebc142eb6419cdef3bc986d93a, type: 3}
   - {fileID: 3195336090278387061, guid: d987fc7193011e04c9d5ef7ebea006ae, type: 3}
   - {fileID: 7604665830098859453, guid: 16d3743779ad6944694af066b9c9f2a6, type: 3}
+  - {fileID: 1683228353905880813, guid: c4480b2760606094eae18439aa0aa3a8, type: 3}
   bgmCandidate:
   - {fileID: 8300000, guid: eae73fb136cbddf4e831c9e7026e076a, type: 3}
   - {fileID: 8300000, guid: 8480c431932b66647bce5e44dca84991, type: 3}
