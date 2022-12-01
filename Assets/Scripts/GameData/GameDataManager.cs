@@ -177,11 +177,18 @@ namespace GameData
             GameManager.gameManager.GetComponent<Animator>().SetTrigger(WithdrawAnime);
         }
 
+        public static readonly int ReloadAnime = Animator.StringToHash("reload");
 
-        /// TODO: 这里需要补充提前结束玩家回合的逻辑
         public void SkipRound()
         {
-            throw new NotImplementedException();
+            HighlightBlockUtil.DeHighlightSelectableUnitOnBlocks();
+            foreach (Unit unit in GetCurrentPlayer().UnitsList)
+            {
+                unit.OnTurnEnd();
+            }
+            GetCurrentPlayer().FinishedUnit = GetCurrentPlayer().UnitsList.Count;
+            Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            animator.SetTrigger(ReloadAnime);
         }
     }
 }
