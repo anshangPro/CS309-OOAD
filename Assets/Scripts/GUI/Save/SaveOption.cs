@@ -29,6 +29,8 @@ namespace GUI.Save
 
         public bool IsClicked()
         {
+            GameDataManager data = GameDataManager.Instance;
+            data.PanelShowing = false;
             if (isSave)
             {
                 UIManager.Instance.DefaultUI.SetActive(true);
@@ -38,8 +40,6 @@ namespace GUI.Save
             }
             else 
             {
-                GameDataManager data = GameDataManager.Instance;
-                data.PanelShowing = false;
                 UIManager.Instance.LoadMenuUI.SetActive(false);
 
                 ItemLoader.Instance.GoDefault(Save);
