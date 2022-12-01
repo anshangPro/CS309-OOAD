@@ -8,6 +8,7 @@ TagManager:
   - Player_1
   - FloatPanel
   - Unit
+  - Item
   layers:
   - Default
   - TransparentFX
