@@ -43,10 +43,12 @@ namespace GameData
         public Unit SkillAffected; //对谁使用这个技能
 
         public bool PanelShowing = false;
+
         //技能用私有地
         //存档加载槽用
-        public bool isSave= false; //是否为存档操作
+        public bool isSave = false; //是否为存档操作
         public readonly string SavePath = "./Save";
+
         public string JsonToLoad = "Save/SampleScene.json";
         //存档加载槽用
 
@@ -122,22 +124,25 @@ namespace GameData
                     winnerPlayerId = i;
                 }
             }
+
             UIManager.Instance.WinnerPlayerIDText.text = winnerPlayerId.ToString();
         }
 
         // TODO: 快照的方式需要改变，需要处理有人物死亡的情况
         public void TakeSnapshot()
         {
-            List<List<UnitSnapshot>> allPlayersSnapshot = Players.Select(player => player.UnitsList.Select(unit => new UnitSnapshot(unit)).ToList()).ToList();
+            List<List<UnitSnapshot>> allPlayersSnapshot = Players
+                .Select(player => player.UnitsList.Select(unit => new UnitSnapshot(unit)).ToList()).ToList();
             CurPlayerGameHistory.Push(allPlayersSnapshot);
         }
 
         public static readonly int WithdrawAnime = Animator.StringToHash("withdrawClicked");
+
         public void WithdrawMove()
         {
             if (CurPlayerGameHistory.Count == 1)
                 return;
-            
+
             Debug.Log("Withdraw move");
             CurPlayerGameHistory.Pop();
             List<List<UnitSnapshot>> config = CurPlayerGameHistory.Peek(); // 棋面格局
@@ -148,13 +153,14 @@ namespace GameData
                     unit.onBlock.SetOverlayGridType(OverlayGrid.OverlayGridType.None);
                     unit.DestroySelf();
                 }
+
                 p.UnitsList.Clear();
             }
 
             foreach (Block block in MapManager.Instance.Map.Values.ToList())
                 block.standUnit = null;
-            
-            
+
+
             foreach (UnitSnapshot unitToRecover in config.SelectMany(unitsToRecover => unitsToRecover))
             {
                 Unit unit = UnitFactory.Instance.GetUnit(unitToRecover.type);
@@ -169,6 +175,13 @@ namespace GameData
             GetCurrentPlayer().FinishedUnit = GetCurrentPlayer().UnitsList.Count - unitAfterLoad.Count;
             CurPlayerGameHistory.Pop();
             GameManager.gameManager.GetComponent<Animator>().SetTrigger(WithdrawAnime);
+        }
+
+
+        /// TODO: 这里需要补充提前结束玩家回合的逻辑
+        public void SkipRound()
+        {
+            throw new NotImplementedException();
         }
     }
 }

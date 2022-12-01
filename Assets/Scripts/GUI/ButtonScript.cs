@@ -105,6 +105,11 @@ namespace GUI
                     // SceneManager.LoadScene("MainMenu");
                     break;
 
+                case "SkipRoundButton":
+                    GameDataManager.Instance.SkipRound();
+                    break;
+
+
                 case "WithdrawMoveButton":
                     GameDataManager.Instance.WithdrawMove();
                     break;

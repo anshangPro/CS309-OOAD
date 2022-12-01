@@ -24,6 +24,7 @@ namespace StateMachine
             }
             
             UIManager.Instance.SetVisiableWithdrawButton(true);
+            UIManager.Instance.SetVisiableSkipRoundButton(true);
             if (gameData.SelectedSkill is not null)
             {
                 gameData.SelectedSkill.Skill.CancelEffect();
@@ -87,6 +88,7 @@ namespace StateMachine
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             UIManager.Instance.SetVisiableWithdrawButton();
+            UIManager.Instance.SetVisiableSkipRoundButton();
         }
     }
 }
