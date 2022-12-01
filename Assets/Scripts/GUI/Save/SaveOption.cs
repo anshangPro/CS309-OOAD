@@ -17,6 +17,7 @@ namespace GUI.Save
         public TextMeshProUGUI time;
         public string Save;
         public bool isSave;
+        public GameObject deletePrefab;
 
         public void SetSave(string s)
         {
@@ -25,6 +26,14 @@ namespace GUI.Save
             _saveFileName = fi.Name.Replace(fi.Extension, "");
             saveName.text = _saveFileName;
             time.text = fi.LastWriteTime.ToString();
+            Debug.Log("isSave" + isSave.ToString());
+            if (!isSave)
+            {
+                GameObject deletion = Instantiate(deletePrefab, transform);
+                DeleteOption deleteOption = deletion.GetComponent<DeleteOption>();
+                deleteOption.fileName = s;
+                deleteOption.saveOption = this;
+            }
         }
 
         public bool IsClicked()
