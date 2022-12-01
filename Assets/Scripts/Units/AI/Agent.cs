@@ -90,9 +90,23 @@ namespace Units.AI
             neighbors.Sort((a, b) => Vector3.Distance(self.onBlock.gameObject.transform.position, a.gameObject.transform.position)
                 .CompareTo(Vector3.Distance(self.onBlock.gameObject.transform.position,
                     b.gameObject.transform.position)));
-
-            Block dstBlock = neighbors.First(block => block.standUnit == null);
+            
             List<Block> inRangeBlocks = MapManager.Instance.FindInRange(self.onBlock, self.Mv);
+            Block dstBlock = null;
+            try
+            {
+                dstBlock = neighbors.First(block => block.standUnit == null);
+            }
+            catch (InvalidOperationException)
+            {
+                inRangeBlocks.Sort((a, b) =>
+                {
+                    float distA = Vector3.Distance(a.transform.position, target.onBlock.transform.position);
+                    float distB = Vector3.Distance(b.transform.position, target.onBlock.transform.position);
+                    return distA.CompareTo(distB);
+                });
+                return inRangeBlocks.First(block => block.standUnit == null);
+            }
             if (inRangeBlocks.Contains(dstBlock)) return neighbors.First(block => block.standUnit == null);
             
             // TODO: 逻辑需要加强，有时候这里的neighbors会为空

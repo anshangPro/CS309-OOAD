@@ -356,7 +356,7 @@ namespace Units
 
             if (GameDataManager.Instance.SelectedSkill is not null)
             {
-                GameDataManager.Instance.SelectedSkill.Skill.TakeEffect();
+                GameDataManager.Instance.SelectedSkill = null;
             }
         }
 
@@ -388,9 +388,6 @@ namespace Units
                 {
                     gameObject.GetComponent<SpriteRenderer>().flipX = (camera_euler_Y < 0);
                 }
-
-                Debug.Log("target angle: 180");
-                Debug.Log("flipped: " + (camera_euler_Y).ToString());
                 return;
             }
 
@@ -404,7 +401,6 @@ namespace Units
                 angle += 360.0;
 
             gameObject.GetComponent<SpriteRenderer>().flipX = (angle > 0);
-            Debug.Log("target angle: " + angle.ToString());
         }
 
         /// <summary>
