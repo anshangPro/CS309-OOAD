@@ -60,6 +60,7 @@ namespace GameData
 
         public readonly Agent Agent = new(new Searcher(new GreedyEvaluator()));
 
+        public AudioClip WinMusic;
 
         private static GameDataManager _instance = new();
 
@@ -116,6 +117,8 @@ namespace GameData
         public void GameOver()
         {
             UIManager.Instance.GameOverMenuUI.SetActive(true);
+            Camera.main!.GetComponent<AudioSource>().Stop();
+            Camera.main!.GetComponent<AudioSource>().PlayOneShot(WinMusic);
             int winnerPlayerId = 0;
             for (int i = 0; i < Players.Count; i++)
             {
