@@ -11,6 +11,9 @@ namespace DTO
         public List<BlockDTO> blocks;
         public List<EnviromentDTO> environment;
 
+        public int currentPlayer;
+        public bool pve;
+
         public string ToJsonString()
         {
             return JsonConvert.SerializeObject(this);

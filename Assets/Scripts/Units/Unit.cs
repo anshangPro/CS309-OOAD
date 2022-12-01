@@ -347,6 +347,11 @@ namespace Units
             {
                 skill.RemainSkillPoint = skill.SkillPoint;
             }
+
+            if (GameDataManager.Instance.SelectedSkill is not null)
+            {
+                GameDataManager.Instance.SelectedSkill.Skill.TakeEffect();
+            }
         }
 
         public virtual bool CanFightWith()
@@ -461,6 +466,8 @@ namespace Units
             Damage = unit.Damage;
             Defense = unit.Defense;
             AtkRange = unit.AtkRange;
+            hasAttacked = unit.isAttacked;
+            hasMoved = unit.isMoved;
         }
 
         public void SetTo(UnitSnapshot snapshot)

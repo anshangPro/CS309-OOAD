@@ -24,7 +24,8 @@ namespace GameData
         public int CurrentPlayer = -1;
         public bool Pve = false;
         public List<Player> Players = new List<Player>(PlayerNum);
-        public Dictionary<Vector2, Tuple<GameObject, BlockDTO>> blockList;
+        public Dictionary<Vector2, Tuple<GameObject, BlockDTO>> blockList = new();
+        public bool Started = false;
 
         public GameStatus gameStatus = GameStatus.Default;
 
