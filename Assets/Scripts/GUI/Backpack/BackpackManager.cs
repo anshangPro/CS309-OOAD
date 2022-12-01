@@ -94,7 +94,10 @@ namespace GUI.Backpack
             Units.Backpack backpack = GameDataManager.Instance.GetCurrentPlayer().Backpack;
             foreach (Item item in backpack.ItemSet.Values)
             {
-                InsertItemToUI(item);
+                if (item.ItemNum > 0)
+                {
+                    InsertItemToUI(item);   
+                }
             }
         }
     }

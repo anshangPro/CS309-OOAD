@@ -2,6 +2,7 @@
 using GUI.Backpack;
 using GUI.PopUpFont;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Units.Items
 {
@@ -19,19 +20,23 @@ namespace Units.Items
 
         public override void ItemUse()
         {
-            Unit selectedUnit = GameDataManager.Instance.SelectedUnit;
-            float currentHealth = selectedUnit.Health;
+            var itemNum = GameDataManager.Instance.GetCurrentPlayer().Backpack.ItemSet[Instance.ItemName].ItemNum;
+            if (itemNum > 0)
+            {
+                Unit selectedUnit = GameDataManager.Instance.SelectedUnit;
+                float currentHealth = selectedUnit.Health;
 
-            selectedUnit.Health = (currentHealth + 10 <= selectedUnit.MaxHealth)
-                ? selectedUnit.Health + 10
-                : selectedUnit.MaxHealth;
-            
-            PopUpFontManager.Instance.CreatePopUp(selectedUnit.GetComponent<Transform>(),
-                "Hp +10 !", Color.red);
-            
-            GameDataManager.Instance.GetCurrentPlayer().Backpack.ItemSet[Instance.ItemName].ItemNum--;
+                selectedUnit.Health = (currentHealth + 10 <= selectedUnit.MaxHealth)
+                    ? selectedUnit.Health + 10
+                    : selectedUnit.MaxHealth;
 
-            BackpackManager.UpdateItemToUI();
+                PopUpFontManager.Instance.CreatePopUp(selectedUnit.GetComponent<Transform>(),
+                    "Hp +10 !", Color.red);
+
+                GameDataManager.Instance.GetCurrentPlayer().Backpack.ItemSet[Instance.ItemName].ItemNum--;
+
+                BackpackManager.UpdateItemToUI();
+            }
         }
     }
 }
