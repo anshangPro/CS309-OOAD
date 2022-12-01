@@ -21,6 +21,7 @@ namespace StateMachine
         Move,
         MenuAfterMove,
         FightMenu,
-        Fight
+        Fight,
+        GameOver
     }
 }
