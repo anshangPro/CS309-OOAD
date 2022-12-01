@@ -1,4 +1,6 @@
-﻿using GameData;
+﻿using System.Drawing;
+using GameData;
+using Color = UnityEngine.Color;
 
 namespace Units.Skills
 {
@@ -12,6 +14,7 @@ namespace Units.Skills
             Name = "Fire all the thing";
             SkillPoint = 8;
             RemainSkillPoint = 8;
+            FontColor = Color.red;;
         }
 
         public override bool SkillUse(Unit actor, Unit affected)

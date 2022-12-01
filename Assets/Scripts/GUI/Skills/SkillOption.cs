@@ -7,19 +7,21 @@ using Units;
 
 namespace GUI.Skills
 {
-    public class SkillOption: MonoBehaviour, IClickable
+    public class SkillOption : MonoBehaviour, IClickable
     {
         public TextMeshProUGUI skillName;
         public TextMeshProUGUI pp;
         public Skill Skill;
-        
+
         private static readonly int AttackClicked = Animator.StringToHash("attackClicked");
-  
-        
+
+
         public void SetSkill(Skill s)
         {
             skillName.text = s.Name;
+            skillName.color = s.FontColor;
             pp.text = $"{s.RemainSkillPoint}/{s.SkillPoint}";
+            pp.color = s.FontColor;
             this.Skill = s;
         }
 
@@ -34,6 +36,7 @@ namespace GUI.Skills
                 animator.SetTrigger(AttackClicked);
                 return true;
             }
+
             return false;
         }
     }

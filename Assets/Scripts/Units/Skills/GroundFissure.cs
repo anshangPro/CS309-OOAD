@@ -1,17 +1,19 @@
 ﻿using GameData;
+using UnityEngine;
 
 namespace Units.Skills
 {
-    public class GroundFissure: Skill
+    public class GroundFissure : Skill
     {
         private readonly int _rangeEnhance = 0;
-        private readonly int _damageEnhance = 5;    
-        
+        private readonly int _damageEnhance = 5;
+
         public GroundFissure()
         {
             Name = "Ground fissure";
             SkillPoint = 5;
             RemainSkillPoint = 5;
+            FontColor = new Color(152f/255, 50f/255, 204f/255, 1);
         }
 
         public override bool SkillUse(Unit actor, Unit affected)
@@ -26,16 +28,19 @@ namespace Units.Skills
                 CancelEffect();
                 GameDataManager.Instance.SelectedSkill = null;
             }
+
             return false;
         }
 
         public override bool TakeEffect()
         {
-            if (RemainSkillPoint > 0){
+            if (RemainSkillPoint > 0)
+            {
                 BelongTo.Damage += _damageEnhance;
                 BelongTo.AtkRange += _rangeEnhance;
                 return true;
             }
+
             return false;
         }
 

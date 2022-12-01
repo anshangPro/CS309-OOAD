@@ -1,10 +1,13 @@
-﻿namespace Units
+﻿
+using UnityEngine;
+
+namespace Units
 {
     public abstract class Skill
     {
         public Unit BelongTo;
         public string Name;
-
+        
         /// <summary>
         /// 技能总可用次数
         /// </summary>
@@ -20,6 +23,8 @@
         /// </summary>
         public int Cost;
 
+        public Color FontColor;
+        
         /// <summary>
         /// actor 对 affected 使用技能
         /// 二者可为同一对象
