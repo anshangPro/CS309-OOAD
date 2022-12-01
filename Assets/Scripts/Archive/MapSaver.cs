@@ -44,6 +44,16 @@ namespace Archive
         {
             GameDataManager data = GameDataManager.Instance;
             SaveDTO save = new SaveDTO();
+            
+            save.CameraPosition = new float[3];
+            save.CameraPosition[0] = Camera.main!.transform.position.x;
+            save.CameraPosition[1] = Camera.main!.transform.position.y;
+            save.CameraPosition[2] = Camera.main!.transform.position.z;
+            save.CameraRotation = new float[3];
+            save.CameraRotation[0] = Camera.main!.transform.rotation.eulerAngles.x;
+            save.CameraRotation[1] = Camera.main!.transform.rotation.eulerAngles.y;
+            save.CameraRotation[2] = Camera.main!.transform.rotation.eulerAngles.z;
+            
             List<PlayerDTO> players = new List<PlayerDTO>();
             foreach (Player p in data.Players)
             {
