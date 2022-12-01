@@ -11,7 +11,7 @@ namespace GUI.PopUpFont
         public AnimationCurve heightCurve;
 
         private TextMeshProUGUI _tmp;
-        private float _time = 0;
+        private float _time;
         private Vector3 _origin;
 
         private void Awake()
@@ -27,7 +27,7 @@ namespace GUI.PopUpFont
         // Update is called once per frame  
         void Update()
         {
-            // _tmp.color = new Color(1, 1, 1, opacityCurve.Evaluate(_time));
+            _tmp.color = new Color(_tmp.color.r, _tmp.color.g, _tmp.color.b, opacityCurve.Evaluate(_time));
             transform.localScale = Vector3.one * scaleCurve.Evaluate(_time);
             transform.position = _origin + new Vector3(0, 1 + heightCurve.Evaluate(_time), 0);
             _time += Time.deltaTime;

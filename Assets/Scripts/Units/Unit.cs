@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Archive;
 using DTO;
 using GameData;
+using GUI.Arrow;
 using GUI.PopUpFont;
 using Interfaces;
 using StateMachine;
@@ -23,7 +24,9 @@ namespace Units
         public float MaxMp { get; internal set; }
         public float Mp { get; internal set; }
         private float _damage;
-        public float Damage {
+
+        public float Damage
+        {
             get
             {
                 List<Block> beacon = MapManager.Instance.beacons;
@@ -35,10 +38,12 @@ namespace Units
                         return _damage + 1;
                     }
                 }
+
                 return _damage;
             }
             internal set => _damage = value;
         }
+
         private float _def;
 
         public float Defense
@@ -237,6 +242,9 @@ namespace Units
                 gameData.SelectedUnit = this;
                 // 进入状态UnitChosen
                 animator.SetTrigger(UnitClickedAnime);
+
+                ArrowManager.Instance.ShowArrow(this);
+
                 return true;
             }
 
@@ -244,6 +252,8 @@ namespace Units
             {
                 // 进入状态fight
                 gameData.SelectedEnemy = this;
+                ArrowManager.Instance.ShowArrow(this);
+
                 animator.SetTrigger(EnemyClickedAnime);
             }
 
@@ -366,6 +376,7 @@ namespace Units
                 {
                     gameObject.GetComponent<SpriteRenderer>().flipX = (camera_euler_Y < 0);
                 }
+
                 Debug.Log("target angle: 180");
                 Debug.Log("flipped: " + (camera_euler_Y).ToString());
                 return;
