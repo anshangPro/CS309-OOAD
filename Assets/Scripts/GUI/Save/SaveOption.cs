@@ -16,7 +16,7 @@ namespace GUI.Save
         private string _saveFileName;
         public TextMeshProUGUI time;
         public string Save;
-        public bool isSave = false;
+        public bool isSave;
 
         public void SetSave(string s)
         {
