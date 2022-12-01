@@ -33,9 +33,9 @@ namespace Units
                 Vector2Int loc = onBlock.Position2D;
                 foreach (Block block in beacon)
                 {
-                    if (Vector2Int.Distance(loc, block.Position2D) <= 3)
+                    if (Vector2Int.Distance(loc, block.Position2D) <= 3f)
                     {
-                        return _damage + 1;
+                        return _damage + 1f;
                     }
                 }
 
@@ -184,7 +184,12 @@ namespace Units
         public virtual void Attack(Unit target)
         {
             hasAttacked = true;
-            float causeDamage = Damage + onBlock.transform.position.y - target.onBlock.transform.position.y;
+            float position_effect = onBlock.transform.position.y - target.onBlock.transform.position.y;
+            if (position_effect > 0f)
+                position_effect = 2.0f;
+            else if (position_effect < 0f)
+                position_effect = -2.0f;
+            float causeDamage = Damage + position_effect;
             float realDamage = causeDamage - target.Defense;
 
             if (realDamage <= 0)
