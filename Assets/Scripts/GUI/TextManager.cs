@@ -2,6 +2,7 @@ using System;
 using StateMachine;
 using TMPro;
 using UnityEngine;
+using Random = System.Random;
 
 namespace GUI
 {
@@ -32,9 +33,11 @@ namespace GUI
                 GameStatus.MenuAfterMove => "MenuAfterMove",
                 GameStatus.FightMenu => "FightMenu",
                 GameStatus.Fight => "Fight",
+                GameStatus.GameOver => "GameOver",
                 _ => _tmp.text
             };
 
+            var seed = Guid.NewGuid().GetHashCode();
             _tmp.color = GameData.GameDataManager.Instance.gameStatus switch
             {
                 GameStatus.Default => Color.black,
@@ -44,6 +47,7 @@ namespace GUI
                 GameStatus.MenuAfterMove => Color.black,
                 GameStatus.FightMenu => Color.red,
                 GameStatus.Fight => Color.red,
+                GameStatus.GameOver => Color.black,
                 _ => Color.white
             };
         }

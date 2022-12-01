@@ -124,7 +124,7 @@ namespace GameData
                     winnerPlayerId = i;
                 }
             }
-
+            
             UIManager.Instance.WinnerPlayerIDText.text = winnerPlayerId.ToString();
         }
 
