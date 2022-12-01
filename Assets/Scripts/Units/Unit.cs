@@ -184,7 +184,8 @@ namespace Units
         public virtual void Attack(Unit target)
         {
             hasAttacked = true;
-            float realDamage = Damage - target.Defense;
+            float causeDamage = Damage + onBlock.transform.position.y - target.onBlock.transform.position.y;
+            float realDamage = causeDamage - target.Defense;
 
             if (realDamage <= 0)
                 return;
