@@ -344,6 +344,7 @@ namespace Units
             this.Mv = Math.Min(BaseMv + (int)Math.Floor((decimal)level / 10), 10);
             this.Defense = BaseDefense + level * DefenseUpdateRate;
             this.Damage = BaseDamage + level * 2 + (int)Math.Floor((decimal)level / 5) * 5;
+            this.AtkRange = BaseAtkRange;
 
             Health = MaxHealth;
             Mp = MaxMp;
