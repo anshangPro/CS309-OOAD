@@ -9,11 +9,12 @@ using Units;
 
 namespace GUI.Save
 {
-    public class NewSaveOption: MonoBehaviour, IClickable
+    public class NewSaveOption : MonoBehaviour, IClickable
     {
-
         public bool IsClicked()
         {
+            GameDataManager data = GameDataManager.Instance;
+            data.PanelShowing = false;
             UIManager.Instance.DefaultUI.SetActive(true);
             UIManager.Instance.LoadMenuUI.SetActive(false);
             MapSaver.Save();
