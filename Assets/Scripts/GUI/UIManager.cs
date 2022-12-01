@@ -130,6 +130,7 @@ namespace GUI
 
         internal void LoadButton()
         {
+            GameDataManager.Instance.isSave = false;
             MainMenuUI.SetActive(false);
             LoadMenuUI.SetActive(true);
         }
@@ -157,9 +158,10 @@ namespace GUI
 
         internal void SaveButton()
         {
-            MapSaver.Save();
+            // MapSaver.Save();
+            GameDataManager.Instance.isSave = true;
+            LoadMenuUI.SetActive(true);
             MainMenuUI.SetActive(false);
-            DefaultUI.SetActive(true);
         }
 
         internal static void SkipMoveButton()

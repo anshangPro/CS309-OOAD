@@ -26,6 +26,23 @@ namespace Archive
         public static void Save()
         {
             GameDataManager data = GameDataManager.Instance;
+            int idx = 0;
+            string[] files = Directory.GetFiles(data.SavePath, "*.json");
+            foreach (string path in files)
+            {
+                GroupCollection groups = _regex.Match(path).Groups;
+                for (int i = 1; i < groups.Count; i++)
+                {
+                    idx = Mathf.Max(Int32.Parse(groups[i].Value), idx);
+                }
+            }
+            idx++;
+            Save($"save{idx}.json");
+        }
+
+        public static void Save(String name)
+        {
+            GameDataManager data = GameDataManager.Instance;
             SaveDTO save = new SaveDTO();
             List<PlayerDTO> players = new List<PlayerDTO>();
             foreach (Player p in data.Players)
@@ -50,19 +67,8 @@ namespace Archive
                 save.environment.Add(EnviromentDTO.InitFrom(environmentsInOneGroup.Key, certainTypeEnvironments));
             }
             String json = JsonConvert.SerializeObject(save);
-
-            int idx = 0;
-            string[] files = Directory.GetFiles(data.SavePath, "*.json");
-            foreach (string path in files)
-            {
-                GroupCollection groups = _regex.Match(path).Groups;
-                for (int i = 1; i < groups.Count; i++)
-                {
-                    idx = Mathf.Max(Int32.Parse(groups[i].Value), idx);
-                }
-            }
-            idx++;
-            using (StreamWriter writer = new StreamWriter($"{data.SavePath}/save{idx}.json"))
+            
+            using (StreamWriter writer = new StreamWriter($"{data.SavePath}/{name}"))
             {
                 writer.Write(json);
                 writer.Flush();

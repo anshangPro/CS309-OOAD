@@ -44,6 +44,7 @@ namespace GameData
         public bool PanelShowing = false;
         //技能用私有地
         //存档加载槽用
+        public bool isSave= false; //是否为存档操作
         public readonly string SavePath = "./Save";
         public string JsonToLoad = "Save/SampleScene.json";
         //存档加载槽用

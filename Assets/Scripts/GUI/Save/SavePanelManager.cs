@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using GameData;
 using StateMachine;
@@ -11,17 +12,30 @@ namespace GUI.Save
     {
         public GameObject content;
         public GameObject savePrefab;
+        public GameObject addSavePrefab;
+        private List<SaveOption> _saves = new();
 
         private void OnEnable()
         {
             GameDataManager gameData = GameDataManager.Instance;
+            _saves.Clear();
             gameData.PanelShowing = true;
             string[] files = Directory.GetFiles(gameData.SavePath, "*.json");
             foreach (string save in files)
             {
                 GameObject s = Instantiate(savePrefab, content.transform);
                 SaveOption so = s.GetComponent<SaveOption>();
+                _saves.Add(so);
                 so.SetSave(save);
+            }
+
+            if (gameData.isSave)
+            {
+                foreach (SaveOption save in _saves)
+                {
+                    save.isSave = true;
+                }
+                Instantiate(addSavePrefab, content.transform);
             }
         }
 
