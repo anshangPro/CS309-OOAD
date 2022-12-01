@@ -57,14 +57,12 @@ namespace Archive
             {
                 EnvironmentPrefabDict.Add(environment.name, environment);
             }
-            
             Save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
-            
             // TODO: 记得删掉这里
-            if (SceneManager.GetActiveScene().name != "Scene_0") return;
-            MapSaver.SaveAll();
-            Debug.Log("save successfully");
-            UnityEditor.EditorApplication.isPlaying = false;
+            // if (SceneManager.GetActiveScene().name != "Scene_0") return;
+            // MapSaver.SaveAll();
+            // Debug.Log("save successfully");
+            // UnityEditor.EditorApplication.isPlaying = false;
         }
 
         public void Start()
@@ -95,6 +93,7 @@ namespace Archive
             // }
             
             // TODO: 加载方式换成这样
+            Save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
             LoadBlocksFrom(Save);
             LoadEnvironmentFrom(Save);
             LoadPlayersFrom(Save);
@@ -181,7 +180,7 @@ namespace Archive
                 LocToBlock.Add(new Vector2(block.coordinate[0], block.coordinate[2]), new Tuple<GameObject, BlockDTO>(blockObj, block));
                 Block b = blockObj.GetComponent<Block>();
                 map.Map.Add(new Vector2Int(block.coordinate[0], block.coordinate[2]), b);
-                if (b.type == 3)
+                if (b.type == 2)
                 {
                     map.beacons.Add(b);
                 }

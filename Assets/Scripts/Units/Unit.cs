@@ -269,7 +269,7 @@ namespace Units
         {
             hasMoved = false;
             hasAttacked = false;
-            if (onBlock.type == 2)
+            if (onBlock.type == 5)
             {
                 _mvEnhance = true;
             }

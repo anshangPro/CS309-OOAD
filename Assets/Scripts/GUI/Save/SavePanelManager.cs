@@ -28,13 +28,12 @@ namespace GUI.Save
                 _saves.Add(so);
                 so.SetSave(save);
             }
-
+            foreach (SaveOption save in _saves)
+            {
+                save.isSave = gameData.isSave;
+            }
             if (gameData.isSave)
             {
-                foreach (SaveOption save in _saves)
-                {
-                    save.isSave = true;
-                }
                 Instantiate(addSavePrefab, content.transform);
             }
         }
