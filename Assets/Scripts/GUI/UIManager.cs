@@ -205,8 +205,22 @@ namespace GUI
             backPackButton.SetActive(!backPackButton.activeSelf);
         }
 
+        public void SetVisiableSkipRoundButton(bool force = false)
+        {
+            bool active;
+            GameObject skipRoundButton = DefaultUI.transform.Find("SkipRoundButton").gameObject;
+            if (force || GameDataManager.Instance.gameStatus == GameStatus.Default)
+                active = true;
+            else
+            {
+                active = false;
+            }
 
-        public void SetVisiableWithdrawButton(bool force=false)
+            skipRoundButton.SetActive(active);
+        }
+
+
+        public void SetVisiableWithdrawButton(bool force = false)
         {
             bool active;
             GameObject withdrawMoveButton = DefaultUI.transform.Find("WithdrawMoveButton").gameObject;
@@ -216,6 +230,7 @@ namespace GUI
             {
                 active = false;
             }
+
             withdrawMoveButton.SetActive(active);
         }
     }

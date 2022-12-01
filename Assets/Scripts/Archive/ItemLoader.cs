@@ -58,7 +58,6 @@ namespace Archive
                 EnvironmentPrefabDict.Add(environment.name, environment);
             }
             Save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
-            // TODO: 记得删掉这里
             // if (SceneManager.GetActiveScene().name != "Scene_0") return;
             // MapSaver.SaveAll();
             // Debug.Log("save successfully");
