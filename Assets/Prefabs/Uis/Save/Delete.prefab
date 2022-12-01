@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 315, y: 0}
   m_SizeDelta: {x: 35, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7839193271828571422
@@ -135,3 +135,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: 
+  saveOption: {fileID: 0}
