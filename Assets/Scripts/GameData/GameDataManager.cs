@@ -117,6 +117,7 @@ namespace GameData
         public void GameOver()
         {
             UIManager.Instance.GameOverMenuUI.SetActive(true);
+            UIManager.Instance.GameStateUI.SetActive(false);
             Camera.main!.GetComponent<AudioSource>().Stop();
             Camera.main!.GetComponent<AudioSource>().PlayOneShot(WinMusic);
             int winnerPlayerId = 0;
