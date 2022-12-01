@@ -20,6 +20,9 @@ namespace DTO
         public int AtkRange;
         public Dictionary<string, string> optional;
 
+        public bool isMoved;
+        public bool isAttacked;
+
         public Vector3Int GetCoordinate()
         {
             return new Vector3Int(coornidate[0], coornidate[1], coornidate[2]);
@@ -43,6 +46,8 @@ namespace DTO
             AtkRange = unit.AtkRange;
             Level = unit.level;
             optional = new Dictionary<string, string>();
+            isAttacked = unit.hasAttacked;
+            isMoved = unit.hasMoved;
         }
     }
 }

@@ -6,10 +6,11 @@ using System.Security.Cryptography;
 using DTO;
 using GameData;
 using StateMachine;
-using Units;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Util;
+using Unit = Units.Unit;
 
 namespace Archive
 {
@@ -58,6 +59,7 @@ namespace Archive
                 EnvironmentPrefabDict.Add(environment.name, environment);
             }
             Save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
+            GoDefault(GameDataManager.Instance.JsonToLoad, ignore:true);
             // TODO: 记得删掉这里
             // if (SceneManager.GetActiveScene().name != "Scene_0") return;
             // MapSaver.SaveAll();
@@ -65,60 +67,21 @@ namespace Archive
             // UnityEditor.EditorApplication.isPlaying = false;
         }
 
-        public void Start()
+        public void Initialize(bool ignore)
         {
-            // GameDataManager data = GameDataManager.Instance;
-            // MapManager map = MapManager.Instance;
-            // SaveDTO save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
-            // foreach (BlockDTO block in save.blocks)
-            // {
-            //     GameObject blockObj = Instantiate(blocks[block.type], block.GetCoordinate(), 
-            //         Quaternion.identity, gameObject.transform);
-            //     LocToBlock.Add(new Vector2(block.coordinate[0], block.coordinate[2]), new Tuple<GameObject, BlockDTO>(blockObj, block));
-            //     map.Map.Add(new Vector2Int(block.coordinate[0], block.coordinate[2]), blockObj.GetComponent<Block>());
-            // }
-            // GameDataManager.Instance.blockList = LocToBlock;
-            //
-            // foreach (PlayerDTO player in save.Players)
-            // {
-            //     Player p = new Player(player);
-            //     foreach(UnitDTO u in player.Units)
-            //     {
-            //         GameObject unitObj = Instantiate(UnitPrefeb[u.type]);
-            //         Unit unit = unitObj.GetComponent<Unit>();
-            //         unit.CopyFrom(u);
-            //         p.UnitsList.Add(unit);
-            //     }
-            //     data.Players[player.Index] = p;
-            // }
-            
-            // TODO: 加载方式换成这样
             Save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
             LoadBlocksFrom(Save);
             LoadEnvironmentFrom(Save);
             LoadPlayersFrom(Save);
+            if (!ignore)
+                GameDataManager.Instance.Pve = Save.pve;
+            GameDataManager.Instance.CurrentPlayer = Save.currentPlayer;
 
             Camera.main!.GetComponent<AudioSource>().clip = bgmCandidate.OrderBy(bgm => Guid.NewGuid()).First();
-            Debug.Log($"Total {bgmCandidate.Count} bgm candidates");
             Camera.main!.GetComponent<AudioSource>().Play();
-
-            // MapSaver.SaveAll();
-
-            // for (int i = 0; i < 6; i++)
-            // {
-            //     GameObject unitObj = Instantiate(UnitPrefeb[i]);
-            //     Unit unit = unitObj.GetComponent<Unit>();
-            //
-            //     unit.onBlock = LocToBlock[new Vector2(0, i * 2)].Item1.GetComponent<Block>();
-            //     GameDataManager.Instance.Players[0].UnitsList.Add(unit);
-            //     unitObj = Instantiate(UnitPrefeb[i]);
-            //     unit = unitObj.GetComponent<Unit>();
-            //     unit.onBlock = LocToBlock[new Vector2(2, i * 2)].Item1.GetComponent<Block>();
-            //     GameDataManager.Instance.Players[1].UnitsList.Add(unit);
-            // }
         }
 
-        public void GoDefault(string save)
+        public void GoDefault(string save, bool ignore = false)
         {
             GameDataManager data = GameDataManager.Instance;
             MapManager map = MapManager.Instance;
@@ -126,7 +89,6 @@ namespace Archive
             data.gameStatus = GameStatus.Default;
             data.CurrentPlayer = -1;
             data.blockList.Clear();
-            data.Pve = false;
             
             data.MovedUnit = null;
             data.SelectedUnit = null;
@@ -144,7 +106,10 @@ namespace Archive
             {
                 foreach (Unit unit in player.UnitsList)
                 {
-                    Destroy(unit.gameObject);
+                    if (!UnityObjectUtility.IsDestroyed(unit))
+                    {
+                        Destroy(unit.gameObject);
+                    }
                 }
                 player.UnitsList.Clear();
             }
@@ -161,7 +126,7 @@ namespace Archive
             }
             map.Map.Clear();
             data.JsonToLoad = save;
-            Start();
+            Initialize(ignore);
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
             animator.SetTrigger(ReloadAnime);
         }
