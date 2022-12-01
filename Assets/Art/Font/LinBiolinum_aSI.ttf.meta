@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 1ee1aefda95995a4b8995f26b20ca7be
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Linux Biolinum Capitals
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: dab222a39ff89b24a92df6652977e84d, type: 3}
+  - {fileID: 12800000, guid: b0b5ec93a36cff045a97be9306ff9033, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
