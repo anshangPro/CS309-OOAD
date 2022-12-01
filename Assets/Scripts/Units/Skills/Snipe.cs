@@ -4,7 +4,7 @@ namespace Units.Skills
 {
     public class Snipe: Skill
     {
-        private readonly int _rangeEnhance = 2;
+        private readonly int _rangeEnhance = 1;
         private readonly int _damageEnhance = 1;    
         
         public Snipe()

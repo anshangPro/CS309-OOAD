@@ -18,7 +18,7 @@ namespace Units.FriendlyUnits
             this.BaseMv = 4;
             this.BaseDefense = 4;
             this.BaseDamage = 15;
-            this.BaseAtkRange = 1;
+            this.BaseAtkRange = 2;
             this.DefenseUpdateRate = 1f;
             this.Skills.AddLast(new Snipe());
             foreach (Skill skill in Skills)
