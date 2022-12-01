@@ -94,6 +94,9 @@ namespace GUI
                 case "closePanelButton":
                     _uiManager.ClosePanelButton();
                     break;
+                case "closeSaveAndLoadButton":
+                    _uiManager.CloseSaveAndLoadButton();
+                    break;
 
                 case "NextLevelButton":
                     // TODO: 需要实现下一关卡的切换

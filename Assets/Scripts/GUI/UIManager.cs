@@ -127,6 +127,12 @@ namespace GUI
             DefaultUI.SetActive(false);
             MainMenuUI.SetActive(true);
         }
+        internal void CloseSaveAndLoadButton()
+        {
+            GameDataManager.Instance.isSave = false;
+            LoadMenuUI.SetActive(false);
+            MainMenuUI.SetActive(true);
+        }
 
         internal void LoadButton()
         {

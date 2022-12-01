@@ -7594,9 +7594,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4629256947121575080}
     m_Modifications:
+    - target: {fileID: 3704110363407697872, guid: 283cb6ef71a8c1a4c8899c71305f39df, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704110363407697872, guid: 283cb6ef71a8c1a4c8899c71305f39df, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704110364014514317, guid: 283cb6ef71a8c1a4c8899c71305f39df, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704110364014514317, guid: 283cb6ef71a8c1a4c8899c71305f39df, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704110364014514317, guid: 283cb6ef71a8c1a4c8899c71305f39df, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3704110364058525480, guid: 283cb6ef71a8c1a4c8899c71305f39df, type: 3}
       propertyPath: m_Name
       value: SkillPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704110364058525480, guid: 283cb6ef71a8c1a4c8899c71305f39df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3704110364058525483, guid: 283cb6ef71a8c1a4c8899c71305f39df, type: 3}
       propertyPath: m_Pivot.x
