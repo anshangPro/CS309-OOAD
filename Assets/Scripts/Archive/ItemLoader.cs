@@ -60,6 +60,8 @@ namespace Archive
             }
             Save = GameLoader.LoadSave(GameDataManager.Instance.JsonToLoad);
             GoDefault(GameDataManager.Instance.JsonToLoad, ignore:true);
+
+            GameDataManager.Instance.WinMusic = Resources.Load<AudioClip>("Music/Merriment");
             // TODO: 记得删掉这里
             // if (SceneManager.GetActiveScene().name != "Scene_0") return;
             // MapSaver.SaveAll();
