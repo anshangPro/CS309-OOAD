@@ -44,7 +44,9 @@ namespace Archive
         {
             GameDataManager data = GameDataManager.Instance;
             SaveDTO save = new SaveDTO();
-            
+            save.pve = data.Pve;
+            save.currentPlayer = data.CurrentPlayer;
+
             save.CameraPosition = new float[3];
             save.CameraPosition[0] = Camera.main!.transform.position.x;
             save.CameraPosition[1] = Camera.main!.transform.position.y;

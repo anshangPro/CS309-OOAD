@@ -184,7 +184,8 @@ namespace Units
         public virtual void Attack(Unit target)
         {
             hasAttacked = true;
-            float realDamage = Damage - target.Defense;
+            float causeDamage = Damage + onBlock.transform.position.y - target.onBlock.transform.position.y;
+            float realDamage = causeDamage - target.Defense;
 
             if (realDamage <= 0)
                 return;
@@ -346,6 +347,11 @@ namespace Units
             {
                 skill.RemainSkillPoint = skill.SkillPoint;
             }
+
+            if (GameDataManager.Instance.SelectedSkill is not null)
+            {
+                GameDataManager.Instance.SelectedSkill.Skill.TakeEffect();
+            }
         }
 
         public virtual bool CanFightWith()
@@ -460,6 +466,8 @@ namespace Units
             Damage = unit.Damage;
             Defense = unit.Defense;
             AtkRange = unit.AtkRange;
+            hasAttacked = unit.isAttacked;
+            hasMoved = unit.isMoved;
         }
 
         public void SetTo(UnitSnapshot snapshot)

@@ -180,6 +180,7 @@ namespace GUI
 
         internal static void QuitButton()
         {
+            GameDataManager.Instance.Started = false;
             LevelLoader.Instance.LoadNextScene("MainMenu");
         }
 
@@ -193,6 +194,7 @@ namespace GUI
         internal void StartButton()
         {
             Animator animator = GameManager.gameManager.GetComponent<Animator>();
+            GameDataManager.Instance.Started = true;
             animator.SetTrigger(StartGame);
             StartUI.SetActive(false);
             DefaultUI.SetActive(true);

@@ -11,10 +11,18 @@ namespace StateMachine
     public class Default : StateMachineBehaviour
     {
         private GameDataManager gameData = GameDataManager.Instance;
+        private static readonly int RestartAnime = Animator.StringToHash("restart");
+
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            if (!gameData.Started)
+            {
+                animator.SetTrigger(RestartAnime);
+                return;
+            }
+            
             UIManager.Instance.SetVisiableWithdrawButton(true);
             UIManager.Instance.SetVisiableSkipRoundButton(true);
             if (gameData.SelectedSkill is not null)
@@ -29,25 +37,21 @@ namespace StateMachine
                 // 初始化游戏数据
 
                 //  - 初始化各玩家棋子
-                List<Unit> units = new();
                 for (int playerNumber = 0; playerNumber < GameData.GameDataManager.PlayerNum; playerNumber++)
                 {
                     foreach (Unit thisUnit in gameData.Players[playerNumber].UnitsList)
                     {
                         // 初始化所有棋子状态机相关属性
                         thisUnit.ofPlayer = playerNumber;
-                        thisUnit.OnTurnEnd();
-                        units.Add(thisUnit);
-                        Debug.Log($"Player_{playerNumber.ToString()} has unit: {units.Last()}");
                     }
                 }
 
                 gameData.CurrentPlayer = 0;
-                foreach (Unit unit in gameData.GetCurrentPlayer().UnitsList)
-                {
-                    // 设置正开始回合的所有单位 hasMoved, hasAttacked 属性为 False
-                    unit.OnTurnBegin();
-                }
+                // foreach (Unit unit in gameData.GetCurrentPlayer().UnitsList)
+                // {
+                //     // 设置正开始回合的所有单位 hasMoved, hasAttacked 属性为 False
+                //     unit.OnTurnBegin();
+                // }
             }
 
             if (gameData.GetCurrentPlayer().TurnFinish())
